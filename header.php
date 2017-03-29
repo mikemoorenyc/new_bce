@@ -52,18 +52,13 @@ if ( is_front_page() ) {
 
 <!-- HERE'S WHERE WE GET THE SITE DESCRIPTION -->
 <?php
-if ( have_posts() && is_single() OR is_page()):while(have_posts()):the_post();
-  if (get_the_excerpt()) {
-    $out_excerpt = str_replace(array("\r\n", "\r", "\n", "[&hellip;]"), "", get_the_excerpt());
-    //echo apply_filters('the_excerpt_rss', $out_excerpt);
-    $siteDesc = $out_excerpt;
-  } else {
-    $siteDesc =  get_bloginfo('description');
-  }
-  if($siteDesc == '') {
-    $siteDesc =  get_bloginfo('description');
-  }
-endwhile;
+
+$excerpt = get_the_except();
+if(!empty($excerpt)){
+ $siteDesc = $excerpt; 
+}
+  
+  
 else: ?>
 
 <?php endif; ?>
@@ -77,7 +72,11 @@ else: ?>
 <?php wp_site_icon();?>
 
 
-
+<?php
+  $socialTitle = $pageTitle.' | '.$siteTitle;
+  if($pageTitle === $siteTitle) {
+    $socialTitle = $pageTitle;
+ ?>
 
 <!-- FACEBOOK & TWiTTER TAGS REMOVED ON COMPILATION UNLESS YOU UNCOMMENT-->
 <!--
