@@ -1,0 +1,21 @@
+$ts: 0.25s;
+
+
+
+/*BREAK POINTS*/
+$dt-break: 801px;
+$dt-max-break: ($dt-break - 1px);
+$tab: 'min-width:401px';
+$dt: 'min-width:#{$dt-break}';
+$dt-max: 'max-width:#{$dt-max-break}';
+
+/* SITE COLORS */
+$body-bg: #fff;
+$main-color: #404041;
+$link-color: #bc812c;
+$link-color-hover: black;
+
+/*FONTS*/
+$font-family:  "Helvetica", sans-serif;
+$font-size-base: 14px;
+$line-height-base:  1.428571429;
