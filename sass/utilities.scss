@@ -97,6 +97,13 @@
   @include ab-cover();
 }
 
+.above-line {
+  position:relative;
+  z-index:2;
+}
+
+
+
 // UTILITY PLACEHOLDER EXTENDERS
 %clearfix {
   @include clearfix();
