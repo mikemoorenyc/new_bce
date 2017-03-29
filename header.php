@@ -112,6 +112,8 @@ var App = {
 
 
 </script>
+
+<link rel="canonical" href="<?php echo get_the_permalink();?>">
 </head>
 
 <body id="top" style="color: <?php echo $colors[rand(0,count($colors)-1)];?>;">
