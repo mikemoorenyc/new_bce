@@ -76,19 +76,30 @@ else: ?>
   $socialTitle = $pageTitle.' | '.$siteTitle;
   if($pageTitle === $siteTitle) {
     $socialTitle = $pageTitle;
+    
+   $twitterCard = 'summary_large_image';
+   $twitterUsername = get_option('twitterHandle','');
  ?>
 
 <!-- FACEBOOK & TWiTTER TAGS REMOVED ON COMPILATION UNLESS YOU UNCOMMENT-->
 <!--
 <meta property="og:site_name" content="<?php echo $siteTitle;?>" />
-<meta property="og:title" content="<?php echo $pageTitle;?> | <?php echo $siteTitle;?>" />
+<meta property="og:title" content="<?php echo $pageTitle;?> " />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="<?php echo $homeURL;?>" />
+<meta property="og:url" content="<?php echo get_the_permalink();?>" />
 <meta property="og:image" content="<?php echo $siteDir;?>/assets/blue-pin.jpg" />
 <meta property="og:description" content="<?php echo $siteDesc;?>" />
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="<?php echo $pageTitle;?> | <?php echo $siteTitle;?>">
+<?php
+  if(!empty($twitterUsername)) {
+    ?>
+<meta name="twitter:site" content="<?php echo $twitterUsername;?>">
+<meta name="twitter:creator" content="<?php echo $twitterUsername;?>">
+    <?php
+    
+?>
+<meta name="twitter:card" content="<?php echo $twitterCard;?>">
+<meta name="twitter:title" content="<?php echo $pageTitle;?> ">
 <meta name="twitter:description" content="<?php echo $siteDesc;?>">
 <meta name="twitter:image" content="<?php echo $siteDir;?>/assets/imgs/1.jpg">
 -->
