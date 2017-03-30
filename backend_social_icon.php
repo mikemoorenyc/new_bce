@@ -6,7 +6,7 @@ add_settings_field('social_icon_image', '<label for="social_icon_image">'.__('So
 }
 function social_icon_selector() {
   wp_enqueue_media();
-  $value = get_option( 'main_map_image', '' );
+  $value = get_option( 'social_icon_image', '' );
   if(empty($value)) {
     $verb = 'Upload';
     $smimg = '';
