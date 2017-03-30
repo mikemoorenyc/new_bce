@@ -26,6 +26,13 @@ $siteTitle = get_bloginfo('name');
 //DECLARE THE PAGE EXCERPT
 global $siteDesc;
 $siteDesc = get_bloginfo('description');
+
+$pageThumb = false;
+if(get_post_thumbnail_id()) {
+  $pageThumb = get_all_image_sizes(get_post_thumbnail_id());
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">
@@ -77,6 +84,18 @@ if(!empty($excerpt)){
   }
    $twitterCard = 'summary_large_image';
    $twitterUsername = get_option('twitterHandle','');
+   
+  
+  if($pageThumb) {
+    $socialImg = $pageThumb['full']['url'];
+  } else {
+    $socialImg = '';
+    $twitterCard = 'summary';
+    if(get_option( 'social_icon_image', '' )) {
+      $socialImg = get_all_image_sizes(get_option( 'social_icon_image', '' ))['thumbnail']['url'];
+    }
+    
+  }
 
  ?>
 
@@ -86,7 +105,7 @@ if(!empty($excerpt)){
 <meta property="og:title" content="<?php echo $pageTitle;?> " />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php echo get_the_permalink();?>" />
-<meta property="og:image" content="<?php echo $siteDir;?>/assets/blue-pin.jpg" />
+<meta property="og:image" content="<?php echo $socialImg;?>" />
 <meta property="og:description" content="<?php echo $siteDesc;?>" />
 
 <?php
@@ -100,7 +119,7 @@ if(!empty($excerpt)){
 <meta name="twitter:card" content="<?php echo $twitterCard;?>">
 <meta name="twitter:title" content="<?php echo $pageTitle;?> ">
 <meta name="twitter:description" content="<?php echo $siteDesc;?>">
-<meta name="twitter:image" content="<?php echo $siteDir;?>/assets/imgs/1.jpg">
+<meta name="twitter:image" content="<?php echo $socialImg;?>">
 -->
 
 
