@@ -84,17 +84,18 @@ if(!empty($excerpt)){
   }
    $twitterCard = 'summary_large_image';
    $twitterUsername = get_option('twitterHandle','');
-   
-  
+
+
   if($pageThumb) {
     $socialImg = $pageThumb['full']['url'];
   } else {
     $socialImg = '';
     $twitterCard = 'summary';
     if(get_option( 'social_icon_image', '' )) {
-      $socialImg = get_all_image_sizes(get_option( 'social_icon_image', '' ))['thumbnail']['url'];
+      $socialImg = get_all_image_sizes(get_option( 'social_icon_image', '' ));
+      $socialImg = $socialImg['thumbnail']['url'];
     }
-    
+
   }
 
  ?>
@@ -136,17 +137,15 @@ var App = {
 
 <body id="top" style="color: <?php echo $colors[rand(0,count($colors)-1)];?>;">
 <div id="css-checker"></div>
-  
+
  <header>
-   
+
    <nav>
      <?php
      $nav_items = wp_get_nav_menu_items('main-menu');
      
-     
+
      ?>
-     
+
    </nav>
  </header>
-  
-  

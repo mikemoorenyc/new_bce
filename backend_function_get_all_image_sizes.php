@@ -6,7 +6,7 @@ function get_all_image_sizes($id) {
   $images = array();
   $sizes = get_intermediate_image_sizes();
 	$sizes[] = 'full';
-  
+
   foreach($sizes as $size) {
     $image = wp_get_attachment_image_src( $id, $size );
     if(!$image) {
@@ -14,11 +14,11 @@ function get_all_image_sizes($id) {
     }
     $images[$size] = array(
       'url' => $image[0],
-      'width =>$image[1],
+      'width' =>$image[1],
       'height'=>$image[2]
     );
   }
-		
+
   return $images;
 
 

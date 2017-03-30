@@ -2,7 +2,7 @@
 add_filter('admin_init', 'social_icon_setting');
 function social_icon_setting() {
 register_setting('general', 'social_icon_image', 'esc_attr');
-add_settings_field('social_icon_image', '<label for="social_icon_image">'.__('Social Icon Image' , 'social_icon_image' ).'</label>' , 'social_icon_selector', 'general'); 
+add_settings_field('social_icon_image', '<label for="social_icon_image">'.__('Social Icon Image' , 'social_icon_image' ).'</label>' , 'social_icon_selector', 'general');
 }
 function social_icon_selector() {
   wp_enqueue_media();
@@ -21,7 +21,7 @@ function social_icon_selector() {
   ?>
   <div id="map-thumb" style="margin-bottom: 10px;"> </div>
     <input type="hidden" id="social_icon_image" name="social_icon_image" value="<?php echo $value;?>" class="regular-text"/ >
-    <button id="social-icon-opener" class="button"><?php echo $verb;?> Legal PDF</button>
+    <button id="social-icon-opener" class="button"><?php echo $verb;?> Add Social Icon</button>
 
 <style>
   #map-thumb {
@@ -31,7 +31,7 @@ function social_icon_selector() {
    background-size:cover;
    background-position:center center;
   }
-  
+
 </style>
 
   <script>
@@ -44,7 +44,7 @@ function social_icon_selector() {
         }
         $('input#social_icon_image').val(id);
         if(url) {
-          var fileName = url.replace(/^.*[\\\/]/, '')
+          var fileName = url;
           $('#map-thumb').css({
             'background-image': 'url('+fileName+')'
           });
@@ -54,7 +54,7 @@ function social_icon_selector() {
           });
         }
       }
-      stateUpdater('<?php echo $jv;?>', '<?php echo $smimg;?>');
+      stateUpdater('<?php echo $id;?>', '<?php echo $smimg;?>');
       $('#social-icon-opener').click(function(e) {
         e.preventDefault();
         var image = wp.media({
@@ -63,13 +63,15 @@ function social_icon_selector() {
             multiple: false
         }).open()
         .on('select', function(e){
+
             // This will return the selected image from the Media Uploader, the result is an object
             var uploaded_image = image.state().get('selection').first();
             // We convert uploaded_image to a JSON object to make accessing it easier
             // Output to the console uploaded_image
+
             var theurl;
             theurl = uploaded_image.attributes.url;
-            var image_url = uploaded_image.toJSON().url;
+            var image_url = uploaded_image.url;
             stateUpdater(uploaded_image.id, theurl);
             // Let's assign the url value to the input field
             //$('#image_url').val(image_url);
@@ -79,9 +81,9 @@ function social_icon_selector() {
     </script>
 
   <?php
-  
+
 }
-  
+
 
 
 
