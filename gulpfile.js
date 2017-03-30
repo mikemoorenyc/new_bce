@@ -5,9 +5,10 @@ var plumber = require('gulp-plumber');
 var concat = require('gulp-concat');
 var replace = require('gulp-replace');
 var gulpif = require('gulp-if');
-var argv = require('yargs').argv
+var argv = require('yargs').argv;
+var svgo = require('gulp-svgo');
 
-
+var htmlmin = require('gulp-htmlmin');
 
 var sass = require('gulp-sass'),
     postcss = require('gulp-postcss'),
@@ -25,9 +26,15 @@ gulp.task('clean', function(){
 });
 //CSS
 gulp.task('css', function(){
+  var plugins = [
+      mqpacker(),
+      autoprefixer({browsers: ['last 3 versions']}),
+      cssnano()
+  ]
   gulp.src('sass/main.scss')
     .pipe(plumber())
     .pipe(sass())
+    .pipe(gulpif(argv.production, postcss(plugins)))
     .pipe(gulp.dest(buildDir+'/css'));
 });
 gulp.task('js', function(){
@@ -44,11 +51,13 @@ gulp.task('js', function(){
 //Template Move
 gulp.task('templates', function(){
   return gulp.src(['*.html', '*.php'])
+    .pipe(gulpif(argv.production, htmlmin({collapseWhitespace: true, minifyJS: true, removeComments	:true})))
     .pipe(gulp.dest(buildDir));
 });
 //Asset Move
 gulp.task('assetmove', function(){
   return gulp.src('assets/**/*')
+    .pipe(gulpif(argv.production, svgo()))
     .pipe(gulp.dest(buildDir+'/assets'));
 });
 //WP

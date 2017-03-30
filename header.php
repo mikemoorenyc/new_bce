@@ -53,15 +53,13 @@ if ( is_front_page() ) {
 <!-- HERE'S WHERE WE GET THE SITE DESCRIPTION -->
 <?php
 
-$excerpt = get_the_except();
+$excerpt = get_the_excerpt();
 if(!empty($excerpt)){
- $siteDesc = $excerpt; 
+ $siteDesc = $excerpt;
 }
-  
-  
-else: ?>
 
-<?php endif; ?>
+
+?>
 <meta name="description" content="<?php echo $siteDesc;?>" />
 
 <meta charset="UTF-8" />
@@ -76,9 +74,10 @@ else: ?>
   $socialTitle = $pageTitle.' | '.$siteTitle;
   if($pageTitle === $siteTitle) {
     $socialTitle = $pageTitle;
-    
+  }
    $twitterCard = 'summary_large_image';
    $twitterUsername = get_option('twitterHandle','');
+
  ?>
 
 <!-- FACEBOOK & TWiTTER TAGS REMOVED ON COMPILATION UNLESS YOU UNCOMMENT-->
@@ -96,7 +95,7 @@ else: ?>
 <meta name="twitter:site" content="<?php echo $twitterUsername;?>">
 <meta name="twitter:creator" content="<?php echo $twitterUsername;?>">
     <?php
-    
+}
 ?>
 <meta name="twitter:card" content="<?php echo $twitterCard;?>">
 <meta name="twitter:title" content="<?php echo $pageTitle;?> ">
