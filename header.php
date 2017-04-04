@@ -12,7 +12,7 @@ if($colorset) {
 }
 //GET POST SLUG
 global $post;
-$slug = $post->post_name;
+$slug = slug_generator($post->ID);
 $colors = array(
   'Violet ',
   'red',
@@ -165,8 +165,12 @@ var App = {
      <?php
      $nav_items = wp_get_nav_menu_items('main-menu');
      foreach($nav_items as $item) {
+       $activeClass="";
+       if($slug == slug_generator($item->ID)) {
+        $activeClass="active";
+       }
        ?>
-        <div class="nav-item">
+        <div class="nav-item <?php echo $activeClass;?>">
           <a href="<?php echo $item->url;?>"><?php echo $item->title;?></a>  
         </div>
        <?php
