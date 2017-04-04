@@ -1,6 +1,11 @@
 function siteInit() {
   $('body').append('<div id="liner" />');
   App.colorSwitch = setInterval(function(){
+    if(App.colormode === 'bw') {
+     clearInterval(App.colorSwitch);
+     App.colorSwitch = false;
+     return false;
+    }
     $('body').css({
       'color': App.colors[Math.floor((Math.random() * App.colors.length) + 0)]
     })
