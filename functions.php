@@ -13,6 +13,12 @@ remove_action('wp_head', 'wp_generator');// Removes the WordPress version as a l
 
 add_theme_support('post-thumbnails');
 
+function add_custom_query_var( $vars ){
+  $vars['1'] = "colormode";
+  return $vars;
+}
+add_filter( 'query_vars', 'add_custom_query_var' );
+
 
 add_action( 'admin_init', 'my_theme_add_editor_styles' );
 function my_theme_add_editor_styles() {
