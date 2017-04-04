@@ -49,7 +49,6 @@ if(get_post_thumbnail_id()) {
 <html lang="en" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">
 <head>
 
-<!-- ABOVE THE FOLD CSS -->
 <link rel='stylesheet' href="<?php echo $siteDir;?>/css/main.css?v=<?php echo time();?>" type="text/css" />
 
 
@@ -111,8 +110,7 @@ if(!empty($excerpt)){
 
  ?>
 
-<!-- FACEBOOK & TWiTTER TAGS REMOVED ON COMPILATION UNLESS YOU UNCOMMENT-->
-<!--
+
 <meta property="og:site_name" content="<?php echo $siteTitle;?>" />
 <meta property="og:title" content="<?php echo $pageTitle;?> " />
 <meta property="og:type" content="website" />
@@ -132,7 +130,7 @@ if(!empty($excerpt)){
 <meta name="twitter:title" content="<?php echo $pageTitle;?> ">
 <meta name="twitter:description" content="<?php echo $siteDesc;?>">
 <meta name="twitter:image" content="<?php echo $socialImg;?>">
--->
+
 
 
 <script>
