@@ -55,4 +55,5 @@ function content_cleaner($content) {
 include 'backend_projects_post_type.php';
 include 'backend_social_icon.php';
 include 'backend_function_get_all_image_sizes.php';
+include 'backend_function_slug_generator.php';
 ?>
