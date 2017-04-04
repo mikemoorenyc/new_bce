@@ -156,11 +156,36 @@ var App = {
  <header>
 
    <nav>
+     <h1 id="logo">
+       <a href="<?php echo $homeURL;?>">
+         <div class="ball"></div>
+         <span class="title"><?php echo $siteTitle;?></span>
+       </a>
+       
+       
+       
+       
+       
+     </h1>
      <?php
      $nav_items = wp_get_nav_menu_items('main-menu');
      
 
      ?>
-
+    <?php
+       $refreshURL = $_SERVER['REQUEST_URI'].'?'.$_SERVER['QUERY_STRING'];
+       $modeText = 'Black &amp; White Mode';
+       $modeAlt = 'Colors are cool, but this is a little much.';
+       $modeVar = 'bw';
+       if($colorMode === 'bw') {
+        $modeText = 'Color Mode'; 
+        $modeAlt = 'My eyes can take it!';
+        $modeVar = 'color';
+       }
+     ?>
+     <a href="<?php echo $refreshURL.'&colormode='.$modeVar;?>" class="color-switcher" title="<?php echo $modeAlt;?>">
+      <?php echo $modeText;?>
+     </a>
+     
    </nav>
  </header>
