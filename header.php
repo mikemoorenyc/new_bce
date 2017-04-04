@@ -1,4 +1,15 @@
 <?php
+$colormode = $_COOKIE['colormode'];
+
+
+
+
+$colorset = $_GET['colormode'];
+if($colorset) {
+  $urlSet = parse_url(esc_url( home_url( ) ));
+  setcookie("colormode", $colorset, time()+60*60*24*365, $urlSet['path'], $urlSet['host']);
+  
+}
 //GET POST SLUG
 global $post;
 $slug = $post->post_name;
@@ -126,7 +137,8 @@ if(!empty($excerpt)){
 
 <script>
 var App = {
-  colors: <?php echo json_encode($colors);?>
+  colors: <?php echo json_encode($colors);?>,
+  colormode: <?php echo json_encode($colormode);?>
 }
 
 
@@ -134,8 +146,13 @@ var App = {
 
 <link rel="canonical" href="<?php echo get_the_permalink();?>">
 </head>
-
-<body id="top" style="color: <?php echo $colors[rand(0,count($colors)-1)];?>;">
+<?php
+  $firstColor = 'color:'.$colors[rand(0,count($colors)-1)].';';
+  if($colorMode === 'bw') {
+    $firstColor = '';
+  }
+ ?>
+<body id="top" style="<?php echo $firstColor;?>">
 <div id="css-checker"></div>
 
  <header>
