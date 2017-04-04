@@ -160,16 +160,17 @@ var App = {
        <a href="<?php echo $homeURL;?>">
          <div class="ball"></div>
          <span class="title"><?php echo $siteTitle;?></span>
-       </a>
-       
-       
-       
-       
-       
+       </a>  
      </h1>
      <?php
      $nav_items = wp_get_nav_menu_items('main-menu');
-     
+     foreach($nav_items as $item) {
+       ?>
+        <div class="nav-item">
+          <a href="<?php echo $item->url;?>"><?php echo $item->title;?></a>  
+        </div>
+       <?php
+     }
 
      ?>
     <?php
