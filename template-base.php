@@ -6,5 +6,5 @@
 
 
 <?php include 'header.php'; ?>
-  <?php get_template_part( 'loop', 'index' ); ?>
+test
 <?php include 'footer.php'; ?>

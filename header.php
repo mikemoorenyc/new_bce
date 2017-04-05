@@ -3,12 +3,11 @@ $colormode = $_COOKIE['colormode'];
 
 
 
-
 $colorset = $_GET['colormode'];
 if($colorset) {
   $urlSet = parse_url(esc_url( home_url( ) ));
   setcookie("colormode", $colorset, time()+60*60*24*365, $urlSet['path'], $urlSet['host']);
-  
+
 }
 //GET POST SLUG
 global $post;
@@ -160,18 +159,19 @@ var App = {
        <a href="<?php echo $homeURL;?>">
          <div class="ball"></div>
          <span class="title"><?php echo $siteTitle;?></span>
-       </a>  
+       </a>
      </h1>
      <?php
      $nav_items = wp_get_nav_menu_items('main-menu');
      foreach($nav_items as $item) {
+       var_dump($item);
        $activeClass="";
        if($slug == slug_generator($item->ID)) {
         $activeClass="active";
        }
        ?>
         <div class="nav-item <?php echo $activeClass;?>">
-          <a href="<?php echo $item->url;?>"><?php echo $item->title;?></a>  
+          <a href="<?php echo $item->url;?>"><?php echo $item->title;?></a>
         </div>
        <?php
      }
@@ -183,7 +183,7 @@ var App = {
        $modeAlt = 'Colors are cool, but this is a little much.';
        $modeVar = 'bw';
        if($colorMode === 'bw') {
-        $modeText = 'Color Mode'; 
+        $modeText = 'Color Mode';
         $modeAlt = 'My eyes can take it!';
         $modeVar = 'color';
        }
@@ -191,6 +191,6 @@ var App = {
      <a href="<?php echo $refreshURL.'&colormode='.$modeVar;?>" class="color-switcher" title="<?php echo $modeAlt;?>">
       <?php echo $modeText;?>
      </a>
-     
+
    </nav>
  </header>
