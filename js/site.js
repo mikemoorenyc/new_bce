@@ -1,5 +1,8 @@
 function siteInit() {
   $('body').append('<div id="liner" />');
+  $("header nav").append('<button class="mode-switcher"></button>');
+  
+  
   App.colorSwitch = setInterval(function(){
     if(App.colormode === 'bw') {
      clearInterval(App.colorSwitch);
