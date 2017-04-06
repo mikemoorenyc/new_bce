@@ -3,12 +3,7 @@ $colormode = $_COOKIE['colormode'];
 
 
 
-$colorset = $_GET['colormode'];
-if($colorset) {
-  $urlSet = parse_url(esc_url( home_url( ) ));
-  setcookie("colormode", $colorset, time()+60*60*24*365, $urlSet['path'], $urlSet['host']);
 
-}
 //GET POST SLUG
 global $post;
 $slug = slug_generator($post->ID);
