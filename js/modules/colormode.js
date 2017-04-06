@@ -27,9 +27,15 @@ function colorMode() {
     if(mode == 'bw') {
       App.colormode = 'color';
       buttonSet();
+      $("body").css({'color':App.colors[0]});
       App.colorSwitch = setInterval(colorSwitcher,2000);  
     } else {
       App.colormode = 'bw';
+      
+
+      $("body").css({'color':''});
+
+
       buttonSet();
     }
   //  document.cookie = "colormode=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/"; 
