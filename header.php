@@ -183,9 +183,9 @@ var App = {
         $modeVar = 'color';
        }
      ?>
-     <a href="<?php echo $refreshURL.'&colormode='.$modeVar;?>" class="color-switcher" title="<?php echo $modeAlt;?>">
+    <!-- <a href="<?php echo $refreshURL.'&colormode='.$modeVar;?>" class="color-switcher" title="<?php echo $modeAlt;?>">
       <?php echo $modeText;?>
-     </a>
+     </a>-->
 
    </nav>
  </header>
