@@ -1,5 +1,5 @@
 function colorMode() {
-  $("header nav").append('<button class="color-mode-switcher"></button>');
+
   function colorSwitcher() {
     if(App.colormode === 'bw') {
      clearInterval(App.colorSwitch);
@@ -12,10 +12,10 @@ function colorMode() {
   }
   function buttonSet() {
    if(App.colormode === 'bw') {
-    $('header nav button.color-mode-switcher').text('Color Mode').attr('title',"This site looks boring.").data('mode','bw');   
+    $('header nav button.color-mode-switcher').text('Color Mode').attr('title',"This site looks boring.").data('mode','bw');
    } else {
      $('header nav button.color-mode-switcher').text('Simple Mode').attr('title',"This site hurts my eyes.").data('mode','color');
-     
+
    }
   }
   if(App.colormode !== 'bw') {
@@ -28,17 +28,21 @@ function colorMode() {
       App.colormode = 'color';
       buttonSet();
       $("body").css({'color':App.colors[0]});
-      App.colorSwitch = setInterval(colorSwitcher,2000);  
+      App.colorSwitch = setInterval(colorSwitcher,2000);
     } else {
       App.colormode = 'bw';
-      
+
 
       $("body").css({'color':''});
 
 
       buttonSet();
     }
-  //  document.cookie = "colormode=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/"; 
+    $('body').attr('data-colormode',App.colormode);
+    var cookieSet = (`
+      "colormode=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/; domain="
+    `)
+   document.cookie = cookieSet;
   });
   buttonSet();
 

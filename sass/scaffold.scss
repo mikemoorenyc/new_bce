@@ -141,5 +141,8 @@ blockquote {
   transform-origin: bottom left;
   pointer-events: none;
   height:1px;
-  z-index:1
+  z-index:1;
+  body[data-colormode="bw"] & {
+    display:none;
+  }
 }

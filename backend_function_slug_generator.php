@@ -4,7 +4,7 @@ function slug_generator($id) {
   if(!$thepost) {
    return false;
   }
-  var_dump($thepost);
+  //var_dump($thepost);
   if($thepost->post_type == 'post' ) {
    return 'blog';
   }

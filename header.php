@@ -1,11 +1,20 @@
 <?php
 $colormode = $_COOKIE['colormode'];
+global $homeURL;
+$homeURL = esc_url( home_url( ) );
 
+$homeArray =parse_url($homeURL);
 
+$cget = $_GET['cmode'];
+if(!empty($cget)) {
 
+  $colormode = $cget;
+  setcookie( 'colormode', $cget, strtotime( '+360 days' ) , $homeArray['path'].'/', $homeArray['host']);
+}
 
 //GET POST SLUG
 global $post;
+
 $slug = slug_generator($post->ID);
 $colors = array(
   'Violet ',
@@ -23,8 +32,8 @@ $colors = array(
 global $siteDir;
 $siteDir = get_bloginfo('template_url');
 //GET HOME URL
-global $homeURL;
-$homeURL = esc_url( home_url( ) );
+
+//var_dump(parse_url($homeURL));
 //DECLARE THE SITE TITLE, SAVE A DB QUERY
 global $siteTitle;
 $siteTitle = get_bloginfo('name');
@@ -130,7 +139,12 @@ if(!empty($excerpt)){
 <script>
 var App = {
   colors: <?php echo json_encode($colors);?>,
-  colormode: <?php echo json_encode($colormode);?>
+  colormode: <?php echo json_encode($colormode);?>,
+  urlParts: {
+    homeURL: <?php echo json_encode($homeURL);?>,
+    path: <?php echo json_encode($homeArray['path'].'/');?>,
+    domain: <?php echo json_encode($homeArray['host']);?>
+  }
 }
 
 
@@ -140,11 +154,12 @@ var App = {
 </head>
 <?php
   $firstColor = 'color:'.$colors[rand(0,count($colors)-1)].';';
-  if($colorMode === 'bw') {
+  if($colormode === 'bw') {
     $firstColor = '';
   }
+
  ?>
-<body id="top" style="<?php echo $firstColor;?>">
+<body id="top" style="<?php echo $firstColor;?>" data-colormode="<?php echo $colormode;?>">
 <div id="css-checker"></div>
 
  <header>
@@ -159,9 +174,10 @@ var App = {
      <?php
      $nav_items = wp_get_nav_menu_items('main-menu');
      foreach($nav_items as $item) {
-       var_dump($item);
+  
        $activeClass="";
-       if($slug == slug_generator($item->ID)) {
+
+       if($slug == slug_generator(url_to_postid($item->url ))) {
         $activeClass="active";
        }
        ?>
@@ -173,19 +189,19 @@ var App = {
 
      ?>
     <?php
-       $refreshURL = $_SERVER['REQUEST_URI'].'?'.$_SERVER['QUERY_STRING'];
-       $modeText = 'Black &amp; White Mode';
+       $refreshURL = $_SERVER['REQUEST_URI'];
+       $modeText = 'Simple Mode';
        $modeAlt = 'Colors are cool, but this is a little much.';
        $modeVar = 'bw';
-       if($colorMode === 'bw') {
+       if($colormode === 'bw') {
         $modeText = 'Color Mode';
         $modeAlt = 'My eyes can take it!';
         $modeVar = 'color';
        }
      ?>
-    <!-- <a href="<?php echo $refreshURL.'&colormode='.$modeVar;?>" class="color-switcher" title="<?php echo $modeAlt;?>">
+    <a href="<?php echo get_the_permalink().'?cmode='.$modeVar;?>" class="color-switcher" title="<?php echo $modeAlt;?>">
       <?php echo $modeText;?>
-     </a>-->
+     </a>
 
    </nav>
  </header>
