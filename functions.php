@@ -51,4 +51,6 @@ include 'backend_projects_post_type.php';
 include 'backend_social_icon.php';
 include 'backend_function_get_all_image_sizes.php';
 include 'backend_function_slug_generator.php';
+include 'plugin_markdown.php';
+include 'plugin_md_sc_parse.php';
 ?>
