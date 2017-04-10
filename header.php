@@ -17,13 +17,14 @@ global $post;
 
 $slug = slug_generator($post->ID);
 $colors = array(
-  'Violet ',
+  '#f39',
   'red',
-  'brown',
-  'orange',
-  'purple',
-  'green',
-  'blue'
+  '#960',
+  '#f60',
+  '#606',
+  '#090',
+  '#00f',
+  "#222"
 );
 //GET POST PARENT
 //$parentID = $post->post_parent;
