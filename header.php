@@ -75,7 +75,7 @@ if ( is_front_page() ) {
 
 $excerpt = get_the_excerpt();
 if(!empty($excerpt)){
- $siteDesc = $excerpt;
+ $siteDesc = strip_tags(md_sd_parse($excerpt));
 }
 
 
