@@ -47,6 +47,14 @@ function content_cleaner($content) {
 // add_filter('the_content', 'content_cleaner',20);
 
 
+$dir = new DirectoryIterator(dirname(__FILE__));
+foreach ($dir as $info) {
+    if ($info->isFile()) {
+       $fileinfo->getFilename());
+       include_once '';
+    }
+}
+
 include 'backend_projects_post_type.php';
 include 'backend_social_icon.php';
 include 'backend_function_get_all_image_sizes.php';
