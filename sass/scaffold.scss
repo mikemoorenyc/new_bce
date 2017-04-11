@@ -39,12 +39,12 @@ textarea {
 }
 // Links
 a {
-  text-decoration: none;
+  text-decoration: underline;
 
   &:hover,
   &:focus,
   &:active {
-    text-decoration: underline;
+    text-decoration: none;
   }
 
 }
