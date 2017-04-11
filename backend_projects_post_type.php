@@ -25,7 +25,8 @@ $args = array(
       'revisions',
       'page-attributes',
       'thumbnail',
-      'excerpt'
+      'excerpt',
+      'custom-fields'
     )
   );
 register_post_type( 'project', $args );

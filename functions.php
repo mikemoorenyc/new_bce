@@ -46,7 +46,7 @@ function content_cleaner($content) {
 }
 // add_filter('the_content', 'content_cleaner',20);
 
-
+/*
 $dir = new DirectoryIterator(dirname(__FILE__));
 foreach ($dir as $info) {
     if ($info->isFile()) {
@@ -54,12 +54,13 @@ foreach ($dir as $info) {
        include_once '';
     }
 }
+*/
 
 include 'backend_projects_post_type.php';
 include 'backend_social_icon.php';
 include 'backend_function_get_all_image_sizes.php';
 include 'backend_function_slug_generator.php';
-include 'plugin_markdown.php';
-include 'plugin_md_sc_parse.php';
-include 'shortcode_pagelink.php';
+include 'backend_plugin_markdown.php';
+include 'backend_function_md_sc_parse.php';
+include 'backend_shortcode_pagelink.php';
 ?>
