@@ -1,5 +1,5 @@
 function colorSet() {
-  var colormode =  Cookies.get('colormode',  { domain: App.URL.domain, path: App.URL.path });
+  var colormode =  localStorage.getItem('colormode');
   App.colormode = colormode;
   if(colormode === 'bw') {
     clearInterval(App.colorSwitch);
@@ -30,7 +30,7 @@ $('header nav button.color-mode-switcher').click(function(e){
   if(mode === 'bw') {
     newColor = 'color';
   } 
-  Cookies.set('colormode', newColor, { domain: App.URL.domain, path: App.URL.path,expires: 365 });
+  localStorage.setItem('colormode',newColor);
   colorSet();
   
 });
