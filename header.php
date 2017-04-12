@@ -1,16 +1,9 @@
 <?php
-$colormode = $_COOKIE['colormode'];
 global $homeURL;
 $homeURL = esc_url( home_url( ) );
 
 $homeArray =parse_url($homeURL);
 
-$cget = $_GET['cmode'];
-if(!empty($cget)) {
-
-  $colormode = $cget;
-  setcookie( 'colormode', $cget, strtotime( '+360 days' ) , $homeArray['path'].'/', $homeArray['host']);
-}
 
 //GET POST SLUG
 global $post;
@@ -160,7 +153,7 @@ var App = {
   }
 
  ?>
-<body id="top" style="<?php echo $firstColor;?>" data-colormode="<?php echo $colormode;?>">
+<body id="top" data-colormode="bw">
 <div id="css-checker"></div>
 
  <header id="top-header">
