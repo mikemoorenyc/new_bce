@@ -26,11 +26,11 @@ function colorSwitcher() {
 $('header nav button.color-mode-switcher').click(function(e){
   e.preventDefault();
   var mode = $(this).data('mode');
+  var newColor = 'bw';
   if(mode === 'bw') {
-    Cookies.set('colormode', 'color', { domain: App.URL.domain, path: App.URL.path });
-  } else {
-    Cookies.set('colormode', 'bw', { domain: App.URL.domain, path: App.URL.path });
-  }
+    newColor = 'color';
+  } 
+  Cookies.set('colormode', newColor, { domain: App.URL.domain, path: App.URL.path,expires: 365 });
   colorSet();
   
 });
