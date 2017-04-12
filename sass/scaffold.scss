@@ -67,6 +67,13 @@ img {
 svg {
   display: block;
   max-width:100%;
+  fill: currentColor;
+  * {
+    fill:currentColor;
+    &[fill="none"] {
+      fill:none !important;
+    }
+  }
 }
 
 //TYPE

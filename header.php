@@ -163,8 +163,12 @@ var App = {
 <body id="top" style="<?php echo $firstColor;?>" data-colormode="<?php echo $colormode;?>">
 <div id="css-checker"></div>
 
- <header>
-
+ <header id="top-header">
+   <a id="spinner" alt="<?php echo $siteTitle;?>" href="<?php echo $homeURL;?>">&nbsp;</a>
+   <button id="nav-opener" class="button-style">
+     <span class="hide">Open Menu</span>
+     <?php echo file_get_contents($siteDir.'/assets/svgs/icon_menu.svg');?>
+   </button>
    <nav>
      <h1 id="logo">
        <a href="<?php echo $homeURL;?>">
@@ -175,7 +179,7 @@ var App = {
      <?php
      $nav_items = wp_get_nav_menu_items('main-menu');
      foreach($nav_items as $item) {
-  
+
        $activeClass="";
 
        if($slug == slug_generator(url_to_postid($item->url ))) {

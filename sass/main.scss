@@ -6,6 +6,8 @@
 @import "scaffold.scss";
 @import "utilities.scss";
 
+@import 'header';
+
 #css-checker {
   display: none;
   z-index:-9999;

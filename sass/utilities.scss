@@ -101,7 +101,39 @@
   position:relative;
   z-index:2;
 }
-
+.button-style {
+  display:inline-block;
+  position: relative;
+  padding: 6rem;
+  border-width: 2rem;
+  line-height: 1;
+  font-family: $font-sans;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  &:after {
+    display: block;
+    content:'';
+    position: absolute;
+    right: -4rem;
+    top: 2rem;
+    width: calc(100% + 2rem);
+    height: calc(100% + 2rem);
+    border-width: 0 2rem 2rem 0;
+  }
+  &:hover {
+    span {
+      color:white;
+    }
+    background-color:currentColor;
+    svg, svg * {
+      fill:white;
+    }
+    &:after {
+      transform: translate(1rem,1rem);
+    }
+  }
+}
 
 
 // UTILITY PLACEHOLDER EXTENDERS
