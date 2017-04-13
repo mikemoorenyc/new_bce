@@ -111,27 +111,18 @@
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
-  &:after {
-    display: block;
-    content:'';
-    position: absolute;
-    right: -4rem;
-    top: 2rem;
-    width: calc(100% + 2rem);
-    height: calc(100% + 2rem);
-    border-width: 0 2rem 2rem 0;
-  }
+  background: white;
+  box-shadow: 2rem 2rem 0 currentColor;
   &:hover {
     span {
       color:white;
     }
     background-color:currentColor;
+    border-color:white;
     svg, svg * {
       fill:white;
     }
-    &:after {
-      transform: translate(1rem,1rem);
-    }
+
   }
 }
 

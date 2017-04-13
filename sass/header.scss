@@ -5,6 +5,9 @@ header#top-header {
     top: 10px;
     width:40px;
     height:40px;
+    z-index: 1;
+    box-shadow: 3px 3px 0px currentColor;
+    border-width: 3px;
     svg {
       display:block;
       position: absolute;
@@ -14,5 +17,55 @@ header#top-header {
       height: 24px;
       transform:translate(-50%,-50%);
     }
+  }
+  a#spinner {
+    position: fixed;
+    z-index:1;
+    left: 15px;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    border-width: 1px;
+    border-radius:50%;
+    &:after {
+      display:block;
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      left: calc(50% - 15px);
+      top: calc(50% - 15px);
+      border-radius: 50%;
+      border-width: 1px;
+      border-style: dashed;
+      animation: spinner 5s infinite linear;
+    }
+  }
+  nav {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: white;
+    z-index:1;
+    transform: translateX(0%);
+    transition: transform .35s;
+    html.nav-opened & {
+      transform: translateX(0);
+    }
+  }
+}
+
+#main-content-container {
+  padding-top: 60px;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg)
   }
 }

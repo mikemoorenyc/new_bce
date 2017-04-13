@@ -134,7 +134,7 @@ if(!empty($excerpt)){
 var App = {
   colors: <?php echo json_encode($colors);?>,
   colormode: <?php echo json_encode($colormode);?>,
-  urlParts: {
+  URL: {
     homeURL: <?php echo json_encode($homeURL);?>,
     path: <?php echo json_encode($homeArray['path'].'/');?>,
     domain: <?php echo json_encode($homeArray['host']);?>
@@ -154,10 +154,9 @@ var App = {
 
  ?>
 <body id="top" data-colormode="bw">
-<div id="css-checker"></div>
 
  <header id="top-header">
-   <a id="spinner" alt="<?php echo $siteTitle;?>" href="<?php echo $homeURL;?>">&nbsp;</a>
+   <a id="spinner" alt="<?php echo $siteTitle;?>" href="<?php echo $homeURL;?>"></a>
    <button id="nav-opener" class="button-style">
      <span class="hide">Open Menu</span>
      <?php echo file_get_contents($siteDir.'/assets/svgs/icon_menu.svg');?>
@@ -186,20 +185,11 @@ var App = {
      }
 
      ?>
-    <?php
-       $refreshURL = $_SERVER['REQUEST_URI'];
-       $modeText = 'Simple Mode';
-       $modeAlt = 'Colors are cool, but this is a little much.';
-       $modeVar = 'bw';
-       if($colormode === 'bw') {
-        $modeText = 'Color Mode';
-        $modeAlt = 'My eyes can take it!';
-        $modeVar = 'color';
-       }
-     ?>
-    <a href="<?php echo get_the_permalink().'?cmode='.$modeVar;?>" class="color-switcher" title="<?php echo $modeAlt;?>">
-      <?php echo $modeText;?>
-     </a>
+     <button class="color-mode-switcher" style="visibility:hidden;">
+       switch
+     </button>
 
    </nav>
  </header>
+
+ <div id="main-content-container">
