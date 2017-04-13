@@ -162,12 +162,12 @@ var App = {
      <?php echo file_get_contents($siteDir.'/assets/svgs/icon_menu.svg');?>
    </button>
    <nav>
-     <h1 id="logo">
+     <div id="top-logo">
        <a href="<?php echo $homeURL;?>">
-         <div class="ball"></div>
          <span class="title"><?php echo $siteTitle;?></span>
        </a>
-     </h1>
+     </div>
+     <div class="top-tagline"><?php echo get_bloginfo('description');?></div>
      <?php
      $nav_items = wp_get_nav_menu_items('main-menu');
      foreach($nav_items as $item) {
