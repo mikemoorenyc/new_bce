@@ -16,7 +16,8 @@ function siteInit() {
   });
   $('#nav-opener').click(function(e){
     e.preventDefault();
-    $('html').toggleClass('nav-opened')
+    $('html').toggleClass('nav-opened');
+    $(this).blur();
   });
 }
 

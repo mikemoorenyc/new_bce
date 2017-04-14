@@ -101,19 +101,32 @@
   position:relative;
   z-index:2;
 }
+.font-sans {
+  font-family: $font-sans;
+}
 .button-style {
+  text-decoration: none;
   display:inline-block;
   position: relative;
-  padding: 6rem;
+  padding: 0 6rem;
   border-width: 2rem;
-  line-height: 1;
+  line-height: 28rem;
+  font-size: 12rem;
   font-family: $font-sans;
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
   background: white;
   box-shadow: 2rem 2rem 0 currentColor;
+  .bug {
+    display: inline-block;
+    svg {
+      width: 12rem;
+      height:12rem;
+    }
+  }
   &:hover {
+    /*
     span {
       color:white;
     }
@@ -122,7 +135,7 @@
     svg, svg * {
       fill:white;
     }
-
+    */
   }
 }
 

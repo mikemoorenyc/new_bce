@@ -157,17 +157,25 @@ var App = {
 
  <header id="top-header">
    <a id="spinner" alt="<?php echo $siteTitle;?>" href="<?php echo $homeURL;?>"></a>
-   <button id="nav-opener" class="button-style">
-     <span class="hide">Open Menu</span>
-     <?php echo file_get_contents($siteDir.'/assets/svgs/icon_menu.svg');?>
-   </button>
+
    <nav>
      <div id="top-logo">
        <a href="<?php echo $homeURL;?>">
-         <span class="title"><?php echo $siteTitle;?></span>
+         <span class="title">
+
+           <?php
+           $titleBreak = explode(' ',$siteTitle);
+           foreach($titleBreak as $t) {
+             echo '<span>'.$t.'</span> ';
+           }
+
+          ?>
+
+         </span>
        </a>
      </div>
      <div class="top-tagline"><?php echo get_bloginfo('description');?></div>
+     <div class="nav-items">
      <?php
      $nav_items = wp_get_nav_menu_items('main-menu');
      foreach($nav_items as $item) {
@@ -185,11 +193,21 @@ var App = {
      }
 
      ?>
+   </div>
      <button class="color-mode-switcher" style="visibility:hidden;">
-       switch
+       <span class="slider"></span>
      </button>
 
    </nav>
+   <button id="nav-opener" class="button-style">
+     <span class="hide">Toggle Menu</span>
+     <span class="open">
+       <?php echo file_get_contents($siteDir.'/assets/svgs/icon_menu.svg');?>
+     </span>
+     <span class="close">
+       <?php echo file_get_contents($siteDir.'/assets/svgs/icon_x.svg');?>
+     </span>
+   </button>
  </header>
 
  <div id="main-content-container">
