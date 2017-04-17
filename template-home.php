@@ -33,7 +33,7 @@ foreach($projects as $p) {
   $pid = $p->ID;
 
   ?>
-  <article class="project above-line">
+  <article class="project above-line poster-img">
     <?php
     if(!has_post_thumbnail($pid)) {
       $socialImg = get_all_image_sizes(get_option( 'social_icon_image', '' ));
