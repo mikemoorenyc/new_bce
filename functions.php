@@ -1,7 +1,9 @@
 <?php
 add_theme_support( 'menus' );
 
-//$siteDir = '/wp-content/themes/w25th-build';
+//New image sizes
+add_image_size ( 'preload', 20 , 20 , false ) ;
+
 add_post_type_support('page', 'excerpt');
 
 add_filter( 'user_can_richedit' , '__return_false', 50 );
