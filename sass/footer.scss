@@ -1,9 +1,9 @@
 footer#footer {
-repeating-linear-gradient(
-  45deg,
-  #606dbc,
-  #606dbc 10px,
-  #465298 10px,
-  #465298 20px
-);
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 5px,
+    currentColor 5px,
+    currentColor 6px
+  );
 }
