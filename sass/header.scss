@@ -8,7 +8,7 @@ header#top-header {
     z-index: 5;
     box-shadow: 3px 3px 0px currentColor;
     border-width: 3px;
-    background-color:white;
+    background-color:$white;
     svg, svg * {
       fill:currentColor;
     }
@@ -18,9 +18,9 @@ header#top-header {
     html.nav-opened & {
       background-color: transparent;
       svg, svg * {
-        fill:white;
+        fill:$white;
       }
-      border-color:white;
+      border-color:$white;
       .close {
         display:block;
       }
@@ -98,7 +98,7 @@ header#top-header {
             bottom: 0;
             width: 100%;
             height:2rem;
-            background:white;
+            background:$white;
           }
         }
       }
@@ -117,7 +117,7 @@ header#top-header {
     transition: transform .5s;
 
     * {
-      color:white;
+      color:$white;
     }
     html.nav-opened & {
       transform: translateX(0);
@@ -133,7 +133,7 @@ header#top-header {
       left: 24rem;
       right: 24rem;
       height: 2rem;
-      background:white;
+      background:$white;
       top: 50%;
       transform: translateY(-50%);
       &:before {
@@ -142,7 +142,7 @@ header#top-header {
         width: 8rem;
         height:8rem;
         border-radius: 50%;
-        background:white;
+        background:$white;
         position: absolute;
         left: 2rem;
         top: 50%;
@@ -157,7 +157,7 @@ header#top-header {
       top:0;
       width: 16rem;
       height:16rem;
-      border: 2rem solid white;
+      border: 2rem solid $white;
       background: linear-gradient(135deg, #1e5799 0%,#00ff00 50%,#ff0000 100%);
     }
     &:after {
