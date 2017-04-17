@@ -17,7 +17,9 @@ $colors = array(
   '#606',
   '#090',
   '#00f',
-  "#222"
+  "#222",
+  "#d69a99",
+  "#002FA7 "
 );
 //GET POST PARENT
 //$parentID = $post->post_parent;
