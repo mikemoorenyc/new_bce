@@ -1,8 +1,9 @@
 
 </div>
 <footer id="footer">
+  <div class="inner">
   &copy;<?php echo date('Y');?> Mike Moore
-
+  </div>
 
 </footer>
 
