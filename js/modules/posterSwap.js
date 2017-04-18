@@ -12,7 +12,7 @@ function posterSwap(img) {
   function loadEvent(img) {
     var parent = $(img).parent();
     $(img).css('visibility','visible');
-    $(parent).find('img.preload).remove();
+    $(parent).find('img.preload').remove();
   }
   
 }
