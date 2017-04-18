@@ -148,7 +148,7 @@ var App = {
 }
 function posterSwap(img) {
  var parent = img.parentNode;
- parent.querySelectorAll('img').style.visibility = 'visible';
+ img.style.visibility = 'visible';
  var preloader = parent.querySelectorAll('img.preload')[0];
  parent.removeChild(preloader); 
   
