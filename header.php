@@ -146,13 +146,7 @@ var App = {
     domain: <?php echo json_encode($homeArray['host']);?>
   }
 }
-function posterSwap(img) {
- var parent = img.parentNode;
- img.style.visibility = 'visible';
- var preloader = parent.querySelectorAll('img.preload')[0];
- parent.removeChild(preloader); 
-  
-}
+
 
 </script>
 
