@@ -25,10 +25,10 @@ function colorSwitcher() {
     'color': App.colors[Math.floor((Math.random() * App.colors.length) + 0)]
   })
 }
-$('header nav button.color-mode-switcher').click(function(e){
+document.getElementById("color-mode-switcher").addEventListener('click',function(e){
 
   e.preventDefault();
-  var mode = $(this).attr('data-colormode');
+  var mode = e.getAttribute('data-colormode');
   var newColor = 'bw';
   if(mode === 'bw') {
     newColor = 'color';
