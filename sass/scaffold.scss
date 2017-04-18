@@ -104,13 +104,29 @@ ul.no-style {
     margin: 0;
   }
 }
+pre {
+  width: 100%;
+  overflow-y: visible;
+  overflow-x: auto;
+  position: relative;
+  &:before {
+    display:block;
+    content:'';
+    height:100%;
+    width: 4rem;
+    position: absolute;
+    left: 0;
+    top:0;
+    border-width:1rem 0 1rem 1rem;
+  }
+}
 pre > code {
   font-family: monospace;
   font-size: .95em;
   line-height: 1.1em;
   margin-left: 23rem;
   display:block;
-  
+
 }
 ol, ul {
   margin: 0;
@@ -130,6 +146,10 @@ ol, ul {
 ul {
   list-style-type: circle;
 }
+twitterWidget, iframe {
+  z-index:2;
+  position: relative !important;
+}
 blockquote {
   padding: 0;
   margin: 0;
@@ -137,7 +157,19 @@ blockquote {
   border: 0;
   color: inherit;
   font-style: italic;
-
+  padding-left: 23rem;
+  border-left:1rem solid currentColor;
+  margin-bottom:1em;
+  .byline {
+    display:block;
+    font-weight: bold;
+    font-size: .95em;
+    font-family: $font-sans;
+    font-style:normal;
+    &:before {
+      content:'-'
+    }
+  }
   p,
   ul,
   ol {
