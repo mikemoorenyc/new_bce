@@ -7,7 +7,7 @@ function pageLoader() {
 //  $('nav ul li.'+theSlug).addClass('__active');
 //  $('nav ul li.'+theSlug).find('a').addClass('__active');
 
-
+  posterSwap();
 
   //MAKE INTERNAL LINKS
   var siteURL = "http://" + top.location.host.toString();
