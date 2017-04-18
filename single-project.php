@@ -14,7 +14,7 @@ $noheaderClass="";
 $imgs = get_all_image_sizes(get_post_thumbnail_id());
  ?>
 <img class="preload" src="<?php echo $imgs['preload']['url'];?>" />
-<img onload="posterSwap(this)" src="<?php echo $imgs['full']['url'];?>" srcset="<?php echo srcset_maker($imgs);?>" sizes="100vw" alt="<?php echo get_the_title();?>"/>
+<img onload="posterSwap(this)" style="visibility:hidden;" src="<?php echo $imgs['full']['url'];?>" srcset="<?php echo srcset_maker($imgs);?>" sizes="100vw" alt="<?php echo get_the_title();?>"/>
 </div>
 
 
