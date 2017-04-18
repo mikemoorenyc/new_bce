@@ -19,6 +19,7 @@ function siteInit() {
     $('html').toggleClass('nav-opened');
     $(this).blur();
   });
+  pageLoader();
 }
 
 
