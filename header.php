@@ -200,7 +200,7 @@ var App = {
 
      ?>
    </div>
-     <button class="color-mode-switcher" style="visibility:hidden;">
+     <button id="color-mode-switcher" class="color-mode-switcher" style="visibility:hidden;">
        <span class="slider"></span>
      </button>
 
