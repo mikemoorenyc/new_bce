@@ -24,6 +24,11 @@ body {
     border:0px solid currentColor;
   }
 }
+$footer-height: 40rem;
+$footer-margin: 48rem;
+#main-content-container {
+  min-height: calc(100vh - (#{$footer-height} + #{$footer-margin}));
+}
 
 // Reset fonts for relevant elements
 input,
@@ -79,7 +84,7 @@ svg {
 //TYPE
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-
+  font-size:1.1em
 }
 
 
@@ -99,16 +104,31 @@ ul.no-style {
     margin: 0;
   }
 }
+pre > code {
+  font-family: monospace;
+  font-size: .95em;
+  line-height: 1.1em;
+  margin-left: 23rem;
+  display:block;
+  
+}
 ol, ul {
   margin: 0;
   margin-bottom: 1.5em;
-  padding-left: 40px;
+  padding-left: 24rem;
+
   > li {
     margin-bottom: .25em;
+    &:last-child {
+      margin-bottom:0;
+    }
   }
   &:last-child {
     margin-bottom: 0;
   }
+}
+ul {
+  list-style-type: circle;
 }
 blockquote {
   padding: 0;

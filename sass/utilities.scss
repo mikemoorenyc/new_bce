@@ -54,6 +54,7 @@
 }
 @mixin poster-img() {
  position:relative;
+ overflow:hidden;
  > img {
    position: absolute;
    left: 0;
@@ -62,6 +63,10 @@
    height:100%;
    object-fit:cover;
    object-position: center center;
+   &.preload {
+     filter:blur(10px);
+     transform: scale(1.1);
+   }
   }
 }
 .poster-img {

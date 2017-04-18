@@ -21,9 +21,7 @@ function get_all_image_sizes($id) {
 
   return $images;
 
-
-
-
 }
+
 
 ?>

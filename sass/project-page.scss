@@ -1,0 +1,26 @@
+.project-page-header {
+  height: 48rem* 3 + 8rem;
+  background:currentColor;
+}
+.project-page-content-container {
+  padding: 16rem;
+  &.no-header {
+    padding-top: 68px;
+  }
+  h1.project-page-title {
+    font-weight: normal;
+    font-size: 28rem;
+    line-height: 1.25;
+  }
+  h2.project-page-tagline {
+    font-size: 14rem;
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: normal;
+  }
+  .project-page-content {
+    margin-top: 1em;
+    font-size: 16rem;
+    line-height:1.5;
+  }
+}
