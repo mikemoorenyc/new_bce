@@ -1,6 +1,7 @@
 <?php
 function postimage_shortcode( $atts, $content = null ) {
   global $post;
+  $available_types = ['poster','phone','desktop','normal'];
   $post_type = $post->post_type;
   $caption = md_sc_parse($content);
   $type = $atts['type'];
@@ -11,9 +12,22 @@ function postimage_shortcode( $atts, $content = null ) {
   ob_start();
   
   ?>
-<div class="post-image <?php echo $type;?> <?php echo $post_type;?>">
+<div class="post-image above-line <?php echo $type;?> <?php echo $post_type;?>">
   
  
+  <?php if(empty($type) || !in_array($type, $available_types) || $type === 'normal'):?>
+  <div class="normal-img ">
+    <div class="poster-img" style="padding-top:<?php echo $ratio;?>%">
+      <img 
+       style="visibility:hidden;"
+       alt="<?php echo $baseurl;?>"
+       data-src="<?php echo $allImgs['full']['url'];?>"
+       data-srcset="<?php echo srcset_maker($allImgs);?>" 
+     />
+    </div>
+      
+  </div>
+  <?php endif;?>
   
   <?php if(!empty($caption)):?>
   <div class="caption"><?php echo $caption;?></div>
