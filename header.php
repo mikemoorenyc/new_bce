@@ -18,7 +18,6 @@ $colors = array(
   '#090',
   '#00f',
   "#222",
-  "#d69a99",
   "#002FA7 "
 );
 //GET POST PARENT

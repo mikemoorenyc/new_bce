@@ -67,4 +67,5 @@ include 'backend_function_md_sc_parse.php';
 include 'backend_shortcode_pagelink.php';
 include 'backend_shortcode_codeblock.php';
 include 'backend_function_srcset_maker.php';
+include 'backend_addimage_id.php';
 ?>
