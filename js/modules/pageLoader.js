@@ -10,6 +10,7 @@ function pageLoader() {
   posterSwap();
 
   //MAKE INTERNAL LINKS
+  /*
   var siteURL = "http://" + top.location.host.toString();
   var internalLinks = $("a[href^='"+siteURL+"'], a[href^='/'], a[href^='./'], a[href^='../']");
   $(internalLinks).addClass('internal');
@@ -19,6 +20,7 @@ function pageLoader() {
       $(this).removeClass('internal');
     }
   });
+  */
 
   //RUN PAGE SPECIFIC FUNCTIONS
 
