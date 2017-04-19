@@ -23,6 +23,7 @@ add_action('media_buttons', 'add_insert_image_id_button');
      e.preventDefault();
      var btn = $(this);
      $(this).blur();
+     var end = $('textarea#content').prop("selectionStart");
      var image = wp.media({
             title: $(btn).attr('data-modal-title'),
             multiple: false
@@ -30,9 +31,11 @@ add_action('media_buttons', 'add_insert_image_id_button');
           .on('select', function(e){
 
             var uploaded_image = image.state().get('selection').first();
-
-            wp.media.editor.insert(uploaded_image.id);
-
+            var idString = uploaded_image.id.toString();
+            var tValue = $('textarea#content').val();
+            $('textarea#content').val(tValue.substring(0, end)+idString+ tValue.substring( end));
+            $('textarea#content').focus()
+            $('textarea#content').prop("selectionStart", end+idString.length).prop("selectionEnd", end+idString.length);
 
           });
    });
