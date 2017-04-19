@@ -14,6 +14,23 @@ function postimage_shortcode( $atts, $content = null ) {
   ?>
 <div class="post-image above-line <?php echo $type;?> <?php echo $post_type;?>">
   
+  <?php if($type ==='phone'):?>
+  <div class="phone-img-container">
+    <div class="phone-img">
+      <div class="poster-img" style="padding-top:<?php echo $ratio;?>%">
+        <img 
+         class="lazy-img"
+         style="visibility:hidden;"
+         alt="<?php echo $baseurl;?>"
+         data-src="<?php echo $allImgs['full']['url'];?>"
+         data-srcset="<?php echo srcset_maker($allImgs);?>" 
+       />
+      </div>
+    </div>
+    <div class="home-btn"></div>
+  </div>
+  <? endif;?>
+  
  
   <?php if(empty($type) || !in_array($type, $available_types) || $type === 'normal'):?>
   <div class="normal-img ">
