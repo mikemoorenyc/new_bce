@@ -1,20 +1,22 @@
 function colorSet() {
-  var colormode =  Cookies.get('colormode',{domain: App.URL.domain, path: App.URL.path});
+  var colormode =  Cookies.get('colormode',{domain: App.URL.domain, path: App.URL.path}),
+  var $switcher = document.getElementById("color-mode-switcher"),
+      $body = document.querySelector('body');
 
   App.colormode = colormode;
   if(colormode === 'bw') {
     clearInterval(App.colorSwitch);
     App.colorSwitch = false;
-    document.getElementById("color-mode-switcher").setAttribute('title',"Switch to color mode");
-    document.getElementById("color-mode-switcher").setAttribute('data-colormode','bw');
-    document.querySelector('body').style.color = '';
-    document.querySelector('body').setAttribute('data-colormode','bw');
+    $switcher.setAttribute('title',"Switch to color mode");
+    $switcher.getElementById("color-mode-switcher").setAttribute('data-colormode','bw');
+    $body.style.color = '';
+    $body.setAttribute('data-colormode','bw');
   } else {
 
-    document.getElementById("color-mode-switcher").setAttribute('title',"Switch to simple mode");
-    document.getElementById("color-mode-switcher").setAttribute('data-colormode','color');
-    document.querySelector('body').style.color = App.colors[Math.floor((Math.random() * App.colors.length) + 0)]
-    document.querySelector('body').setAttribute('data-colormode','color');
+    $switcher.setAttribute('title',"Switch to simple mode");
+    $switcher.getElementById("color-mode-switcher").setAttribute('data-colormode','color');
+    $body.querySelector('body').style.color = App.colors[Math.floor((Math.random() * App.colors.length) + 0)]
+    $body.querySelector('body').setAttribute('data-colormode','color');
     App.colorSwitch = setInterval(colorSwitcher,2000);
   }
   return false;
