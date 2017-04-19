@@ -19,6 +19,7 @@ function postimage_shortcode( $atts, $content = null ) {
   <div class="normal-img ">
     <div class="poster-img" style="padding-top:<?php echo $ratio;?>%">
       <img 
+       class="lazy-img"
        style="visibility:hidden;"
        alt="<?php echo $baseurl;?>"
        data-src="<?php echo $allImgs['full']['url'];?>"
