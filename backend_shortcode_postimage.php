@@ -6,7 +6,21 @@ function postimage_shortcode( $atts, $content = null ) {
   $type = $atts['type'];
   $id = $atts['id'];
   $allImgs = get_all_image_sizes($id);
+  $ratio = ($allImgs['full']['height'] / $allImgs['full']['width']) * 100;
+  ob_start();
   
+  ?>
+<div class="post-image <?php echo $type;?> <?php echo $post_type;?>">
+  
+ 
+  
+  <?php if(!empty($caption)):?>
+  <div class="caption"><?php echo $caption;?></div>
+  <?php endif;?>
+    
+</div>
 
+  <?php
+  return ob_get_clean();
 }
 add_shortcode( 'postimage', 'postimage_shortcode' );
