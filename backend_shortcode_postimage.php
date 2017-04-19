@@ -7,6 +7,7 @@ function postimage_shortcode( $atts, $content = null ) {
   $id = $atts['id'];
   $allImgs = get_all_image_sizes($id);
   $ratio = ($allImgs['full']['height'] / $allImgs['full']['width']) * 100;
+  $baseurl = basename($allImgs['full']['url']);
   ob_start();
   
   ?>
