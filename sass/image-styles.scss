@@ -1,0 +1,95 @@
+
+.img-wrap.mobile img {
+    max-width: 280px
+}
+
+.img-wrap.desktop .topper {
+    height: 30px;
+    border-radius: 7px 7px 0 0;
+    border-width: 1px 1px 0;
+    position: relative
+}
+
+.img-wrap.desktop .topper .circles,
+.img-wrap.desktop .topper:after,
+.img-wrap.desktop .topper:before {
+    display: block;
+    content: '';
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    -webkit-transition: background-color 3s;
+    transition: background-color 3s
+}
+
+.img-wrap.desktop .topper .circles {
+    left: 28px
+}
+
+.img-wrap.desktop .topper:after {
+    left: 46px
+}
+
+.img-wrap.mobile {
+    padding: 70px 10px;
+    border-width: 1px;
+    border-radius: 30px
+}
+
+.img-wrap.mobile .switch {
+    position: absolute;
+    right: 48px;
+    top: -5px;
+    height: 4px;
+    width: 45px;
+    border-width: 1px 1px 0
+}
+
+.img-wrap.mobile .phone {
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    margin-left: -27px;
+    width: 54px;
+    height: 5px;
+    border-radius: 3.5px;
+    border-width: 1px
+}
+
+.img-wrap.mobile .phone:before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-width: 1px;
+    border-radius: 50%;
+    left: 50%;
+    margin-left: -5px;
+    top: -20px;
+    position: absolute
+}
+
+.img-wrap.mobile .home-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 13px;
+    border-width: 1px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: -20px
+}
+
+.img-wrap.mobile .home-btn:after {
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    border-width: 1px;
+    width: 22px;
+    height: 22px;
+    left: 8px;
+    top: 8px
+}
