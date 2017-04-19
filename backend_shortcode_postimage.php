@@ -31,6 +31,21 @@ function postimage_shortcode( $atts, $content = null ) {
   </div>
   <? endif;?>
   
+  <?php if($type ==='desktop'):?>
+  <div class="desktop-img-container">
+      <div class="circles"></div>
+      <div class="poster-img" style="padding-top:<?php echo $ratio;?>%">
+        <img 
+         class="lazy-img"
+         style="visibility:hidden;"
+         alt="<?php echo $baseurl;?>"
+         data-src="<?php echo $allImgs['full']['url'];?>"
+         data-srcset="<?php echo srcset_maker($allImgs);?>" 
+       />
+      </div>
+  </div>
+  <? endif;?>
+  
  
   <?php if(empty($type) || !in_array($type, $available_types) || $type === 'normal'):?>
   <div class="normal-img ">
