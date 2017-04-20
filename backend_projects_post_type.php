@@ -30,6 +30,7 @@ $args = array(
     )
   );
 register_post_type( 'project', $args );
+register_taxonomy_for_object_type( 'post_tag', 'project' );
 }
 add_action( 'init', 'project_post_init' );
  ?>
