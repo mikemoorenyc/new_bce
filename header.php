@@ -67,16 +67,15 @@ if ( is_front_page() ) {
 
 <!-- HERE'S WHERE WE GET THE SITE DESCRIPTION -->
 <?php
-
+$excerpt = $post->post_content;
 $excerpt = get_the_excerpt();
-if(!empty($excerpt)){
- $siteDesc = strip_tags(md_sc_parse($excerpt));
-} else {
-  $siteDesc = strip_tags(md_sc_parse($post->post_content));
+if(!$excerpt){
+ $excerpt = get_the_excerpt();
+} 
+if(!$excerpt) {
+  $excerpt = get_bloginfo('description');
 }
-if(empty($siteDesc)) {
-  $siteDesc = get_bloginfo('description');
-}
+$siteDesc = strip_tags(md_sc_parse($excerpt));
 
 ?>
 <meta name="description" content="<?php echo $siteDesc;?>" />
