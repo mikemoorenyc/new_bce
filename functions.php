@@ -1,6 +1,6 @@
 <?php
 add_theme_support( 'menus' );
-
+unregister_taxonomy_for_object_type( 'category', 'post' );
 //New image sizes
 add_image_size ( 'preload', 20 , 20 , false ) ;
 
