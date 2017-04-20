@@ -1,6 +1,6 @@
 function colorSet() {
   var colormode =  Cookies.get('colormode',{domain: App.URL.domain, path: App.URL.path}),
-  var $switcher = document.getElementById("color-mode-switcher"),
+      $switcher = document.getElementById("color-mode-switcher"),
       $body = document.querySelector('body');
 
   App.colormode = colormode;
@@ -8,15 +8,15 @@ function colorSet() {
     clearInterval(App.colorSwitch);
     App.colorSwitch = false;
     $switcher.setAttribute('title',"Switch to color mode");
-    $switcher.getElementById("color-mode-switcher").setAttribute('data-colormode','bw');
+    $switcher.setAttribute('data-colormode','bw');
     $body.style.color = '';
     $body.setAttribute('data-colormode','bw');
   } else {
 
     $switcher.setAttribute('title',"Switch to simple mode");
-    $switcher.getElementById("color-mode-switcher").setAttribute('data-colormode','color');
-    $body.querySelector('body').style.color = App.colors[Math.floor((Math.random() * App.colors.length) + 0)]
-    $body.querySelector('body').setAttribute('data-colormode','color');
+    $switcher.setAttribute('data-colormode','color');
+    $body.style.color = App.colors[Math.floor((Math.random() * App.colors.length) + 0)]
+    $body.setAttribute('data-colormode','color');
     App.colorSwitch = setInterval(colorSwitcher,2000);
   }
   return false;

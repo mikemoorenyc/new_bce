@@ -11,14 +11,16 @@ function posterSwap(img) {
   });
 
   function loadEvent(img) {
+    var theImg;
     if(img.target) {
-      img.target.removeEventListener('load',loadEvent);
+      theImg = img.target
     } else {
-      img.removeEventListener('load',loadEvent);
+      theImg = img;
     }
+    theImg.removeEventListener('load',loadEvent);
 
-    var parent = img.parentNode;
-    img.style.visibility = 'visible';
+    var parent = theImg.parentNode;
+    theImg.style.visibility = 'visible';
     var preloader = parent.querySelectorAll('img.preload')[0];
     parent.removeChild(preloader);
   }

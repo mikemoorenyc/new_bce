@@ -34,8 +34,9 @@ add_action('media_buttons', 'add_insert_image_id_button');
             var idString = uploaded_image.id.toString();
             var tValue = $('textarea#content').val();
             $('textarea#content').val(tValue.substring(0, end)+idString+ tValue.substring( end));
-            $('textarea#content').focus()
+
             $('textarea#content').prop("selectionStart", end+idString.length).prop("selectionEnd", end+idString.length);
+            $('textarea#content').focus()
 
           });
    });
