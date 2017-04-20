@@ -3,7 +3,7 @@ function siteInit() {
 
   document.getElementById("color-mode-switcher").style.visibility = 'visible';
 
-  var line = document.createElement('div');
+  let line = document.createElement('div');
   line.setAttribute('id', 'liner');
   document.querySelector('body').appendChild(line);
 
