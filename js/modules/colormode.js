@@ -1,5 +1,5 @@
 function colorSet() {
-  var colormode =  Cookies.get('colormode',{domain: App.URL.domain, path: App.URL.path}),
+  let colormode =  Cookies.get('colormode',{domain: App.URL.domain, path: App.URL.path}),
       $switcher = document.getElementById("color-mode-switcher"),
       $body = document.querySelector('body');
 
@@ -31,8 +31,8 @@ function colorSwitcher() {
 }
 document.getElementById("color-mode-switcher").addEventListener('click',function(e){
   e.preventDefault();
-  var mode = e.target.getAttribute('data-colormode');
-  var newColor = 'bw';
+  let mode = e.target.getAttribute('data-colormode');
+  let newColor = 'bw';
   if(mode === 'bw') {
     newColor = 'color';
   }
