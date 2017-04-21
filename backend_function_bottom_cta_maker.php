@@ -1,6 +1,7 @@
 <?php
 function bottom_cta_maker($post_type,$orderby,$empty_link) {
   global $siteDir;
+  global $post;
   $args = array(
     'post_type' 		=> $post_type,//project
     'orderby' 			=> $orderby,//orderby
@@ -34,8 +35,8 @@ function bottom_cta_maker($post_type,$orderby,$empty_link) {
    </a>
 
    <?php
-   $url = $emptyLink['url'];
-   $title = $emptyLink['title'];
+   $url = $empty_link['url'];
+   $title = $empty_link['title'];
    if(!empty($nextID)) {
      $url = get_the_permalink($nextID);
      $title = get_the_title($nextID);

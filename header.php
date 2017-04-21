@@ -68,15 +68,15 @@ if ( is_front_page() ) {
 <!-- HERE'S WHERE WE GET THE SITE DESCRIPTION -->
 <?php
 $excerpt = $post->post_content;
-$excerpt = get_the_excerpt();
+
 if(!$excerpt){
  $excerpt = get_the_excerpt();
-} 
+}
 if(!$excerpt) {
   $excerpt = get_bloginfo('description');
 }
-$siteDesc = strip_tags(md_sc_parse($excerpt));
-
+$siteDesc = preg_replace( "/\r|\n/", " ", preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", strip_tags(md_sc_parse($excerpt))) );
+$siteDesc = substr($siteDesc, 0, 150); 
 ?>
 <meta name="description" content="<?php echo $siteDesc;?>" />
 
