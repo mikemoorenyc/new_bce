@@ -1,0 +1,60 @@
+.bottom-cta-links {
+  border-width: 1rem 0;
+  display:flex;
+  font-family: $font-sans;
+  > a {
+    width: 50%;
+    border-left-width:1rem;
+    position: relative;
+    text-decoration: none;
+    &:before {
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      height: 100%;
+      width: 0px;
+      content:'';
+    }
+    > span {
+      display: inline-block;
+      vertical-align: middle;
+      width: 95%;
+      width: calc(100% - 4rem);
+      padding: 8rem;
+      padding-left: 24rem;
+      font-size: 12rem;
+      font-weight: bold;
+    }
+    &:first-child {
+      border:0;
+      position: relative;
+    }
+    svg {
+      width:12rem;
+      height: 12rem;
+      display: inline-block;
+      position: absolute;
+      left: 8rem;
+      top: 50%;
+      margin-top: -6rem;
+    }
+    &.prev-link {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+    &.next-link {
+      text-align: right;
+      > span {
+        padding-left: 8rem;
+
+        padding-right: 24rem;
+      }
+
+      svg {
+        left: auto;
+        right: 8rem;
+      }
+    }
+  }
+}

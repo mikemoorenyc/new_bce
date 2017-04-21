@@ -84,10 +84,39 @@ svg {
 //TYPE
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-size:1.1em
+  font-size:1.1em;
+  &.sub-header {
+    font-size: 16rem;
+    font-family: $font-sans;
+    text-transform: uppercase;
+    font-weight:bold;
+  }
 }
 
-
+hr {
+  height: 3px;
+  border-width: 1px 0;
+  margin: 2em 16rem;
+  position: relative;
+  &:before, &:after {
+    display:block;
+    content:'';
+    width: 18px;
+    height: 18px;
+    background: $white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%,-50%);
+    border-radius: 50%;
+  }
+  &:after {
+    width: 10px;
+    height: 10px;
+    background:$white;
+    border-width:1px;
+  }
+}
 
 //TYPE STUFF
 ul, p, ol {
@@ -110,7 +139,7 @@ code {
 }
 .code-block {
   position:relative;
-  padding: 4rem 24rem;
+  padding: 4rem 16rem;
   line-height: 1.1;
   &:before, &:after {
     display:block;
