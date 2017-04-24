@@ -23,31 +23,6 @@ function my_theme_add_editor_styles() {
     add_editor_style( 'css/editor-styles.css' );
 }
 
-// DIRECTORY REPLACER
-
-function dirReplacer($string) {
-  global $siteDir;
-  $time = time();
-  $newString = str_replace('***REPLACEWITHTHEMEDIRECTORY***', $siteDir, $string);
-  $newString = str_replace('***TIMESTAMP***', $time ,$newString);
-  echo $newString;
-}
-//CONTENT CLEANER
-function content_cleaner($content) {
-
-    // Remove inline styling
-    $content = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $content);
-
-    // Remove font tag
-    $content = preg_replace('/<font[^>]+>/', '', $content);
-
-    // Remove empty tags
-    $post_cleaners = array('<p></p>' => '', '<p> </p>' => '', '<p>&nbsp;</p>' => '', '<span></span>' => '', '<span> </span>' => '', '<span>&nbsp;</span>' => '', '<span>' => '', '</span>' => '', '<font>' => '', '</font>' => '');
-    $content = strtr($content, $post_cleaners);
-
-    return $content;
-}
-// add_filter('the_content', 'content_cleaner',20);
 
 
 $dir = new DirectoryIterator(get_template_directory());
@@ -61,17 +36,4 @@ foreach ($dir as $i) {
     include_once $i->getPathname();
 }
 
-/*
-include 'backend_projects_post_type.php';
-include 'backend_social_icon.php';
-include 'backend_function_get_all_image_sizes.php';
-include 'backend_function_slug_generator.php';
-include 'backend_plugin_markdown.php';
-include 'backend_function_md_sc_parse.php';
-include 'backend_shortcode_pagelink.php';
-include 'backend_shortcode_codeblock.php';
-include 'backend_function_srcset_maker.php';
-include 'backend_addimage_id.php';
-include 'backend_shortcode_postimage.php';
-*/
 ?>
