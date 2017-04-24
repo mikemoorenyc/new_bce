@@ -60,7 +60,7 @@ if ( is_front_page() ) {
   $pageTitle = get_the_title();
   ?>
 
-  <title><?=  $pageTitle.' |' .$siteTitle;?></title>
+  <title><?=  $pageTitle.' | '.$siteTitle;?></title>
   <?php
 }
 ?>
