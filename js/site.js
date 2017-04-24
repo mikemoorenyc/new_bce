@@ -12,11 +12,12 @@ function siteInit() {
 
   lineSet();
   window.addEventListener("resize", lineSet);
-
+  /*
   document.getElementById('nav-opener').addEventListener('click',function(e){
     e.preventDefault();
     document.querySelector('html').classList.toggle('nav-opened');
   });
+  */
 
   pageLoader();
 }
