@@ -161,7 +161,7 @@ var App = {
 
  <header id="top-header">
    <a id="spinner" alt="<?= $siteTitle;?>" href="<?= $homeURL;?>"></a>
-
+   <input type="checkbox" id="navigation-toggle" />
    <nav>
      <div id="top-logo">
        <a href="<?= $homeURL;?>">
