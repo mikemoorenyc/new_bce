@@ -1,1 +1,3 @@
-
+<?php
+//POST TEMPLATE
+?>
