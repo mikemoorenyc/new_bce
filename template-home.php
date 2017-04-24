@@ -8,7 +8,7 @@
 <?php include 'header.php'; ?>
 <section class="hp top-content">
   <h1>
-  <?php echo md_sc_parse($post->post_content);?>
+  <?= md_sc_parse($post->post_content);?>
   </h1>
 </section>
 
@@ -54,19 +54,19 @@ foreach($projects as $p) {
       <img
       sizes="100vw"
       class="project-img"
-      src="<?php echo $imgs['full']['url'];?>"
-      srcset="<?php echo $srcset;?>"
-      alt="<?php echo get_the_title($pid);?>"
+      src="<?= $imgs['full']['url'];?>"
+      srcset="<?= $srcset;?>"
+      alt="<?= $p->post_title;?>"
       />
       <?php
     }
 
      ?>
     <h3>
-    <a href="<?php echo get_the_permalink($pid);?>">
+    <a href="<?=get_the_permalink($pid);?>">
       <div class="callout ">
-        <span class="title"><?php echo get_the_title($pid);?></span>
-        <span class="tagline font-sans"><?php echo get_post_meta( $pid, 'tagline', true );?></span>
+        <span class="title"><?= $p->post_title;?></span>
+        <span class="tagline font-sans"><?= get_post_meta( $pid, 'tagline', true );?></span>
       </div>
     </a>
   </h3>
@@ -77,7 +77,7 @@ foreach($projects as $p) {
 }
 
  ?>
- <a href="<?php echo $homeURL;?>/projects" class="button-style bottom-button">See All Projects <span class="bug "><?php echo file_get_contents($siteDir.'/assets/svgs/icon_arrow_right.svg');?></span></a>
+ <a href="<?= $homeURL;?>/projects" class="button-style bottom-button">See All Projects <span class="bug "><?= file_get_contents($siteDir.'/assets/svgs/icon_arrow_right.svg');?></span></a>
 </section>
 
 <?php endif;?>
@@ -99,9 +99,9 @@ foreach($posts as $p) {
   ?>
   <article class="post">
     <h3>
-    <a href="<?php echo get_the_permalink($pid);?>"><span class="title"><?php echo get_the_title($pid);?></span></a>
+    <a href="<?= get_the_permalink($pid);?>"><span class="title"><?p= get_the_title($pid);?></span></a>
     <span class="time font-sans">
-      <?php echo human_time_diff( get_the_time('U', $pid), current_time('timestamp') ) . ' ago'; ?>
+      <?= human_time_diff( get_the_time('U', $pid), current_time('timestamp') ) . ' ago'; ?>
     </span>
     </h3>
 
@@ -113,7 +113,7 @@ foreach($posts as $p) {
 
  ?>
 
-<a href="<?php echo $homeURL;?>/blog" class="button-style bottom-button">See All Blog Posts <span class="bug "><?php echo file_get_contents($siteDir.'/assets/svgs/icon_arrow_right.svg');?></span></a>
+<a href="<?= $homeURL;?>/blog" class="button-style bottom-button">See All Blog Posts <span class="bug "><?= file_get_contents($siteDir.'/assets/svgs/icon_arrow_right.svg');?></span></a>
 </section>
 <?php endif;?>
 
