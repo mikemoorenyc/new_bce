@@ -25,14 +25,17 @@ $imgs = get_all_image_sizes(get_post_thumbnail_id());
   <?php
   $toplinks = input_to_array(get_post_meta( $post->ID, 'toplinks', true ));
   if(!empty($toplinks)):?>
-  <div class="project-top-links ">
-   <?php 
+ 
+  <?php 
    if(count($toplinks)>2) {
     $fullCount = 'full-count';
    }
-   ?>
+  ?>
+ 
+  <div class="project-top-links <?= $fullCount; ?>">
+   
     <?php foreach($toplinks as $l):?>
-      <a class="font-sans <?= $fullCount; ?>" href="<?= $l[1];?>" target="_blank" style="width: <?= 100/count($toplinks);?>%">
+      <a class="font-sans" href="<?= $l[1];?>" target="_blank" style="width: <?= 100/count($toplinks);?>%">
         <?= $l[0];?>
       </a>
     <?php endforeach;?>
