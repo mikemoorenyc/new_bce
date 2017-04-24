@@ -161,7 +161,7 @@ var App = {
 
  <header id="top-header">
    <a id="spinner" alt="<?= $siteTitle;?>" href="<?= $homeURL;?>"></a>
-   <input type="checkbox" id="navigation-toggle" />
+   <input type="checkbox" role="button" id="navigation-toggle" />
    <nav>
      <div id="top-logo">
        <a href="<?= $homeURL;?>">
@@ -203,7 +203,7 @@ var App = {
      </button>
 
    </nav>
-   <button id="nav-opener" class="button-style">
+   <div role="presentation" id="nav-opener" class="button-style">
      <span class="hide">Toggle Menu</span>
      <span class="open">
        <?= file_get_contents($siteDir.'/assets/svgs/icon_menu.svg');?>
@@ -211,7 +211,7 @@ var App = {
      <span class="close">
        <?= file_get_contents($siteDir.'/assets/svgs/icon_x.svg');?>
      </span>
-   </button>
+   </div>
  </header>
 
  <div id="main-content-container">
