@@ -44,23 +44,23 @@ if(get_post_thumbnail_id()) {
 
 ?>
 <!DOCTYPE html>
-<html lang="en" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">
+<html lang="en" data-current="<?= $slug;?>" class="slug-<?= $slug;?>">
 <head>
 
-<link rel='stylesheet' href="<?php echo $siteDir;?>/css/main.css?v=<?php echo time();?>" type="text/css" />
+<link rel='stylesheet' href="<?= $siteDir;?>/css/main.css?v=<?= time();?>" type="text/css" />
 
 
 <?php
 if ( is_front_page() ) {
   $pageTitle = $siteTitle;
   ?>
-  <title><?php echo $siteTitle;?></title>
+  <title><?= $siteTitle;?></title>
   <?php
 } else {
   $pageTitle = get_the_title();
   ?>
 
-  <title><?php echo $pageTitle;?> | <?php echo $siteTitle;?></title>
+  <title><?=  $pageTitle.' |' .$siteTitle;?></title>
   <?php
 }
 ?>
@@ -78,7 +78,7 @@ if(!$excerpt) {
 $siteDesc = preg_replace( "/\r|\n/", " ", preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", strip_tags(md_sc_parse($excerpt))) );
 $siteDesc = substr($siteDesc, 0, 150); 
 ?>
-<meta name="description" content="<?php echo $siteDesc;?>" />
+<meta name="description" content="<?= $siteDesc;?>" />
 
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -112,36 +112,36 @@ $siteDesc = substr($siteDesc, 0, 150);
  ?>
 
 
-<meta property="og:site_name" content="<?php echo $siteTitle;?>" />
-<meta property="og:title" content="<?php echo $pageTitle;?> " />
+<meta property="og:site_name" content="<?= $siteTitle;?>" />
+<meta property="og:title" content="<?= $pageTitle;?> " />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="<?php echo get_the_permalink();?>" />
-<meta property="og:image" content="<?php echo $socialImg;?>" />
-<meta property="og:description" content="<?php echo $siteDesc;?>" />
+<meta property="og:url" content="<?= get_the_permalink();?>" />
+<meta property="og:image" content="<?= $socialImg;?>" />
+<meta property="og:description" content="<?= $siteDesc;?>" />
 
 <?php
   if(!empty($twitterUsername)) {
     ?>
-<meta name="twitter:site" content="<?php echo $twitterUsername;?>">
-<meta name="twitter:creator" content="<?php echo $twitterUsername;?>">
+<meta name="twitter:site" content="<?= $twitterUsername;?>">
+<meta name="twitter:creator" content="<?= $twitterUsername;?>">
     <?php
 }
 ?>
-<meta name="twitter:card" content="<?php echo $twitterCard;?>">
-<meta name="twitter:title" content="<?php echo $pageTitle;?> ">
-<meta name="twitter:description" content="<?php echo $siteDesc;?>">
-<meta name="twitter:image" content="<?php echo $socialImg;?>">
+<meta name="twitter:card" content="<?= $twitterCard;?>">
+<meta name="twitter:title" content="<?= $pageTitle;?> ">
+<meta name="twitter:description" content="<?= $siteDesc;?>">
+<meta name="twitter:image" content="<?= $socialImg;?>">
 
 
 
 <script>
 var App = {
-  colors: <?php echo json_encode($colors);?>,
-  colormode: <?php echo json_encode($colormode);?>,
+  colors: <?= json_encode($colors);?>,
+  colormode: <?= json_encode($colormode);?>,
   URL: {
-    homeURL: <?php echo json_encode($homeURL);?>,
-    path: <?php echo json_encode($homeArray['path'].'/');?>,
-    domain: <?php echo json_encode($homeArray['host']);?>
+    homeURL: <?= json_encode($homeURL);?>,
+    path: <?= json_encode($homeArray['path'].'/');?>,
+    domain: <?= json_encode($homeArray['host']);?>
   }
 }
 
@@ -160,11 +160,11 @@ var App = {
 <body id="top" data-colormode="bw">
 
  <header id="top-header">
-   <a id="spinner" alt="<?php echo $siteTitle;?>" href="<?php echo $homeURL;?>"></a>
+   <a id="spinner" alt="<?= $siteTitle;?>" href="<?= $homeURL;?>"></a>
 
    <nav>
      <div id="top-logo">
-       <a href="<?php echo $homeURL;?>">
+       <a href="<?= $homeURL;?>">
          <span class="title">
 
            <?php
@@ -190,8 +190,8 @@ var App = {
         $activeClass="active";
        }
        ?>
-        <div class="nav-item <?php echo $activeClass;?>">
-          <a href="<?php echo $item->url;?>"><?php echo $item->title;?></a>
+        <div class="nav-item <?= $activeClass;?>">
+          <a href="<?= $item->url;?>"><?= $item->title;?></a>
         </div>
        <?php
      }
@@ -206,10 +206,10 @@ var App = {
    <button id="nav-opener" class="button-style">
      <span class="hide">Toggle Menu</span>
      <span class="open">
-       <?php echo file_get_contents($siteDir.'/assets/svgs/icon_menu.svg');?>
+       <?= file_get_contents($siteDir.'/assets/svgs/icon_menu.svg');?>
      </span>
      <span class="close">
-       <?php echo file_get_contents($siteDir.'/assets/svgs/icon_x.svg');?>
+       <?= file_get_contents($siteDir.'/assets/svgs/icon_x.svg');?>
      </span>
    </button>
  </header>
