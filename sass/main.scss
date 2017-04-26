@@ -4,6 +4,7 @@
 
 @import "normalize.scss";
 @import "scaffold.scss";
+@import 'typography';
 @import "utilities.scss";
 
 @import 'header';
@@ -12,3 +13,4 @@
 @import 'project-page';
 @import 'image-styles';
 @import 'bottom-cta-links';
+@import 'blog-post-page';

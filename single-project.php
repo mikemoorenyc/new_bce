@@ -3,7 +3,7 @@
 ?>
 <?php include 'header.php'; ?>
 <?php
-$noheaderClass="no-header";
+$noheaderClass="nav-spacer";
 
  ?>
 <?php if(has_post_thumbnail()):?>
@@ -19,21 +19,21 @@ $imgs = get_all_image_sizes(get_post_thumbnail_id());
 
 
 <?php endif; ?>
-<div class="project-page-content-container <?php echo $noheaderClass;?>">
-  <h1 class="project-page-title"><?php echo get_the_title();?></h1>
-  <h2 class='project-page-tagline font-sans'><?php echo get_post_meta( $post->ID, 'tagline', true );?></h2>
+<div class="project-page-content-container content-padding-spacer <?php echo $noheaderClass;?>">
+  <h1 class="project-page-title story-title"><?= $post->post_title;?></h1>
+  <h2 class='project-page-tagline story-sub-title'><?php echo get_post_meta( $post->ID, 'tagline', true );?></h2>
   <?php
   $toplinks = input_to_array(get_post_meta( $post->ID, 'toplinks', true ));
   if(!empty($toplinks)):?>
- 
-  <?php 
+
+  <?php
    if(count($toplinks)>2) {
     $fullCount = 'full-count';
    }
   ?>
- 
+
   <div class="project-top-links <?= $fullCount; ?>">
-   
+
     <?php foreach($toplinks as $l):?>
       <a class="font-sans" href="<?= $l[1];?>" target="_blank" style="width: <?= 100/count($toplinks);?>%">
         <?= $l[0];?>
@@ -44,7 +44,7 @@ $imgs = get_all_image_sizes(get_post_thumbnail_id());
 
   <?php endif; ?>
 
-  <div class="project-page-content">
+  <div class="project-page-content story-content">
 
     <?php echo md_sc_parse($post->post_content);?>
 

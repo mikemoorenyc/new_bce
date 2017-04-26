@@ -6,8 +6,8 @@
 
 
 <?php include 'header.php'; ?>
-<section class="hp top-content">
-  <h1>
+<section class="hp top-content nav-spacer">
+  <h1 class="story-title">
   <?= md_sc_parse($post->post_content);?>
   </h1>
 </section>
@@ -84,7 +84,7 @@ foreach($projects as $p) {
 <?php
 $pargs = array(
   'post_type' 		=> 'post',
-  'posts_per_page' => 2
+  'posts_per_page' => 4
 );
 $post_query = new WP_Query($pargs);
  ?>
@@ -99,7 +99,7 @@ foreach($posts as $p) {
   ?>
   <article class="post">
     <h3>
-    <a href="<?= get_the_permalink($pid);?>"><span class="title"><?p= get_the_title($pid);?></span></a>
+    <a href="<?= get_the_permalink($pid);?>"><span class="title"><?= get_the_title($pid);?></span></a>
     <span class="time font-sans">
       <?= human_time_diff( get_the_time('U', $pid), current_time('timestamp') ) . ' ago'; ?>
     </span>

@@ -1,5 +1,5 @@
 
-  
+
 #nav-opener, #navigation-toggle {
   position: fixed;
   right: 16rem;
@@ -35,7 +35,7 @@
     display:block;
     position: absolute;
     left: 50%;
-    height: 50%;
+    top: 50%;
     width: 24px;
     height: 24px;
     transform:translate(-50%,-50%);
@@ -138,18 +138,18 @@ nav {
   }
   + nav + #nav-opener{
     background-color: transparent;
-    svg, svg * {
+    >span svg, >span svg * {
       fill:$white;
     }
     border-color:$white;
-    .close {
+    > .close {
       display:block;
     }
-    .open {
+    > .open {
       display:none;
     }
   }
-  
+
 }
 button.color-mode-switcher {
   margin: 8rem 0 0 24rem;

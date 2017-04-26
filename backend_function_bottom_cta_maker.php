@@ -1,14 +1,14 @@
 <?php
-function bottom_cta_maker($post_type,$orderby,$empty_link) {
+function bottom_cta_maker($post_type,$orderby,$empty_link,$dir="ASC") {
   global $siteDir;
   global $post;
   $args = array(
     'post_type' 		=> $post_type,//project
     'orderby' 			=> $orderby,//orderby
-    'order' 			=> 'ASC',
+    'order' 			=> $dir,
     'posts_per_page' => -1
   );
-  $pagelist = get_pages($args);
+  $pagelist = get_posts($args);
   $pages = array();
   foreach ($pagelist as $page) {
      $pages[] += $page->ID;
