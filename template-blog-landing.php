@@ -26,7 +26,7 @@ while ( have_posts() ) : the_post(); ?>
 <article class="post">
   <h2 class="title"><?= get_the_title();?></h2>
   <div class="excerpt"><?= get_the_excerpt();?></div>
-  <div class="date"><?= get_the_date('d M Y') ?></div>
+  <div class="date">Published on: <?= get_the_date('d M Y') ?></div>
   <a class="poster-fill see-thru" href="<?= get_the_permalink();?>" role="presentation"><?=get_the_title();?></a>
 </article>
 
