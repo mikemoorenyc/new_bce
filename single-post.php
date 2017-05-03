@@ -5,17 +5,8 @@
 <div id="main-post-content">
   <div class="blog-post-header content-padding-spacer nav-spacer">
     <div class="post-date font-sans">
-      <?php
-          $theDate = get_the_date('Y-m-d');
-        $pdate = new DateTime($theDate);
-        $ctime = current_time('Y-m-d');
-        $currentdate = new DateTime($ctime);
-        $diff = date_diff($pdate,$currentdate);
-        if($diff->y > 0) {
-          $yearstamp = get_the_date('Y');
-        }
-       ?>
-      Published on <?= get_the_date('M j')?> <?= $yearstamp;?>
+
+      Published on <?= get_the_date('M j Y')?>
     </div>
     <h1 class="blog-post-title story-title">
       <?= $post->post_title;?>
