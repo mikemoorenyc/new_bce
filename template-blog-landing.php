@@ -23,11 +23,12 @@ $args = array(
 query_posts($args);
 while ( have_posts() ) : the_post(); ?>
 
-<div class="post">
-  
-  
-  
-</div>
+<article class="post">
+  <h2 class="title"><?= get_the_title();?></h2>
+  <div class="excerpt"><?= get_the_excerpt();?></div>
+  <div class="date"><?= get_the_date('d M Y') ?></div>
+  <a class="poster-fill see-thru" href="<?= get_the_permalink();?>" role="presentation"><?=get_the_title();?></a>
+</article>
 
 
 <?php endwhile;?>
