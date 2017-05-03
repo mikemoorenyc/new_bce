@@ -1,5 +1,7 @@
+const s_path = App.URL.path.replace('/')+'_colormode';
 function colorSet() {
-  let colormode =  Cookies.get('colormode',{domain: App.URL.domain, path: App.URL.path}),
+  
+  let colormode =  localStorage.getItem(s_path),
       $switcher = document.getElementById("color-mode-switcher"),
       $body = document.querySelector('body');
 
@@ -36,7 +38,7 @@ document.getElementById("color-mode-switcher").addEventListener('click',function
   if(mode === 'bw') {
     newColor = 'color';
   }
-  Cookies.set('colormode',newColor, {domain: App.URL.domain, path: App.URL.path, expires: 365});
+  localStorage.setItem(s_path,newColor);
   colorSet();
 
 });
