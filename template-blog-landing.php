@@ -22,8 +22,12 @@ $args = array(
 );
 query_posts($args);
 while ( have_posts() ) : the_post(); ?>
-
-<article class="post">
+<?php
+if(!has_post_thumbnail()) {
+ $class_no_thumbnail = 'no_thumbnail'; 
+}
+?>
+<article class="<?= $class_no_thumbnail;?> post">
   <h2 class="title"><?= get_the_title();?></h2>
   <div class="excerpt"><?= get_the_excerpt();?></div>
   <div class="date">Published on <?= get_the_date('M j Y')?></div>
