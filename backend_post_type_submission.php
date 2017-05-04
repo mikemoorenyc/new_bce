@@ -1,36 +1,28 @@
 <?php
-function project_post_init() {
+function submission_type_init() {
 //PROPERTY
 $args = array(
-  'label' => 'Projects',
-  'public' => true,
+  'label' => 'Submissions',
+  'public' => false,
   'labels' => array(
-    'add_new_item' => 'Add New Project',
-    'name' => 'Projects',
-    'edit_item' => 'Edit Project',
-    'search_items' => 'Search Projects',
-    'not_found' => 'No Projects found.',
-    'all_items' => 'All Projects'
+    'name' => 'Submissions',
   ),
   'show_ui' => true,
-  'capability_type' => 'page',
-  'hierarchical' =>true,
+  'capability_type' => 'post',
   'has_archive' => false,
-  'rewrite' => array('slug' => 'project'),
+  'rewrite' => array('slug' => 'submission'),
   'query_var' => true,
-  'menu_icon' =>'dashicons-hammer',
+  'menu_icon' =>'dashicons-email',
   'supports' => array(
       'title',
       'editor',
       'revisions',
       'page-attributes',
-      'thumbnail',
-      'excerpt',
       'custom-fields'
     )
   );
-register_post_type( 'project', $args );
-register_taxonomy_for_object_type( 'post_tag', 'project' );
+register_post_type( 'submission', $args );
+
 }
-add_action( 'init', 'project_post_init' );
+add_action( 'init', 'submission_type_init' );
  ?>
