@@ -53,8 +53,9 @@ foreach($projects as $p) {
       ?>
       <img
       sizes="100vw"
+      width="<?= $imgs['medium']['width'];?>"
       class="project-img"
-      src="<?= $imgs['full']['url'];?>"
+      src="<?= $imgs['medium']['url'];?>"
       srcset="<?= $srcset;?>"
       alt="<?= $p->post_title;?>"
       />
@@ -77,7 +78,7 @@ foreach($projects as $p) {
 }
 
  ?>
- <a href="<?= $homeURL;?>/projects" class="button-style bottom-button">See All Projects <span class="bug "><?= file_get_contents($siteDir.'/assets/svgs/icon_arrow_right.svg');?></span></a>
+ <a href="<?= $homeURL;?>/projects" class="button-style bottom-button">See All Projects <span class="bug "><?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?></span></a>
 </section>
 
 <?php endif;?>
@@ -113,7 +114,7 @@ foreach($posts as $p) {
 
  ?>
 
-<a href="<?= $homeURL;?>/blog" class="button-style bottom-button">See All Blog Posts <span class="bug "><?= file_get_contents($siteDir.'/assets/svgs/icon_arrow_right.svg');?></span></a>
+<a href="<?= $homeURL;?>/blog" class="button-style bottom-button">See All Blog Posts <span class="bug "><?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?></span></a>
 </section>
 <?php endif;?>
 

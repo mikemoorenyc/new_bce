@@ -46,9 +46,9 @@ if(get_post_thumbnail_id()) {
 <!DOCTYPE html>
 <html lang="en" data-current="<?= $slug;?>" class="slug-<?= $slug;?>">
 <head>
-
+<!--
 <link rel='stylesheet' href="<?= $siteDir;?>/css/main.css?v=<?= time();?>" type="text/css" />
-
+-->
 
 <?php
 if ( is_front_page() ) {
@@ -76,7 +76,7 @@ if(!$excerpt) {
   $excerpt = get_bloginfo('description');
 }
 $siteDesc = preg_replace( "/\r|\n/", " ", preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", strip_tags(md_sc_parse($excerpt))) );
-$siteDesc = substr($siteDesc, 0, 150); 
+$siteDesc = substr($siteDesc, 0, 150);
 ?>
 <meta name="description" content="<?= $siteDesc;?>" />
 
@@ -206,10 +206,10 @@ var App = {
    <div role="presentation" id="nav-opener" class="button-style">
      <span class="hide">Toggle Menu</span>
      <span class="open">
-       <?= file_get_contents($siteDir.'/assets/svgs/icon_menu.svg');?>
+       <?= file_get_contents(get_template_directory().'/assets/svgs/icon_menu.svg');?>
      </span>
      <span class="close">
-       <?= file_get_contents($siteDir.'/assets/svgs/icon_x.svg');?>
+       <?= file_get_contents(get_template_directory().'/assets/svgs/icon_x.svg');?>
      </span>
    </div>
  </header>
