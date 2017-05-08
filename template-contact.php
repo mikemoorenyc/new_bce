@@ -3,6 +3,22 @@
  * Template Name: Contact Page
  */
 ?>
+<?php
+$sArray = [];
+$security_questions = preg_split("/\\r\\n|\\r|\\n/", get_option( 'security_question_list', '' ));
+foreach($security_questions as $s) {
+  $theArray = [];
+  $sa = explode(',',$s);
+  foreach($sa as $a) {
+   $theArray[] = trim($a); 
+  }
+  $sArray[] = $theArray;
+}
+$security_questions = $sArray;
+?>
+
+
+
 <?php include 'header.php'; ?>
 <h1 class="contact-page-header"><?= $post->post_title;?></h1>
 <div class="contact-page-content"><?= md_sc_parse($post->post_content);?></div>
