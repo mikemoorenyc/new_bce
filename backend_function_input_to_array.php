@@ -11,10 +11,10 @@ function input_to_array($string) {
    $sectionArray = [];
    foreach($sections as $s) {
 
-    array_push($sectionArray,trim($s));
+    $sectionArray[] = trim($s);
    }
    if(!empty($sectionArray)){
-     array_push($newArray,$sectionArray);
+     $newArray[] = $sectionArray;
    }
  }
  return $newArray;
