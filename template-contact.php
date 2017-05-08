@@ -17,10 +17,28 @@ if(strtolower(trim($_POST['security_question'])) != $security_questions[$_POST['
 if(!filter_var(trim($_POST['form_email']), FILTER_VALIDATE_EMAIL)) {
     $bad[] = 'form_email';
 }
-if(empty(trim($_POST['form_name'])) {
+if(empty(trim($_POST['form_name']))) {
 	$bad[] = 'form_name';
 }
-                                                                        
+
+if(empty($bad)) {
+	//WE HAVE A WINNER
+  $name = filter_var(trim($_POST['form_name']), FILTER_SANITIZE_STRING);
+  $email = filter_var(trim($_POST['form_email']), FILTER_SANITIZE_EMAIL);
+  $message = filter_var(trim($_POST['form_message']), FILTER_SANITIZE_STRING);
+  $content_message = 'Name:'.$name.'<br/><br/>'.'Message:<br/>'.$message;
+  $insert = wp_insert_post( array(
+    'post_title' =>$email ,
+    'post_type' => 'message',
+    'post_status'=> 'publish',
+    'post_content'=> $content_message
+  ) );
+  if($insert) {
+   setcookie("alreadySubmitted", 'true', time()+3600);  
+  }
+}
+
+
                                                                         
                                                                         
 
