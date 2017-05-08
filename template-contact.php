@@ -9,7 +9,10 @@ $security_questions = input_to_array(get_option( 'security_question_list', '' ))
 <?php if(!empty($_POST['security_number'])):?>
 <?php
 //WE HAVE A SUBMITTED FORM
-if(
+if(strtolower(trim($_POST['security_question'])) != $security_questions[$_POST['security_number'][1]) {
+  $bad_security = true;
+}
+
 
 ?>
 <?php endif;?>
