@@ -4,17 +4,7 @@
  */
 ?>
 <?php
-$sArray = [];
-$security_questions = preg_split("/\\r\\n|\\r|\\n/", get_option( 'security_question_list', '' ));
-foreach($security_questions as $s) {
-  $theArray = [];
-  $sa = explode(',',$s);
-  foreach($sa as $a) {
-   $theArray[] = trim($a); 
-  }
-  $sArray[] = $theArray;
-}
-$security_questions = $sArray;
+$security_questions = input_to_array(get_option( 'security_question_list', '' ));
 ?>
 
 
