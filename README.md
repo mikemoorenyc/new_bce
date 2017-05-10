@@ -19,3 +19,20 @@ The wordpress theme to power the future becreativeeveryday.com
     3. Ajax on form
     4. Content Stream
 5. Refactor
+
+## Contact form business logic
+1. If a user has never submitted a message before: 
+    * they are presented with the form
+2. If the user submits the form and there is an error: 
+    * they are presented with the form, with error messaging and asked try again
+3. If the user submits the form and there are no errors:
+    * The submission is saved
+    * A notification email is sent
+    * A cookie is set saying that they have submitted
+    * they are presented with a thank you message and no form
+4. If the user has a cookie set saying they have already sent a message
+    * they are presented with a form asking to prove they are human
+5. If the user submits the form proving they are human and there is an error
+    * they are presented with a form asking to prove they are human and a message asking to try again
+6. If the user submits the form proving they are human and there is no error
+    * they are presented with the form
