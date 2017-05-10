@@ -7,7 +7,7 @@
 $security_questions = input_to_array(get_option( 'security_question_list', '' ));
 $alreadySubmitted = $_COOKIE['alreadySubmitted'];
 ?>
-<?php if(!empty($_POST['security_number'])):?>
+<?php if(!empty($_POST['security_number']) && $_POST['reset'] !== 'true'):?>
 <?php
 //WE HAVE A SUBMITTED FORM
 $bad = [];
