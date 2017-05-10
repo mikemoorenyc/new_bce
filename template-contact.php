@@ -5,6 +5,7 @@
 ?>
 <?php
 $security_questions = input_to_array(get_option( 'security_question_list', '' ));
+$alreadySubmitted = $_COOKIE['alreadySubmitted'];
 ?>
 <?php if(!empty($_POST['security_number'])):?>
 <?php
@@ -26,7 +27,7 @@ if(empty($bad)) {
   $name = filter_var(trim($_POST['form_name']), FILTER_SANITIZE_STRING);
   $email = filter_var(trim($_POST['form_email']), FILTER_SANITIZE_EMAIL);
   $message = filter_var(trim($_POST['form_message']), FILTER_SANITIZE_STRING);
-  $content_message = 'Name:'.$name.'<br/><br/>'.'Message:<br/>'.$message;
+  $content_message = 'Name: '.$name.'<br/><br/>'.'Message:<br/>'.$message;
   $insert = wp_insert_post( array(
     'post_title' =>$email ,
     'post_type' => 'message',
@@ -35,6 +36,7 @@ if(empty($bad)) {
   ) );
   if($insert) {
    setcookie("alreadySubmitted", 'true', time()+3600);  
+	 wp_mail( get_option('admin_email'), 'Message From: '.$email,$content_message);
   }
 }
 
@@ -97,11 +99,14 @@ $security_number = mt_rand(0,count($security_questions)-1);
     <input id="security_question" name="security_question" type="text" required />
   </div>
 
+  <input type="hidden" id="security_number" name="security_number" value="<?= $security_number;?>"/>
+  
+  
   <div class="form-row">
     <button type="submit">Send</button>
 
   </div>
-  <input type="hidden" id="security_number" name="security_number" value="<?= $security_number;?>"/>
+  
 
 
 </form>
