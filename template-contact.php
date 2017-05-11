@@ -22,7 +22,7 @@ if(!filter_var(trim($_POST['form_email']), FILTER_VALIDATE_EMAIL)) {
 }
 if(empty(trim($_POST['form_name']))) {
 	$bad[] = 'form_name';
-}
+}   
 
 if(empty($bad)) {
 	//WE HAVE A WINNER
