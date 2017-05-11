@@ -8,9 +8,7 @@ function security_questions_settings() {
 function security_question_list_textarea() {
   $value = get_option( 'security_question_list', '' );
 ?>
-<textarea class="large-text code" id="security_question_list" name="security_question_list">
-  <?= $value;?>
-</textarea>
+<textarea rows="10" cols="50" class="large-text code" id="security_question_list" name="security_question_list"><?= $value;?></textarea>
 
 <?php
 }

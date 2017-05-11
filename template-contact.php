@@ -10,8 +10,11 @@ $security_questions = input_to_array(get_option( 'security_question_list', '' ))
 <?php
 //WE HAVE A SUBMITTED FORM
 $bad = [];
+$security_question = strtolower(trim($_POST['security_question']));
+$security_number = intval($_POST['security_number']);
+$security_combo = $security_questions[$security_number];
 $submitted= false;
-if(strtolower(trim($_POST['security_question'])) != $security_questions[$_POST['security_number'][1]) {
+if($security_question != strtolower($security_combo[1])) {
   $bad[] = 'security_question';
 }
 if(!filter_var(trim($_POST['form_email']), FILTER_VALIDATE_EMAIL)) {
@@ -34,13 +37,13 @@ if(empty($bad)) {
     'post_content'=> $content_message
   ) );
   if($insert) {
-   setcookie("alreadySubmitted", 'true', time()+3600);  
+   setcookie("alreadySubmitted", 'true', time()+3600);
   }
 }
 
 
-                                                                        
-                                                                        
+
+
 
 
 ?>
