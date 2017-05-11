@@ -5,8 +5,11 @@
 ?>
 <?php
 $security_questions = input_to_array(get_option( 'security_question_list', '' ));
+$alreadySubmitted = $_COOKIE['alreadySubmitted'];
+
 ?>
-<?php if(!empty($_POST['security_number'])):?>
+
+<?php if(!empty($_POST['security_question']) && $alreadySubmitted !== 'true'):?>
 <?php
 //WE HAVE A SUBMITTED FORM
 $bad = [];
@@ -15,14 +18,14 @@ $security_number = intval($_POST['security_number']);
 $security_combo = $security_questions[$security_number];
 $submitted= false;
 if($security_question != strtolower($security_combo[1])) {
-  $bad[] = 'security_question';
+  $bad['security_question'] = true;
 }
 if(!filter_var(trim($_POST['form_email']), FILTER_VALIDATE_EMAIL)) {
-    $bad[] = 'form_email';
+    $bad['email'] = true;
 }
 if(empty(trim($_POST['form_name']))) {
-	$bad[] = 'form_name';
-}   
+	$bad['name'] = true;
+}
 
 if(empty($bad)) {
 	//WE HAVE A WINNER
@@ -38,14 +41,24 @@ if(empty($bad)) {
   ) );
   if($insert) {
    setcookie("alreadySubmitted", 'true', time()+3600);
+   wp_mail(get_option('admin_email'), 'New Message from: '.$email,$message);
+   $submitted = 'success';
   }
 }
 
 
+?>
+<?php endif;?>
 
-
-
-
+<?php if(!empty($_POST['security_question']) && $alreadySubmitted === 'true'):?>
+<?php
+$security_question = strtolower(trim($_POST['security_question']));
+$security_number = intval($_POST['security_number']);
+$security_combo = $security_questions[$security_number];
+if($security_question == strtolower($security_combo[1])) {
+  setcookie("alreadySubmitted", '', time()+3600);
+  $alreadySubmitted = false;
+}
 ?>
 <?php endif;?>
 
@@ -82,22 +95,43 @@ $security_number = mt_rand(0,count($security_questions)-1);
 ?>
 
 
+
 <form method="POST" action="<?= get_the_permalink();?>">
+  <?php if($submitted === 'success'):?>
+    <h2> Thank you for sending me a message.</h2>
+
+  <?php endif;?>
+  <?php if($alreadySubmitted === 'true'):?>
+    <h2>I think you already submitted. Answer this question to prove your human first.</h2>
+  <?php endif;?>
+
+  <?php if ($submitted !== 'success'):?>
+    <?php if($alreadySubmitted !== 'true'):?>
   <div class="form-row">
     <label for="form_name">Name</label>
     <input type="text" required id="form_name" name="form_name" />
+    <?php if($bad['name']):?>
+      <div class="error-msg">You filled this out wrong. Try again.</div>
+    <?php endif;?>
   </div>
   <div class="form-row">
     <label for="form_email">Email</label>
     <input type="email" name="form_email" id="form_email" required />
+    <?php if($bad['email']):?>
+      <div class="error-msg">You filled this out wrong. Try again.</div>
+    <?php endif;?>
   </div>
   <div class="form-row">
     <label for="form_message">Message</label>
     <textarea id="form_message" name="form_message"></textarea>
   </div>
+<?php endif;?>
   <div class="form-row">
     <label for="security_question"><?= $security_questions[$security_number][0];?></label>
     <input id="security_question" name="security_question" type="text" required />
+    <?php if($bad['security_question']):?>
+      <div class="error-msg">You answered this question wrong. Try again.</div>
+    <?php endif;?>
   </div>
 
   <div class="form-row">
@@ -105,6 +139,7 @@ $security_number = mt_rand(0,count($security_questions)-1);
 
   </div>
   <input type="hidden" id="security_number" name="security_number" value="<?= $security_number;?>"/>
+  <?php endif;?>
 
 
 </form>
