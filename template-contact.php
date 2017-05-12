@@ -96,7 +96,7 @@ $security_number = mt_rand(0,count($security_questions)-1);
 
 
 
-<form method="POST" action="<?= get_the_permalink();?>">
+<form method="POST" action="<?= $siteDir.'/service_form_processor.php';?>">
   <?php if($submitted === 'success'):?>
     <h2> Thank you for sending me a message.</h2>
 
