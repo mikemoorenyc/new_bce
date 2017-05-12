@@ -27,5 +27,5 @@ The wordpress theme to power the future becreativeeveryday.com
     2. The form didn't process correctly (session, no cookie)
 2. Thank you for submitting (cookie & session)
 3. You already submitted (cookie, no session)
-    4. you answered incorrectly (cookie & session)
-    5. error processing form (cookie & session)
+    1. you answered incorrectly (cookie & session)
+    2. error processing form (cookie & session)
