@@ -61,6 +61,13 @@ if($_POST['reset_cookie']!=='reset') {
 session_start();
 $_SESSION['post_status'] = $post_status;
 $_SESSION['form_errors'] = $form_errors;
+if($_GET['format'] = 'json') {
+ $form_html = file_get_contents($_SERVER['HTTP_REFERER']);
+ $doc = new DOMDocument();
+ $doc->loadHTML($form_html);
+ echo $doc->getElementById('main-contact-form');
+ die();
+}
 wp_redirect( $_SERVER['HTTP_REFERER'] ) ;
 die();
 ?>
