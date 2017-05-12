@@ -52,19 +52,20 @@ if(get_post_thumbnail_id()) {
 
 <?php
 if ( is_front_page() ) {
+  $html_title = $siteTitle;
   $pageTitle = $siteTitle;
-  ?>
-  <title><?= $siteTitle;?></title>
-  <?php
 } else {
-  $pageTitle = get_the_title();
-  ?>
+  $pageTitle = $post->post_title;
+  $html_title =  $post->post_title.' | '.$siteTitle;
 
-  <title><?=  $pageTitle.' | '.$siteTitle;?></title>
-  <?php
+}
+if($tagged_as_page) {
+  $html_title = $tagged_as_page.' | '.$siteTitle;
+  $pageTitle = $tagged_as_page;
 }
 ?>
 
+<title><?= $html_title;?></title>
 <!-- HERE'S WHERE WE GET THE SITE DESCRIPTION -->
 <?php
 $excerpt = $post->post_content;
