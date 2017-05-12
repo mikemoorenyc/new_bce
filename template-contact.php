@@ -44,7 +44,7 @@ $security_number = mt_rand(0,count($security_questions)-1);
 
 
 
-<form method="POST" action="<?= $siteDir.'/service_form_processor.php';?>">
+<form id="main-contact-form" method="POST" action="<?= $siteDir.'/service_form_processor.php';?>">
   <?php if($_SESSION['post_status'] == 'success'):?>
     <h2> Thank you for sending me a message.</h2>
 
