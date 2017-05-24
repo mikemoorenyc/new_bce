@@ -87,8 +87,35 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_content);
  
  
 </ul>
+<?php
+if(empty($content_ids)) {
+ $content_ids = 'any';
+}
+$query_args = array(
+ 'post_type' => $content_ids,
+ 'posts_per_page' => -1
+);
+if(!empty($tag_ids)) {
+ $query_args['tag__in'] = $tag_ids;
+}
+$files_in_cat_query = new WP_Query($query_args);
+?>
+<?php if ( $files_in_cat_query->have_posts() ) :?>
+<?php 
+$posts = $files_in_cat_query->get_posts();
+foreach($posts as $p):?>
+<div class="post">
+ <h2><a href="<?= get_the_permalinke($p->ID);?>"><?= $p->post_title;?></a></h2>
+</div>
+
+<?php endforeach;?>
 
 
+<?php endif;?>
+
+<?php if ( !$files_in_cat_query->have_posts() ) :?>
+<h2>Sorry, there's no posts for that.</h2>
+<?php endif;?>
 
 
 <?php include_once "footer.php";?>
