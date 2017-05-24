@@ -7,7 +7,7 @@ The wordpress theme to power the future becreativeeveryday.com
     3. ~~Blog Landing~~
     4. About Page
     5. ~~Contact Page~~
-    5. Contact Form Processing Page
+    5. ~~Contact Form Processing Page~~
     6. ~~Project Single~~
     7. ~~Post Single~~
     8. Tagged as page
