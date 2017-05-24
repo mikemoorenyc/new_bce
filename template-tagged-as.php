@@ -38,7 +38,7 @@ if(empty($content_ids)&& empty($tagged_ids)) {
 $all_content = get_post_types( array('public' => true), 'objects' );
 $all_tags = get_tags(  );
 $all_content_ids = array_map(function ($c) { return $c->name; }, $all_content);
-$all_tag_ids = array_map(function ($c) { return $c->tag_id; }, $all_content);
+$all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_content);
 
 ?>
 
@@ -55,6 +55,29 @@ $all_tag_ids = array_map(function ($c) { return $c->tag_id; }, $all_content);
   ?>
   <li>
    <a href="<?= $href; ?>"><?= $all_content[$i]->labels['name'];?></a>
+ </li>
+  <?php
+ }
+ 
+ 
+ ?>
+ 
+ 
+</ul>
+
+<ul class="tags">
+ <?php 
+ foreach($all_tag_ids as $i => $c) {
+  $c_ids = $content_ids;
+  if(($key = array_search($c, $c_ids)) !== false) {
+    unset($c_ids[$key]);
+  } else {
+   $c_ids[] = $c;
+  }
+  $href = get_permalink().'?tags='.implode('|',$c_ids).'&types='.implode('|',$content_ids);
+  ?>
+  <li>
+   <a href="<?= $href; ?>"><?= $all_tags[$i]->name;?></a>
  </li>
   <?php
  }
