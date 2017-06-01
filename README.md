@@ -20,12 +20,3 @@ The wordpress theme to power the future becreativeeveryday.com
     3. Ajax on form
     4. Content Stream
 5. Refactor
-
-## Form States
-1. Blank form (no session, no cookie)
-    1. You filled out incorrectly (session, no cookie)
-    2. The form didn't process correctly (session, no cookie)
-2. Thank you for submitting (cookie & session)
-3. You already submitted (cookie, no session)
-    1. you answered incorrectly (cookie & session)
-    2. error processing form (cookie & session)
