@@ -4,9 +4,6 @@
   box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-html {
-  font-size: .32vw;
-}
 body {
   font-family: $font-serif;
   font-size:14rem;
@@ -24,11 +21,7 @@ body {
     border:0px solid currentColor;
   }
 }
-$footer-height: 40rem;
-$footer-margin: 48rem;
-#main-content-container {
-  min-height: calc(100vh - (#{$footer-height} + #{$footer-margin}));
-}
+
 
 // Reset fonts for relevant elements
 input,
@@ -81,17 +74,29 @@ svg {
   }
 }
 
-//TYPE
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  font-size:1.1em;
-  &.sub-header {
-    font-size: 16rem;
-    font-family: $font-sans;
-    text-transform: uppercase;
-    font-weight:bold;
-  }
-}
+h1, .h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+h2,.h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0; }
+
+h3, .h3 {
+  font-size: 1.17em;
+  margin: 1em 0; }
+
+h4, .h4 {
+  font-size: 1em;
+  margin: 1.33em 0; }
+
+h5, .h5 {
+  font-size: 0.83em;
+  margin: 1.67em 0; }
+
+h6, .h6 {
+  font-size: 0.75em;
+  margin: 2.33em 0; }
 
 hr {
   height: 3px;
