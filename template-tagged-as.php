@@ -4,22 +4,30 @@
  */
 ?>
 <?php
-$content_ids = explode("|",$_GET['types']);
-$tagged_ids = explode("|",$_GET['tags']);
+$content_ids = [];
+$tagged_ids = [];
+if(!empty($_GET['types'])) {
+  $content_ids = explode("|",$_GET['types']);
+}
+if(!empty($_GET['tags'])) {
+  $tagged_ids = explode("|",$_GET['tags']);
+}
+
+var_dump($_GET['types']);
 if(empty($content_ids)) {
  $content_title = 'Content';
 } else {
  $name_array = [];
- foreach($content as $c) {
+ foreach($content_ids as $c) {
   $name_array[] = get_post_type_object( $c )->labels['name'];
  }
- $content_title = implode(' & '$name_array);
+ $content_title = implode(' & ',$name_array);
 }
 if(empty($tagged_ids)) {
  $content_tag = '';
 } else {
- $tag_list = []
- foreach($tagged_ids as $t)) {
+ $tag_list = [];
+ foreach($tagged_ids as $t) {
   $tag_list[] = get_term($t)->name;
  }
  $content_tag = ' tagged with: '.implode(', ',$tag_list);
@@ -37,13 +45,14 @@ if(empty($content_ids)&& empty($tagged_ids)) {
 <?php
 $all_content = get_post_types( array('public' => true), 'objects' );
 $all_tags = get_tags(  );
+
 $all_content_ids = array_map(function ($c) { return $c->name; }, $all_content);
-$all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_content);
+$all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_tags);
 
 ?>
 
 <ul class="content-types">
- <?php 
+ <?php
  foreach($all_content_ids as $i => $c) {
   $c_ids = $content_ids;
   if(($key = array_search($c, $c_ids)) !== false) {
@@ -54,19 +63,20 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_content);
   $href = get_permalink().'?tags='.implode('|',$tagged_ids).'&types='.implode('|',$c_ids);
   ?>
   <li>
-   <a href="<?= $href; ?>"><?= $all_content[$i]->labels['name'];?></a>
+
+   <a href="<?= $href; ?>"><?= $all_content[$i]->label; ?></a>
  </li>
   <?php
  }
- 
- 
+
+
  ?>
- 
- 
+
+
 </ul>
 
 <ul class="tags">
- <?php 
+ <?php
  foreach($all_tag_ids as $i => $c) {
   $c_ids = $content_ids;
   if(($key = array_search($c, $c_ids)) !== false) {
@@ -77,15 +87,16 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_content);
   $href = get_permalink().'?tags='.implode('|',$c_ids).'&types='.implode('|',$content_ids);
   ?>
   <li>
+
    <a href="<?= $href; ?>"><?= $all_tags[$i]->name;?></a>
  </li>
   <?php
  }
- 
- 
+
+
  ?>
- 
- 
+
+
 </ul>
 <?php
 if(empty($content_ids)) {
@@ -101,11 +112,11 @@ if(!empty($tag_ids)) {
 $files_in_cat_query = new WP_Query($query_args);
 ?>
 <?php if ( $files_in_cat_query->have_posts() ) :?>
-<?php 
+<?php
 $posts = $files_in_cat_query->get_posts();
 foreach($posts as $p):?>
 <div class="post">
- <h2><a href="<?= get_the_permalinke($p->ID);?>"><?= $p->post_title;?></a></h2>
+ <h2><a href="<?= get_the_permalink($p->ID);?>"><?= $p->post_title;?></a></h2>
 </div>
 
 <?php endforeach;?>

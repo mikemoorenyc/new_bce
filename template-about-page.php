@@ -17,6 +17,7 @@ if(!empty($things_i_like)):?>
   <ul>
     <?php foreach($things_i_likes as $t):?>
     <li><?= $t[0];?></li>
+  <?php endforeach;?>
   </ul>
 </div>
 
@@ -29,6 +30,7 @@ if(!empty($things_i_dont_like)):?>
   <ul>
     <?php foreach($things_i_dont_likes as $t):?>
     <li><?= $t[0];?></li>
+  <?php endforeach;?>
   </ul>
 </div>
 
