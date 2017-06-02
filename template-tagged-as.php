@@ -43,10 +43,21 @@ if(empty($content_ids)&& empty($tagged_ids)) {
 <h1><?= $tagged_as_page;?></h1>
 
 <?php
-$all_content = get_post_types( array('public' => true), 'objects' );
+//$all_content = get_post_types( array('public' => true), 'objects' );
 $all_tags = get_tags(  );
 
-$all_content_ids = array_map(function ($c) { return $c->name; }, $all_content);
+$all_content = array(
+  array(
+    'slug' => 'posts',
+    'label' => 'Posts'
+  ),
+  array(
+    'slug' => 'projects',
+    'label' => 'Projects'
+  )
+);
+
+$all_content_ids = array_map(function ($c) { return $c['slug']; }, $all_content);
 $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_tags);
 
 ?>
@@ -64,7 +75,7 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_tags);
   ?>
   <li>
 
-   <a href="<?= $href; ?>"><?= $all_content[$i]->label; ?></a>
+   <a href="<?= $href; ?>"><?= $all_content[$i]['label']; ?></a>
  </li>
   <?php
  }
