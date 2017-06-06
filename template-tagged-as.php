@@ -13,7 +13,7 @@ if(!empty($_GET['tags'])) {
   $tagged_ids = explode("|",$_GET['tags']);
 }
 
-var_dump($_GET['types']);
+
 if(empty($content_ids)) {
  $content_title = 'Content';
 } else {
