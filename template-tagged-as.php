@@ -19,7 +19,7 @@ if(empty($content_ids)) {
 } else {
  $name_array = [];
  foreach($content_ids as $c) {
-  $name_array[] = get_post_type_object( $c )->labels['name'];
+  $name_array[] = get_post_type_object( $c )->labels->name;
  }
  $content_title = implode(' & ',$name_array);
 }
@@ -48,11 +48,11 @@ $all_tags = get_tags(  );
 
 $all_content = array(
   array(
-    'slug' => 'posts',
+    'slug' => 'post',
     'label' => 'Posts'
   ),
   array(
-    'slug' => 'projects',
+    'slug' => 'project',
     'label' => 'Projects'
   )
 );
@@ -89,7 +89,7 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_tags);
 <ul class="tags">
  <?php
  foreach($all_tag_ids as $i => $c) {
-  $c_ids = $content_ids;
+  $c_ids = $tagged_ids;
   if(($key = array_search($c, $c_ids)) !== false) {
     unset($c_ids[$key]);
   } else {
@@ -110,15 +110,16 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_tags);
 
 </ul>
 <?php
+
 if(empty($content_ids)) {
- $content_ids = 'any';
+ $content_ids = ['post','project'];
 }
 $query_args = array(
  'post_type' => $content_ids,
  'posts_per_page' => -1
 );
-if(!empty($tag_ids)) {
- $query_args['tag__in'] = $tag_ids;
+if(!empty($tagged_ids)) {
+ $query_args['tag__in'] = $tagged_ids;
 }
 $files_in_cat_query = new WP_Query($query_args);
 ?>

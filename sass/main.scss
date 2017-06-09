@@ -3,14 +3,19 @@
 @import 'mixins.scss';
 
 @import "normalize.scss";
+@import 'basic-things';
+@import 'typography';
+@import 'header';
+/*
 @import "scaffold.scss";
 @import 'typography';
 @import "utilities.scss";
 
-@import 'header';
+
 @import 'homepage';
 @import 'footer';
 @import 'project-page';
 @import 'image-styles';
 @import 'bottom-cta-links';
 @import 'blog-post-page';
+*/

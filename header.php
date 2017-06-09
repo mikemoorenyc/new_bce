@@ -46,9 +46,9 @@ if(get_post_thumbnail_id()) {
 <!DOCTYPE html>
 <html lang="en" data-current="<?= $slug;?>" class="slug-<?= $slug;?>">
 <head>
-<!--
+
 <link rel='stylesheet' href="<?= $siteDir;?>/css/main.css?v=<?= time();?>" type="text/css" />
--->
+
 
 <?php
 if ( is_front_page() ) {

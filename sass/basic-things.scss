@@ -1,0 +1,12 @@
+body {
+  background: $white;
+  color: #212121;
+  background-color: $white;
+  font-weight: normal;
+}
+body {
+  *, *:before, *:after {
+    color:currentColor;
+    border:0px solid currentColor;
+  }
+}
