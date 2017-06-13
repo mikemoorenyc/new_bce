@@ -27,6 +27,19 @@ header {
       transform:translate(-50%,-50%);
       width: 28px;
       height:28px;
+      animation: spinner 5s infinite linear;
     }
+  }
+}
+
+
+
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg)
   }
 }
