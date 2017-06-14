@@ -10,8 +10,10 @@ nav {
   padding-left: 16px;
   transform: translateX(100%);
   transition: transform .25s;
+  transition-timing-function: ease-in;
   #navigation-toggle:checked + .scrim + & {
     transform: translateX(0);
+    transition-timing-function: ease-out;
   }
   > * {
     color:white;

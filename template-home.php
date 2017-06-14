@@ -17,7 +17,7 @@
 
   $args = array(
     'post_type' 		=> 'project',
-    'posts_per_page' => 4,
+    'posts_per_page' => 3,
     'orderby' 			=> 'menu_order',
     'order' 			=> 'ASC'
   );
@@ -25,7 +25,7 @@
 ?>
 <?php if ( $project_query->have_posts() ) :?>
 <section class="hp projects clearfix">
-<h2 class="hp sub-header">Projects</h2>
+<h2 class="hp sub-heading">Projects</h2>
 <?php $projects = $project_query->get_posts(); ?>
 
 <?php
