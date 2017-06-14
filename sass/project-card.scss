@@ -1,6 +1,6 @@
 
 .project-card {
-  margin: 0 .5rem .5rem .5rem;
+  margin: 0 8px 8px 8px;
   position:relative;
   .poster-image-container {
     width: 100%;
@@ -12,6 +12,6 @@
     display:block;
     position:relative;
     border-width: 3px;
-    padding: calc(.5rem - 3px); 
+    padding: (8px - 3px); 
   }
 }
