@@ -13,5 +13,6 @@ img.poster-image {
  overflow:hidden;
 }
 img.preload-image {
- filter:blur(10px);
+ filter:blur(10px)
+ transform: scale(1.1);
 }
