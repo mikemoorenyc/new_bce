@@ -2,11 +2,9 @@
 .project-card {
   margin: 0 .5rem .5rem .5rem;
   position:relative;
-  .project-img {
-    display:block;
-    position:relative;
+  .poster-image-container {
     width: 100%;
-    height: 0;
+    height:0;
     padding-top: percentage(9/16);
   }
 }
