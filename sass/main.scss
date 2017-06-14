@@ -1,15 +1,16 @@
 //Core
 @import 'variables.scss';
 @import 'mixins.scss';
-
+@import "utilities.scss";
 @import "normalize.scss";
 @import 'basic-things';
 @import 'typography';
 @import 'header';
+@import 'navigation';
 /*
 @import "scaffold.scss";
 @import 'typography';
-@import "utilities.scss";
+
 
 
 @import 'homepage';

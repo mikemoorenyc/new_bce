@@ -10,3 +10,20 @@ body {
     border:0px solid currentColor;
   }
 }
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+svg {
+  display: block;
+  max-width:100%;
+  fill: currentColor;
+  * {
+    fill:currentColor;
+    &[fill="none"] {
+      fill:none !important;
+    }
+  }
+}

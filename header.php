@@ -163,10 +163,11 @@ var App = {
  <header id="top-header">
    <a id="spinner" alt="<?= $siteTitle;?>" href="<?= $homeURL;?>"></a>
    <input type="checkbox" alt="Toggle Navigation" role="button" id="navigation-toggle" class="button-style" />
+   <div class="scrim"></div>
    <nav>
      <div id="top-logo">
        <a href="<?= $homeURL;?>">
-         <span class="title">
+         <span class="title font-sans">
 
            <?php
            $titleBreak = explode(' ',$siteTitle);
@@ -205,11 +206,11 @@ var App = {
 
    </nav>
    <div role="presentation" id="nav-opener" class="button-style">
-     <span class="hide">Toggle Menu</span>
-     <span class="open">
+
+     <span class="open middle-center">
        <?= file_get_contents(get_template_directory().'/assets/svgs/icon_menu.svg');?>
      </span>
-     <span class="close">
+     <span class="close middle-center">
        <?= file_get_contents(get_template_directory().'/assets/svgs/icon_x.svg');?>
      </span>
    </div>
