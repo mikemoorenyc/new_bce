@@ -33,36 +33,38 @@ foreach($projects as $p) {
   $pid = $p->ID;
 
   ?>
-  <article class="project above-line poster-img">
-    <?php
+  <article class="project-card above-line">
+    <a href="<?=get_the_permalink($pid);?>" class="project-img">
+      <?php
     if(!has_post_thumbnail($pid)) {
       $socialImg = get_all_image_sizes(get_option( 'social_icon_image', '' ));
-      echo '<img src="'.$socialImg['full']['url'].'" alt="'.get_the_title($pid).'" class="project-img"/>';
+      echo '<img src="'.$socialImg['full']['url'].'" alt="'.get_the_title($pid).'" class=""/>';
     } else {
       $imgs = get_all_image_sizes(get_post_thumbnail_id($pid));
-      $srcset="";
-      $looper = 0;
+      $srcset=[];
       foreach($imgs as $i) {
-        if($looper > 0) {
-          $srcset .= ',';
-        }
-        $srcset .= ($i['url'].' '.$i['width'].'w');
+     
+        $srcset[] =  ($i['url'].' '.$i['width'].'w');
 
-        $looper++;
+        
       }
       ?>
+      <img src="<?= $imgs['thumbnail']['url'];?>" class="pre-loader-img" />
       <img
       sizes="100vw"
-      width="<?= $imgs['medium']['width'];?>"
-      class="project-img"
-      src="<?= $imgs['medium']['url'];?>"
-      srcset="<?= $srcset;?>"
+      style="visibility:hidden;"
+      class="main-img"
+      data-src="<?= $imgs['medium']['url'];?>"
+      data-srcset="<?= implode(',',$srcset);?>"
       alt="<?= $p->post_title;?>"
       />
       <?php
     }
 
      ?>
+      
+    </a>
+    
     <h3>
     <a href="<?=get_the_permalink($pid);?>">
       <div class="callout ">
