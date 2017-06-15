@@ -5,13 +5,22 @@
   .poster-image-container {
     width: 100%;
     height:0;
+    border-width:2px 2px 0 2px;
     padding-top: percentage(9/16);
   }
   h3 > a {
-    text-decortation: none;
+    text-decoration: none;
     display:block;
     position:relative;
-    border-width: 3px;
-    padding: (8px - 3px); 
+    border-width: 2px;
+    padding:14px;
+    font-weight: normal;
+    span {
+      display: block;
+    }
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
   }
 }

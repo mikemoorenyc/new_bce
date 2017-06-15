@@ -1,13 +1,27 @@
 body, p {
   line-height: 1.4;
-  font-size: 14px;
+  //font-size: 14px;
   font-family: $font-serif;
 }
-.sub-heading {
+h1,h2,h3,h4,h5,h6 {
+  font-family: $font-sans;
+}
+.mid-heading {
   font-size: 16px;
   font-family: $font-sans;
   font-weight: bold;
-  margin-bottom: .5em;
+  line-height: 1.2;
+}
+.sub-heading {
+  font-size: 14px;
+  font-family: $font-sans;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+.meta {
+  font-size: 12px;
+  font-weight: normal;
+  font-family: $font-sans;
 }
 /*
 .story-title {

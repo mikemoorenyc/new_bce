@@ -1,8 +1,55 @@
 .hp.top-content h1 {
   font-size: 1.5rem;
   font-weight: 200;
-  padding: 0 16px 16px 16px;
+  padding: 0 16px 24px 16px;
 }
 h2.hp.sub-heading {
   padding: 0 16px;
+  padding-bottom: 5px;
+  position: relative;
+  &:before {
+    display: block;
+    position: absolute;
+    content:'';
+    left: 16px;
+    bottom: 0;
+    width: 48px;
+    height: 2px;
+    background: currentColor;
+  }
+}
+.hp.bottom-button {
+  display: block;
+  margin: 0 16px;
+  text-align: right;
+  font-family: $font-sans;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 40px;
+  margin-bottom: 24px;
+  .bug {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+.hp.blog-posts {
+  > li {
+    padding: 8px 16px 16px 16px;
+    margin-bottom:8px;
+    border-style: dashed;
+    border-bottom-width:1px;
+    &:first-child {
+      padding-top: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+    .time{
+      display: block;
+    }
+  }
 }

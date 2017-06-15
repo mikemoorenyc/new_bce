@@ -1,7 +1,5 @@
 footer#footer {
-  margin-top: $footer-margin;
-  border-top-width: 1rem;
-  height: $footer-height;
+
   background: repeating-linear-gradient(
     -45deg,
     $white,
@@ -12,13 +10,15 @@ footer#footer {
     $white 5px
   );
   text-align: center;
+  padding: 8px;
+  border-top-width:1px;
   .inner {
     display:inline-block;
-    line-height: 22rem;
-    border-width:1rem;
+    line-height: 22px;
+    border-width:1px;
     background:$white;
-    padding: 0 7rem;
-    font-size: 12rem;
-    margin-top: 8rem;
+    padding: 0 8px;
+    font-size: 12px;
+
   }
 }

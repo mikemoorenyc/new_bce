@@ -43,10 +43,10 @@ foreach($projects as $p) {
       $imgs = get_all_image_sizes(get_post_thumbnail_id($pid));
       $srcset=[];
       foreach($imgs as $i) {
-     
+
         $srcset[] =  ($i['url'].' '.$i['width'].'w');
 
-        
+
       }
       ?>
       <img src="<?= $imgs['thumbnail']['url'];?>" class="poster-image preload-image" />
@@ -62,14 +62,14 @@ foreach($projects as $p) {
     }
 
      ?>
-      
+
     </a>
-    
+
     <h3>
     <a href="<?=get_the_permalink($pid);?>">
       <div class="callout ">
         <span class="title"><?= $p->post_title;?></span>
-        <span class="tagline font-sans"><?= get_post_meta( $pid, 'tagline', true );?></span>
+        <span class="tagline font-serif"><?= get_post_meta( $pid, 'tagline', true );?></span>
       </div>
     </a>
   </h3>
@@ -80,7 +80,7 @@ foreach($projects as $p) {
 }
 
  ?>
- <a href="<?= $homeURL;?>/projects" class="button-style bottom-button">See All Projects <span class="bug "><?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?></span></a>
+ <a href="<?= $homeURL;?>/projects" class="button-style hp bottom-button">See All Projects <span class="bug "><?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?></span></a>
 </section>
 
 <?php endif;?>
@@ -93,30 +93,32 @@ $post_query = new WP_Query($pargs);
  ?>
 <?php if ( $post_query->have_posts() ) :?>
 <section class="hp blog clearfix">
-<h2 class="hp sub-header">From the Blog</h2>
+<h2 class="hp sub-heading">From the Blog</h2>
+<ul class="hp blog-posts">
 <?php $posts = $post_query->get_posts(); ?>
 <?php
 foreach($posts as $p) {
   $pid = $p->ID;
 
   ?>
-  <article class="post">
+  <li class="post">
     <h3>
-    <a href="<?= get_the_permalink($pid);?>"><span class="title"><?= get_the_title($pid);?></span></a>
-    <span class="time font-sans">
-      <?= human_time_diff( get_the_time('U', $pid), current_time('timestamp') ) . ' ago'; ?>
-    </span>
+    <a href="<?= get_the_permalink($pid);?>">
+      <span class="title mid-heading"> <?= get_the_title($pid);?></span>
+      <span class="time meta"><?= human_time_diff( get_the_time('U', $pid), current_time('timestamp') ) . ' ago'; ?></span>
+    </a>
+
     </h3>
 
-  </article>
+  </li>
 
   <?php
 
 }
 
  ?>
-
-<a href="<?= $homeURL;?>/blog" class="button-style bottom-button">See All Blog Posts <span class="bug "><?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?></span></a>
+</ul>
+<a href="<?= $homeURL;?>/blog" class="button-style hp bottom-button">See All Blog Posts <span class="bug "><?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?></span></a>
 </section>
 <?php endif;?>
 
