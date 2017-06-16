@@ -1,14 +1,7 @@
 footer#footer {
 
-  background: repeating-linear-gradient(
-    -45deg,
-    $white,
-    $white 2px,
-    currentColor 2px,
-    currentColor 3px,
-    $white 3px,
-    $white 5px
-  );
+  background: url('../assets/imgs/footer-mask.gif');
+  background-color: currentColor;
   text-align: center;
   padding: 8px;
   border-top-width:1px;
