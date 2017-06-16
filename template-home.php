@@ -49,7 +49,7 @@ foreach($projects as $p) {
 
       }
       ?>
-      <img src="<?= $imgs['thumbnail']['url'];?>" class="poster-image preload-image" />
+      <img src="<?= $imgs['preload']['url'];?>" class="poster-image preload-image" />
       <img
       sizes="100vw"
       style="visibility:hidden;"

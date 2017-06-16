@@ -3,18 +3,18 @@
 ?>
 <?php include 'header.php'; ?>
 <?php
-$noheaderClass="nav-spacer";
+$noheaderClass="header-top-padding";
 
  ?>
 <?php if(has_post_thumbnail()):?>
 
-<div class="project-page-header poster-img above-line">
+<div class="p-s top-hero poster-image-container preload-image-container above-line">
 <?php
 $noheaderClass="";
 $imgs = get_all_image_sizes(get_post_thumbnail_id());
  ?>
-<img class="preload" src="<?php echo $imgs['preload']['url'];?>" />
-<img class="main-img" style="visibility:hidden;" src="<?php echo $imgs['full']['url'];?>" srcset="<?php echo srcset_maker($imgs);?>" sizes="100vw" alt="<?php echo get_the_title();?>"/>
+<img class="poster-image preload-image" src="<?php echo $imgs['preload']['url'];?>" />
+<img class="poster-image" style="visibility:hidden;" src="<?php echo $imgs['full']['url'];?>" srcset="<?php echo srcset_maker($imgs);?>" sizes="100vw" alt="<?php echo get_the_title();?>"/>
 </div>
 
 

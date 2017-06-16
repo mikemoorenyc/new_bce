@@ -127,8 +127,8 @@
   font-family: $font-serif;
 }
 
-.content-padding-spacer {
-  padding: 16rem;
+.header-top-padding {
+  padding-top: $header-top-padding;
 }
 .nav-spacer {
   /*padding-top: calc(60px + 8rem);*/

@@ -1,6 +1,10 @@
 #main-content-container {
-  padding-top: 56px;
+  padding-top: $header-top-padding;
+  html.slug-projects & {
+    padding-top: 0;
+  }
 }
+
 header {
   .scrim {
     display:none;
