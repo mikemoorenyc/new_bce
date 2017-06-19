@@ -21,7 +21,9 @@ $imgs = get_all_image_sizes(get_post_thumbnail_id());
 <?php endif; ?>
 <div class="project-page-content-container content-padding-spacer <?php echo $noheaderClass;?>">
   <h1 class="project-page-title story-title"><?= $post->post_title;?></h1>
-  <h2 class='project-page-tagline story-sub-title'><?php echo get_post_meta( $post->ID, 'tagline', true );?></h2>
+  <?php if(!empty(get_post_meta( $post->ID, 'tagline', true )));?>
+ <h2 class='project-page-tagline story-sub-title'><?php echo get_post_meta( $post->ID, 'tagline', true );?></h2>
+ <?php endif;?>
   <?php
   $toplinks = input_to_array(get_post_meta( $post->ID, 'toplinks', true ));
   if(!empty($toplinks)):?>
