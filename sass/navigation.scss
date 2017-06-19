@@ -40,6 +40,11 @@ nav {
   .nav-item {
     font-size: 28px;
     line-height: 1.62;
+    &.active {
+      a {
+        text-decoration: underline;
+      }
+    }
     a {
 
     }
