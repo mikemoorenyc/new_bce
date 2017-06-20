@@ -33,11 +33,12 @@ function postimage_shortcode( $atts, $content = null ) {
   <? endif;?>
 
   <?php if($type ==='desktop'):?>
-  <div class="desktop-img-container">
+  <div class="desktop-image-container" style="max-width: <?= $allImgs['full']['width'];?>;">
       <div class="circles"></div>
-      <div class="poster-img" style="padding-top:<?php echo $ratio;?>%">
+      <div class="poster-image-container" style="padding-top:<?php echo $ratio;?>%">
+        <img class="poster-image preload-image" src="<?php echo $allImgs['preload']['url'];?>" />
         <img
-         class="lazy-img"
+         class="poster-image"
          style="visibility:hidden;"
          alt="<?php echo $baseurl;?>"
          data-src="<?php echo $allImgs['full']['url'];?>"
@@ -48,11 +49,17 @@ function postimage_shortcode( $atts, $content = null ) {
   <? endif;?>
 
 
-  <?php if(empty($type) || !in_array($type, $available_types) || $type === 'normal'):?>
-  <div class="normal-img " style="max-width: <?php echo $allImgs['full']['width'];?>px">
-    <div class="poster-img" style="padding-top:<?php echo $ratio;?>%">
+  <?php if(empty($type) || !in_array($type, $available_types) || $type === 'normal' || $type === 'poster'):?>
+  <?php
+  if($type === 'poster') {
+   $full_bleed_class = 'full-bleed'; 
+  }
+  ?>
+  <div class="normal-img <?= $full_bleed_class;?>" style="max-width: <?php echo $allImgs['full']['width'];?>px">
+    <div class="poster-image-container" style="padding-top:<?php echo $ratio;?>%">
+      <img class="poster-image preload-image" src="<?php echo $allImgs['preload']['url'];?>" />
       <img
-       class="lazy-img"
+       class="poster-image"
        style="visibility:hidden;"
        alt="<?php echo $baseurl;?>"
        data-src="<?php echo $allImgs['full']['url'];?>"
