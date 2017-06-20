@@ -12,14 +12,15 @@ function postimage_shortcode( $atts, $content = null ) {
   ob_start();
 
   ?>
-<div class="post-image above-line <?php echo $type;?> <?php echo $post_type;?>">
+<figure class="post-image above-line <?php echo $type;?> <?php echo $post_type;?>">
 
   <?php if($type ==='phone'):?>
-  <div class="phone-img-container">
-    <div class="phone-img">
-      <div class="poster-img" style="padding-top:<?php echo $ratio;?>%">
+  <div class="phone-image-container" >
+    <div class="phone-image">
+      <div class="poster-image-container" style="padding-top:<?php echo $ratio;?>%">
+        <img class="poster-image preload-image" src="<?php echo $allImgs['preload']['url'];?>" />
         <img
-         class="lazy-img"
+         class="poster-image"
          style="visibility:hidden;"
          alt="<?php echo $baseurl;?>"
          data-src="<?php echo $allImgs['full']['url'];?>"
@@ -64,10 +65,10 @@ function postimage_shortcode( $atts, $content = null ) {
   <?php endif;?>
 
   <?php if(!empty($caption)):?>
-  <div class="caption font-sans"><?php echo $caption;?></div>
+  <figcaption class="meta font-sans"><?php echo $caption;?></figcaption>
   <?php endif;?>
 
-</div>
+</figure>
 
   <?php
   return ob_get_clean();

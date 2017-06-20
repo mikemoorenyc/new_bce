@@ -8,7 +8,7 @@ $noheaderClass="header-top-padding";
  ?>
 <?php if(has_post_thumbnail()):?>
 
-<div class="p-s top-hero poster-image-container preload-image-container above-line">
+<div class="p-s top-hero poster-image-container preload-image-container above-line mar-10">
 <?php
 $noheaderClass="";
 $imgs = get_all_image_sizes(get_post_thumbnail_id());
@@ -20,13 +20,18 @@ $imgs = get_all_image_sizes(get_post_thumbnail_id());
 
 <?php endif; ?>
 <div class="project-page-content-container content-padding-spacer <?php echo $noheaderClass;?>">
-  <h1 class="project-page-title story-title"><?= $post->post_title;?></h1>
-  <?php if(!empty(get_post_meta( $post->ID, 'tagline', true )));?>
- <h2 class='project-page-tagline story-sub-title'><?php echo get_post_meta( $post->ID, 'tagline', true );?></h2>
- <?php endif;?>
+  <div class="p-s heading mar-20 gutter">
+    <h1 class="p-s article-heading"><?= $post->post_title;?></h1>
+    <?php if(!empty(get_post_meta( $post->ID, 'tagline', true ))):?>
+   <h2 class='p-s tagline'><?php echo get_post_meta( $post->ID, 'tagline', true );?></h2>
+   <?php endif; ?>
+  </div>
+
+
   <?php
   $toplinks = input_to_array(get_post_meta( $post->ID, 'toplinks', true ));
   if(!empty($toplinks)):?>
+
 
   <?php
    if(count($toplinks)>2) {
@@ -34,19 +39,24 @@ $imgs = get_all_image_sizes(get_post_thumbnail_id());
    }
   ?>
 
-  <div class="project-top-links <?= $fullCount; ?>">
+  <div class="p-s top-links gutter mar-20 <?= $fullCount; ?>">
+    <h3 class="">Links:</h3>
+    <?php
+    $linkArray = [];
+    foreach($toplinks as $l) {
+      $linkArray[] = ' <a class="font-sans" href="'.$l[1].'" target="_blank">'.$l[0].'</a>';
+    }
+    echo implode(',',$linkArray);
+     ?>
 
-    <?php foreach($toplinks as $l):?>
-      <a class="font-sans" href="<?= $l[1];?>" target="_blank" style="width: <?= 100/count($toplinks);?>%">
-        <?= $l[0];?>
-      </a>
-    <?php endforeach;?>
+
+
   </div>
 
 
   <?php endif; ?>
 
-  <div class="project-page-content story-content">
+  <div class="p-s reading-section gutter mar-10">
 
     <?php echo md_sc_parse($post->post_content);?>
 
