@@ -1,8 +1,8 @@
 .reading-section {
   line-height: 1.5;
   h1,h2,h3,h4,h5,h6 {
-    font-size: 20px;
-    margin-bottom: 4px;
+    font-size: 20rem;
+    margin-bottom: 4rem;
   }
   p, ul, ol, blockquote, pre, hr {
     margin-bottom: 1.5em;
@@ -10,11 +10,11 @@
   }
 
   ul,ol {
-    margin-left: 16px;
+    margin-left: 16rem;
     padding:0;
     list-style-type: circle;
     > li {
-      margin-bottom: 8px;
+      margin-bottom: 8rem;
       line-height: 1.2;
       list-style-type: circle;
     }
@@ -28,16 +28,16 @@
   blockquote {
     margin: 0 0 1.5em 0;
     position: relative;
-    padding-left: 32px;
+    padding-left: 32rem;
     &:before {
       display: block;
       content:'\0022';
-      left: -8px;
+      left: -8rem;
       top:0;
       position: absolute;
       font-family: $font-serif;
       font-weight: bold;
-      font-size: 48px;
+      font-size: 48rem;
       line-height: 1;
     }
 
@@ -47,7 +47,7 @@
     font-family: $font-sans;
   }
   hr {
-    height: 32px;
+    height: 32rem;
 
     position: relative;
     &:before {
@@ -57,8 +57,8 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%,-50%);
-      line-height: 32px;
-      font-size: 32px;
+      line-height: 32rem;
+      font-size: 32rem;
     }
     &:after {
       display: block;
@@ -67,20 +67,20 @@
       height: 0px;
       border-top-width: 1px;
       position: absolute;
-      left: 16px;
-      right: 16px;
-      top: 10px;
+      left: 16rem;
+      right: 16rem;
+      top: 10rem;
     }
   }
   pre, code {
-    font-size: 12px;
+    font-size: 12rem;
   }
   pre {
     position: relative;
-    padding: 1px;
+    padding: 1rem;
     code {
       display: block;
-      padding: 8px;
+      padding: 8rem;
       overflow-x: auto;
     }
     &:before, &:after {
@@ -89,7 +89,7 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 4px;
+      width: 4rem;
       height: 100%;
       border-width: 1px 0 1px 1px;
     }
