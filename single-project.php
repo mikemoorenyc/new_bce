@@ -76,19 +76,11 @@ $imgs = get_all_image_sizes(get_post_thumbnail_id());
  <?php endif;?>
 
  <?php
-     $tagged = wp_get_post_terms( $post->ID, 'post_tag' );
-     if(!empty($tagged)):?>
-
-<div class="project-tagged-in font-sans">
-<h3>Tagged in:</h3>
-<?php foreach($tagged as $t):?>
-
-<span><?= $t->name;?></span>
-<?php endforeach;?>
-</div>
-
-<?php endif; ?>
-
+ $tagged_post_id = $post->ID;
+ include_once 'partial_tagged_list.php';
+ ?>
+ 
+ 
 </div>
 
 <?php
