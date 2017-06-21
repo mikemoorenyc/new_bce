@@ -44,9 +44,9 @@ $imgs = get_all_image_sizes(get_post_thumbnail_id());
     <?php
     $linkArray = [];
     foreach($toplinks as $l) {
-      $linkArray[] = ' <a class="font-sans" href="'.$l[1].'" target="_blank">'.$l[0].'</a>';
+      $linkArray[] = '<a class="font-sans" href="'.$l[1].'" target="_blank">'.$l[0].'</a>';
     }
-    echo implode(',',$linkArray);
+    echo implode(', ',$linkArray);
      ?>
 
 
@@ -64,8 +64,8 @@ $imgs = get_all_image_sizes(get_post_thumbnail_id());
   <?php
   $whatilearned = input_to_array(get_post_meta( $post->ID, 'whatilearned', true ));
    if(!empty($whatilearned)):?>
-<div class="project-what-i-learned font-sans">
-  <h3 class="sub-header">What I Learned</h3>
+<div class="p-s what-i-learned font-sans">
+  <h3 class="sub-heading sm">What I Learned</h3>
   <ul class="clearfix">
     <?php foreach($whatilearned as $w):?>
       <li ><?= $w[0];?></li>

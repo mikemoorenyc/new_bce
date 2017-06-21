@@ -20,14 +20,18 @@ img.preload-image {
 }
 
 .post-image {
+  > div {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    max-width: 800px;
+    width:100%;
+  }
   .phone-image-container {
     border-width:1px;
     padding: 65px 10px;
     border-radius: 30px;
-    max-width: (375px + 20px);
-    margin-left:auto;
-    margin-right: auto;
-    position: relative;
+    max-width: (320px + 20px);
     .phone-image {
       border-width:1px;
     }
@@ -73,6 +77,43 @@ img.preload-image {
          top: 8px;
        }
      }
+  }
+  .desktop-image-container {
+    padding-top: 30px;
+    border-width:1px;
+    border-radius: 7px 7px 0 0;
+
+    position: relative;
+    max-width: 800px;
+    .poster-image-container {
+      border-top-width: 1px;
+    }
+    .circles,&:after,&:before {
+       display: block;
+      content: '';
+      border-radius: 50%;
+       width: 10px;
+       height: 10px;
+       position: absolute;
+       left: 10px;
+       top: 10px;
+       background:currentColor;
+     }
+     .circles {
+         left: 28px
+    }
+     &:after {
+         left: 46px
+    }
+  }
+  .full-bleed {
+    width: calc(100% + 32px);
+    left: -16px;
+    max-width: none !important;
+    .poster-image-container {
+        padding-top: 0 !important;
+        height: 200px;
+    }
   }
   figcaption {
     text-align: center;

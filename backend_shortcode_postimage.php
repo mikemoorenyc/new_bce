@@ -33,7 +33,7 @@ function postimage_shortcode( $atts, $content = null ) {
   <? endif;?>
 
   <?php if($type ==='desktop'):?>
-  <div class="desktop-image-container" style="max-width: <?= $allImgs['full']['width'];?>;">
+  <div class="desktop-image-container" >
       <div class="circles"></div>
       <div class="poster-image-container" style="padding-top:<?php echo $ratio;?>%">
         <img class="poster-image preload-image" src="<?php echo $allImgs['preload']['url'];?>" />
@@ -52,10 +52,10 @@ function postimage_shortcode( $atts, $content = null ) {
   <?php if(empty($type) || !in_array($type, $available_types) || $type === 'normal' || $type === 'poster'):?>
   <?php
   if($type === 'poster') {
-   $full_bleed_class = 'full-bleed'; 
+   $full_bleed_class = 'full-bleed';
   }
   ?>
-  <div class="normal-img <?= $full_bleed_class;?>" style="max-width: <?php echo $allImgs['full']['width'];?>px">
+  <div class="normal-image-container <?= $full_bleed_class;?>" >
     <div class="poster-image-container" style="padding-top:<?php echo $ratio;?>%">
       <img class="poster-image preload-image" src="<?php echo $allImgs['preload']['url'];?>" />
       <img
