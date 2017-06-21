@@ -84,14 +84,15 @@ $imgs = get_all_image_sizes(get_post_thumbnail_id());
 </div>
 
 <?php
-bottom_cta_maker(
-  'project',
-  'menu_order',
-  array(
-    "title" => 'All Projects',
-    "url" => $homeURL.'/projects/'
-  )
+$cta_vals = array(
+ 'post_type' => 'project',
+ 'orderby' => 'menu_order',
+ 'empty_link' => array(
+  "title" => 'All Projects',
+   "url" => $homeURL.'/projects/'
+ )
 );
+include_once 'partial_bottom_ctas.php';
 
 ?>
 
