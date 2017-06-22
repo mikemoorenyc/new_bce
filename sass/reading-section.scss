@@ -82,6 +82,7 @@
       display: block;
       padding: 8rem;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
     &:before, &:after {
       display: block;

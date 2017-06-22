@@ -63,6 +63,17 @@ header {
     top:8rem;
     border-width: 3px;
   }
+  &:after {
+    pointer-events: none;
+    display: block;
+    position: absolute;
+    content: '';
+    height:calc(100% - 16rem);
+    right: 5rem;
+    top: 11rem;
+    width: calc(100% - 16rem);
+    border-width: 0 3px 3px 0;
+  }
   > span {
     display: block;
     width: 18rem;

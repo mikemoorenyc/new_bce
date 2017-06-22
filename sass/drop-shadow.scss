@@ -1,0 +1,14 @@
+.drop-shadow {
+  position: relative;
+  &:before {
+    display: block;
+    content:'';
+    position: absolute;
+    right:-3px;
+    top: 3px;
+    width:100%;
+    height: 100%;
+    border-width:0 3px 3px 0;
+    pointer-events: none;
+  }
+}

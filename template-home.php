@@ -33,7 +33,7 @@ foreach($projects as $p) {
   $pid = $p->ID;
 
   ?>
-  <article class="project-card above-line">
+  <article class="project-card above-line drop-shadow">
     <a href="<?=get_the_permalink($pid);?>" class="poster-image-container preload-image-container">
       <?php
     if(!has_post_thumbnail($pid)) {

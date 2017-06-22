@@ -8,10 +8,12 @@ h1,h2,h3,h4,h5,h6 {
 }
 .article-heading {
   font-size: 24rem;
+  line-height: 1.2
 }
 .tagline {
   font-family: $font-serif;
   font-weight: normal;
+  font-style: italic;
 }
 .mid-heading {
   font-size: 16rem;
