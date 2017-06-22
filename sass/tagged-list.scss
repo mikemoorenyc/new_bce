@@ -3,6 +3,11 @@
   > li {
     display: inline-block;
     margin: 0 8rem 8rem 0 ;
+    &:before {
+      border-width: 0 1px 1px 0;
+      right: -1px;
+      top: 1px;
+    }
     a {
       display: block;
       padding: 5rem 10rem;
