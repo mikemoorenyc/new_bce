@@ -1,45 +1,45 @@
 .hp.top-content h1 {
-  font-size: 1.5rem;
+  font-size: 24rem;
   font-weight: 200;
-  padding: 0 16px 24px 16px;
+  padding: 0 16rem 24rem 16rem;
 }
 h2.hp.sub-heading {
-  padding: 0 16px;
-  padding-bottom: 5px;
+  padding: 0 16rem;
+  padding-bottom: 5rem;
   position: relative;
   &:before {
     display: block;
     position: absolute;
     content:'';
-    left: 16px;
+    left: 16rem;
     bottom: 0;
-    width: 48px;
-    height: 2px;
+    width: 48rem;
+    height: 2rem;
     background: currentColor;
   }
 }
 .hp.bottom-button {
   display: block;
-  margin: 0 16px;
+  margin: 0 16rem;
   text-align: right;
   font-family: $font-sans;
   font-weight: bold;
   text-decoration: none;
-  line-height: 40px;
-  margin-bottom: 24px;
+  line-height: 40rem;
+  margin-bottom: 24rem;
   .bug {
     display: inline-block;
     vertical-align: middle;
   }
   svg {
-    width: 12px;
-    height: 12px;
+    width: 12rem;
+    height: 12rem;
   }
 }
 .hp.blog-posts {
   > li {
-    padding: 8px 16px 16px 16px;
-    margin-bottom:8px;
+    padding: 8rem 16rem 16rem 16rem;
+    margin-bottom:8rem;
     border-style: dashed;
     border-bottom-width:1px;
     &:first-child {

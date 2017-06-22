@@ -1,7 +1,7 @@
 
 <?php
 if(!$cta_vals['dir']) {
- $cta_vals['dir'] = 'ASC'; 
+ $cta_vals['dir'] = 'ASC';
 }
 $cta_args = array(
     'post_type' 		=> $cta_vals['post_type'],//project
@@ -19,7 +19,7 @@ $nextID = $pages[$current+1];
 $prevID = $pages[$current-1];
 
 ?>
-<div class="gl-mod bottom-ctas">
+<div class="gl-mod bottom-ctas meta">
 <?php
   $url = $cta_vals['empty_link']['url'];
   $title = $cta_vals['empty_link']['title'];
@@ -30,13 +30,12 @@ $prevID = $pages[$current-1];
 ?>
 <a href="<?= $url;?>" class="previous-link">
      <span>
-       <?= file_get_contents($siteDir.'/assets/svgs/icon_arrow_right.svg');?> <?= $title;?>
+       <?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?> <?= $title;?>
      </span>
-</a>  
-  
+</a>
 
-?>
-<div class="gl-mod bottom-ctas">
+
+
 <?php
   $url = $cta_vals['empty_link']['url'];
   $title = $cta_vals['empty_link']['title'];
@@ -47,9 +46,9 @@ $prevID = $pages[$current-1];
 ?>
 <a href="<?= $url;?>" class="previous-link">
      <span>
-      <?= $title;?> <?= file_get_contents($siteDir.'/assets/svgs/icon_arrow_right.svg');?> 
+      <?= $title;?> <?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?>
      </span>
-</a>  
-     
-  
+</a>
+
+
 </div>

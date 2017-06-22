@@ -1,0 +1,46 @@
+.gl-mod.bottom-ctas {
+
+  display: flex;
+  border-top-width:1px;
+  > a {
+    display: block;
+    position: relative;
+    vertical-align: middle;
+    padding: 16rem;
+    text-decoration: none;
+    width: 50%;
+    line-height: 1.2;
+    &:first-child {
+      border-right-width:1px;
+      padding-left: 32rem;
+    }
+    &:before {
+      height: 100%;
+      width:0;
+      content:'';
+    }
+    &:before, span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    span {
+      max-width: calc(100% - 4px)
+    }
+    svg {
+      position: absolute;
+      left: 8rem;
+      width: 16rem;
+      height: 16rem;
+      top: calc(50% - 8rem);
+      transform: rotate(180deg);
+    }
+    &:last-child {
+      padding-right: 32px;
+      svg {
+        left: auto;
+        right: 8rem;
+        transform: none;
+      }
+    }
+  }
+}

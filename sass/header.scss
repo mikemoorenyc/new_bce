@@ -20,12 +20,12 @@ header {
   left: 0;
   top: 0;
   width: 100%;
-  height: 56px;
+  height: $header-top-padding;
   a#spinner, a#spinner:before {
     position: absolute;
-    left: 16px;
-    width: 32px;
-    height: 32px;
+    left: 16rem;
+    width: 32rem;
+    height: 32rem;
     border-width: 1px;
     border-radius: 50%;
     top: 50%;
@@ -36,10 +36,10 @@ header {
       border-style:dashed;
       display:block;
       content:'';
-      left: calc(50% - 11px);
-      top: calc(50% - 11px);
-      width: 22px;
-      height:22px;
+      left: calc(50% - 11rem);
+      top: calc(50% - 11rem);
+      width: 22rem;
+      height:22rem;
       animation: spinner 5s infinite linear;
     }
   }
@@ -51,25 +51,25 @@ header {
   right: 8px ;
   top: 50%;
   transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
+  width: 48rem;
+  height: 48rem;
   &:before {
     display: block;
     content:'';
     position: absolute;
-    right: 8px;
-    bottom:8px;
-    left:8px;
-    top:8px;
+    right: 8rem;
+    bottom:8rem;
+    left:8rem;
+    top:8rem;
     border-width: 3px;
   }
   > span {
     display: block;
-    width: 18px;
-    height: 18px;
+    width: 18rem;
+    height: 18rem;
     > svg{
-      width: 18px;
-      height: 18px;
+      width: 18rem;
+      height: 18rem;
     }
     &.close {
       display: none;

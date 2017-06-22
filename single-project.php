@@ -79,8 +79,8 @@ $imgs = get_all_image_sizes(get_post_thumbnail_id());
  $tagged_post_id = $post->ID;
  include_once 'partial_tagged_list.php';
  ?>
- 
- 
+
+
 </div>
 
 <?php
