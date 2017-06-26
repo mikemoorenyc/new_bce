@@ -1,8 +1,8 @@
 .reading-section {
   line-height: 1.5;
   h1,h2,h3,h4,h5,h6 {
-    font-size: 20rem;
-    margin-bottom: 4rem;
+    font-size: 20px;
+    margin-bottom: 4px;
   }
   p, ul, ol, blockquote, pre, hr {
     margin-bottom: 1.5em;
@@ -10,11 +10,11 @@
   }
 
   ul,ol {
-    margin-left: 16rem;
+    margin-left: 16px;
     padding:0;
     list-style-type: circle;
     > li {
-      margin-bottom: 8rem;
+      margin-bottom: 8px;
       line-height: 1.2;
       list-style-type: circle;
     }
@@ -28,16 +28,16 @@
   blockquote {
     margin: 0 0 1.5em 0;
     position: relative;
-    padding-left: 32rem;
+    padding-left: 32px;
     &:before {
       display: block;
       content:'\0022';
-      left: -8rem;
+      left: -8px;
       top:0;
       position: absolute;
       font-family: $font-serif;
       font-weight: bold;
-      font-size: 48rem;
+      font-size: 48px;
       line-height: 1;
     }
 
@@ -47,7 +47,7 @@
     font-family: $font-sans;
   }
   hr {
-    height: 32rem;
+    height: 32px;
 
     position: relative;
     &:before {
@@ -57,8 +57,8 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%,-50%);
-      line-height: 32rem;
-      font-size: 32rem;
+      line-height: 32px;
+      font-size: 32px;
     }
     &:after {
       display: block;
@@ -67,24 +67,24 @@
       height: 0px;
       border-top-width: 1px;
       position: absolute;
-      left: 16rem;
-      right: 16rem;
-      top: 10rem;
+      left: 16px;
+      right: 16px;
+      top: 10px;
     }
   }
   pre, code {
-    font-size: 12rem;
+    font-size: 12px;
   }
   code {
    border-width:1px; 
   }
   pre {
     position: relative;
-    padding: 1rem;
+    padding: 1px;
     code {
       border-width:0;
       display: block;
-      padding: 8rem;
+      padding: 8px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
     }
@@ -94,7 +94,7 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 4rem;
+      width: 4px;
       height: 100%;
       border-width: 1px 0 1px 1px;
     }
