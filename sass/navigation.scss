@@ -1,7 +1,7 @@
 nav {
   position: absolute;
   right: 0;
-  width:calc(100% - 56rem);
+  width:calc(100% - 56px);
   height: 100vh;
   overflow-x:hidden;
   overflow-y: scroll;
@@ -23,22 +23,22 @@ nav {
   }
   #top-logo {
     line-height: 1;
-    padding-top: 16rem;
+    padding-top: 16px;
     .title {
       text-transform: uppercase;
       font-weight: bold;
-      font-size:14rem;
+      font-size:14px;
       > span {
         display: block;
       }
     }
   }
   .top-tagline {
-    font-size:12rem;
-    padding-bottom:16rem;
+    font-size:12px;
+    padding-bottom:16px;
   }
   .nav-item {
-    font-size: 28rem;
+    font-size: 28px;
     line-height: 1.62;
     &.active {
       a {
