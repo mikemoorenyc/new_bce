@@ -241,7 +241,11 @@ blockquote {
   pointer-events: none;
   height:1px;
   z-index:1;
+  display:none;
+  @supports(pointer-events:none) {
+   display:block; 
+  }
   body[data-colormode="bw"] & {
-    display:none;
+    display:none !important;
   }
 }
