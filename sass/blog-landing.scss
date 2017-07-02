@@ -1,0 +1,30 @@
+.bl {
+  &.post-list {
+    position: relative;
+    margin-top:-20px;
+  }
+  &.post {
+    border-top-width:1px;
+    border-style:dashed;
+
+    &:first-child {
+      border:0;
+    }
+    .thumbnail-container {
+      float: left;
+      width: (32px * 2 + 16px + 16px);
+      padding: 16px 0 16px 16px;
+    }
+    .copy {
+      float:right;
+      width: calc(100% - (32px * 2 + 16px + 16px + 16px));
+      padding: 16px 16px 16px 0;
+      font-size: 14px;
+      line-height: 1.2;
+      &.no_thumbnail {
+        width: 100%;
+        padding: 16px;
+      }
+    }
+  }
+}

@@ -30,3 +30,8 @@ svg {
     }
   }
 }
+a {
+  &.no-underline {
+    text-decoration: none;
+  }
+}
