@@ -4,35 +4,35 @@
 .p-s {
   &.heading {
     .tagline {
-      font-size: 16rem;
+      font-size: 16px;
     }
   }
   &.top-links {
     position: relative;
-    margin-top: -10rem;
+    margin-top: -10px;
     * {
       display: inline-block;
 
     }
     h3 {
-      margin-right: 4rem;
+      margin-right: 4px;
     }
   }
 
 &.what-i-learned {
   position: relative;
-  margin: -10rem 16rem 24rem 16rem;
-  padding: 8rem 8rem 4rem 8rem;;
+  margin: -10px 16px 24px 16px;
+  padding: 8px 8px 4px 8px;
   border-width: 1px;
   border-style: dashed;
   ul {
     > li {
       width: 50%;
-      margin-bottom: 4rem;
+      margin-bottom: 4px;
       float: left;
-      padding-right: 8rem;
+      padding-right: 8px;
       &:nth-child(even) {
-        padding: 0 0 0 8rem;
+        padding: 0 0 0 8px;
       }
     }
   }

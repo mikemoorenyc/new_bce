@@ -3,13 +3,14 @@
 if(!$cta_vals['dir']) {
  $cta_vals['dir'] = 'ASC';
 }
+
 $cta_args = array(
     'post_type' 		=> $cta_vals['post_type'],//project
     'orderby' 			=> $cta_vals['orderby'],//orderby
     'order' 			=> $cta_vals['dir'],
     'posts_per_page' => -1
 );
-$pagelist = get_posts($args);
+$pagelist = get_posts($cta_args);
 $pages = [];
 foreach ($pagelist as $page) {
    $pages[] = $page->ID;

@@ -51,6 +51,7 @@
 $cta_vals = array(
  'post_type' => 'post',
  'orderby' => 'date',
+ 'dir' => 'DESC',
  'empty_link' => array(
   "title" => 'All Blog Posts',
    "url" => $homeURL.'/blog/'

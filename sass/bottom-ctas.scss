@@ -6,13 +6,13 @@
     display: block;
     position: relative;
     vertical-align: middle;
-    padding: 16rem;
+    padding: 16px;
     text-decoration: none;
     width: 50%;
     line-height: 1.2;
     &:first-child {
       border-right-width:1px;
-      padding-left: 32rem;
+      padding-left: 32px;
     }
     &:before {
       height: 100%;
@@ -28,10 +28,10 @@
     }
     svg {
       position: absolute;
-      left: 8rem;
-      width: 16rem;
-      height: 16rem;
-      top: calc(50% - 8rem);
+      left: 8px;
+      width: 16px;
+      height: 16px;
+      top: calc(50% - 8px);
       transform: rotate(180deg);
     }
     &:last-child {
@@ -39,7 +39,7 @@
       text-align: right;
       svg {
         left: auto;
-        right: 8rem;
+        right: 8px;
         transform: none;
       }
     }

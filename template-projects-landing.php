@@ -5,7 +5,7 @@
 ?>
 <?php include 'header.php'; ?>
 <?php $landing_post = $post;?>
-
+<?php $navigation_spacer = 'navigation_spacer';?>
 <?php include_once 'partial_landing_page_header.php';?>
 
 
@@ -15,30 +15,23 @@ $args = array(
     'post_type' 		=> 'project',
     'orderby' 			=> 'menu_order',
     'order' 			=> 'ASC',
-    'posts_per_page' => 24,
+    'posts_per_page' => 2,
     'paged' => $paged
   );
 query_posts($args);
 ?>
-<ul class="project-posts-list">
+<div class="pl projects mar-20">
 <?php while ( have_posts() ) : the_post(); ?>
-<li>
-  <article class="project-post">
-    <h1><a href="<?= get_the_permalink();?>"><?= get_the_title();?></a></h1>
-    <?php if(!empty(get_the_excerpt())): ?>
-      <div class="excerpt"><?= get_the_excerpt();?></div>
 
-    <?php endif;?>
+<?php
+$pid = get_the_ID();
+include 'partial_project_card.php';
 
-  </article>
+ ?>
 
 
-
-</li>
 <?php endwhile;?>
-
-
-</ul>
+</div>
 
 
 

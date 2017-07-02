@@ -8,7 +8,7 @@ if(!empty($tagged_terms)):?>
 <ul class="gl-mod tagged-list font-sans mar-20 gutter">
 
 <?php foreach($tagged_terms as $t):?>
-  <li class="drop-shadow" >
+  <li  >
     <a href="<?= $t_url;?>?tags=<?= $t->term_id;?>"><?= $t->name;?></a>
   </li>
 <?php endforeach;?>

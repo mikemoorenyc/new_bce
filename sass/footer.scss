@@ -14,15 +14,19 @@ footer#footer {
     transparent 76%
   );
   text-align: center;
-  padding: 8rem;
+  padding: 8px;
+  height: 44px;
   border-top-width:1px;
   .inner {
     display:inline-block;
-    line-height: 22rem;
+    line-height: 22px;
     border-width:1px;
     background:$white;
-    padding: 0 8rem;
-    font-size: 12rem;
+    padding: 0 8px;
+    font-size: 12px;
 
   }
+}
+#main-content-container {
+  min-height: calc(100vh - 44px);
 }

@@ -66,7 +66,7 @@ $imgs = get_all_image_sizes(get_post_thumbnail_id());
    if(!empty($whatilearned)):?>
 <div class="p-s what-i-learned font-sans">
   <h3 class="sub-heading sm">What I Learned</h3>
-  <ul class="clearfix">
+  <ul class="clearfix type-smaller">
     <?php foreach($whatilearned as $w):?>
       <li ><?= $w[0];?></li>
     <?php endforeach;?>

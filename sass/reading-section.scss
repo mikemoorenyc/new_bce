@@ -76,7 +76,9 @@
     font-size: 12px;
   }
   code {
-   border-width:1px; 
+   border-width:1px;
+   border-style: dotted;
+   padding: 0 4px;
   }
   pre {
     position: relative;
