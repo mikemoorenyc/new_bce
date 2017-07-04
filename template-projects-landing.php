@@ -15,7 +15,7 @@ $args = array(
     'post_type' 		=> 'project',
     'orderby' 			=> 'menu_order',
     'order' 			=> 'ASC',
-    'posts_per_page' => 2,
+    'posts_per_page' => 24,
     'paged' => $paged
   );
 query_posts($args);

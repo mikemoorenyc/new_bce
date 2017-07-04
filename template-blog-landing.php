@@ -40,7 +40,7 @@ if(!has_post_thumbnail()) {
   <?php endif; ?>
   <a class="copy no-underline <?= $class_no_thumbnail;?>" href="<?= get_the_permalink();?>">
     <h1 class="title"><?= get_the_title();?></h1>
-    <div class="excerpt"><?= get_the_excerpt();?></div>
+    <div class="excerpt type-smaller"><?= get_the_excerpt();?></div>
     <div class="date meta">Published on <?= get_the_date('M j Y'); ?></div>
   </a>
 
