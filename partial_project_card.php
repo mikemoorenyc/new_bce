@@ -14,25 +14,9 @@
     $socialImg = get_all_image_sizes(get_option( 'social_icon_image', '' ));
     echo '<img src="'.$socialImg['full']['url'].'" alt="'.get_the_title($pid).'" class="poster-image"/>';
   } else {
-    $imgs = get_all_image_sizes(get_post_thumbnail_id($pid));
-    $srcset=[];
-    foreach($imgs as $i) {
-
-      $srcset[] =  ($i['url'].' '.$i['width'].'w');
-
-
-    }
-    ?>
-    <img src="<?= $imgs['preload']['url'];?>" class="poster-image preload-image" />
-    <img
-    sizes="100vw"
-    style="visibility:hidden;"
-    class="poster-image"
-    data-src="<?= $imgs['medium']['url'];?>"
-    data-srcset="<?= implode(',',$srcset);?>"
-    alt="<?= $p->post_title;?>"
-    />
-    <?php
+    $img_id = get_post_thumbnail_id($pid);
+    $alt_tag = get_the_title($pid);
+    include 'partial_lazy_load_img.php';
   }
 
    ?>
