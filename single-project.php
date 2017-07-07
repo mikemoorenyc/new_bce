@@ -11,11 +11,11 @@ $noheaderClass="header-top-padding";
 <div class="p-s top-hero poster-image-container preload-image-container above-line mar-10">
 <?php
 $noheaderClass="";
-$imgs = get_all_image_sizes(get_post_thumbnail_id());
+$img_id = get_post_thumbnail_id();
+$alt_tag = get_the_title();
+include 'partial_lazy_load_img.php';
  ?>
-<img class="poster-image preload-image" src="<?php echo $imgs['preload']['url'];?>" />
-<img class="poster-image" style="visibility:hidden;" src="<?php echo $imgs['full']['url'];?>" srcset="<?php echo srcset_maker($imgs);?>" sizes="100vw" alt="<?php echo get_the_title();?>"/>
-</div>
+
 
 
 <?php endif; ?>
