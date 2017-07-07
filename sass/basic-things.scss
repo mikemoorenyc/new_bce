@@ -35,3 +35,28 @@ a {
     text-decoration: none;
   }
 }
+
+@media(min-width:502px) {
+  #main-content-container {
+    width: 400px;
+    margin: 0 auto;
+    border-width: 0 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+#main-content-container {
+  @media(min-width:500px) {
+    width: 400px;
+    margin: 0 auto;
+    border-width: 0 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  @media(min-width:800px) {
+    width: auto;
+    border-width:0;
+    padding-left:0;
+    padding-right:0;
+  }
+}

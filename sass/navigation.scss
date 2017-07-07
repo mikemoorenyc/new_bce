@@ -4,7 +4,7 @@ nav {
   width:calc(100% - 56px);
   height: 100vh;
   overflow-x:hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   background-color:currentColor;
   padding-left: 16px;

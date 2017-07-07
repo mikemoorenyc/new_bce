@@ -40,7 +40,12 @@ if(empty($content_ids)&& empty($tagged_ids)) {
 }
  ?>
 <?php include_once "header.php";?>
-<h1><?= $tagged_as_page;?></h1>
+
+<?php
+$landing_header_title = $tagged_as_page;
+
+ ?>
+<?php include_once 'partial_landing_page_header.php';?>
 
 <?php
 //$all_content = get_post_types( array('public' => true), 'objects' );
@@ -62,7 +67,7 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_tags);
 
 ?>
 
-<ul class="content-types">
+<ul class="content-types hide">
  <?php
  foreach($all_content_ids as $i => $c) {
   $c_ids = $content_ids;
@@ -86,7 +91,7 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_tags);
 
 </ul>
 
-<ul class="tags">
+<ul class="tags hide">
  <?php
  foreach($all_tag_ids as $i => $c) {
   $c_ids = $tagged_ids;
@@ -127,9 +132,14 @@ $files_in_cat_query = new WP_Query($query_args);
 <?php
 $posts = $files_in_cat_query->get_posts();
 foreach($posts as $p):?>
-<div class="post">
- <h2><a href="<?= get_the_permalink($p->ID);?>"><?= $p->post_title;?></a></h2>
-</div>
+
+<?php
+
+$pid = $p->ID;
+$hide_image = true;
+include 'partial_project_card.php';
+
+ ?>
 
 <?php endforeach;?>
 
