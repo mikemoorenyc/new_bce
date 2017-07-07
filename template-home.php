@@ -31,8 +31,17 @@
 <?php
 foreach($projects as $p) {
   $pid = $p->ID;
-
-include 'partial_project_card.php';
+  $alt_tag = $p->post_title;
+  if(!has_post_thumbnail($pid)) {
+   if(!empty(get_option( 'social_icon_image', '' ))) {
+     $img_id = get_option( 'social_icon_image', '' );
+   } else {
+    $hide_image = true; 
+   }
+  } else {
+    $img_id = get_post_thumbnail_id($pid);
+  }
+  include 'partial_project_card.php';
 }
 
  ?>
