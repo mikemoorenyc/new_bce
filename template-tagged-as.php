@@ -136,7 +136,20 @@ foreach($posts as $p):?>
 <?php
 
 $pid = $p->ID;
-$hide_image = true;
+$alt_tag = $p->post_title;
+if(!has_post_thumbnail($pid)) {
+   $hide_image = true; 
+}
+else {
+   $img_id = get_post_thumbnail_id($pid);
+}
+if(get_post_type($pid) === 'post') {
+ $card_meta = 'A blog post from '.get_the_date('F Y',$pid); 
+}
+if(get_post_type($pid) === 'post') {
+ $card_meta = 'A project from '.get_the_date('F Y',$pid); 
+}
+
 include 'partial_project_card.php';
 
  ?>
