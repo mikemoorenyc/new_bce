@@ -18,14 +18,11 @@ function postimage_shortcode( $atts, $content = null ) {
   <div class="phone-image-container" >
     <div class="phone-image">
       <div class="poster-image-container" style="padding-top:<?php echo $ratio;?>%">
-        <img class="poster-image preload-image" src="<?php echo $allImgs['preload']['url'];?>" />
-        <img
-         class="poster-image"
-         style="visibility:hidden;"
-         alt="<?php echo $baseurl;?>"
-         data-src="<?php echo $allImgs['full']['url'];?>"
-         data-srcset="<?php echo srcset_maker($allImgs);?>"
-       />
+       <?php
+        $img_id = $id;
+       $alt_tag = $baseurl;
+       include 'partial_lazy_load_img.php';
+        ?>
       </div>
     </div>
     <div class="home-btn"></div>
@@ -36,14 +33,11 @@ function postimage_shortcode( $atts, $content = null ) {
   <div class="desktop-image-container" >
       <div class="circles"></div>
       <div class="poster-image-container" style="padding-top:<?php echo $ratio;?>%">
-        <img class="poster-image preload-image" src="<?php echo $allImgs['preload']['url'];?>" />
-        <img
-         class="poster-image"
-         style="visibility:hidden;"
-         alt="<?php echo $baseurl;?>"
-         data-src="<?php echo $allImgs['full']['url'];?>"
-         data-srcset="<?php echo srcset_maker($allImgs);?>"
-       />
+        <?php
+        $img_id = $id;
+       $alt_tag = $baseurl;
+       include 'partial_lazy_load_img.php';
+        ?>
       </div>
   </div>
   <? endif;?>
@@ -57,15 +51,11 @@ function postimage_shortcode( $atts, $content = null ) {
   ?>
   <div class="normal-image-container <?= $full_bleed_class;?>" >
     <div class="poster-image-container" style="padding-top:<?php echo $ratio;?>%">
-      <img class="poster-image preload-image" src="<?php echo $allImgs['preload']['url'];?>" />
-      <img
-       class="poster-image"
-       style="visibility:hidden;"
-       alt="<?php echo $baseurl;?>"
-       data-src="<?php echo $allImgs['full']['url'];?>"
-       data-srcset="<?php echo srcset_maker($allImgs);?>"
-       sizes="100vw"
-     />
+      <?php
+        $img_id = $id;
+       $alt_tag = $baseurl;
+       include 'partial_lazy_load_img.php';
+        ?>
     </div>
 
   </div>
