@@ -1,6 +1,6 @@
 
 <article class="project-card above-line drop-shadow">
-  //If you DO want an image
+  <!-- IF YOU DO WANT AN IMAGE -->
   <?php if($hide_image !== true):?>
 
   <a href="<?=get_the_permalink($pid);?>" class="poster-image-container preload-image-container">
@@ -9,8 +9,8 @@
    ?>
 
   </a>
-  
-  <?php endif;?> <!-- HIDE IMAGE --> 
+
+  <?php endif;?> <!-- HIDE IMAGE -->
 
   <h3>
   <a href="<?=get_the_permalink($pid);?>">

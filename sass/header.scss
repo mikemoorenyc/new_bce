@@ -1,3 +1,4 @@
+$dt-header-padding: 64px;
 #main-content-container {
   padding-top: $header-top-padding;
   html.slug-projects & {
@@ -6,6 +7,17 @@
 }
 .navigation_spacer {
   padding-top: $header-top-padding;
+}
+@media(min-width:802px) {
+  #main-content-container {
+    padding-top:$dt-header-padding + 16px;
+    html.slug-projects & {
+      padding-top: 0;
+    }
+  }
+  .navigation_spacer {
+    padding-top: $dt-header-padding + 16px;
+  }
 }
 
 header {
@@ -24,6 +36,15 @@ header {
   top: 0;
   width: 100%;
   height: $header-top-padding;
+  @media(min-width:402px) {
+    width: 402px;
+    left: calc(50% - 201px);
+  }
+  @media(min-width:802px) {
+    width: 800px;
+    height: $dt-header-padding;
+    left: calc(50% - 400px);
+  }
   a#spinner, a#spinner:before {
     position: absolute;
     left: 16px;
@@ -50,6 +71,9 @@ header {
 }
 
 #nav-opener, input#navigation-toggle {
+  @media(min-width:802px) {
+    display:none;
+  }
   position: absolute;
   right: 8px ;
   top: 50%;

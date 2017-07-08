@@ -36,27 +36,19 @@ a {
   }
 }
 
-@media(min-width:502px) {
-  #main-content-container {
-    width: 400px;
-    margin: 0 auto;
-    border-width: 0 1px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
 #main-content-container {
-  @media(min-width:500px) {
-    width: 400px;
-    margin: 0 auto;
-    border-width: 0 1px;
-    padding-left: 20px;
-    padding-right: 20px;
+
+  max-width: 402px;
+  margin-left: auto;
+  margin-right: auto;
+  @media(min-width:402px) {
+    border-width:0 1px;
+    border-style: dashed;
+    position: relative;
+    background:$white;
   }
-  @media(min-width:800px) {
-    width: auto;
+  @media(min-width:802px) {
+    max-width: 800px;
     border-width:0;
-    padding-left:0;
-    padding-right:0;
   }
 }

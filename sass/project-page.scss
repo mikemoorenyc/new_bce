@@ -1,6 +1,10 @@
 .p-s.top-hero {
   height: 56.25vw;
   max-height: calc(100vh - 200px);
+  @media(min-width:402px) {
+    height: 0;
+    padding-top: 56.25%;
+  }
 }
 .p-s {
   &.heading {

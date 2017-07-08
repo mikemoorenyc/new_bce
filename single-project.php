@@ -15,7 +15,7 @@ $img_id = get_post_thumbnail_id();
 $alt_tag = get_the_title();
 include 'partial_lazy_load_img.php';
  ?>
-
+</div>
 
 
 <?php endif; ?>

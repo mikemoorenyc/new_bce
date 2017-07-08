@@ -165,6 +165,7 @@ var App = {
    <input type="checkbox" alt="Toggle Navigation" role="button" id="navigation-toggle" class="button-style" />
    <div class="scrim"></div>
    <nav>
+     <div class="lockup">
      <div id="top-logo">
        <a href="<?= $homeURL;?>">
          <span class="title font-sans">
@@ -181,6 +182,7 @@ var App = {
        </a>
      </div>
      <div class="top-tagline"><?php echo get_bloginfo('description');?></div>
+    </div>
      <div class="nav-items">
      <?php
      $nav_items = wp_get_nav_menu_items('main-menu');

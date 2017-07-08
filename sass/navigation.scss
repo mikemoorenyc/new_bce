@@ -8,7 +8,7 @@ nav {
   -webkit-overflow-scrolling: touch;
   background-color:currentColor;
   padding-left: 16px;
-  transform: translateX(100%);
+  transform: translateX(200%);
   transition: transform .15s;
   transition-timing-function: ease-in;
   #navigation-toggle:checked + .scrim + & {
@@ -21,6 +21,7 @@ nav {
   a {
     text-decoration: none;
   }
+
   #top-logo {
     line-height: 1;
     padding-top: 16px;
@@ -47,6 +48,57 @@ nav {
     }
     a {
 
+    }
+  }
+  @media(min-width:802px) {
+    position: static;
+    width: auto;
+    height: auto;
+    background:none;
+    transform: none;
+    > * {
+      color:currentColor;
+    }
+    .lockup {
+      position: absolute;
+      left: 56px;
+      top: 50%;
+      transform: translateY(-50%);
+      #top-logo {
+        padding-top: 0px;
+        .title {
+          > span {
+            display:inline;
+          }
+        }
+      }
+      .top-tagline {
+        padding-bottom:0;
+      }
+    }
+    .nav-items {
+      position: absolute;
+      right: 16px;
+      top: calc(50% - (38px / 2));
+      border-width:3px;
+      box-shadow: 3px 3px 0 currentColor;
+      padding: 0 4px;
+      background:$white;
+      .nav-item {
+        display: inline-block;
+        line-height: 1;
+        font-size: 12px;
+        font-weight: bold;
+        font-family: $font-sans;
+        a {
+          display:block;
+          padding: 0 8px;
+          line-height: 32px;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
     }
   }
 }
