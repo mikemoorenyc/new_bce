@@ -5,11 +5,18 @@
   @media(min-width:802px) {
     font-size:32px;
   }
+  @media($dt) {
+    padding: 0 24px 24px 24px;
+    max-width: 800px;
+  }
 }
 h2.hp.sub-heading {
   padding: 0 16px;
   padding-bottom: 5px;
   position: relative;
+  @media($dt) {
+    padding: 0 24px;
+  }
   &:before {
     display: block;
     position: absolute;
@@ -19,6 +26,9 @@ h2.hp.sub-heading {
     width: 48px;
     height: 2px;
     background: currentColor;
+    @media(min-width:1024px) {
+      left: 24px;
+    }
   }
 }
 .hp.bottom-button {
@@ -56,6 +66,67 @@ h2.hp.sub-heading {
     }
   }
 }
-.hp.projects {
 
+@media(min-width:802px) {
+  .hp.project-list {
+    display:flex;
+    flex-wrap:wrap;
+    padding: 0 8px;
+    @media($dt) {
+      padding: 0 12px;
+    }
+    .project-card {
+      float:left;
+      width: calc(50% - 16px);
+      margin-bottom: 16px;
+      @media($dt) {
+        margin: 0 12px 24px 12px;
+        width: calc(50% - 24px);
+        display:flex;
+        .poster-image-container {
+          width:65%;
+          padding-top: (56.25% / 1.5);
+          border-width: 0 2px 0 0;
+          height: 100%;
+          position: relative;
+        }
+        h3 {
+          max-width: 35%;
+        }
+      }
+    }
+  }
+  .hp.blog-posts {
+    margin-left: 16px;
+    margin-right: 16px;
+    border-width: 1px;
+    display:flex;
+    flex-wrap: wrap;
+    @media($dt) {
+      margin-left: 24px;
+      margin-right: 24px;
+      margin-bottom: 16px;
+    }
+    > li {
+      width:50%;
+      float:left;
+      padding: 16px 15px;
+      margin: 0;
+      border-width: 1px 0 0 1px;
+      &:nth-child(odd) {
+        border-left-width:0;
+      }
+      &:nth-child(1), &:nth-child(2) {
+        border-top-width:0;
+        padding-top:16px;
+      }
+      @media($dt) {
+        width: 25%;
+        border-width: 0 1px 0 0;
+        &:last-child {
+          border-right-width:0;
+        }
+      }
+    }
+  }
 }

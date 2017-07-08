@@ -48,7 +48,18 @@ a {
     background:$white;
   }
   @media(min-width:802px) {
-    max-width: 800px;
+    max-width: none;
     border-width:0;
+  }
+}
+
+.mw-800 {
+  @media(min-width:800px) {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media($dt) {
+    max-width: 1280px;
   }
 }

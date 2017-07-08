@@ -1,5 +1,5 @@
 
-<article class="project-card above-line drop-shadow">
+<article class="project-card above-line">
   <!-- IF YOU DO WANT AN IMAGE -->
   <?php if($hide_image !== true):?>
 

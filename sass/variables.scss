@@ -6,8 +6,10 @@ $ts: 0.25s;
 $dt-break: 801px;
 $dt-max-break: ($dt-break - 1px);
 $tab: 'min-width:401px';
-$dt: 'min-width:#{$dt-break}';
-$dt-max: 'max-width:#{$dt-max-break}';
+$dt: 'min-width: 1032px';
+$dt-max: 1280px;
+
+
 
 /* SITE COLORS */
 $body-bg: #fff;

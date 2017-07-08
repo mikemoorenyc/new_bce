@@ -6,7 +6,7 @@
 
 
 <?php include 'header.php'; ?>
-<section class="hp top-content nav-spacer">
+<section class="hp top-content nav-spacer mw-800">
   <h1 class="story-title">
   <?= md_sc_parse($post->post_content);?>
   </h1>
@@ -17,17 +17,17 @@
 
   $args = array(
     'post_type' 		=> 'project',
-    'posts_per_page' => 3,
+    'posts_per_page' => 4,
     'orderby' 			=> 'menu_order',
     'order' 			=> 'ASC'
   );
   $project_query = new WP_Query($args);
 ?>
 <?php if ( $project_query->have_posts() ) :?>
-<section class="hp projects clearfix">
+<section class="hp projects clearfix mw-800">
 <h2 class="hp sub-heading">Projects</h2>
 <?php $projects = $project_query->get_posts(); ?>
-
+<div class="hp project-list">
 <?php
 foreach($projects as $p) {
   $pid = $p->ID;
@@ -36,7 +36,7 @@ foreach($projects as $p) {
    if(!empty(get_option( 'social_icon_image', '' ))) {
      $img_id = get_option( 'social_icon_image', '' );
    } else {
-    $hide_image = true; 
+    $hide_image = true;
    }
   } else {
     $img_id = get_post_thumbnail_id($pid);
@@ -45,6 +45,7 @@ foreach($projects as $p) {
 }
 
  ?>
+ </div>
  <a href="<?= $homeURL;?>/projects" class="button-style hp bottom-button">See All Projects <span class="bug "><?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?></span></a>
 </section>
 
@@ -57,7 +58,7 @@ $pargs = array(
 $post_query = new WP_Query($pargs);
  ?>
 <?php if ( $post_query->have_posts() ) :?>
-<section class="hp blog clearfix">
+<section class="hp blog clearfix mw-800">
 <h2 class="hp sub-heading">From the Blog</h2>
 <ul class="hp blog-posts">
 <?php $posts = $post_query->get_posts(); ?>

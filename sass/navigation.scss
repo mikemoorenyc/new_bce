@@ -64,6 +64,9 @@ nav {
       left: 56px;
       top: 50%;
       transform: translateY(-50%);
+      @media(min-width: 1024px) {
+        left: 56px + (24px - 16px);
+      }
       #top-logo {
         padding-top: 0px;
         .title {
@@ -83,6 +86,9 @@ nav {
       border-width:3px;
       box-shadow: 3px 3px 0 currentColor;
       padding: 0 4px;
+      @media($dt) {
+        right: 24px;
+      }
       background:$white;
       .nav-item {
         display: inline-block;

@@ -45,6 +45,15 @@ header {
     height: $dt-header-padding;
     left: calc(50% - 400px);
   }
+  @media($dt) {
+    width: 100%;
+    left: 0;
+    max-width: $dt-max;
+  }
+  @media(min-width:1280px) {
+    width: 1280px;
+    left: calc(50% - 640px);
+  }
   a#spinner, a#spinner:before {
     position: absolute;
     left: 16px;
@@ -54,6 +63,9 @@ header {
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
+    @media($dt) {
+      left: 24px;
+    }
   }
   a#spinner {
     &:before {
