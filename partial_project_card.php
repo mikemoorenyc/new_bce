@@ -23,5 +23,5 @@
     </div>
   </a>
 </h3>
-<a href="<?= get_the_permalink();?>" class="cover" role="presentation"></a>
+<a href="<?= get_the_permalink();?>" class="ab-cover" role="presentation"></a>
 </article>
