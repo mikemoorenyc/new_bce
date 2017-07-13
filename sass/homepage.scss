@@ -102,6 +102,7 @@ h2.hp.sub-heading {
     border-width: 1px;
     display:flex;
     flex-wrap: wrap;
+    box-shadow: 1px 1px 0 currentColor;
     @media($dt) {
       margin-left: 24px;
       margin-right: 24px;

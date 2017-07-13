@@ -6,6 +6,19 @@
     padding-top: 56.25%;
   }
 }
+
+@media(min-width: 802px) {
+  .p-s.project-page-content-container {
+    width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+    > * {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
 .p-s {
   &.heading {
     .tagline {

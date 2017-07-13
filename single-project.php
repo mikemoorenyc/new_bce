@@ -19,7 +19,7 @@ include 'partial_lazy_load_img.php';
 
 
 <?php endif; ?>
-<div class="project-page-content-container content-padding-spacer <?php echo $noheaderClass;?>">
+<div class=" p-s project-page-content-container content-padding-spacer <?php echo $noheaderClass;?>">
   <div class="p-s heading mar-20 gutter">
     <h1 class="p-s article-heading"><?= $post->post_title;?></h1>
     <?php if(!empty(get_post_meta( $post->ID, 'tagline', true ))):?>
