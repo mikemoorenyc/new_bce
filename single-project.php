@@ -4,28 +4,39 @@
 <?php include 'header.php'; ?>
 <?php
 $noheaderClass="header-top-padding";
-
+$header_wrap = 'no-header-wrap';
  ?>
-<?php if(has_post_thumbnail()):?>
 
+<?php if(has_post_thumbnail()):?>
+<?php $noheaderClass=""; $header_wrap = 'use-header-wrap';?>
+<?php endif; ?>
+<div class="p-s dt-header-wrap <?= $header_wrap;?> <?php echo $noheaderClass;?>">
+  <?php if(has_post_thumbnail()):?>
 <div class="p-s top-hero poster-image-container preload-image-container above-line mar-10">
 <?php
-$noheaderClass="";
+
 $img_id = get_post_thumbnail_id();
 $alt_tag = get_the_title();
 include 'partial_lazy_load_img.php';
  ?>
 </div>
-
-
 <?php endif; ?>
-<div class=" p-s project-page-content-container content-padding-spacer <?php echo $noheaderClass;?>">
-  <div class="p-s heading mar-20 gutter">
-    <h1 class="p-s article-heading"><?= $post->post_title;?></h1>
-    <?php if(!empty(get_post_meta( $post->ID, 'tagline', true ))):?>
-   <h2 class='p-s tagline'><?php echo get_post_meta( $post->ID, 'tagline', true );?></h2>
-   <?php endif; ?>
-  </div>
+<div class="dt-wrap">
+<div class="p-s heading mar-20 gutter">
+  <h1 class="p-s article-heading"><?= $post->post_title;?></h1>
+  <?php if(!empty(get_post_meta( $post->ID, 'tagline', true ))):?>
+ <h2 class='p-s tagline'><?php echo get_post_meta( $post->ID, 'tagline', true );?></h2>
+ <?php endif; ?>
+</div>
+</div>
+
+
+</div>
+
+
+
+<div class=" p-s project-page-content-container content-padding-spacer ">
+
 
 
   <?php

@@ -19,6 +19,12 @@ $dt-header-padding: 64px;
     padding-top: $dt-header-padding + 16px;
   }
 }
+.header-top-padding {
+  padding-top: $header-top-padding;
+  @media(min-width: $dt-break) {
+    padding-top: $dt-header-padding + 16px;
+  }
+}
 
 header {
   .scrim {
