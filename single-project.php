@@ -5,14 +5,15 @@
 <?php
 $noheaderClass="header-top-padding";
 $header_wrap = 'no-header-wrap';
+$useBorder = '';
  ?>
 
 <?php if(has_post_thumbnail()):?>
-<?php $noheaderClass=""; $header_wrap = 'use-header-wrap';?>
+<?php $noheaderClass=""; $header_wrap = 'use-header-wrap'; $useBorder = 'use-border';?>
 <?php endif; ?>
-<div class="p-s dt-header-wrap <?= $header_wrap;?> <?php echo $noheaderClass;?>">
+
   <?php if(has_post_thumbnail()):?>
-<div class="p-s top-hero poster-image-container preload-image-container above-line mar-10">
+<div class="p-s top-hero poster-image-container preload-image-container ">
 <?php
 
 $img_id = get_post_thumbnail_id();
@@ -21,17 +22,45 @@ include 'partial_lazy_load_img.php';
  ?>
 </div>
 <?php endif; ?>
-<div class="dt-wrap">
-<div class="p-s heading mar-20 gutter">
+<div class="p-s top-section <?= $noheaderClass;?> <?= $useBorder;?>">
   <h1 class="p-s article-heading"><?= $post->post_title;?></h1>
   <?php if(!empty(get_post_meta( $post->ID, 'tagline', true ))):?>
  <h2 class='p-s tagline'><?php echo get_post_meta( $post->ID, 'tagline', true );?></h2>
  <?php endif; ?>
-</div>
+
+ <?php
+ $toplinks = input_to_array(get_post_meta( $post->ID, 'toplinks', true ));
+ if(!empty($toplinks)):?>
+
+
+ <?php
+  if(count($toplinks)>2) {
+   $fullCount = 'full-count';
+  }
+ ?>
+
+ <div class="p-s top-links  <?= $fullCount; ?>">
+   <h3 class="">Links:</h3>
+   <?php
+   $linkArray = [];
+   foreach($toplinks as $l) {
+     $linkArray[] = '<a class="font-sans" href="'.$l[1].'" target="_blank">'.$l[0].'</a>';
+   }
+   echo implode(', ',$linkArray);
+    ?>
+
+
+
+ </div>
+
+
+ <?php endif; ?>
+
 </div>
 
 
-</div>
+
+
 
 
 
@@ -39,33 +68,7 @@ include 'partial_lazy_load_img.php';
 
 
 
-  <?php
-  $toplinks = input_to_array(get_post_meta( $post->ID, 'toplinks', true ));
-  if(!empty($toplinks)):?>
 
-
-  <?php
-   if(count($toplinks)>2) {
-    $fullCount = 'full-count';
-   }
-  ?>
-
-  <div class="p-s top-links gutter mar-20 <?= $fullCount; ?>">
-    <h3 class="">Links:</h3>
-    <?php
-    $linkArray = [];
-    foreach($toplinks as $l) {
-      $linkArray[] = '<a class="font-sans" href="'.$l[1].'" target="_blank">'.$l[0].'</a>';
-    }
-    echo implode(', ',$linkArray);
-     ?>
-
-
-
-  </div>
-
-
-  <?php endif; ?>
 
   <div class="p-s reading-section gutter mar-10">
 

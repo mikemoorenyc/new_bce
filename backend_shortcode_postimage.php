@@ -9,6 +9,9 @@ function postimage_shortcode( $atts, $content = null ) {
   $allImgs = get_all_image_sizes($id);
   $ratio = ($allImgs['full']['height'] / $allImgs['full']['width']) * 100;
   $baseurl = basename($allImgs['full']['url']);
+  if($allImgs['full']['width'] < 1000) {
+    $max_width = 'max-width: '.$allImgs['full']['width'].'px;';
+  }
   ob_start();
 
   ?>
@@ -49,7 +52,7 @@ function postimage_shortcode( $atts, $content = null ) {
    $full_bleed_class = 'full-bleed';
   }
   ?>
-  <div class="normal-image-container <?= $full_bleed_class;?>" >
+  <div class="normal-image-container <?= $full_bleed_class;?>" style="<?= $max_width;?>">
     <div class="poster-image-container" style="padding-top:<?php echo $ratio;?>%">
       <?php
         $img_id = $id;

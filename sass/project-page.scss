@@ -1,6 +1,6 @@
 .p-s.top-hero {
   height: 56.25vw;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh / 2);
   @media(min-width:402px) and (max-width: 801px){
     height: 0;
     padding-top: 56.25%;
@@ -27,7 +27,7 @@
   }
   &.top-links {
     position: relative;
-    margin-top: -10px;
+    margin-top: 4px;
     * {
       display: inline-block;
 
@@ -54,59 +54,51 @@
       }
     }
   }
-}
-
-}
-@media(min-width: $dt-break) {
-  .p-s {
-    &.dt-header-wrap {
-      &.no-header-wrap {
-        width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-        > * {
-          padding-left: 0;
-          padding-right:0;
-        }
+  @media(min-width:$dt-break) {
+    box-sizing: content-box;
+    width: 700px;
+    padding: 16px;
+    margin-left: 0;
+    margin-right: 0;
+    left:50%;
+    transform:translateX(-50%);
+    ul > li {
+      width: auto;
+      margin:0 4px 0 0;
+      float: none;
+      display: inline-block;
+      padding:0 !important;
+      &:after {
+        content:',';
       }
-      &.use-header-wrap {
-        position: relative;
-        width: 100%;
-        height: 56.25vw;
-        max-height: calc(100vh - 200px);
-        margin-bottom:24px;
-        .p-s.top-hero {
-          margin: 0;
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: calc(100% - (( 100% - 800px ) / 2));
-          height: 100%;
-        }
-        .dt-wrap {
-          width: 800px;
-          padding: 0 16px;
-          left: 50%;
-          margin-left: -400px;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          position: absolute;
-          z-index: 3;
-        }
-        .p-s.heading {
-
-          border-width:3px;
-          box-shadow: 3px 3px 0 currentColor;
-          padding: 16px;
-          margin: 0;
-
-          background:$white;
-          display:inline-block;
+      &:last-child {
+        &:after {
+          display: none;
         }
       }
     }
+  }
+}
 
+}
+.p-s.top-section {
+  box-sizing: content-box;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+@media(min-width: $dt-break) {
+  .p-s.top-section {
+    width: 700px;
+    margin: 0 auto 24px auto;
+    padding: 24px 32px;
+    &.use-border {
+      border-width: 3px;
+      box-shadow: 3px 3px 0 currentColor;
+      margin-top: -48px;
+      z-index:2;
+      position: relative;
+      background: $white;
+    }
   }
 
 
