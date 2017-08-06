@@ -1,10 +1,16 @@
 .gl-mod.landing-header {
 
   padding-bottom:16px;
+  @media($dt) {
+    padding-bottom: 24px;
+  }
   h1 {
     font-size: 30px;
     @media(min-width: 800px) {
       font-size: 36px;
+    }
+    @media($dt) {
+      font-size: 42px;
     }
   }
 }

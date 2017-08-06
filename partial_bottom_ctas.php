@@ -31,7 +31,7 @@ $prevID = $pages[$current-1];
 ?>
 <a href="<?= $url;?>" class="previous-link">
      <span>
-       <?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?> <?= $title;?>
+       <?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_left.svg');?> <span class="title"><?= $title;?></span>
      </span>
 </a>
 
@@ -47,7 +47,7 @@ $prevID = $pages[$current-1];
 ?>
 <a href="<?= $url;?>" class="previous-link">
      <span>
-      <?= $title;?> <?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?>
+    <span class="title">  <?= $title;?></span> <?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?>
      </span>
 </a>
 

@@ -3,6 +3,10 @@
 ?>
 <?php include_once 'header.php';?>
 <div id="main-post-content">
+
+
+<DIV class="bs page-content-container">
+
   <div class="bs header gutter mar-20">
     <div class="meta">
 
@@ -19,9 +23,7 @@
   </div>
 
 
-
-
-  <div class="bs post-content gutter reading-section mar-20">
+  <div class="bs post-content gutter reading-section mar-20 ">
     <?php
     if(has_post_thumbnail()) {
 
@@ -36,12 +38,16 @@
 
 
 
+
   </div>
+
 
   <?php
   $tagged_post_id = $post->ID;
   include_once 'partial_tagged_list.php';
   ?>
+
+</DIV>
 
 
 </div>

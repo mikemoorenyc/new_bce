@@ -20,12 +20,13 @@ $args = array(
 query_posts($args);
 while ( have_posts() ) : the_post(); ?>
 <?php
-if(!has_post_thumbnail()) {
- $class_no_thumbnail = 'no_thumbnail';
+$class_no_thumbnail = '';
+if(has_post_thumbnail()) {
+ $class_no_thumbnail = 'with_thumbnail';
 }
 ?>
 
-<article class="<?= $class_no_thumbnail;?> bl post  clearfix">
+<article class="<?= $class_no_thumbnail;?> bl post clearfix">
   <?php
   if(has_post_thumbnail()):?>
   <?php
@@ -48,9 +49,10 @@ if(!has_post_thumbnail()) {
 
 
 <?php endwhile;?>
+<?php include_once 'partial_landing_page_pagination.php';?>
 </div>
 
-<?php include_once 'partial_landing_page_pagination.php';?>
+
 
 
 <?php include_once 'footer.php';?>

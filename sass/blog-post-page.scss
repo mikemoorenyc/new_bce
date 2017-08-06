@@ -1,13 +1,12 @@
-.blog-post-header {
-  padding-bottom:0;
-  .post-date {
-    font-size: 12rem;
-  }
-}
-.blog-post-hero {
-  padding-top:16rem;
-}
-.blog-post-excerpt {
-  padding-top: 4rem;
 
+.bs.page-content-container {
+  @media(min-width:$dt-break) {
+    max-width:700px;
+    margin-right: auto;
+    margin-left: auto;
+    > * {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
 }
