@@ -7,6 +7,9 @@
     <?php
     include 'partial_lazy_load_img.php';
    ?>
+    <?php if($type_label);?>
+    <span class="type-label"><?= $type_label;?></span>
+    <?php endif;?>
 
   </a>
 
