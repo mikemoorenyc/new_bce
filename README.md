@@ -8,4 +8,8 @@ The wordpress theme to power the future becreativeeveryday.com
 - Implement ajax form
 - Implement history
 - Implement media flow
+  - Spotify API
+  - Trakt.tv API
+  - Goodreads API
+  - Interface
 - implement ie9 disclaimer hiding logic
