@@ -114,6 +114,7 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_tags);
 
 
 </ul>
+<div class="gl-mod project-card-container">
 <?php
 
 if(empty($content_ids)) {
@@ -164,5 +165,5 @@ include 'partial_project_card.php';
 <h2>Sorry, there's no posts for that.</h2>
 <?php endif;?>
 
-
+</div>
 <?php include_once "footer.php";?>
