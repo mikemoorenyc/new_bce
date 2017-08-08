@@ -1,5 +1,5 @@
 The wordpress theme to power the future becreativeeveryday.com
-
+# Fix landing pagination on blogs landing
 # Steps
 1. Template Code  
     1. ~~Homepage~~

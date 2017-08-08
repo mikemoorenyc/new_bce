@@ -8,7 +8,7 @@
 <?php $navigation_spacer = 'navigation_spacer';?>
 <?php include_once 'partial_landing_page_header.php';?>
 
-
+<div class="gl-mod project-card-container">
 <?php
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args = array(
@@ -20,10 +20,15 @@ $args = array(
   );
 query_posts($args);
 ?>
-<div class="pl projects mar-20">
+
 <?php while ( have_posts() ) : the_post(); ?>
 
 <?php
+$hide_image = true;
+if(has_post_thumbnail()) {
+  $img_id = get_post_thumbnail_id();
+  $hide_image = false;
+}
 $pid = get_the_ID();
 include 'partial_project_card.php';
 
@@ -31,10 +36,11 @@ include 'partial_project_card.php';
 
 
 <?php endwhile;?>
-</div>
-
 
 
 <?php include_once 'partial_landing_page_pagination.php';?>
+
+
+</div>
 
 <?php include 'footer.php'; ?>

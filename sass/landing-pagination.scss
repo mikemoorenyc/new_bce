@@ -1,11 +1,13 @@
 .gl-mod.landing-pagination {
-  padding: 16px;
+  padding:0 16px 16px 16px;
+
   text-align: center;
   font-size: 12px;
   max-width: 432px;
   margin: 0 auto;
   @media($dt) {
     padding: 24px;
+    padding-top:0;
     max-width: 432px;
   }
   .inner {

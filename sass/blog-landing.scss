@@ -1,25 +1,25 @@
 .bl {
   &.post-list {
     position: relative;
-    margin-top:-20px;
+    padding-bottom:1px;
+    //margin-top:-20px;
 
   }
   &.post {
     border-bottom-width:1px;
     border-style:dashed;
+    margin-bottom: 16px;
     @media(min-width:$dt-break) {
       padding: 0 calc((100% - 800px) / 2);
     }
     @media($dt) {
       padding: 0 calc((100% - 1280px) / 2);
     }
-    &:last-child {
-      border-bottom-width: 0;
-    }
+
     .thumbnail-container {
       float: left;
       width: (32px * 2 + 16px + 16px);
-      padding: 16px 0 16px 16px;
+      padding: 0px 0 16px 16px;
       .poster-image-container {
         padding-top: 75% !important;
       }
@@ -35,17 +35,17 @@
         }
       }
       @media(min-width: $dt-break) {
-        padding: 24px 0 24px 24px;
+        padding: 0px 0 24px 24px;
       }
     }
     .copy {
       width: 100%;
-      padding: 16px;
+      padding: 0 16px 16px 16px;
       display:block;
 
       line-height: 1.2;
       @media($dt) {
-        padding: 24px;
+        padding: 0 24px 24px 24px;
         h1.title {
           font-size: 18px;
         }
@@ -56,12 +56,13 @@
       &.with_thumbnail {
         float:right;
         width: calc(100% - (32px * 2 + 16px + 16px + 16px));
-        padding: 16px 16px 16px 0;
+        padding: 0px 16px 16px 0;
         @media(min-width: $dt-break) {
           width: calc(100% - (25% + 16px));
         }
         @media(min-width: $dt-break) {
           width: calc(100% - (25% + 24px));
+          padding: 0 24px 24px 0;
         }
       }
     }
