@@ -3,11 +3,11 @@
   <!-- IF YOU DO WANT AN IMAGE -->
   <?php if($hide_image !== true):?>
 
-  <a href="<?=get_the_permalink($pid);?>" class="poster-image-container preload-image-container">
+  <a href="<?=get_the_permalink($pid);?>" class="poster-image-container preload-image-container <?= $post_type;?>">
     <?php
     include 'partial_lazy_load_img.php';
    ?>
-    <?php if($type_label);?>
+    <?php if($type_label):?>
     <span class="type-label"><?= $type_label;?></span>
     <?php endif;?>
 
@@ -21,7 +21,7 @@
       <?php if($card_meta):?>
       <span class="meta"><?= $card_meta;?></span>
       <?php endif;?>
-      <span class="title"><?= get_the_title($pid);?></span>
+      <span class="title <?= $post_type;?>"><?= get_the_title($pid);?></span>
       <span class="tagline font-serif"><?= get_post_meta( $pid, 'tagline', true );?></span>
     </div>
   </a>

@@ -138,6 +138,7 @@ foreach($posts as $p):?>
 
 $pid = $p->ID;
 $alt_tag = $p->post_title;
+$hide_image = false;
 if(!has_post_thumbnail($pid)) {
    $hide_image = true;
 }
@@ -151,6 +152,7 @@ if(get_post_type($pid) === 'project') {
  $card_meta = 'A project from '.get_the_date('F Y',$pid);
 }
 
+$post_type = get_post_type($pid);
 
 include 'partial_project_card.php';
 
