@@ -44,27 +44,26 @@ foreach($items as $i) {
   }
   
   $showID = $i['show']['ids']['tmdb'];
-  $tmdbID = $i['episode']['ids']['tmdb'];
+
   if($showID === $bingeID) {
     $bingeCount++
-    $tmdbID = $showID;
+
     $traktList[count($traktList) - 1]['bingeCount'] = $bingeCount;
-    $traktList[count($traktList) - 1]['tmdbID'] = $tmdbID;
+
   } else {
    $bingeCount = 1;
    $bingeID = $showID;
    $traktList[] = array(
-    'title' => $i['episode']['title'],
     'showTitle' => $i['show']['title'],
-    'tmdbID' => $tmdbID,
+    'episodeData' => $i['episode'],
+    'showID' => $showID,
     'type' => 'show',
     'timestamp' => $i['watched_at']
    );
   }
   
-  
-  
 }
+
 $wp_base = get_home_path();
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {
   mkdir($wp_base.'wp-content/feed_dump/', 0777);
