@@ -18,13 +18,12 @@ foreach($status->items as $i) {
  $apiURL = 'https://www.goodreads.com/read_statuses/'.$updateID.'?format=xml&key='.$keys['goodreads'];
  $readStatus = new SimpleXMLElement(file_get_contents($apiURL));
  $readStatus = $readStatus->read_status;
- if($readStatus->status !== 'read') {
-  continue; 
- }
+ 
  $update = array(
   'title' => $readStatus->book->title,
    'img' => $readStaus->book->image_url,
-   'timestamp' => $readStatus->updated_at
+   'timestamp' => $readStatus->updated_at,
+   'status' => $readStatus->status
  );
  $bookUpdates[] = $update;
   
