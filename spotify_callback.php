@@ -2,7 +2,7 @@
 require_once 'secret_codes.php';
 if(!$_GET['code']) {
  $redirect = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"
- $params = urlencode('client_id='.$client_id.'&response_type=code&scope=user-read-recently-played&redirect_url='."http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+ $params = urlencode('client_id='.$client_id.'&response_type=code&scope=user-read-recently-played&redirect_url='.$redirect_uri);
  echo '<a href="https://accounts.spotify.com/authorize?'.$params.'">Authorize</a>'
  die(); 
 }
@@ -14,7 +14,7 @@ $code = $_GET['code'];
 $data = array(
   "grant_type" => "authorization_code",
   "code" => $code,
-  "redirect_uri" => "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+  "redirect_uri" => $redirect_uri;
 );                                                                    
 $data_string = json_encode($data);                                                                                   
                                                                                                                      
