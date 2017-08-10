@@ -6,7 +6,7 @@ function ajax_tmdb_init() {
 add_action('init', 'ajax_tmdb_init');
 
 function tmdb_image_getter() {
- check_ajax_referer( 'ajax-request-nonce', 'security' ); 
+ check_ajax_referer( 'ajax-request-nonce', 'security' );
  require_once get_template_directory().'/partial_api_key_generator.php';
  $keys = api_key_generator();
  if(!isset($keys['tmdb'])) {
@@ -27,13 +27,13 @@ function tmdb_image_getter() {
    die();
  }
  if($type === 'episode') {
-   $movieData = json_decode(file_get_contents('https://api.themoviedb.org/3/tv/'.$ID.'/season/'.$_POST['season'].'/episode/'$_POST['episode'].$end));
+   $movieData = json_decode(file_get_contents('https://api.themoviedb.org/3/tv/'.$ID.'/season/'.$_POST['season'].'/episode/'.$_POST['episode'].$end));
    echo 'https://image.tmdb.org/t/p/w300'.$movieData['still_path'];
    die();
  }
-  
+ die();
 }
-die();
+
 
 
 ?>
