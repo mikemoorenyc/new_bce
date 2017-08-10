@@ -1,4 +1,8 @@
 <?php
+if(file_get_contents('completed.txt') === 'completed') {
+ die();
+}
+
 require_once 'secret_codes.php';
 if(!$_GET['code']) {
  $params = array(
@@ -46,6 +50,7 @@ if ($result === FALSE) {
   die();
 } else {
   var_dump(json_decode($result));
+ file_put_contents('completed.txt', 'completed');
   die();
 }
 
