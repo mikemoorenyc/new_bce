@@ -79,9 +79,9 @@ foreach($items as $i) {
 die();
 $wp_base = get_home_path();
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {
-  mkdir($wp_base.'wp-content/feed_dump/', 0777);
+  mkdir($wp_base.'wp-content/feed_dump', 0777);
 }
-file_put_contents($wp_base.'wp-content/feed_dump/goodreads.json', json_encode($traktList));
+file_put_contents($wp_base.'wp-content/feed_dump/trakt.json', json_encode($traktList));
 die();
 
 ?>
