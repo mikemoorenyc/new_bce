@@ -1,9 +1,17 @@
 <?php
 require_once 'secret_codes.php';
 if(!$_GET['code']) {
- $redirect = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"
- $params = urlencode('client_id='.$client_id.'&response_type=code&scope=user-read-recently-played&redirect_url='.$redirect_uri);
- echo '<a href="https://accounts.spotify.com/authorize?'.$params.'">Authorize</a>'
+ $params = array(
+  'client_id' => $client_id,
+  'response_type' => 'code'
+  'scope' => 'user-read-recently-played',
+  'redirect_uri' => $redirect_uri
+ );
+ $params = array_map(function($k, $v){
+    return "$k=$v";
+ }, array_keys($params), array_values($params));
+ 
+ echo '<a href="https://accounts.spotify.com/authorize?'.urlencode(implode('&',$params)).'">Authorize</a>'
  die(); 
 }
 
