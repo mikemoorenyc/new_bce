@@ -1,6 +1,6 @@
 The wordpress theme to power the future becreativeeveryday.com
 
-- `Do archive page`
+- ~~Do archive page~~
 - Make covers for all clickable areas
   - Blog listings
 - Make hover states for blog listings

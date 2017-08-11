@@ -12,12 +12,17 @@ if( !isset($keys['goodreads']) || !isset($keys['goodreads_url'])) {
 $status = new SimpleXMLElement(file_get_contents($keys['goodreads_url']));
 
 $bookUpdates = [];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 foreach($status->channel->item as $i) {
- if(strpos($i->guid,'Review')!== false || strpos($i->guid,'User')!== false ) {
+ if(strpos($i->guid,'Review')!== false  ) {
   continue;
  }
  $updateID =  str_replace("ReadStatus","",$i->guid);
- $updateID = str_replace("UserStatus","",$i->guid);
+ $updateID = str_replace("UserStatus","",$updateID);
  if(strpos($i->guid,'UserStatus')!== false) {
 
   $apiURL = 'https://www.goodreads.com/user_status/show/'.$updateID.'?format=xml&key='.$keys['goodreads'];
@@ -26,18 +31,24 @@ foreach($status->channel->item as $i) {
  } else {
    $apiURL = 'https://www.goodreads.com/read_statuses/'.$updateID.'?format=xml&key='.$keys['goodreads'];
  }
+ curl_setopt($ch, CURLOPT_URL, $apiURL);
+ $xml = curl_exec($ch);
+ if($xml === false) {
+   echo "cURL Error: " . curl_error($ch);
+   die();
+ }
 
- $readStatus = new SimpleXMLElement(file_get_contents($apiURL));
+ $readStatus = new SimpleXMLElement($xml);
+
 
  if(strpos($i->guid,'UserStatus')!== false) {
   $readStatus = $readStatus->user_status;
  } else {
    $readStatus = $readStatus->read_status;
  }
- $readStatus = $readStatus->read_status;
+
 
  $update = array(
-  'status' => $i->guid,
   'percent' => $readStatus->percent.'',
   'title' => $readStatus->book->title.'',
    'img' => $readStatus->book->image_url.'',
