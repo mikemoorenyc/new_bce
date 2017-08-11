@@ -14,7 +14,7 @@ The wordpress theme to power the future becreativeeveryday.com
 - implement svg drawing of myself
 - Implement media flow
   - Spotify API
-  - Trakt.tv API
-  - Goodreads API
+  - ~~Trakt.tv API~~
+  - Goodreads API (see if it works on production server)
   - Interface
 - implement ie9 disclaimer hiding logic

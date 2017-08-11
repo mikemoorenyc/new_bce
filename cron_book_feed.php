@@ -13,16 +13,32 @@ $status = new SimpleXMLElement(file_get_contents($keys['goodreads_url']));
 
 $bookUpdates = [];
 foreach($status->channel->item as $i) {
- if(strpos($i->guid,'Review')!== false) {
+ if(strpos($i->guid,'Review')!== false || strpos($i->guid,'User')!== false ) {
   continue;
  }
  $updateID =  str_replace("ReadStatus","",$i->guid);
- $apiURL = 'https://www.goodreads.com/read_statuses/'.$updateID.'?format=xml&key='.$keys['goodreads'];
+ $updateID = str_replace("UserStatus","",$i->guid);
+ if(strpos($i->guid,'UserStatus')!== false) {
+
+  $apiURL = 'https://www.goodreads.com/user_status/show/'.$updateID.'?format=xml&key='.$keys['goodreads'];
+
+
+ } else {
+   $apiURL = 'https://www.goodreads.com/read_statuses/'.$updateID.'?format=xml&key='.$keys['goodreads'];
+ }
+
  $readStatus = new SimpleXMLElement(file_get_contents($apiURL));
 
+ if(strpos($i->guid,'UserStatus')!== false) {
+  $readStatus = $readStatus->user_status;
+ } else {
+   $readStatus = $readStatus->read_status;
+ }
  $readStatus = $readStatus->read_status;
 
  $update = array(
+  'status' => $i->guid,
+  'percent' => $readStatus->percent.'',
   'title' => $readStatus->book->title.'',
    'img' => $readStatus->book->image_url.'',
    'timestamp' => $readStatus->updated_at.'',
@@ -32,7 +48,7 @@ foreach($status->channel->item as $i) {
  $bookUpdates[] = $update;
 
 }
-
+var_dump($bookUpdates);
 die();
 $wp_base = get_home_path();
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {

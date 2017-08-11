@@ -75,7 +75,7 @@ foreach($items as $i) {
   }
 
 }
-
+var_dump($traktList);
 die();
 $wp_base = get_home_path();
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {
