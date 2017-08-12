@@ -17,5 +17,6 @@ The wordpress theme to power the future becreativeeveryday.com
   - ~~Trakt.tv API~~
   - ~~Goodreads API (see if it works on production server)~~
   - Set it up so I'm only showing the last month's worth of stuff
+  - BINGING ETC will be determined at runtime
   - Interface
 - implement ie9 disclaimer hiding logic

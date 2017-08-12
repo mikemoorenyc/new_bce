@@ -1,11 +1,29 @@
 <?php
+date_default_timezone_set('UTC');
 
+$current_time = date('c');
+
+$month_ago = date('c',strtotime('-1 month'));
 require_once("../../../wp-load.php");
 require_once get_template_directory().'/partial_api_key_generator.php';
+require_once(ABSPATH . 'wp-admin/includes/file.php');
+
+$wp_base = get_home_path();
+
 $keys = api_key_generator();
 if( !isset($keys['spotify_id']) || !isset($keys['spotify_secret']) || !isset($keys['spotify_refresh'])) {
   echo 'aasdf';
   die();
+}
+
+if(file_exists($wp_base.'wp-content/feed_dump/spotify.json')) {
+  $old_data = json_decode(file_get_contents($wp_base.'wp-content/feed_dump/spotify.json'),true);
+
+  $start_time = $old_data['last_run'];
+  $old_array = $old_data['items'];
+} else {
+  $old_array = [];
+  $start_time = $month_ago;
 }
 
 
@@ -57,15 +75,17 @@ if ($output === FALSE) {
   die();
 }
 curl_close($ch);
-$items = json_decode($output);
-$items = $items->items;
+$items = json_decode($output,true);
+
+$items = $items['items'];
+
 $track_blocks = [];
 $track_it = [];
 
 foreach($items as $k => $i) {
   $block = array(
-    'time_stamp' => $i->played_at.'',
-    'ID' => $i->track->id.''
+    'timestamp' => $i['played_at'],
+    'ID' => $i['track']['id']
   );
   $track_it[] = $block;
   if(count($track_it) === 20 || $k === (count($items) - 1)) {
@@ -98,49 +118,50 @@ foreach($track_blocks as $tb) {
     echo "cURL Error: " . curl_error($ch);
     die();
   }
-  $tracks = json_decode($output);
-  $allTracks = array_merge($allTracks, $tracks->tracks);
+  $tracks = json_decode($output,true);
+  $allTracks = array_merge($allTracks, $tracks['tracks']);
 
 }
-//var_dump($allTracks);
+
 curl_close($ch);
 $tracksClean = [];
-$bingeAlbum = '';
-$previousTrack = '';
-$multiplePlayCount = 1;
 foreach($items as $k => $i) {
-
-  if($i->track->id.'' === $previousTrack) {
-    $multiplePlayCount++ ;
-    $tracksClean[count($tracksClean)-1]['play_count'] = $multiplePlayCount;
+  if(strtotime($i['played_at']) < strtotime($start_time)) {
     continue;
   }
   $track = $allTracks[$k];
-  $playType = 'track';
-  $albumID = $track->album->id.'';
-  $artistArray = $track->album->artists;
-  $artist = array_map(function($a){
-    return $a->name.'';
-  }, $artistArray);
-  $artist = implode(' & ', $artist);
-  if($albumID === $bingeAlbum) {
-    $tracksClean[count($tracksClean)-1]['play_type'] = 'album';
-    $tracksClean[count($tracksClean)-1]['title'] = $track->album->name;
-    continue;
-  }
   $tracksClean[] = array(
-    'artist' => $artist,
-    'play_type' => $playType,
-    'timestamp' => $i->played_at.'',
-    'title' => $track->name.'',
-    'img' => $track->album->images[0]->url,
-    'play_count' => $multiplePlayCount
+    'timestamp' => strtotime($i['played_at']),
+    'ID' => $i['track']['id'],
+    'title' => $track['name'],
+    'album' => array(
+      'ID' => $track['album']['id'],
+      'title' => $track['album']['name'],
+      'artists' => $track['album']['artists'],
+      'img' => $track['album']['images'][0]['url']
+    )
   );
-  $bingeAlbum = $albumID;
-  $previousTrack = $i->track->id.'';
-  $multiplePlayCount = 1;
 }
-echo json_encode($tracksClean);
-die();
 
-?>
+$tracksClean = array_reverse($tracksClean);
+foreach($tracksClean as $t) {
+  array_unshift($old_array,$t);
+}
+
+$new_array = [];
+foreach($old_array as $i) {
+  if($i['timestamp'] >= strtotime('-1 month')) {
+    $new_array[] = $i;
+  }
+}
+
+$traktObject = array(
+  'last_run' => $current_time,
+  'items' => $new_array
+);
+if(!file_exists($wp_base.'wp-content/feed_dump/')) {
+  mkdir($wp_base.'wp-content/feed_dump', 0777);
+}
+var_dump($traktObject);
+file_put_contents($wp_base.'wp-content/feed_dump/spotify.json', json_encode($traktObject));
+die();
