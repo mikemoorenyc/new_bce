@@ -4,7 +4,7 @@ The wordpress theme to power the future becreativeeveryday.com
 - Make covers for all clickable areas
   - Blog listings
 - Make hover states for blog listings
-- Do About me page
+- ~~Do About me page~~
 - Do Contact page
 - Implement colorchange
 - Implement line
@@ -16,5 +16,6 @@ The wordpress theme to power the future becreativeeveryday.com
   - ~~Spotify API~~
   - ~~Trakt.tv API~~
   - ~~Goodreads API (see if it works on production server)~~
+  - Set it up so I'm only showing the last month's worth of stuff
   - Interface
 - implement ie9 disclaimer hiding logic

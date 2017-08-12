@@ -140,7 +140,7 @@ foreach($items as $k => $i) {
   $previousTrack = $i->track->id.'';
   $multiplePlayCount = 1;
 }
-var_dump($tracksClean);
+echo json_encode($tracksClean);
 die();
 
 ?>

@@ -59,7 +59,7 @@ foreach($status->channel->item as $i) {
  $bookUpdates[] = $update;
 
 }
-var_dump($bookUpdates);
+echo json_encode($bookUpdates);
 die();
 $wp_base = get_home_path();
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {

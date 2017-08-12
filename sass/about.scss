@@ -1,0 +1,59 @@
+.about-page.reading-section {
+  padding: 0 16px;
+  @media($dt) {
+    padding: 0 24px;
+  }
+}
+.about-page.like-lists {
+  padding-bottom:1px;
+}
+.about-page.like-block {
+  margin: 0 16px 16px 16px;
+  border-width: 1px;
+  border-style: dashed;
+  padding: 16px;
+  @media($dt) {
+    margin: 0 24px 24px 24px;
+
+  }
+  h2 {
+    margin-bottom:.5em;
+  }
+  ul {
+    font-family: $font-sans;
+    column-count: 2;
+    column-gap: 16px;
+
+    li {
+      margin-bottom:.5em;
+      font-size: .85em;
+      line-height: 1.2;
+    }
+  }
+}
+.about-page.layout-wrap {
+  @media(min-width: $dt-break) {
+    max-width: 800px;
+    margin: 0 auto;
+    .reading-section {
+      float:left;
+      width: calc(100% - 320px);
+    }
+    .like-lists {
+      float: right;
+      width: 320px;
+    }
+  }
+  @media($dt) {
+    max-width: $dt-max;
+    padding-top:8px;
+    .reading-section {
+      width: calc(100% - 420px);
+      max-width: 800px;
+    }
+    .like-lists {
+      width: 420px;
+    }
+  }
+
+}

@@ -1,4 +1,22 @@
 <?php
+/*
+- get start timestamp
+- get new items
+- reverse array
+- unshift each to front of array
+- remove items that are older than a month
+- check if count is over 50
+- if over 50, get difference
+- for loop and pop difference amount
+- get currentTIME
+- save new timestamp
+- save new array
+
+*/
+date_default_timezone_set('UTC');
+$current_time = date('c');
+
+$month_ago = date('c',strtotime('-1 month'));
 
 require_once("../../../wp-load.php");
 require_once get_template_directory().'/partial_api_key_generator.php';
@@ -8,10 +26,13 @@ if( !isset($keys['trakt']) || !isset($keys['trakt_username'])) {
   die();
 }
 
+$start = time() ;
+$end = strtotime('-1 month');
+
 
 $ch = curl_init();
 
-curl_setopt($ch, CURLOPT_URL, "https://api.trakt.tv/users/".$keys['trakt_username']."/history/");
+curl_setopt($ch, CURLOPT_URL, "https://api.trakt.tv/users/".$keys['trakt_username']."/history/?start_at=".urlencode($month_ago).'&end_at='.$current_time);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($ch, CURLOPT_HEADER, FALSE);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
@@ -76,6 +97,8 @@ foreach($items as $i) {
 
 }
 var_dump($traktList);
+die();
+echo json_encode($traktList);
 die();
 $wp_base = get_home_path();
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {
