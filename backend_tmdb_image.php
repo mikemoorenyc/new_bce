@@ -1,7 +1,7 @@
 
 <?php
 function ajax_tmdb_init() {
-  add_action( 'wp_ajax_nopriv_tmdbimage', 'tmdb_image' );
+  add_action( 'wp_ajax_nopriv_tmdbimage', 'tmdb_image_getter' );
 }
 add_action('init', 'ajax_tmdb_init');
 
