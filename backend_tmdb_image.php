@@ -15,22 +15,35 @@ function tmdb_image_getter() {
  }
  $end = '?api_key='.$keys['tmdb'].'&language=en-US';
  $type = $_POST['type'];
- $ID = $_POST['id'];
- if($type === 'movie') {
-   $movieData = json_decode(file_get_contents('https://api.themoviedb.org/3/movie/'.$ID.$end));
-   echo 'https://image.tmdb.org/t/p/w185'.$movieData['poster_path'];
+ $url = $_POST['url'];
+ $ch = curl_init();
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+ curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+ curl_setopt($ch, CURLOPT_URL, $url.$end);
+ $info = curl_exec($ch);  
+ if($info === false) {
+   echo json_encode(
+    array(
+    "status" => 'error'
+    );
+   )
    die();
+ } 
+ curl_close($ch);
+ $info = json_decode($info, true);
+ $response = [];
+ $response['status'] = 'success';
+ if($type === 'movie') {
+   $response['url'] = 'https://image.tmdb.org/t/p/w185'.$info['poster_path'];
  }
  if($type === 'show') {
-   $movieData = json_decode(file_get_contents('https://api.themoviedb.org/3/tv/'.$ID.$end));
-   echo 'https://image.tmdb.org/t/p/w300'.$movieData['backdrop_path'];
-   die();
+   $response['url'] = 'https://image.tmdb.org/t/p/w300'.$movieData['backdrop_path'];
  }
  if($type === 'episode') {
-   $movieData = json_decode(file_get_contents('https://api.themoviedb.org/3/tv/'.$ID.'/season/'.$_POST['season'].'/episode/'.$_POST['episode'].$end));
-   echo 'https://image.tmdb.org/t/p/w300'.$movieData['still_path'];
-   die();
+   $response['url'] = 'https://image.tmdb.org/t/p/w300'.$movieData['still_path'];
  }
+ echo json_encode($response);
  die();
 }
 
