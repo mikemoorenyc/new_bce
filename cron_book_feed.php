@@ -88,6 +88,7 @@ foreach($readStatus->authors->author as $a) {
  $bookUpdates[] = $update;
 
 }
+curl_close($ch);
 $bookUpdates = array_reverse($bookUpdates);
 
 foreach($bookUpdates as $b) {
