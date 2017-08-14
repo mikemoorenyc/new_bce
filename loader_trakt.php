@@ -14,6 +14,7 @@ foreach($itemList['trakt']as $i) {
   }
   $traktItems[] = $i;
   $traktItems[count($traktItems)-1]['bingeCount'] = 1;
+  $traktItems[count($traktItems)-1]['type'] = 'episode';
   $currentshowID = $i['show']['ID'];
 }
 
