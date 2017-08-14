@@ -65,7 +65,11 @@ foreach($status->channel->item as $i) {
  } else {
    $readStatus = $readStatus->read_status;
  }
-
+$authors = [];
+foreach($readStatus->authors->author as $a) {
+ $authors[] = $a->name.''; 
+  
+}
 
  $update = array(
   'percent' => $readStatus->percent.'',
@@ -73,7 +77,8 @@ foreach($status->channel->item as $i) {
    'img' => $readStatus->book->image_url.'',
    'timestamp' => strtotime($readStatus->updated_at.''),
    'status' => $readStatus->status.'',
-   'type' => 'book'
+   'type' => 'book',
+   'authors' => $authors
  );
 
  if(strtotime($readStatus->updated_at.'') < strtotime($start_time)) {
