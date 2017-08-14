@@ -6,9 +6,8 @@ $current_time = date('c');
 $month_ago = date('c',strtotime('-1 month'));
 require_once("../../../wp-load.php");
 require_once get_template_directory().'/partial_api_key_generator.php';
-require_once(ABSPATH . 'wp-admin/includes/file.php');
 
-$wp_base = get_home_path();
+$wp_base = ABSPATH;
 
 $keys = api_key_generator();
 if( !isset($keys['spotify_id']) || !isset($keys['spotify_secret']) || !isset($keys['spotify_refresh'])) {

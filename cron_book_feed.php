@@ -7,9 +7,9 @@ $current_time = date('c');
 $month_ago = date('c',strtotime('-1 month'));
 require_once("../../../wp-load.php");
 require_once get_template_directory().'/partial_api_key_generator.php';
-require_once(ABSPATH . 'wp-admin/includes/file.php');
 
-$wp_base = get_home_path();
+
+$wp_base = ABSPATH;
 
 $keys = api_key_generator();
 
@@ -71,8 +71,9 @@ foreach($status->channel->item as $i) {
   'percent' => $readStatus->percent.'',
   'title' => $readStatus->book->title.'',
    'img' => $readStatus->book->image_url.'',
-   'timestamp' => $readStatus->updated_at.'',
-   'status' => $readStatus->status.''
+   'timestamp' => strtotime($readStatus->updated_at.''),
+   'status' => $readStatus->status.'',
+   'type' => 'book'
  );
 
  if(strtotime($readStatus->updated_at.'') < strtotime($start_time)) {
@@ -89,10 +90,11 @@ foreach($bookUpdates as $b) {
 }
 $new_array = [];
 foreach($old_array as $i) {
-  if(strtotime($i['timestamp']) >= strtotime('-1 month')) {
+  if($i['timestamp'] >= strtotime('-1 month')) {
     $new_array[] = $i;
   }
 }
+
 $traktObject = array(
   'last_run' => $current_time,
   'items' => $new_array
@@ -100,7 +102,7 @@ $traktObject = array(
 
 var_dump($traktObject);
 
-$wp_base = get_home_path();
+
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {
   mkdir($wp_base.'wp-content/feed_dump', 0777);
 }

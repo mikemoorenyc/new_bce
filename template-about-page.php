@@ -7,12 +7,12 @@
 <?php $landing_post = $post;?>
 
 <?php include_once 'partial_landing_page_header.php';?>
-<div class="about-page layout-wrap clearfix" >
-<div id="main-about-content" class="about-page reading-section">
+<div class="about-page gl-mod col-2-setup clearfix" >
+<div id="main-about-content" class=" left-col about-page reading-section">
  <?=  md_sc_parse($post->post_content); ?>
 </div>
 
-<div class="about-page like-lists">
+<div class="right-col about-page like-lists">
 <?php
 $things_i_like = input_to_array(get_post_meta( $post->ID, 'things_i_like', true));
 

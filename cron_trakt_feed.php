@@ -10,10 +10,8 @@ $month_ago = date('c',strtotime('-1 month'));
 
 require_once("../../../wp-load.php");
 require_once get_template_directory().'/partial_api_key_generator.php';
-require_once(ABSPATH . 'wp-admin/includes/file.php');
 
-
-$wp_base = get_home_path();
+$wp_base = ABSPATH;
 
 if(file_exists($wp_base.'wp-content/feed_dump/trakt.json')) {
   $old_data = json_decode(file_get_contents($wp_base.'wp-content/feed_dump/trakt.json'),true);

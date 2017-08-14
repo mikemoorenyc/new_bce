@@ -1,0 +1,102 @@
+.contact-page.social-links {
+  h2 {
+    margin-bottom:.25em;
+  }
+  ul.social-links-list {
+    li {
+      a {
+        display: block;
+        line-height: 44px;
+        padding-left: 28px;
+        position: relative;
+        svg {
+          display:block;
+          width: 20px;
+          height: 20px;
+          left: 0;
+          top: calc(50% - 10px);
+          position: absolute;
+        }
+      }
+    }
+  }
+}
+.contact-page.contact-form {
+  margin: 0 16px 32px 16px;
+  padding: 16px;
+  position: relative;
+  border-width: 3px;
+  box-shadow: 3px 3px 0 currentColor;
+  @media(min-width:$dt-break) {
+    max-width: (800px - 32px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  @media($dt) {
+    margin-left: 24px;
+    padding: 24px 12px 24px 12px;
+  }
+  @media(min-width:$dt-max) {
+    margin-right: 0;
+    margin-left: calc((100% - #{$dt-max - 48px}) / 2);
+  }
+  .form-row {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 8px;
+    &:last-child {
+      margin-bottom:0;
+    }
+    @media(min-width:$dt-break) {
+      padding-left: 8px;
+      padding-right: 8px;
+      float: left;
+      width:100%;
+      &.input {
+
+        width: 50%;
+
+
+      }
+    }
+    @media($dt) {
+      padding-left:12px;
+      padding-right:12px;
+    }
+    &.submit {
+
+      text-align: center;
+    }
+    label {
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: .5em;
+    }
+    input, textarea {
+      display:block;
+      width: 100%;
+      border-width: 2px;
+      border-style:dashed;
+      padding: 8px;
+      &:focus {
+        border-style:solid;
+        box-shadow: 2px 2px 0 currentColor;
+      }
+    }
+    textarea {
+      height: 120px;
+    }
+    button[type=submit] {
+      border-width: 2px;
+      box-shadow: 2px 2px 0 currentColor;
+      display:inline-block;
+      line-height: 48px;
+      padding: 0 16px;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}

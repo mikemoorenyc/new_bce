@@ -11,31 +11,46 @@ $alreadySubmitted = $_COOKIE['alreadySubmitted'];
 ?>
 
 <?php include 'header.php'; ?>
-<h1 class="contact-page-header"><?= $post->post_title;?></h1>
-<div class="contact-page-content"><?= md_sc_parse($post->post_content);?></div>
+
+<?php $landing_post = $post;?>
+<?php include_once 'partial_landing_page_header.php';?>
+<div class="gl-mod col-2-setup clearfix">
+  <div class="left-col reading-section"><?= md_sc_parse($post->post_content);?></div>
+
+  <div class="right-col contact-page social-links">
+    <?php
+    $social_links = get_post_meta( $post->ID, 'social media link');
+
+    if(!empty($social_links)):?>
+    <h2 class="social-media-links-header">Social Media Links</h2>
+    <ul class="social-links-list">
+    <?php foreach($social_links as $s):?>
+      <li class="social-link">
+    <?php
+    $a = explode(',',$s);
+    ?>
+    <a href="<?= trim($a[1]);?>" target="_blank" class="font-sans no-underline">
+      <?= file_get_contents(get_template_directory().'/assets/svgs/icon_'.strtolower(trim($a[0])).'.svg');?>
+      <?= trim($a[2]);?>
+    </a>
 
 
-<?php
-$social_links = get_post_meta( $post->ID, 'social media link');
 
-if(!empty($social_links)):?>
-<h2 class="social-media-links-header">Social Media Links</h2>
-<ul class="social-links-list">
-<?php foreach($social_links as $s):?>
-  <li class="social-link">
-<?php
-$a = explode(',',$s);
-?>
-<a href="<?= trim($a[1]);?>" target="_blank"><?= trim($a[0]);?></a>
 
+      </li>
+    <?php endforeach;?>
+    </ul>
+
+     <?php endif; ?>
+  </div>
+
+
+</div>
 
 
 
-  </li>
-<?php endforeach;?>
-</ul>
 
- <?php endif; ?>
+
 
 <?php
 
@@ -48,7 +63,8 @@ if($_SESSION['form_errors'] !== null) {
 
 
 
-<form id="main-contact-form" method="POST" action="<?= $siteDir.'/service_form_processor.php';?>">
+<form id="main-contact-form" class="contact-page contact-form font-sans clearfix" method="POST" action="<?= $siteDir.'/service_form_processor.php';?>">
+  <input type="hidden" id="security_number" name="security_number" value="<?= $security_number;?>"/>
   <?php if($_SESSION['post_status'] == 'success'):?>
     <h2> Thank you for sending me a message.</h2>
 
@@ -65,14 +81,14 @@ if($_SESSION['form_errors'] !== null) {
 
   <?php if($alreadySubmitted !== 'true'):?>
 
-  <div class="form-row">
+  <div class="form-row input">
     <label for="form_name">Name</label>
     <input type="text" required id="form_name" name="form_name" />
       <?php if(in_array("name", $form_errors)):?>
       <div class="error-msg">You filled this out wrong. Try again.</div>
       <?php endif;?>
   </div>
-  <div class="form-row">
+  <div class="form-row input">
     <label for="form_email">Email</label>
     <input type="email" name="form_email" id="form_email" required />
       <?php if(in_array("email", $form_errors)):?>
@@ -94,11 +110,11 @@ if($_SESSION['form_errors'] !== null) {
       <?php endif;?>
   </div>
 
-  <div class="form-row">
-    <button type="submit">Send</button>
+  <div class="form-row submit">
+    <button type="submit">Send your message</button>
 
   </div>
-  <input type="hidden" id="security_number" name="security_number" value="<?= $security_number;?>"/>
+
 
 
 <?php endif;?>
