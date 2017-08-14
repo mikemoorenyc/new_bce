@@ -9,6 +9,7 @@ foreach($itemList['spotify'] as $s) {
   }
   if($albumID === $s['album']['ID']) {
     $sItems[count($sItems) - 1]['type'] = 'album';
+    $sItems[count($sItems) - 1]['title'] = $s['album']['title'];
     continue;
   }
   $sItems[] = $s;
