@@ -8,6 +8,7 @@
   </div>
   <h2 class="title"><?= $i['title'];?></h2>
   <div class="progress">
+    <?php
     if(!empty($i['percent'])) {
     echo 'I&rsquo;ve read '.$i['percent'].'%';
     }
@@ -17,6 +18,9 @@
     if($i['status'] === 'currently-reading' && empty($i['percent']) {
     echo 'Started reading';
     }
+    
+    
+    ?>
   </div>
   
   
