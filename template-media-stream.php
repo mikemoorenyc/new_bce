@@ -25,7 +25,14 @@ function date_compare($a, $b)
 }
 usort($items, 'date_compare');
 $items = array_reverse($items);
-var_dump($items);
+foreach($items as $i {
+  ?>
+  <div class="media-item type-<?=$i['type'];?>">
+    <?php include 'media_item_'.$['type'].'.php'; ?>
+  </div>
+  <?php
+ 
+}
 die();
  ?>
 
