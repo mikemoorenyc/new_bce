@@ -1,10 +1,7 @@
 <?php
 
 function artistNames($i) {
- $artist_list = array_map(function($a){
- return $a['name'];
- },$i['album']['artists']);
- return implode(', ',$artist_list);
+ return implode(', ',$i);
 }
 
 function switch_media_info($i) {
@@ -32,19 +29,35 @@ function switch_media_info($i) {
   case 'album':
   ?>
 <h2><?= $i['album']['title'];?></h2>
-<h3 class="meta"><?= artistNames($i);?></h3>
+<h3 class="meta"><?= artistNames($i['album']['artists']);?></h3>
   <?php
   break;
  
   case 'track':
   ?>
 <h2 class="single">&ldquo;<?= $i['title'];?>&rdquo;</h2>
-<h3 class="meta"><?= artistNames($i);?></h3>
 <?php
+ if($i['listenCount'] > 1) {
+  if($i['listenCount'] > 3) {
+   $s = 's';
+  }
+  ?>
+ <div class="extra">
+ <?= $i['listenCount']-1;?> repeat<?= $s;?>
+ </div>
+
+  <?php
+ }
  
+ ?>
+<h3 class="meta"><?= artistNames($i['album']['artists']);?></h3>
+<?php
+ break;
  
- 
-?>
+ case 'book':
+ ?>
+<h2><?= $i['title'];?></h2>
+
 <?php
   
  endswitch; 
