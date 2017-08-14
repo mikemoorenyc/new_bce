@@ -46,7 +46,7 @@ function lazyImg($i) {
     'url' => $url
   )
 }
-
+include_once 'switch_media_info.php';
 foreach($items as $i {
   $imgClass = $i['type'];
   if(in_array(array('episode','show'), $imgClass)) {
@@ -77,6 +77,7 @@ foreach($items as $i {
       <div class="time">
         <?= human_time_diff($i['timestamp'] ).' ago' ;?>
       </div>
+      <?php switch_media_info($i);?>
       
       
     </div>
