@@ -25,10 +25,50 @@ function date_compare($a, $b)
 }
 usort($items, 'date_compare');
 $items = array_reverse($items);
+
+function lazyImg($i) {
+  if($i['type'] === 'movie') {
+      $title = $i['title'];
+      $url= 'https://api.themoviedb.org/3/movie/'.$i['ID'];
+  } else {
+   if($i['bingeCount'] < 2) {
+     $title = $i['title'];
+      $url= 'https://api.themoviedb.org/3/tv/'.$i['show']['ID'].'/season/'.$i['season'].'/episode/'.$i['number'];
+   } else {
+     $title = $i['show']['title'];
+      $url= 'https://api.themoviedb.org/3/tv/'.$i['show']['ID'];
+   }
+    
+  }
+  
+  return array(
+    'title' => $title,
+    'url' => $url
+  )
+}
+
 foreach($items as $i {
+  $imgClass = $i['type'];
+  if(in_array(array('episode','show'), $imgClass)) {
+    $imgClass = 'tv';
+  }
+  if(in_array(array('track','album'),$imgClass)) {
+    $imgClass = 'cd';
+  }
+  
   ?>
   <div class="media-item type-<?=$i['type'];?>">
-    <?php include 'media_item_'.$['type'].'.php'; ?>
+    <div class="media-image type-<?= $imgClass;?>">
+      <?php
+      if(in_array(array('movie','episode','show'),$i['type'])){
+        ?>
+        <img class="tmdb-post" data-type="type-<?= $i['type'];?>" data-url="<?= urlencode($lazy['url']);?>" alt="<?= $lazy['title'];?>" />
+        <?php
+      }else {
+      }
+  
+      ?>
+    </div>
   </div>
   <?php
  
