@@ -61,13 +61,24 @@ foreach($items as $i {
     <div class="media-image type-<?= $imgClass;?>">
       <?php
       if(in_array(array('movie','episode','show'),$i['type'])){
+        $lazy = lazyImg($i);
         ?>
         <img class="tmdb-post" data-type="type-<?= $i['type'];?>" data-url="<?= urlencode($lazy['url']);?>" alt="<?= $lazy['title'];?>" />
         <?php
       }else {
+        ?>
+        <img src="<?= $i['img'];?>" alt="<?= $i['title'];?>" />
+        <?php
       }
   
       ?>
+    </div>
+    <div class="info">
+      <div class="time">
+        <?= human_time_diff($i['timestamp'] ).' ago' ;?>
+      </div>
+      
+      
     </div>
   </div>
   <?php
