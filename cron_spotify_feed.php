@@ -129,6 +129,12 @@ foreach($items as $k => $i) {
     continue;
   }
   $track = $allTracks[$k];
+  
+  $artists = [];
+  foreach($track['album']['artists'] as $a) {
+   $artists[] = $a['name']; 
+  }
+  
   $tracksClean[] = array(
     'timestamp' => strtotime($i['played_at']),
     'ID' => $i['track']['id'],
@@ -137,7 +143,7 @@ foreach($items as $k => $i) {
     'album' => array(
       'ID' => $track['album']['id'],
       'title' => $track['album']['name'],
-      'artists' => $track['album']['artists'],
+      'artists' => $artists,
       'img' => $track['album']['images'][0]['url']
     )
   );
