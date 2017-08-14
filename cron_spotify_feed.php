@@ -133,6 +133,7 @@ foreach($items as $k => $i) {
     'timestamp' => strtotime($i['played_at']),
     'ID' => $i['track']['id'],
     'title' => $track['name'],
+    'img' =>  $track['album']['images'][0]['url']
     'album' => array(
       'ID' => $track['album']['id'],
       'title' => $track['album']['name'],
