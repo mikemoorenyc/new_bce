@@ -56,7 +56,7 @@ function tmdb_image_getter() {
  }
  if($type === 'episode') {
    if($movieData['still_path']) {
-     $response['url'] = 'https://image.tmdb.org/t/p/w300'.$movieData['still_path'];
+     $response['url'] = 'https://image.tmdb.org/t/p/w300'.$info['still_path'];
    }
  }
  if($response['url'] !== $backup_url) {
