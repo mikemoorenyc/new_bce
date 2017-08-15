@@ -50,7 +50,6 @@
       font-size: 1px;
       vertical-align: middle;
       img {
-        background-color:currentColor;
         box-sizing: content-box;
         object-fit: contain;
         object-position: center center;
@@ -73,6 +72,7 @@
           border-width: 1px;
           box-shadow: 1px 1px 0 currentColor;
           width: $pw;
+          height: ($pw * 1.5);
         }
       }
       &.type-tv {
@@ -83,6 +83,7 @@
         img {
           border-width: 1px;
           width: 75em;
+          height: (75em * (9/16));
         }
         &:before, &:after {
           display:block;
