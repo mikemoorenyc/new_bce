@@ -136,7 +136,7 @@ foreach($items as $k => $i ){
         security: securityCode,
         action: 'tmdbimage',
         type: img.getAttribute('data-type'),
-        url: img.getAttribute('data-url)
+        url: img.getAttribute('data-url')
       })
       .then(function (response) {
         var data = JSON.parse(response);
