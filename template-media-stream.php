@@ -8,7 +8,11 @@
 
 <?php include_once 'partial_landing_page_header.php';?>
 
-<div class="media-stream">
+<div class="media-stream copy reading-section">
+  <?= md_sc_parse($post->post_content);?>
+</div>
+
+<div class="media-stream container">
 <?php
 $feeds = ['goodreads','spotify','trakt'];
 $itemList = [];
