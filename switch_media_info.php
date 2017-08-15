@@ -19,6 +19,14 @@ function artistNames($i) {
  return $string;
 }
 
+function title_formatter($title,$classString ='') {
+ if(strlen($title) >= 50) {
+  $long_title = 'long-title';
+ }
+ return '<h2 class="$long_title $classString">$title</h2>';
+ 
+}
+
 function book_status_maker($i) {
  if(!empty($i['percent'])) {
   return 'Finished '.$i['percent'].'%';
@@ -35,15 +43,13 @@ function book_status_maker($i) {
 function switch_media_info($i) {
  switch($i['type']):
   case 'movie':
-  ?>
-  <h2><?= $i['title']; ?></h2>
-  <?php
+ echo title_formatter($i['title']);
+ 
   break;
 
   case 'episode':
+  echo title_formatter( $i['title'],'single');
   ?>
-
-  <h2 class="single">&ldquo;<?=$i['title'];?>&rdquo;</h2>
   <div class="show-title"><?= $i['show']['title']; ?></div>
   <?php
   break;
@@ -51,16 +57,15 @@ function switch_media_info($i) {
   case 'show':
   ?>
   <div class="extra">Watched <?= $i['bingeCount'];?> episodes</div>
-  <h2><?= $i['show']['title']; ?></h2>
   <?php
+  echo title_formatter($i['show']['title']);
   break;
 
   case 'album':
-
-  ?>
-<h2><?= $i['album']['title'];?></h2>
-<h3 class="byline"><?=  'by '.artistNames($i['album']['artists']);?></h3>
-  <?php
+   echo title_formatter($i['album']['title']);
+   ?>
+   <h3 class="byline"><?=  'by '.artistNames($i['album']['artists']);?></h3>
+   <?php
   break;
 
   case 'track':
@@ -78,13 +83,10 @@ function switch_media_info($i) {
 
   <?php
  }
-
- ?>
-<h2 class="single">&ldquo;<?= $i['title'];?>&rdquo;</h2>
-<h3 class="byline"><?=  'by '.artistNames($i['album']['artists']);?></h3>
-
-
-<?php
+   echo title_formatter($i['title'], 'single');
+   ?>
+   <h3 class="byline"><?=  'by '.artistNames($i['album']['artists']);?></h3>
+   <?php
  break;
 
  case 'book':
@@ -92,7 +94,7 @@ function switch_media_info($i) {
 
 
 <div class="extra"><?= book_status_maker($i);?></div>
-<h2><?= $i['title'];?></h2>
+<?= title_formatter($i['title']);?>
 <h3 class="byline"><?=  'by '.artistNames($i['authors']);?></h3>
 
 <?php
