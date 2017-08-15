@@ -97,7 +97,7 @@ foreach($items as $k => $i ){
         if(!$i['img']) {
           $lazy = lazyImg($i);
           ?>
-        <img class="tmdb-post" data-key="<?= $k;?>" data-type="type-<?= $i['type'];?>" data-url="<?= urlencode($lazy['url']);?>" alt="<?= $lazy['title'];?>" />
+        <img src="<?= $siteDir;?>/assets/imgs/blank.png" class="tmdb-post" data-key="<?= $k;?>" data-type="type-<?= $i['type'];?>" data-url="<?= urlencode($lazy['url']);?>" alt="<?= $lazy['title'];?>" />
         <?php
         } else {
           ?>
