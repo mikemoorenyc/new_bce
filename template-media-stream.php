@@ -53,7 +53,7 @@ function lazyImg($i) {
 }
 include_once 'switch_media_info.php';
 $time_marker = "";
-foreach($items as $i ){
+foreach($items as $k => $i ){
   $imgClass = $i['type'];
   if(in_array($imgClass,array('episode','show') )) {
     $imgClass = 'tv';
@@ -63,7 +63,7 @@ foreach($items as $i ){
   }
 
   ?>
-  <div class="media-item type-<?=$i['type'];?>">
+  <div  class="media-item type-<?=$i['type'];?>">
     <?php
 
       $time = human_time_diff($i['timestamp'] ).' ago';
@@ -92,7 +92,7 @@ foreach($items as $i ){
       if(in_array($i['type'],array('movie','episode','show'))){
         $lazy = lazyImg($i);
         ?>
-        <img class="tmdb-post" data-type="type-<?= $i['type'];?>" data-url="<?= urlencode($lazy['url']);?>" alt="<?= $lazy['title'];?>" />
+        <img class="tmdb-post" data-key="<?= $k;?>" data-type="type-<?= $i['type'];?>" data-url="<?= urlencode($lazy['url']);?>" alt="<?= $lazy['title'];?>" />
         <?php
       }else {
         ?>
@@ -123,6 +123,32 @@ foreach($items as $i ){
 
 
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+<script>
+  var lazyImgs = document.querySelectorAll('img.tmdb-post');
+  var securityCode = '<?= wp_create_nonce( "ajax-request-nonce") ;?>';
+  var ajaxURL = '<?= admin_url( 'admin-ajax.php' );?>';
+  lazyImgs.forEach( function(e, i){
+    var img = e;
+    setTimeout(function(){
+      axios.post(ajaxURL, {
+        security: securityCode,
+        action: 'tmdbimage',
+        type: img.getAttribute('data-type'),
+        url: img.getAttribute('data-url)
+      })
+      .then(function (response) {
+        var data = JSON.parse(response);
+        img.setAttribute(img, data.url);
+      })
+      
+      
+      
+    }, i*250);
+  });
+  
+  
+</script>
 
 <?php include_once 'footer.php';?>
