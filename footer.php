@@ -15,5 +15,12 @@
 <a href="https://www.google.com/chrome/browser/desktop/">Get a different one</a>
 </div>
 <![endif]-->
+
+<!-- [REMOVE FROM PRODUCTION] -->
+
+<div id="grid-lines" class="hide"></div>
+
+<!-- [END REMOVE FROM PRODUCTION] -->
+
   </body>
 </html>
