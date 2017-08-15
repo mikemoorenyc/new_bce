@@ -94,10 +94,18 @@ foreach($items as $k => $i ){
 
       <?php
       if(in_array($i['type'],array('movie','episode','show'))){
-        $lazy = lazyImg($i);
-        ?>
+        if(!$i['img']) {
+          $lazy = lazyImg($i);
+          ?>
         <img class="tmdb-post" data-key="<?= $k;?>" data-type="type-<?= $i['type'];?>" data-url="<?= urlencode($lazy['url']);?>" alt="<?= $lazy['title'];?>" />
         <?php
+        } else {
+          ?>
+        <img src="<?= $i['img'];?>" alt="<?= $i['title'];?>" />
+        <?php
+        }
+       
+        
       }else {
         ?>
         <img src="<?= $i['img'];?>" alt="<?= $i['title'];?>" />
