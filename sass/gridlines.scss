@@ -46,5 +46,22 @@
  bottom: 0;
  pointer-events: none;
  z-index: 9999;
+ background-position: center top;
+ background-size: 100% 1px;
+ background-repeat: repeat-y;
  @include grid-lines(2, 16px); 
+ @media(min-width: 402px) {
+  background-size: 402px 1px;  
+ }
+ @media(min-width: $dt-break) {
+   background-size: $dt-break 1px;
+   @include grid-lines(8, 16px);
+ }
+ @media($dt) {
+  background-size: 100% 1px;
+  @include grid-lines(12,24px); 
+ }
+ @media(min-width: $dt-max) {
+   background-size: $dt-max 1px;
+ }
 }
