@@ -4,6 +4,11 @@
  */
 ?>
 <?php include_once 'header.php';?>
+<?php $landing_post = $post;?>
+
+<?php include_once 'partial_landing_page_header.php';?>
+
+<div class="media-stream">
 <?php
 $feeds = ['goodreads','spotify','trakt'];
 $itemList = [];
@@ -31,36 +36,60 @@ function lazyImg($i) {
       $title = $i['title'];
       $url= 'https://api.themoviedb.org/3/movie/'.$i['ID'];
   } else {
-   if($i['bingeCount'] < 2) {
+   if($i['bingeCount'] < 2 && $i['ID'] !== null) {
      $title = $i['title'];
       $url= 'https://api.themoviedb.org/3/tv/'.$i['show']['ID'].'/season/'.$i['season'].'/episode/'.$i['number'];
    } else {
      $title = $i['show']['title'];
       $url= 'https://api.themoviedb.org/3/tv/'.$i['show']['ID'];
    }
-    
+
   }
-  
+
   return array(
     'title' => $title,
     'url' => $url
-  )
+  );
 }
 include_once 'switch_media_info.php';
-foreach($items as $i {
+$time_marker = "";
+foreach($items as $i ){
   $imgClass = $i['type'];
-  if(in_array(array('episode','show'), $imgClass)) {
+  if(in_array($imgClass,array('episode','show') )) {
     $imgClass = 'tv';
   }
-  if(in_array(array('track','album'),$imgClass)) {
+  if(in_array($imgClass,array('track','album'))) {
     $imgClass = 'cd';
   }
-  
+
   ?>
   <div class="media-item type-<?=$i['type'];?>">
-    <div class="media-image type-<?= $imgClass;?>">
+    <?php
+
+      $time = human_time_diff($i['timestamp'] ).' ago';
+      if(strpos($time, 'hours')!== false) {
+        $time = "Today";
+      }
+      if($time === '1 day ago') {
+        $time = "Yesterday";
+      }
+     ?>
+     <?php if($time !== $time_marker){
+      ?>
+      <div class="time font-sans">
+      <strong><?= $time ;?></strong>
+      </div>
       <?php
-      if(in_array(array('movie','episode','show'),$i['type'])){
+      $time_marker = $time;
+     }
+     ?>
+<div class="inner">
+
+    <div class="img-container">
+    <div class="media-image type-<?= $imgClass;?>">
+
+      <?php
+      if(in_array($i['type'],array('movie','episode','show'))){
         $lazy = lazyImg($i);
         ?>
         <img class="tmdb-post" data-type="type-<?= $i['type'];?>" data-url="<?= urlencode($lazy['url']);?>" alt="<?= $lazy['title'];?>" />
@@ -70,25 +99,25 @@ foreach($items as $i {
         <img src="<?= $i['img'];?>" alt="<?= $i['title'];?>" />
         <?php
       }
-  
+
       ?>
     </div>
+    </div>
     <div class="info">
-      <div class="time">
-        <?= human_time_diff($i['timestamp'] ).' ago' ;?>
-      </div>
+
       <?php switch_media_info($i);?>
-      
-      
+
+
     </div>
   </div>
+  </div>
   <?php
- 
+
 }
-die();
+
  ?>
 
-
+</div>
 
 
 

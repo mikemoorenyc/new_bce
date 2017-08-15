@@ -6,7 +6,7 @@ date_default_timezone_set('UTC');
 
 $current_time = date('c');
 
-$month_ago = date('c',strtotime('-1 month'));
+$month_ago = date('c',strtotime('-2 months'));
 
 require_once("../../../wp-load.php");
 require_once get_template_directory().'/partial_api_key_generator.php';
@@ -33,7 +33,7 @@ if( !isset($keys['trakt']) || !isset($keys['trakt_username'])) {
 
 $ch = curl_init();
 
-curl_setopt($ch, CURLOPT_URL, "https://api.trakt.tv/users/".$keys['trakt_username']."/history/?start_at=".urlencode($start_time).'&end_at='.urlencode($current_time));
+curl_setopt($ch, CURLOPT_URL, "https://api.trakt.tv/users/".$keys['trakt_username']."/history/?start_at=".urlencode($start_time).'&end_at='.urlencode($current_time).'&limit=50');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($ch, CURLOPT_HEADER, FALSE);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
@@ -91,7 +91,7 @@ foreach($items as $t) {
 
 $new_array = [];
 foreach($old_array as $i) {
-  if($i['timestamp'] >= strtotime('-1 month')) {
+  if($i['timestamp'] >= strtotime('-2 months')) {
     $new_array[] = $i;
   }
 }
@@ -100,8 +100,9 @@ $traktObject = array(
   'last_run' => $current_time,
   'items' => $new_array
 );
-var_dump($traktObject);
-
+echo(json_encode($traktObject));
+//var_dump($traktObject);
+//die();
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {
   mkdir($wp_base.'wp-content/feed_dump', 0777);
 }

@@ -3,7 +3,7 @@ date_default_timezone_set('UTC');
 
 $current_time = date('c');
 
-$month_ago = date('c',strtotime('-1 month'));
+$month_ago = date('c',strtotime('-2 months'));
 require_once("../../../wp-load.php");
 require_once get_template_directory().'/partial_api_key_generator.php';
 
@@ -129,17 +129,17 @@ foreach($items as $k => $i) {
     continue;
   }
   $track = $allTracks[$k];
-  
+
   $artists = [];
   foreach($track['album']['artists'] as $a) {
-   $artists[] = $a['name']; 
+   $artists[] = $a['name'];
   }
-  
+
   $tracksClean[] = array(
     'timestamp' => strtotime($i['played_at']),
     'ID' => $i['track']['id'],
     'title' => $track['name'],
-    'img' =>  $track['album']['images'][0]['url']
+    'img' =>  $track['album']['images'][0]['url'],
     'album' => array(
       'ID' => $track['album']['id'],
       'title' => $track['album']['name'],
@@ -156,7 +156,7 @@ foreach($tracksClean as $t) {
 
 $new_array = [];
 foreach($old_array as $i) {
-  if($i['timestamp'] >= strtotime('-1 month')) {
+  if($i['timestamp'] >= strtotime('-2 months')) {
     $new_array[] = $i;
   }
 }

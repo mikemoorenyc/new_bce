@@ -8,9 +8,16 @@ add_action('init', 'ajax_tmdb_init');
 function tmdb_image_getter() {
  check_ajax_referer( 'ajax-request-nonce', 'security' );
  require_once get_template_directory().'/partial_api_key_generator.php';
+ $backup = get_all_image_sizes(get_option( 'social_icon_image', '' ));
+ $backup_url = $backup['medium']['url'];
  $keys = api_key_generator();
  if(!isset($keys['tmdb'])) {
-  echo '[]';
+  echo json_encode(
+    array(
+      "status" => 'error',
+      "url" => $backup_url
+    )
+  );
   die();
  }
  $end = '?api_key='.$keys['tmdb'].'&language=en-US';
@@ -21,29 +28,42 @@ function tmdb_image_getter() {
  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
  curl_setopt($ch, CURLOPT_URL, $url.$end);
- $info = curl_exec($ch);  
+ $info = curl_exec($ch);
  if($info === false) {
    echo json_encode(
     array(
     "status" => 'error'
-    );
-   )
+    )
+   );
    die();
- } 
- curl_close($ch);
+ }
+
  $info = json_decode($info, true);
  $response = [];
- $response['status'] = 'success';
+ $response['status'] = 'error';
+ $response['url'] = $backup_url;
  if($type === 'movie') {
-   $response['url'] = 'https://image.tmdb.org/t/p/w185'.$info['poster_path'];
+
+   if($info['poster_path'] !== null) {
+     $response['url'] = 'https://image.tmdb.org/t/p/w185'.$info['poster_path'];
+   }
  }
  if($type === 'show') {
-   $response['url'] = 'https://image.tmdb.org/t/p/w300'.$movieData['backdrop_path'];
+   if($info['backdrop_path'] !== null) {
+     $response['url'] = 'https://image.tmdb.org/t/p/w300'.$info['backdrop_path'];
+   }
+
  }
  if($type === 'episode') {
-   $response['url'] = 'https://image.tmdb.org/t/p/w300'.$movieData['still_path'];
+   if($movieData['still_path']) {
+     $response['url'] = 'https://image.tmdb.org/t/p/w300'.$movieData['still_path'];
+   }
+ }
+ if($response['url'] !== $backup_url) {
+   $response['status'] = 'success';
  }
  echo json_encode($response);
+  curl_close($ch);
  die();
 }
 

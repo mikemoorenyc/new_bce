@@ -66,10 +66,13 @@ foreach($status->channel->item as $i) {
    $readStatus = $readStatus->read_status;
  }
 $authors = [];
-foreach($readStatus->authors->author as $a) {
- $authors[] = $a->name.''; 
-  
+
+foreach($readStatus->book->authors->author as $a) {
+ $authors[] = $a->name.'';
+
+
 }
+
 
  $update = array(
   'percent' => $readStatus->percent.'',
@@ -96,7 +99,7 @@ foreach($bookUpdates as $b) {
 }
 $new_array = [];
 foreach($old_array as $i) {
-  if($i['timestamp'] >= strtotime('-1 month')) {
+  if($i['timestamp'] >= strtotime('-2 months')) {
     $new_array[] = $i;
   }
 }
@@ -106,7 +109,8 @@ $traktObject = array(
   'items' => $new_array
 );
 
-var_dump($traktObject);
+//var_dump($traktObject);
+echo(json_encode($traktObject));
 
 
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {

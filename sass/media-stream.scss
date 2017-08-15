@@ -1,0 +1,119 @@
+.media-stream {
+  padding-bottom: 24px;
+  .media-item {
+    position: relative;
+    margin: 0 16px 16px 16px;
+    .inner {
+      border-width:1px;
+      box-shadow: 2px 2px currentColor;
+      padding: 8px;
+      display:flex;
+      align-items: center;
+    }
+    .info {
+      text-align: center;
+      padding-left: 8px;
+      line-height: 1.2;
+      flex-grow: 1;
+      width: calc(100% - 95px);
+      h2 {
+        font-size: 18px;
+        &.single {
+          font-weight: normal;
+          font-style:italic;
+        }
+      }
+      .extra {
+        font-family: $font-sans;
+        font-size:12px;
+        text-transform: uppercase;
+      }
+      .byline {
+        font-family: $font-serif;
+        font-weight: normal;
+        font-style: italic;
+      }
+    }
+    .img-container {
+      width: 95px;
+      height: 95px;
+      text-align: center;
+      line-height: 0;
+      position: relative;
+    }
+    .media-image {
+      $pw: 60em;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 1px;
+      vertical-align: middle;
+      img {
+        background-color:currentColor;
+        box-sizing: content-box;
+        object-fit: contain;
+        object-position: center center;
+      }
+      &.type-cd {
+        padding-left: 5em;
+        border-width:1px;
+        box-shadow: 1px 1px 0 currentColor;
+        img {
+          border-left-width: 1px;
+          width: 75em;
+          height: 75em;
+
+          max-width:none;
+        }
+      }
+      &.type-movie {
+
+        img {
+          border-width: 1px;
+          box-shadow: 1px 1px 0 currentColor;
+          width: $pw;
+          height: ($pw * 1.5);
+        }
+      }
+      &.type-tv {
+        border-width: 1px;
+        padding: 4em;
+        box-shadow: 1px 1px 0 currentColor;
+
+        img {
+          border-width: 1px;
+          width: 75em;
+          height: (75em * (9/16));
+        }
+        &:before, &:after {
+          display:block;
+          content:'';
+          position: absolute;
+        }
+        &:before {
+          width: 24em;
+          height: 24em;
+          border-width: 0 0 1px 1px;
+          left: 50%;
+          top: calc(-28em - 1px);
+          transform: translateX(-50%) rotate(-45deg) ;
+        }
+        &:after {
+          width: 32em;
+          height: 5em;
+          border-width:1px;
+          bottom: -12em;
+          left: 50%;
+          transform:translateX(-50%);
+          box-shadow: 1px 1px 0 currentColor;
+        }
+      }
+    }
+    .time {
+      text-transform: uppercase;
+      padding-top:8px;
+      margin-bottom:.5em;
+    }
+  }
+}
