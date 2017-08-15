@@ -20,8 +20,8 @@
                 $white calc(#{$center} - (#{$g-half} - 1px)),
                 $white calc(#{$center} + #{$g-half}),
                 $black calc(#{$center} + #{$g-half}),
-                $black calc(#{$center} + (#{$g-half} + 1px)),
-                $white calc(#{$center} + (#{$g-half} + 1px));
+                $black calc(#{$center} + ( #{$g-half} + 1px)),
+                $white calc(#{$center} + ( #{$g-half} + 1px));
     $stops: join($stops, $new-stops, comma);
 
   }
