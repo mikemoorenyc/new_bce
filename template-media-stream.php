@@ -140,7 +140,7 @@ foreach($items as $k => $i ){
       })
       .then(function (response) {
         var data = JSON.parse(response);
-        img.setAttribute(img, data.url);
+        img.setAttribute('src', data.url);
       });
       
       
