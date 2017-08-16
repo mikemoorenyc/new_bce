@@ -71,7 +71,7 @@ foreach($items as $k => $i ){
     <?php
 
       $time = human_time_diff($i['timestamp'] ).' ago';
-      if(strpos($time, 'hours')!== false) {
+      if(strpos($time, 'hours')!== false || strpos($time, 'min')!== false) {
         $time = "Today";
       }
       if($time === '1 day ago') {
@@ -97,15 +97,15 @@ foreach($items as $k => $i ){
         if(!$i['img']) {
           $lazy = lazyImg($i);
           ?>
-        <img src="<?= $siteDir;?>/assets/imgs/blank.png" class="tmdb-post" data-key="<?= $k;?>" data-type="type-<?= $i['type'];?>" data-url="<?= urlencode($lazy['url']);?>" alt="<?= $lazy['title'];?>" />
+        <img src="<?= $siteDir;?>/assets/imgs/blank.png" class="tmdb-post" data-key="<?= $k;?>" data-type="<?= $i['type'];?>" data-url="<?= urlencode($lazy['url']);?>" alt="<?= $lazy['title'];?>" />
         <?php
         } else {
           ?>
         <img src="<?= $i['img'];?>" alt="<?= $i['title'];?>" />
         <?php
         }
-       
-        
+
+
       }else {
         ?>
         <img src="<?= $i['img'];?>" alt="<?= $i['title'];?>" />
@@ -134,8 +134,8 @@ foreach($items as $k => $i ){
 
 
 
-
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--
+<script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script>
   var lazyImgs = document.querySelectorAll('img.tmdb-post');
@@ -144,23 +144,30 @@ foreach($items as $k => $i ){
   lazyImgs.forEach( function(e, i){
     var img = e;
     setTimeout(function(){
-      axios.post(ajaxURL, {
-        security: securityCode,
-        action: 'tmdbimage',
-        type: img.getAttribute('data-type'),
-        url: img.getAttribute('data-url')
-      })
-      .then(function (response) {
-        var data = JSON.parse(response);
-        img.setAttribute('src', data.url);
-      });
-      
-      
-      
+
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url:ajaxURL ,
+            data: {
+                'action': 'tmdbimage', //calls wp_ajax_nopriv_ajaxlogin
+                'type': img.getAttribute('data-type'),
+                'url': img.getAttribute('data-url'),
+                'security':  securityCode
+              },
+
+            success: function(data){
+
+                e.setAttribute('src',data.url);
+            }
+        });
+
+
+
     }, i*250);
   });
-  
-  
-</script>
 
+
+</script>
+-->
 <?php include_once 'footer.php';?>

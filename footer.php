@@ -18,7 +18,7 @@
 
 <!-- [REMOVE FROM PRODUCTION] -->
 
-<div id="grid-lines" class="hide"></div>
+<div id="grid-lines" style="display:none;"></div>
 
 <!-- [END REMOVE FROM PRODUCTION] -->
 

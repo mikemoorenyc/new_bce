@@ -1,40 +1,29 @@
 
 @mixin grid-lines($columns, $gutters) {
-  $white: transparent;
-  $black: red;
+  $white: rgba(red, 0);
+  $black: rgba(255,0,0,.25);
   $percent : percentage( (100 / $columns ) / 100);
 
   $stops: to right,
-    $black 0%,
-    $black 1px,
-    $white 1px,
-    $white ($gutters - 1px),
-    $black ($gutters - 1px),
-    $white $gutters;
+        $white 0%,
+        $white $gutters,
+        $black $gutters;
   $g-half : ($gutters / 2);
-  @for $i from 1 through ($columns - 1)  {
+  @for $i from 1 through ($columns - 1 )  {
       $center: ($percent * $i);
-    $new-stops: $white calc(#{$center} - #{$g-half}),
-                $black calc(#{$center} - #{$g-half}),
-                $black calc(#{$center} - (#{$g-half} - 1px)),
-                $white calc(#{$center} - (#{$g-half} - 1px)),
+    $new-stops: $black calc(#{$center} - #{$g-half}),
+                $white calc(#{$center} - #{$g-half}),
                 $white calc(#{$center} + #{$g-half}),
-                $black calc(#{$center} + #{$g-half}),
-                $black calc(#{$center} + ( #{$g-half} + 1px)),
-                $white calc(#{$center} + ( #{$g-half} + 1px));
+                $black calc(#{$center} + #{$g-half});
+
     $stops: join($stops, $new-stops, comma);
 
   }
-  $back-half: $white calc(100% - #{$gutters} ),
-    $black calc(100% - #{$gutters} ),
-    $white calc(100% - (#{$gutters} - 1px)),
-    
-    $white calc(100% - 1px),
-    $black calc(100% - 1px),
-    $black 100%;
+  $back-half: $black calc(100% - #{$gutters}),
+              $white calc(100% - #{$gutters});
   $stops: join($stops, $back-half, comma);
   background-image: linear-gradient($stops);
-  
+
 }
 
 #grid-lines {
@@ -49,9 +38,10 @@
  background-position: center top;
  background-size: 100% 1px;
  background-repeat: repeat-y;
- @include grid-lines(2, 16px); 
+ @include grid-lines(4, 16px);
  @media(min-width: 402px) {
-  background-size: 402px 1px;  
+  background-size: 402px 1px;
+
  }
  @media(min-width: $dt-break) {
    background-size: $dt-break 1px;
@@ -59,7 +49,7 @@
  }
  @media($dt) {
   background-size: 100% 1px;
-  @include grid-lines(12,24px); 
+  @include grid-lines(12,24px);
  }
  @media(min-width: $dt-max) {
    background-size: $dt-max 1px;

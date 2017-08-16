@@ -63,7 +63,7 @@ $items = array_map(function($i){
       'ID' => $i['movie']['ids']['tmdb'],
       'type' => 'movie',
       'timestamp' => strtotime($i['watched_at']),
-      'has_images' => false
+      'has_img' => false
     );
   }
   if($i['type'] === 'episode') {
@@ -78,7 +78,7 @@ $items = array_map(function($i){
         'title' => $i['show']['title'],
         'ID' => $i['show']['ids']['tmdb']
       ),
-      'has_images' => false
+      'has_img' => false
 
     );
   }

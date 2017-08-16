@@ -23,8 +23,11 @@ function title_formatter($title,$classString ='') {
  if(strlen($title) >= 50) {
   $long_title = 'long-title';
  }
- return '<h2 class="$long_title $classString">$title</h2>';
- 
+ if(strlen($title) < 18) {
+  $long_title = 'short-title';
+ }
+ return '<h2 class="'.$long_title.' '.$classString.'">'.$title.'</h2>';
+
 }
 
 function book_status_maker($i) {
@@ -44,7 +47,7 @@ function switch_media_info($i) {
  switch($i['type']):
   case 'movie':
  echo title_formatter($i['title']);
- 
+
   break;
 
   case 'episode':
@@ -69,7 +72,7 @@ function switch_media_info($i) {
   break;
 
   case 'track':
-  
+
   ?>
 <?php
  if($i['listenCount'] > 1) {

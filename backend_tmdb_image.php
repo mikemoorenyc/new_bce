@@ -1,12 +1,15 @@
 
 <?php
-function ajax_tmdb_init() {
-  add_action( 'wp_ajax_nopriv_tmdbimage', 'tmdb_image_getter' );
-}
-add_action('init', 'ajax_tmdb_init');
 
+function add_ajax_actions() {
+  add_action( 'wp_ajax_nopriv_tmdbimage', 'tmdb_image_getter' );
+  add_action( 'wp_ajax_tmdbimage', 'tmdb_image_getter' );
+}
+add_action('init', 'add_ajax_actions');
 function tmdb_image_getter() {
- check_ajax_referer( 'ajax-request-nonce', 'security' );
+
+check_ajax_referer( 'ajax-request-nonce', 'security' );
+
  require_once get_template_directory().'/partial_api_key_generator.php';
  $backup = get_all_image_sizes(get_option( 'social_icon_image', '' ));
  $backup_url = $backup['medium']['url'];
@@ -22,23 +25,26 @@ function tmdb_image_getter() {
  }
  $end = '?api_key='.$keys['tmdb'].'&language=en-US';
  $type = $_POST['type'];
+
  $url = $_POST['url'];
  $ch = curl_init();
  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
- curl_setopt($ch, CURLOPT_URL, $url.$end);
+ curl_setopt($ch, CURLOPT_URL, urldecode($url).$end);
  $info = curl_exec($ch);
  if($info === false) {
    echo json_encode(
     array(
-    "status" => 'error'
+    "status" => 'error_FALSE',
+    "URL" => $url.$end
     )
    );
    die();
  }
 
  $info = json_decode($info, true);
+
  $response = [];
  $response['status'] = 'error';
  $response['url'] = $backup_url;
@@ -55,7 +61,7 @@ function tmdb_image_getter() {
 
  }
  if($type === 'episode') {
-   if($movieData['still_path']) {
+   if($info['still_path']) {
      $response['url'] = 'https://image.tmdb.org/t/p/w300'.$info['still_path'];
    }
  }
