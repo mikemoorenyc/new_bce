@@ -26,10 +26,10 @@
         }
         &.single {
           &:before {
-            content: '"';
+            content: '\201C';
           }
           &:after {
-            content: '"';
+            content: '\201D';
           }
           font-weight: normal;
           font-style:italic;
