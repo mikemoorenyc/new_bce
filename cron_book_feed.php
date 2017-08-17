@@ -8,7 +8,14 @@ $month_ago = date('c',strtotime('-1 month'));
 require_once("../../../wp-load.php");
 require_once get_template_directory().'/partial_api_key_generator.php';
 
-function imageReplacer($o_URL,$isbn) {
+$wp_base = ABSPATH;
+
+$keys = api_key_generator();
+
+function imageReplacer($o_URL,$isbn, $type = 'ISBN') {
+  if(!$keys['amazon_api'] || !$keys['amazon_secret']){
+   return $o_URL; 
+  }
   $a_URL = 'http://images.amazon.com/images/P/'.$isbn.'.01.LZZZZ.jpg';
   if($size[0] > 50) {
     return $o_URL;
@@ -17,9 +24,7 @@ function imageReplacer($o_URL,$isbn) {
 
 }
 
-$wp_base = ABSPATH;
 
-$keys = api_key_generator();
 
 if( !isset($keys['goodreads']) || !isset($keys['goodreads_url'])) {
 
