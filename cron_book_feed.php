@@ -13,9 +13,11 @@ $wp_base = ABSPATH;
 $keys = api_key_generator();
 
 function imageReplacer($o_URL,$isbn, $type = 'ISBN') {
-  if(!$keys['amazon_api'] || !$keys['amazon_secret']){
+  if(!$keys['amazon_key'] || !$keys['amazon_secret']){
    return $o_URL; 
   }
+  $timestamp = date('c');
+  $request = 'http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId='.$keys['amazon_key'].'&Operation=ItemLookup&ItemId='.$isbn.'&ResponseGroup=Images&Timestamp='.$timestamp;
   $a_URL = 'http://images.amazon.com/images/P/'.$isbn.'.01.LZZZZ.jpg';
   if($size[0] > 50) {
     return $o_URL;
