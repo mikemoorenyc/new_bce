@@ -6,7 +6,7 @@
     .inner {
       border-width:1px;
       box-shadow: 2px 2px currentColor;
-      padding: 16px;
+      padding: 16px 0;
       display:flex;
       align-items: center;
     }
@@ -14,8 +14,8 @@
       text-align: center;
       padding-left: 16px;
       line-height: 1.2;
-      flex-grow: 1;
-      width: calc(100% - 95px);
+      width: calc((100% / 3) * 2);
+
       h2 {
         font-size: 18px;
         &.long-title {
@@ -51,11 +51,13 @@
       }
     }
     .img-container {
-      width: 95px;
+      width: calc(100% / 3);
       height: 95px;
       text-align: center;
       line-height: 0;
       position: relative;
+      flex-grow: 0;
+      background:blue;
     }
     .media-image {
       $pw: 60em;

@@ -8,6 +8,14 @@ $month_ago = date('c',strtotime('-1 month'));
 require_once("../../../wp-load.php");
 require_once get_template_directory().'/partial_api_key_generator.php';
 
+function imageReplacer($o_URL,$isbn) {
+  $a_URL = 'http://images.amazon.com/images/P/'.$isbn.'.01.LZZZZ.jpg';
+  if($size[0] > 50) {
+    return $o_URL;
+  }
+  return $a_URL;
+
+}
 
 $wp_base = ABSPATH;
 
@@ -72,12 +80,24 @@ foreach($readStatus->book->authors->author as $a) {
 
 
 }
+//IMAGE STUFF
 
+$imgURL = $readStatus->book->image_url.'';
+if(strpos($imgURL, 'nophoto') !== false) {
+  if(!empty($readStatus->book->isbn.'')) {
+    $imgURL = imageReplacer($imgURL, $readStatus->book->isbn.'');
+  } else {
+    if(!empty($readStatus->book->isbn13.'')) {
+      $imgURL = imageReplacer($imgURL, $readStatus->book->isbn13.'');
+    }
+  }
+
+}
 
  $update = array(
   'percent' => $readStatus->percent.'',
   'title' => $readStatus->book->title.'',
-   'img' => $readStatus->book->image_url.'',
+   'img' => $imgURL,
    'timestamp' => strtotime($readStatus->updated_at.''),
    'status' => $readStatus->status.'',
    'type' => 'book',
@@ -109,8 +129,9 @@ $traktObject = array(
   'items' => $new_array
 );
 
-//var_dump($traktObject);
-echo(json_encode($traktObject));
+var_dump($traktObject);
+
+
 
 
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {

@@ -18,7 +18,20 @@
 
 <!-- [REMOVE FROM PRODUCTION] -->
 
-<div id="grid-lines" style="display:none;"></div>
+<div id="grid-lines" style="display:none;">
+  <hr/>
+  <hr/>
+  <hr/>
+  <hr/>
+  <hr/>
+  <hr/>
+  <hr/>
+  <hr/>
+  <hr/>
+  <hr/>
+  <hr/>
+  <hr/>
+</div>
 
 <!-- [END REMOVE FROM PRODUCTION] -->
 
