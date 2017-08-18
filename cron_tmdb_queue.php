@@ -1,4 +1,9 @@
 <?php
+/*REMOVE IN DEV*/
+if( php_sapi_name() !== 'cli' ){die();}
+/*END REMOVE IN DEV*/
+
+
 require_once("../../../wp-load.php");
 require_once get_template_directory().'/partial_api_key_generator.php';
 $wp_base = ABSPATH;
