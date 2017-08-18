@@ -33,6 +33,7 @@ gulp.task('css', function(){
       cssnano()
   ]
   gulp.src('sass/main.scss')
+    .pipe(gulpif(argv.production, strip({start_comment: "/* REMOVE IN PRODUCTION*/", end_comment: "/* REMOVE IN PRODUCTION*/"})))
     .pipe(plumber())
     .pipe(sass())
     .pipe(gulpif(argv.production, postcss(plugins)))
@@ -53,8 +54,7 @@ gulp.task('js', function(){
 gulp.task('templates', function(){
   return gulp.src(['*.html', '*.php'])
     .pipe(gulpif(argv.production, strip({start_comment: "<!-- [REMOVE FROM PRODUCTION] -->", end_comment: "<!-- [END REMOVE FROM PRODUCTION] -->"})))
-    .pipe(gulpif(argv.production, strip({start_comment: "<!-- [REMOVE FROM PRODUCTION] -->", end_comment: "<!-- [END REMOVE FROM PRODUCTION] -->
-"})))
+    .pipe(gulpif(!argv.production, strip({start_comment: "/*REMOVE IN DEV*/", end_comment: "/*END REMOVE IN DEV*/"})))
     .pipe(gulpif(argv.production, htmlmin({collapseWhitespace: true, minifyJS: true, removeComments	:true})))
     .pipe(gulp.dest(buildDir));
 });
