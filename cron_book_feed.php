@@ -1,4 +1,8 @@
 <?php
+/*REMOVE IN DEV*/
+if( php_sapi_name() !== 'cli' ){die();}
+/*END REMOVE IN DEV*/
+
 
 date_default_timezone_set('UTC');
 
