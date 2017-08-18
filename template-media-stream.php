@@ -69,11 +69,16 @@ foreach($items as $k => $i ){
   ?>
   <div  class="media-item type-<?=$i['type'];?>">
     <?php
-
+    $today_num = date('j');
       $time = human_time_diff($i['timestamp'] ).' ago';
       if(strpos($time, 'hours')!== false || strpos($time, 'min')!== false) {
-        $time = "Today";
+        if($today_num !== date('j',$i['timestamp'])) {
+          $time = 'Yesterday';
+        } else {
+          $time = "Today";
+        }
       }
+
       if($time === '1 day ago') {
         $time = "Yesterday";
       }
