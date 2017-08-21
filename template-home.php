@@ -75,7 +75,7 @@ foreach($posts as $p) {
     </a>
 
     </h3>
-
+    <a class="ab-cover" href="<?= get_the_permalink($pid);?>" role="presentation" aria-hidden="true"></a>
   </li>
 
   <?php
