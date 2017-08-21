@@ -67,7 +67,8 @@ foreach($posts as $p) {
   $pid = $p->ID;
 
   ?>
-  <li class="post">
+  <li class="post full-click-area">
+    <a class="area" href="<?= get_the_permalink($pid);?>" role="presentation" aria-hidden="true"></a>
     <h3>
     <a href="<?= get_the_permalink($pid);?>">
       <span class="title mid-heading"> <?= get_the_title($pid);?></span>
@@ -75,7 +76,7 @@ foreach($posts as $p) {
     </a>
 
     </h3>
-    <a class="ab-cover" href="<?= get_the_permalink($pid);?>" role="presentation" aria-hidden="true"></a>
+    
   </li>
 
   <?php
