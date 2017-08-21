@@ -26,7 +26,8 @@ if(has_post_thumbnail()) {
 }
 ?>
 
-<article class="<?= $class_no_thumbnail;?> bl post clearfix">
+<article class="<?= $class_no_thumbnail;?> bl post  full-click-area clearfix">
+  <a class="area" href="<?= get_the_permalink();?>" role="presentation" aria-hidden="true"></a>
   <?php
   if(has_post_thumbnail()):?>
   <?php
@@ -44,7 +45,7 @@ if(has_post_thumbnail()) {
     <div class="excerpt type-smaller"><?= get_the_excerpt();?></div>
     <div class="date meta">Published on <?= get_the_date('M j Y'); ?></div>
   </a>
-  <a class="ab-cover" href="<?= get_the_permalink();?>" role="presentation" aria-hidden="true"></a>
+  
 </article>
 
 
