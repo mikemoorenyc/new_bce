@@ -35,6 +35,8 @@
     padding-right: 8px;
   }
   @media($dt) {
+    max-width: none;
+    width: calc(((100% / 12) * 7) - 12px);
     margin-left: 24px;
     padding: 24px 12px 24px 12px;
   }
@@ -99,4 +101,8 @@
       text-transform: uppercase;
     }
   }
+}
+#contact-form-container {
+  max-width: $dt-max;
+  margin: 0 auto;
 }

@@ -61,7 +61,7 @@ if($_SESSION['form_errors'] !== null) {
 }
 ?>
 
-
+<div id="contact-form-container">
 
 <form id="main-contact-form" class="contact-page contact-form font-sans clearfix" method="POST" action="<?= $siteDir.'/service_form_processor.php';?>">
   <input type="hidden" id="security_number" name="security_number" value="<?= $security_number;?>"/>
@@ -119,6 +119,7 @@ if($_SESSION['form_errors'] !== null) {
 
 <?php endif;?>
 </form>
+</div>
 <?php
 session_unset();
 session_destroy();

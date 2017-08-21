@@ -2,6 +2,9 @@
 /**
  * Template Name: Media Stream
  */
+
+ date_default_timezone_set('UTC');
+
 ?>
 <?php include_once 'header.php';?>
 <?php $landing_post = $post;?>
@@ -71,9 +74,12 @@ foreach($items as $k => $i ){
     <?php
     $today_num = date('j');
       $time = human_time_diff($i['timestamp'] ).' ago';
-      if(strpos($time, 'hours')!== false || strpos($time, 'min')!== false) {
+      if(strpos($time, 'hour')!== false || strpos($time, 'min')!== false) {
+    //    echo (date('j e G'));
+    //    echo (date('j e G',$i['timestamp']));
         if($today_num !== date('j',$i['timestamp'])) {
           $time = 'Yesterday';
+
         } else {
           $time = "Today";
         }

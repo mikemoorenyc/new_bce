@@ -3,8 +3,11 @@ $traktItems = [];
 $bingeCount = 0;
 $currentshowID = '';
 foreach($itemList['trakt']as $i) {
+
   if($i['type'] === 'movie') {
     $traktItems[] = $i;
+    $bingeCount = 0;
+    $currentshowID = '';
     continue;
   }
   if($currentshowID === $i['show']['ID']) {

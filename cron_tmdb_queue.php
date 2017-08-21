@@ -1,6 +1,6 @@
 <?php
 /*REMOVE IN DEV*/
-if( php_sapi_name() !== 'cli' ){die();}
+//if( php_sapi_name() !== 'cli' ){die();}
 /*END REMOVE IN DEV*/
 
 

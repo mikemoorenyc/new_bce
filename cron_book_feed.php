@@ -1,6 +1,6 @@
 <?php
 /*REMOVE IN DEV*/
-if( php_sapi_name() !== 'cli' ){die();}
+//if( php_sapi_name() !== 'cli' ){die();}
 /*END REMOVE IN DEV*/
 
 
@@ -17,7 +17,7 @@ $wp_base = ABSPATH;
 $keys = api_key_generator();
 
 function imageReplacer($o_URL,$isbn, $type = 'ISBN') {
-  
+
   $a_URL = 'http://images.amazon.com/images/P/'.$isbn.'.01.LZZZZ.jpg';
   if($size[0] > 50) {
     return $o_URL;

@@ -14,13 +14,24 @@
   }
   ul {
     font-family: $font-sans;
-    column-count: 2;
-    column-gap: 16px;
+
 
     li {
       margin-bottom:.5em;
       font-size: .85em;
       line-height: 1.2;
+      @media($dt) {
+        display:inline-block;
+        margin: 0;
+        &:after {
+          content: ', ';
+        }
+        &:last-child {
+          &:after {
+            content:'';
+          }
+        }
+      }
     }
   }
 }
