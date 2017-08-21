@@ -26,5 +26,5 @@
     </div>
   </a>
 </h3>
-<a href="<?= get_the_permalink($pid);?>" class="ab-cover" role="presentation"></a>
+<a href="<?= get_the_permalink($pid);?>" class="ab-cover" aria-hidden="true" role="presentation"></a>
 </article>
