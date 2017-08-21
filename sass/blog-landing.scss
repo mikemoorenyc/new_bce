@@ -9,6 +9,7 @@
     border-bottom-width:1px;
     border-style:dashed;
     margin-bottom: 16px;
+    position:relative;
     @media(min-width:$dt-break) {
       padding: 0 calc((100% - 800px) / 2);
     }
