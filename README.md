@@ -13,6 +13,7 @@ The wordpress theme to power the future becreativeeveryday.com
 - Implement history
 - implement svg drawing of myself
 - ~~Implement media flow~~
+  - Implement TVDB fallback
   - ~~Spotify API~~
   - ~~Trakt.tv API~~
   - ~~Goodreads API (see if it works on production server)~~
