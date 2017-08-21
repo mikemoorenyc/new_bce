@@ -44,7 +44,7 @@ if(has_post_thumbnail()) {
     <div class="excerpt type-smaller"><?= get_the_excerpt();?></div>
     <div class="date meta">Published on <?= get_the_date('M j Y'); ?></div>
   </a>
-  <a class="ab-cover" href="<?= get_the_permalink($pid);?>" role="presentation" aria-hidden="true"></a>
+  <a class="ab-cover" href="<?= get_the_permalink();?>" role="presentation" aria-hidden="true"></a>
 </article>
 
 
