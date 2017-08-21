@@ -1,8 +1,8 @@
 
-<article class="project-card above-line">
+<article class="project-card above-line full-click-area">
+  <a href="<?= get_the_permalink($pid);?>" class="area" aria-hidden="true" role="presentation"></a>
   <!-- IF YOU DO WANT AN IMAGE -->
   <?php if($hide_image !== true):?>
-
   <a href="<?=get_the_permalink($pid);?>" class="poster-image-container preload-image-container <?= $post_type;?>">
     <?php
     include 'partial_lazy_load_img.php';
@@ -26,5 +26,5 @@
     </div>
   </a>
 </h3>
-<a href="<?= get_the_permalink($pid);?>" class="ab-cover" aria-hidden="true" role="presentation"></a>
+
 </article>
