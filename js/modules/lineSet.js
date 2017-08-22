@@ -13,5 +13,7 @@ function lineSet() {
 	
 	theLine.style.width = hypo+'px';
 	theLine.style.transform = 'rotate(-'+degree+'deg)'
-
+	
+	var styleCookie = theLine.getAttribute('style');
+	Cookies.set('liner_styles', styleCookie);
 }
