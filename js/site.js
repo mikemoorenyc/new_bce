@@ -9,9 +9,12 @@ function siteInit() {
 
   document.getElementById("color-mode-switcher").style.visibility = 'visible';
   if(App.pointerEvents) {
-    let line = document.createElement('div');
-    line.setAttribute('id', 'liner');
-    document.querySelector('body').appendChild(line);
+    if(!document.getElementById('liner')) {
+      let line = document.createElement('div');
+      line.setAttribute('id', 'liner');
+      document.querySelector('body').appendChild(line);  
+    }
+    
     lineSet();
     window.addEventListener("resize", lineSet);
   }
