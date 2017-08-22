@@ -28,7 +28,7 @@ function imageReplacer($o_URL,$isbn, $type = 'ISBN') {
 
 
 
-if( !isset($keys['goodreads']) || !isset($keys['goodreads_url'])) {
+if( !isset($keys['goodreads']) || !isset($keys['goodreads_uid'])) {
 
   die();
 }
@@ -43,7 +43,7 @@ if(file_exists($wp_base.'wp-content/feed_dump/goodreads.json')) {
   $start_time = $month_ago;
 }
 
-$status = new SimpleXMLElement(file_get_contents($keys['goodreads_url']));
+$status = new SimpleXMLElement(file_get_contents('https://www.goodreads.com/user/updates_rss/'.$keys['goodreads_uid']));
 
 $bookUpdates = [];
 
@@ -100,7 +100,18 @@ if(strpos($imgURL, 'nophoto') !== false) {
   }
 
 }
+$rating = null;
+$book_id = $readStatus->book->id.'';
+curl_setopt($ch, CURLOPT_URL, 'https://www.goodreads.com/review/show_by_user_and_book.xml?book_id='.($book_id).'&key='.$keys['goodreads'].'&user_id='.$keys['goodreads_uid']);
+$rating_XML = new SimpleXMLElement(curl_exec($ch)); 
 
+$r_num = intval($rating_XML->review->rating.'');
+if($r_num > 0 ) {
+ $rating = $r_num; 
+}
+ 
+  
+  
  $update = array(
   'percent' => $readStatus->percent.'',
   'title' => $readStatus->book->title.'',
@@ -108,7 +119,8 @@ if(strpos($imgURL, 'nophoto') !== false) {
    'timestamp' => strtotime($readStatus->updated_at.''),
    'status' => $readStatus->status.'',
    'type' => 'book',
-   'authors' => $authors
+   'authors' => $authors,
+   'rating' => $rating
  );
 
  if(strtotime($readStatus->updated_at.'') < strtotime($start_time)) {
