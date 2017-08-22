@@ -23,3 +23,4 @@ The wordpress theme to power the future becreativeeveryday.com
 - implement ie9 disclaimer hiding logic
 - Implement Media as post type
 - fix blog on homepage
+- movie ratings
