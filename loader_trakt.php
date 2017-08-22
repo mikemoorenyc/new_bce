@@ -13,7 +13,12 @@ foreach($itemList['trakt']as $i) {
   if($currentshowID === $i['show']['ID']) {
     $traktItems[count($traktItems) - 1]['bingeCount']++;
     $traktItems[count($traktItems) - 1]['type'] = 'show';
-    $traktItems[count($traktItems)-1]['img'] = $traktItems[count($traktItems)-1]['show']['img'];
+    if(!$traktItems[count($traktItems)-1]['show']['img']) {
+      $traktItems[count($traktItems)-1]['img'] = $traktItems[count($traktItems)-1]['show']['tvdb_fallback'];
+    } else {
+      $traktItems[count($traktItems)-1]['img'] = $traktItems[count($traktItems)-1]['show']['img'];
+    }
+
     continue;
   }
   $traktItems[] = $i;

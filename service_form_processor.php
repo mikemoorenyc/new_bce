@@ -73,6 +73,6 @@ if($_GET['format'] === 'json') {
  echo $doc->getElementById('main-contact-form');
  die();
 }
-wp_redirect( $_SERVER['HTTP_REFERER'] ) ;
+wp_redirect( $_SERVER['HTTP_REFERER'].'#main-contact-form' ) ;
 die();
 ?>

@@ -44,10 +44,37 @@
     margin-right: 0;
     margin-left: calc((100% - #{$dt-max - 48px}) / 2);
   }
+  h2.error-msg {
+    padding: 8px;
+    margin-bottom: 8px;
+    border-width:1px;
+    background:currentColor;
+    border-width:1px;
+    border-color:white;
+    box-shadow:1px 1px 0 currentColor;
+    @media(min-width:$dt-break) {
+      margin: 0 8px 16px 8px;
+      padding: 16px;
+    }
+    span {
+      color:$white;
+    }
+  }
   .form-row {
     position: relative;
     padding-bottom: 20px;
     margin-bottom: 8px;
+    .error-bug {
+      display: block;
+      position: relative;
+      svg {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+      }
+    }
     &:last-child {
       margin-bottom:0;
     }
@@ -82,6 +109,9 @@
       border-width: 2px;
       border-style:dashed;
       padding: 8px;
+      &.error {
+        padding-left: 32px;
+      }
       &:focus {
         border-style:solid;
         box-shadow: 2px 2px 0 currentColor;

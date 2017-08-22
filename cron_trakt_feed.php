@@ -77,9 +77,11 @@ $items = array_map(function($i){
       'timestamp' => strtotime($i['watched_at']),
       'season' => $i['episode']['season'],
       'number' => $i['episode']['number'],
+      'tvdb_ID' => $i['episode']['ids']['tvdb'],
       'show' => array(
         'title' => $i['show']['title'],
-        'ID' => $i['show']['ids']['tmdb']
+        'ID' => $i['show']['ids']['tmdb'],
+        'tvdb_ID' => $i['show']['ids']['tvdb']
       ),
       'has_img' => false
 
