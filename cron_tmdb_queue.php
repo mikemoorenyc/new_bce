@@ -86,7 +86,7 @@ foreach($need_img as $k => $n) {
    $u = array(
     'type' => 'show',
     'url' => 'https://api.themoviedb.org/3/tv/'.$n['show']['ID'],
-    'tvbd_ID' => $n['show']['tvdb_ID']
+    'tvdb_ID' => $n['show']['tvdb_ID']
    );
  }
 
@@ -107,6 +107,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 foreach($get_array as $k => $g) {
+
   curl_setopt($ch, CURLOPT_URL, $g['url'].$end);
   $output = curl_exec($ch);
   if($output === false || json_decode($output,true)['status_code'] === 34) {

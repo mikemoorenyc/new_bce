@@ -22,4 +22,4 @@ The wordpress theme to power the future becreativeeveryday.com
   - ~~Interface~~
 - implement ie9 disclaimer hiding logic
 - Implement Media as post type
-- refactor TRAKT to use tvdb fallback 
+- fix blog on homepage
