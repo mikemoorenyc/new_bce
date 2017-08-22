@@ -16,7 +16,7 @@ function siteInit() {
     }
     
     lineSet();
-    window.addEventListener("resize", lineSet);
+    window.addEventListener("resize", _.debounce(lineSet,400));
   }
   
 
