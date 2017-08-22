@@ -5,7 +5,7 @@ The wordpress theme to power the future becreativeeveryday.com
   ~~- Blog listings~~
 - Make hover states for blog listings
 - ~~Do About me page~~
-- Do Contact page
+- ~~Do Contact page~~
 - Implement colorchange
 - Implement line
 - Implement ajax form
