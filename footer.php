@@ -35,5 +35,10 @@
 
 <!-- [END REMOVE FROM PRODUCTION] -->
 
+<?php if($_COOKIE["liner_styles"];):?>
+  <div id="liner" style="<?= $_COOKIE["liner_styles"]; ?>"></div>
+<?php endif; ?>
+
+
   </body>
 </html>
