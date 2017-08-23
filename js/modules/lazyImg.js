@@ -2,31 +2,31 @@ function lazyImg() {
    if(window.IntersectionObserver) {
       createIntersections();
    } else {
-      
+
       document.querySelectorAll('img.lazy-img').forEach(function(e,i){
-         swapSrc(e);  
+         swapSrc(e);
       });
-      
+
    }
-   
+
    function createIntersections() {
       let observer = new IntersectionObserver(onChange);
-      
+
       function onChange(changes) {
        changes.forEach(change => {
          swapSrc(change.target);
-     
+
 
         observer.unobserve(change.target);
-       }
+      })
       }
       const imgs = [ ...document.querySelectorAll('img.lazy-img') ];
       imgs.forEach(img => observer.observe(img));
    }
-   
+
    function swapSrc(i) {
       let img = i;
-      let src = 
+    
       let loadEvent = function() {
          img.removeEventListener('load',loadEvent);
          img.classList.remove('preload-image');
@@ -38,7 +38,7 @@ function lazyImg() {
       img.setAttribute('src',src);
       img.removeAttribute('data-src');
       img.removeAttribute('data-srcset');
-      
+
    }
-   
+
 }

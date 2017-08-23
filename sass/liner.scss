@@ -1,0 +1,16 @@
+#liner {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-top-width:1px;
+  transform: rotate(-30deg);
+  transform-origin: bottom left;
+  pointer-events: none;
+  height:1px;
+  z-index:1;
+
+  body[data-colormode="bw"] & {
+    display:none !important;
+  }
+}

@@ -3,7 +3,7 @@
  * Template Name: Media Stream
  */
 
- date_default_timezone_set('UTC');
+ date_default_timezone_set('America/New_York');
 
 ?>
 <?php include_once 'header.php';?>
@@ -70,7 +70,7 @@ foreach($items as $k => $i ){
   }
 
   ?>
-  <div  class="media-item type-<?=$i['type'];?>">
+  <div  class="media-item type-<?=$i['type'];?> above-line">
     <?php
     $today_num = date('j');
       $time = human_time_diff($i['timestamp'] ).' ago';

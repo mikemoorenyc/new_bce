@@ -1,10 +1,11 @@
 function siteInit() {
-  App.pointerEvents = pointerCheck();
   var pointerCheck = function() {
-    let style = createElement('a').style;
+    let style = document.createElement('a').style;
     style.cssText = 'pointer-events:auto';
     return style.pointerEvents === 'auto';
   }
+  App.pointerEvents = pointerCheck();
+
   colorSet();
 
   document.getElementById("color-mode-switcher").style.visibility = 'visible';
@@ -12,18 +13,18 @@ function siteInit() {
     if(!document.getElementById('liner')) {
       let line = document.createElement('div');
       line.setAttribute('id', 'liner');
-      document.querySelector('body').appendChild(line);  
+      document.querySelector('body').appendChild(line);
     }
-    
+
     lineSet();
     window.addEventListener("resize", _.debounce(lineSet,400));
   }
-  
 
 
 
 
-  
+
+
   /*
   document.getElementById('nav-opener').addEventListener('click',function(e){
     e.preventDefault();

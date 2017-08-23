@@ -39,6 +39,6 @@
   <div id="liner" style="<?= $_COOKIE["liner_styles"]; ?>"></div>
 <?php endif; ?>
 
-
+<script defer  src="<?= $siteDir;?>/js/main.js?v=<?= time();?>"></script>
   </body>
 </html>
