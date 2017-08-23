@@ -25,19 +25,24 @@ function lazyImg() {
    }
 
    function swapSrc(i) {
-      let img = i;
+      
+      let parent = i.parentNode,
+          full = document.createElement('img');
+          full.style.visibility = 'hidden';
     
-      let loadEvent = function() {
-         img.removeEventListener('load',loadEvent);
-         img.classList.remove('preload-image');
+      function loadEvent() {
+         full.removeEventListener('load',loadEvent);
+         full.setAttribute('class',i.getAttribute('class'));
+         full.classList.remove('preload-image');
+         parent.removeChild(i);
+         full.style.visibility = 'visible';
       }
-      img.addEventListener('load',loadEvent);
-      let src = img.getAttribute('data-src'),
-          srcset = img.getAttribute('data-srcset');
-      img.setAttribute('srcset',srcset);
-      img.setAttribute('src',src);
-      img.removeAttribute('data-src');
-      img.removeAttribute('data-srcset');
+      full.addEventListener('load',loadEvent);
+      let  src = i.getAttribute('data-src'),
+           srcset = i.getAttribute('data-srcset');
+     full.setAttribute('srcset',srcset);
+     full.setAttribute('src',src);  
+     parent.appendChild(full);
 
    }
 
