@@ -33,6 +33,9 @@ function siteInit() {
   */
 
   pageLoader();
+  if(document.getElementById('ie9_mask')) {
+    ieIdc();
+  }
 }
 
 
