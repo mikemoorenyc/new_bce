@@ -1,20 +1,41 @@
-### The wordpress theme to power the future becreativeeveryday.com
+## MVP
 - Make hover states for blog listings
 - fix blog on homepage
 - make whole logo clickable
+- fix form button hover state
 - check "tagged as" page
 - Implement "color switch"
 - implement ie9 disclaimer hiding logic
+- implement svg drawing of myself
+
+## POST LAUNCH
+- AJAXIFY
+  - Implement History / Page Trans
+  - Implement ajax form
+  - Implement archive filtering
+- Implement Media as post type
+  - create post type
+  - create category type
+  - update book cron
+  - update trakt cron
+  - update spotify cron
+  - update spotify cron
+  - update runtime
+    - loaders
+    - template
+- movie ratings
+- book ratings
+
+
+
+
 - ~~Do archive page~~
 - ~~Make covers for all clickable areas~~
 - ~~- Blog listings~~
 - ~~Do About me page~~
 - ~~Do Contact page~~
 - ~~Implement line~~
-- Implement ajax form
-- Implement archive filtering
-- Implement history
-- implement svg drawing of myself
+
 - ~~Implement media flow~~
   - ~~Implement TVDB fallback~~
   - ~~Spotify API~~
@@ -25,6 +46,3 @@
   - ~~Interface~~
 - ~~add production cache-breaker string replace~~
 - ~~add production CLI only string replace~~
-- Implement Media as post type
-- movie ratings
-- book ratings
