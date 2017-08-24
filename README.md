@@ -1,12 +1,15 @@
-The wordpress theme to power the future becreativeeveryday.com
-
+### The wordpress theme to power the future becreativeeveryday.com
+- Make hover states for blog listings
+- fix blog on homepage
+- make whole logo clickable
+- check "tagged as" page
+- Implement "color switch"
+- implement ie9 disclaimer hiding logic
 - ~~Do archive page~~
 - ~~Make covers for all clickable areas~~
-  ~~- Blog listings~~
-- Make hover states for blog listings
+- ~~- Blog listings~~
 - ~~Do About me page~~
 - ~~Do Contact page~~
-- Implement colorchange
 - ~~Implement line~~
 - Implement ajax form
 - Implement archive filtering
@@ -20,10 +23,8 @@ The wordpress theme to power the future becreativeeveryday.com
   - ~~Set it up so I'm only showing the last month's worth of stuff~~
   - ~~BINGING ETC will be determined at runtime~~
   - ~~Interface~~
-- implement ie9 disclaimer hiding logic
 - ~~add production cache-breaker string replace~~
 - ~~add production CLI only string replace~~
 - Implement Media as post type
-- fix blog on homepage
 - movie ratings
 - book ratings
