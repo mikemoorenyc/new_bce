@@ -12,7 +12,7 @@ function lazyImg() {
 
    function createIntersections() {
       let observer = new IntersectionObserver(onChange);
-
+      let loaded = 0;
       function onChange(changes) {
 
        changes.forEach(change => {
@@ -20,13 +20,17 @@ function lazyImg() {
 
           swapSrc(change.target);
 
-
+            
          observer.unobserve(change.target);
+           loaded++;
+           if(loaded == imgs.length) {
+            observer.disconnect();  
+           }
         }
        })
       }
       const imgs = [ ...document.querySelectorAll('img.preload-image') ];
-
+      
       imgs.forEach(img => observer.observe(img));
    }
 
