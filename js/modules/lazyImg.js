@@ -1,5 +1,6 @@
 function lazyImg() {
    if(window.IntersectionObserver) {
+
       createIntersections();
    } else {
 
@@ -13,23 +14,28 @@ function lazyImg() {
       let observer = new IntersectionObserver(onChange);
 
       function onChange(changes) {
+
        changes.forEach(change => {
-         swapSrc(change.target);
+        if(change.isIntersecting) {
+
+          swapSrc(change.target);
 
 
-        observer.unobserve(change.target);
-      })
+         observer.unobserve(change.target);
+        }
+       })
       }
-      const imgs = [ ...document.querySelectorAll('img.lazy-img') ];
+      const imgs = [ ...document.querySelectorAll('img.preload-image') ];
+
       imgs.forEach(img => observer.observe(img));
    }
 
    function swapSrc(i) {
-      
+
       let parent = i.parentNode,
           full = document.createElement('img');
           full.style.visibility = 'hidden';
-    
+
       function loadEvent() {
          full.removeEventListener('load',loadEvent);
          full.setAttribute('class',i.getAttribute('class'));
@@ -40,8 +46,10 @@ function lazyImg() {
       full.addEventListener('load',loadEvent);
       let  src = i.getAttribute('data-src'),
            srcset = i.getAttribute('data-srcset');
-     full.setAttribute('srcset',srcset);
-     full.setAttribute('src',src);  
+     if(srcset) {
+       full.setAttribute('srcset',srcset);
+     }
+     full.setAttribute('src',src);
      parent.appendChild(full);
 
    }

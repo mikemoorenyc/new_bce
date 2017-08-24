@@ -1,4 +1,7 @@
 <?php
+
+$cacheBreaker = time();
+
 global $homeURL;
 $homeURL = esc_url( home_url( ) );
 
@@ -47,7 +50,7 @@ if(get_post_thumbnail_id()) {
 <html lang="en" data-current="<?= $slug;?>" class="slug-<?= $slug;?>">
 <head>
 
-<link rel='stylesheet' href="<?= $siteDir;?>/css/main.css?v=<?= time();?>" type="text/css" />
+<link rel='stylesheet' href="<?= $siteDir;?>/css/main.css?v=<?= $cacheBreaker;?>" type="text/css" />
 
 
 <?php

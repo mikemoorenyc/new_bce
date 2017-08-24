@@ -515,10 +515,10 @@ class Parsedown
                 ),
             );
 
-            if($name === 'ol') 
+            if($name === 'ol')
             {
                 $listStart = stristr($matches[0], '.', true);
-                
+
                 if($listStart !== '1')
                 {
                     $Block['element']['attributes'] = array('start' => $listStart);
@@ -718,7 +718,7 @@ class Parsedown
                     return;
                 }
 
-                if (preg_match('/<\/'.$matches[1].'>[ ]*$/i', $remainder))
+                if (preg_match("/<\/".$matches[1].">[ ]*$/i", $remainder))
                 {
                     $Block['closed'] = true;
                 }
@@ -1546,3 +1546,4 @@ class Parsedown
                    'wbr', 'time',
     );
 }
+?>

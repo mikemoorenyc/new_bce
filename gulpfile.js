@@ -9,7 +9,7 @@ var argv = require('yargs').argv;
 var svgo = require('gulp-svgo');
 var strip = require('gulp-strip-code');
 
-var htmlmin = require('gulp-htmlmin');
+var htmlmin = require('gulp-cleanhtml');
 
 var sass = require('gulp-sass'),
     postcss = require('gulp-postcss'),
@@ -53,9 +53,11 @@ gulp.task('js', function(){
 //Template Move
 gulp.task('templates', function(){
   return gulp.src(['*.html', '*.php'])
-    .pipe(gulpif(argv.production, strip({start_comment: "<!-- [REMOVE FROM PRODUCTION] -->", end_comment: "<!-- [END REMOVE FROM PRODUCTION] -->"})))
-    .pipe(gulpif(!argv.production, strip({start_comment: "/*REMOVE IN DEV*/", end_comment: "/*END REMOVE IN DEV*/"})))
-    .pipe(gulpif(argv.production, htmlmin({collapseWhitespace: true, minifyJS: true, removeComments	:true})))
+    .pipe(gulpif(!argv.production, strip({start_comment: "REMOVE IN DEV", end_comment: "END REMOVE IN DEV"})))
+    .pipe(gulpif(argv.production, strip({start_comment: "REMOVE FROM PRODUCTION", end_comment: "END REMOVE FROM PRODUCTION"})))
+    .pipe(gulpif(argv.production, replace('$cacheBreaker = time();','$cacheBreaker = 1.1;')))
+    .pipe(gulpif(argv.production, htmlmin()))
+
     .pipe(gulp.dest(buildDir));
 });
 //Asset Move

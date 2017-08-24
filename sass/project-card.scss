@@ -5,7 +5,7 @@
   border-width: 2px;
   box-shadow: 2px 2px 0px currentColor;
   &:hover {
-    box-shadow: 4px 4px 0 currentColor;
+  //  box-shadow: 4px 4px 0 currentColor;
     @include bg-stripe();
   }
   .poster-image-container {

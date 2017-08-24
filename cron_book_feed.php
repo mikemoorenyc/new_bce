@@ -1,6 +1,6 @@
 <?php
 /*REMOVE IN DEV*/
-//if( php_sapi_name() !== 'cli' ){die();}
+if( php_sapi_name() !== 'cli' ){die();}
 /*END REMOVE IN DEV*/
 
 
@@ -103,15 +103,15 @@ if(strpos($imgURL, 'nophoto') !== false) {
 $rating = null;
 $book_id = $readStatus->book->id.'';
 curl_setopt($ch, CURLOPT_URL, 'https://www.goodreads.com/review/show_by_user_and_book.xml?book_id='.($book_id).'&key='.$keys['goodreads'].'&user_id='.$keys['goodreads_uid']);
-$rating_XML = new SimpleXMLElement(curl_exec($ch)); 
+$rating_XML = new SimpleXMLElement(curl_exec($ch));
 
 $r_num = intval($rating_XML->review->rating.'');
 if($r_num > 0 ) {
- $rating = $r_num; 
+ $rating = $r_num;
 }
- 
-  
-  
+
+
+
  $update = array(
   'percent' => $readStatus->percent.'',
   'title' => $readStatus->book->title.'',

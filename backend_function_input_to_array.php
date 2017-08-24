@@ -19,3 +19,4 @@ function input_to_array($string) {
  }
  return $newArray;
 }
+?>

@@ -15,3 +15,4 @@ function pagelink_shortcode( $atts, $content = null ) {
 	return '<a href="'.$url.'">'.$text.'</a>';
 }
 add_shortcode( 'pagelink', 'pagelink_shortcode' );
+?>

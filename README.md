@@ -7,7 +7,7 @@ The wordpress theme to power the future becreativeeveryday.com
 - ~~Do About me page~~
 - ~~Do Contact page~~
 - Implement colorchange
-- Implement line
+- ~~Implement line~~
 - Implement ajax form
 - Implement archive filtering
 - Implement history
@@ -21,6 +21,8 @@ The wordpress theme to power the future becreativeeveryday.com
   - ~~BINGING ETC will be determined at runtime~~
   - ~~Interface~~
 - implement ie9 disclaimer hiding logic
+- ~~add production cache-breaker string replace~~
+- ~~add production CLI only string replace~~
 - Implement Media as post type
 - fix blog on homepage
 - movie ratings

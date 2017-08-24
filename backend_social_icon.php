@@ -19,9 +19,10 @@ function social_icon_selector() {
     $id = $value;
   }
   ?>
-  <div id="map-thumb" style="margin-bottom: 10px;"> </div>
-    <input type="hidden" id="social_icon_image" name="social_icon_image" value="<?php echo $value;?>" class="regular-text"/ >
-    <button id="social-icon-opener" class="button"><?php echo $verb;?> Add Social Icon</button>
+  <div id="map-thumb" style="margin-bottom: 10px;">
+  </div>
+    <input type="hidden" id="social_icon_image" name="social_icon_image" value=" <?= $value;?> " class="regular-text"/ >
+    <button id="social-icon-opener" class="button"> <?= $verb;?> Add Social Icon</button>
 
 <style>
   #map-thumb {

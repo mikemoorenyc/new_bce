@@ -74,3 +74,4 @@ function postimage_shortcode( $atts, $content = null ) {
   return ob_get_clean();
 }
 add_shortcode( 'postimage', 'postimage_shortcode' );
+?>

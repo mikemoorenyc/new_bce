@@ -1,4 +1,3 @@
-
 <?php
 
 function add_ajax_actions() {

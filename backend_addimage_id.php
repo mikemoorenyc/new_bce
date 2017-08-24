@@ -7,8 +7,6 @@ function add_insert_image_id_button() {
 add_action('media_buttons', 'add_insert_image_id_button');
 
 
- ?>
- <?php
  add_action('admin_footer-post.php', 'remove_media_script');
  add_action('admin_footer-post-new.php', 'remove_media_script');
  function remove_media_script() {

@@ -16,7 +16,7 @@
 </div>
 <![endif]-->
 
-<!-- [REMOVE FROM PRODUCTION] -->
+<!-- [/*REMOVE FROM PRODUCTION*/] -->
 
 <div id="grid-lines" style="display:none;">
   <hr/>
@@ -33,12 +33,12 @@
   <hr/>
 </div>
 
-<!-- [END REMOVE FROM PRODUCTION] -->
+<!-- [/*END REMOVE FROM PRODUCTION*/] -->
 
 <?php if($_COOKIE["liner_styles"]):?>
   <div id="liner" style="<?= $_COOKIE["liner_styles"]; ?>"></div>
 <?php endif; ?>
 
-<script defer  src="<?= $siteDir;?>/js/main.js?v=<?= time();?>"></script>
+<script defer  src="<?= $siteDir;?>/js/main.js?v=<?= $cacheBreaker;?>"></script>
   </body>
 </html>

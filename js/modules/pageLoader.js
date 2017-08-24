@@ -7,7 +7,7 @@ function pageLoader() {
 //  $('nav ul li.'+theSlug).addClass('__active');
 //  $('nav ul li.'+theSlug).find('a').addClass('__active');
 
-  posterSwap();
+  //posterSwap();
   lazyImg();
 
   //MAKE INTERNAL LINKS

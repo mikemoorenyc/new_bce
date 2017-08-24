@@ -104,6 +104,7 @@ foreach($items as $k => $i ){
     <div class="media-image type-<?= $imgClass;?>">
 
       <?php
+      /*
       if(in_array($i['type'],array('movie','episode','show'))){
         if(!$i['img']) {
           $lazy = lazyImg($i);
@@ -122,8 +123,9 @@ foreach($items as $k => $i ){
         <img src="<?= $i['img'];?>" alt="<?= $i['title'];?>" />
         <?php
       }
-
+      */
       ?>
+      <img src="<?= $i['img'];?>" alt="<?= $i['title'];?>" />
     </div>
     </div>
     <div class="info">

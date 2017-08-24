@@ -9,6 +9,7 @@
   pointer-events: none;
   height:1px;
   z-index:1;
+  opacity:.75;
 
   body[data-colormode="bw"] & {
     display:none !important;
