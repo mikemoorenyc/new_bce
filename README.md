@@ -28,7 +28,7 @@
 
 
 
-
+## Finished
 - ~~Do archive page~~
 - ~~Make covers for all clickable areas~~
 - ~~- Blog listings~~
