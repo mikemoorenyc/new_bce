@@ -31,11 +31,10 @@
 ## Finished
 - ~~Do archive page~~
 - ~~Make covers for all clickable areas~~
-- ~~- Blog listings~~
+- ~~Blog listings~~
 - ~~Do About me page~~
 - ~~Do Contact page~~
 - ~~Implement line~~
-
 - ~~Implement media flow~~
   - ~~Implement TVDB fallback~~
   - ~~Spotify API~~
