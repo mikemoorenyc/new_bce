@@ -1,6 +1,7 @@
 ## MVP
 - ~~Make hover states for blog listings~~
 - ~~fix blog on homepage~~
+- external http:// image proxy
 - make whole logo clickable
 - fix form button hover state
 - check "tagged as" page
