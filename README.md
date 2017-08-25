@@ -1,6 +1,7 @@
 ## MVP
 - ~~Make hover states for blog listings~~
 - ~~fix blog on homepage~~
+- fix full width homepage cards
 - external http:// image proxy
 - make whole logo clickable
 - fix form button hover state
