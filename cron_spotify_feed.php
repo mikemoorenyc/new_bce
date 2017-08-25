@@ -172,6 +172,6 @@ $traktObject = array(
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {
   mkdir($wp_base.'wp-content/feed_dump', 0777);
 }
-var_dump($traktObject);
+//var_dump($traktObject);
 file_put_contents($wp_base.'wp-content/feed_dump/spotify.json', json_encode($traktObject));
 die();

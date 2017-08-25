@@ -69,13 +69,13 @@ foreach($posts as $p) {
   ?>
   <li class="post full-click-area stripe-hover">
     <a class="area" href="<?= get_the_permalink($pid);?>" role="presentation" aria-hidden="true"></a>
-    <h3>
+  
     <a href="<?= get_the_permalink($pid);?>">
-      <span class="title mid-heading"> <?= get_the_title($pid);?></span>
+      <h3 class="title mid-heading"> <?= get_the_title($pid);?></h3>
       <span class="time meta"><?= human_time_diff( get_the_time('U', $pid), current_time('timestamp') ) . ' ago'; ?></span>
     </a>
 
-    </h3>
+
 
   </li>
 

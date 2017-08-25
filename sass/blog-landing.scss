@@ -2,19 +2,21 @@
   &.post-list {
     position: relative;
     padding-bottom:1px;
-    //margin-top:-20px;
-
+    margin-top:-20px;
+    padding-bottom:24px;
   }
   &.post {
     border-bottom-width:1px;
     border-style:dashed;
-    margin-bottom: 16px;
+    padding-top:16px;
     position:relative;
     @media(min-width:$dt-break) {
-      padding: 0 calc((100% - 800px) / 2);
+      padding:0 calc((100% - 800px) / 2);
+      padding-top:16px;
     }
     @media($dt) {
       padding: 0 calc((100% - 1280px) / 2);
+      padding-top:24px;
     }
 
     .thumbnail-container {

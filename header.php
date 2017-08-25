@@ -189,7 +189,7 @@ var App = {
      <div class="nav-items">
      <?php
      $nav_items = wp_get_nav_menu_items('main-menu');
-     if(empty($nav_items){$nav_items = []}
+     if(empty($nav_items)){ $nav_items = [];}
      foreach($nav_items as $item) {
 
        $activeClass="";

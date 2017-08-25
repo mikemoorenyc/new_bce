@@ -1,14 +1,15 @@
 ## MVP
-- Make hover states for blog listings
-- fix blog on homepage
+- ~~Make hover states for blog listings~~
+- ~~fix blog on homepage~~
 - make whole logo clickable
 - fix form button hover state
 - check "tagged as" page
 - Implement "color switch"
-- implement ie9 disclaimer hiding logic
-- implement svg drawing of myself
+- ~~implement ie9 disclaimer hiding logic~~
+
 
 ## POST LAUNCH
+- implement svg drawing of myself
 - AJAXIFY
   - Implement History / Page Trans
   - Implement ajax form

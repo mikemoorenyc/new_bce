@@ -56,15 +56,15 @@ h2.hp.sub-heading {
 }
 .hp.blog-posts {
   > li {
-    padding: 8px 16px 16px 16px;
-    margin-bottom:8px;
+    padding: 16px;
     border-style: dashed;
     border-bottom-width:1px;
     position:relative;
     &:first-child {
-      padding-top: 0;
+      border-top-width: 1px;
     }
     a {
+      display:block;
       text-decoration: none;
     }
     .time{

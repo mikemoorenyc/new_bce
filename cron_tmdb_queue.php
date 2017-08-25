@@ -170,7 +170,7 @@ foreach($items as $k => $i) {
   }
 }
 $trakt['items'] = $items;
-var_dump($trakt);
+//var_dump($trakt);
 
 file_put_contents($wp_base.'wp-content/feed_dump/trakt.json', json_encode($trakt));
 die();

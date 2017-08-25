@@ -107,7 +107,7 @@ $traktObject = array(
   'last_run' => $current_time,
   'items' => $new_array
 );
-echo(json_encode($traktObject));
+//echo(json_encode($traktObject));
 //var_dump($traktObject);
 //die();
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {

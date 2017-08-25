@@ -179,6 +179,12 @@
   @include inline-centerer();
 }
 
+.stripe-hover {
+  &:hover {
+    @include bg-stripe();
+  }
+}
+
 //HIDING
 // MOBILE HIDE
 
