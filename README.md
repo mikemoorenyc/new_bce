@@ -13,6 +13,7 @@
 
 ## POST LAUNCH
 - implement svg drawing of myself
+
 - AJAXIFY
   - Implement History / Page Trans
   - Implement ajax form
@@ -30,7 +31,7 @@
     - template
 - movie ratings
 - book ratings
-
+- allow for SVG blog thumbnails
 
 
 ## Finished
