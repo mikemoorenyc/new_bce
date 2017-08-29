@@ -71,14 +71,9 @@ if($tagged_as_page) {
 <title><?= $html_title;?></title>
 <!-- HERE'S WHERE WE GET THE SITE DESCRIPTION -->
 <?php
-$excerpt = $post->post_content;
+$excerpt = $post->post_content || get_the_excerpt() || get_bloginfo('description');
 
-if(!$excerpt){
- $excerpt = get_the_excerpt();
-}
-if(!$excerpt) {
-  $excerpt = get_bloginfo('description');
-}
+
 $siteDesc = preg_replace( "/\r|\n/", " ", preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", strip_tags(md_sc_parse($excerpt))) );
 $siteDesc = substr($siteDesc, 0, 150);
 ?>
@@ -188,8 +183,7 @@ var App = {
     </div>
      <div class="nav-items">
      <?php
-     $nav_items = wp_get_nav_menu_items('main-menu');
-     if(empty($nav_items)){ $nav_items = [];}
+     $nav_items = wp_get_nav_menu_items('main-menu') || array(); 
      foreach($nav_items as $item) {
 
        $activeClass="";
