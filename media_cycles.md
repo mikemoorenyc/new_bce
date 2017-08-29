@@ -1,6 +1,6 @@
 
 
-## Books
+### Books
 1. Get lastRun .txt, parse, get lastRun on Books
 2. Get booksJson, parse
 3. Make newEntries array (only add from bookjson if inDB === false)
