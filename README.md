@@ -17,6 +17,7 @@
   - Implement History / Page Trans
   - Implement ajax form
   - Implement archive filtering
+- Page Sections
 - Implement Media as post type
   - create post type
   - create category type
