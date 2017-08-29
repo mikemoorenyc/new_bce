@@ -13,7 +13,6 @@
 
 ## POST LAUNCH
 - implement svg drawing of myself
-
 - AJAXIFY
   - Implement History / Page Trans
   - Implement ajax form
