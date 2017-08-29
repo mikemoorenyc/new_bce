@@ -66,7 +66,7 @@ function get_tvdb($type, $id) {
 
     if(!empty($out['data']['filename'])) {
 
-      return 'https://thetvdb.com/banners/'.$out['data']['filename'];
+      return 'http://thetvdb.com/banners/'.$out['data']['filename'];
     }
 
   }
@@ -89,7 +89,7 @@ function get_tvdb($type, $id) {
     foreach($out['data'] as $k => $d) {
       if($d["ratingsInfo"]['average'] > $h) {
         $h = $d["ratingsInfo"]['average'];
-        $r_url = 'https://thetvdb.com/banners/'.$d["thumbnail"];
+        $r_url = 'http://thetvdb.com/banners/'.$d["thumbnail"];
       }
     }
     return $r_url;

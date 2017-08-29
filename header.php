@@ -184,7 +184,7 @@ var App = {
          </span>
        </a>
      </div>
-     <div class="top-tagline"><?php echo get_bloginfo('description');?></div>
+     <div class="top-tagline"><a href="<?= $homeURL;?>"><?php echo get_bloginfo('description');?></a></div>
     </div>
      <div class="nav-items">
      <?php

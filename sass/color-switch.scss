@@ -1,0 +1,90 @@
+button#color-mode-switcher {
+  display:block;
+  margin-top: 16px;
+  position: relative;
+  width: 120px;
+  height: 14px;
+  @media(min-width:$dt-break) {
+    position: fixed;
+    right: 24px;
+    bottom: 16px;
+    transform: rotate(90deg);
+    transform-origin: center right;
+    margin: 0;
+    width: 75px;
+
+  }
+  &:before, &:after {
+    display:block;
+    content:'';
+    width: 14px;
+    height: 14px;
+    border-width: 1px;
+    border-color:$white;
+    background:#212121;
+    position: absolute;
+    left: 0;
+    top: 0;
+    @media(min-width:$dt-break) {
+      width: 10px;
+      height: 10px;
+      top:2px;
+      border-color:currentColor; 
+    }
+  }
+  &:after {
+    left: auto;
+    right: 0;
+    background:linear-gradient(125deg, #f39,
+    red,
+  #960,
+  #f60,
+    #606,
+    #090,
+    #00f,
+    #222,
+    #002FA7);
+  }
+  .slider {
+    display:block;
+    width: 75px;
+    height: 4px;
+    border-radius: 2px;
+    background:$white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%,-50%);
+    &:before {
+      display:block;
+      position: absolute;
+      content:'';
+      width: 14px;
+      height: 14px;
+      background:$white;
+      border-radius: 50%;
+      left: 2px;
+      top: 50%;
+      transform:translateY(-50%);
+    }
+    @media(min-width:$dt-break) {
+      background:currentColor;
+      width: 40px;
+      height: 2px;
+      &:before {
+        background: currentColor;
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+  }
+  &[data-colormode="color"] {
+    .slider {
+      &:before {
+        left: auto;
+        right: 2px;
+      }
+    }
+  }
+}

@@ -1,6 +1,8 @@
-const s_path = App.URL.path.replace('/')+'_colormode';
-function colorSet() {
-  
+//const s_path = App.URL.path.replace('/','')+'_colormode';
+
+function colorSet(path) {
+  var s_path = App.URL.path.replace('/','')+'_colormode';
+
   let colormode =  localStorage.getItem(s_path),
       $switcher = document.getElementById("color-mode-switcher"),
       $body = document.querySelector('body');
@@ -24,6 +26,7 @@ function colorSet() {
   return false;
 }
 function colorSwitcher() {
+  var s_path = App.URL.path.replace('/','')+'_colormode';
   if(App.colormode === 'bw') {
    clearInterval(App.colorSwitch);
    App.colorSwitch = false;
@@ -38,7 +41,7 @@ document.getElementById("color-mode-switcher").addEventListener('click',function
   if(mode === 'bw') {
     newColor = 'color';
   }
-  localStorage.setItem(s_path,newColor);
+  localStorage.setItem(App.URL.path.replace('/','')+'_colormode',newColor);
   colorSet();
 
 });

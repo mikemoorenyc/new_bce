@@ -83,6 +83,7 @@
   }
   pre, code {
     font-size: 14px;
+    font-family: Menlo,Monaco,"Courier New",Courier,monospace;
   }
   code {
    border-width:1px;
@@ -92,6 +93,8 @@
   pre {
     position: relative;
     padding: 1px;
+    border-width: 1px;
+    border-style:dotted;
     code {
       border-width:0;
       display: block;
@@ -103,15 +106,15 @@
       display: block;
       content:'';
       position: absolute;
-      left: 0;
-      top: 0;
-      width: 4px;
-      height: 100%;
+      left: -1px;
+      top: -1px;
+      width: 5px;
+      height: calc(100% + 2px);
       border-width: 1px 0 1px 1px;
     }
     &:after {
       left: auto;
-      right: 0;
+      right: -1px;
       border-width: 1px 1px 1px 0;
     }
   }

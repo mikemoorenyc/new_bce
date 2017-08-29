@@ -15,7 +15,8 @@ h2.hp.sub-heading {
   padding-bottom: 5px;
   position: relative;
   @media($dt) {
-    padding: 0 24px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
   &:before {
     display: block;
@@ -89,6 +90,9 @@ h2.hp.sub-heading {
         margin: 0 12px 24px 12px;
         width: calc(50% - 24px);
         display:flex;
+        a.area {
+          z-index: 1;
+        }
         .poster-image-container {
           width:calc(50% - 12px);
           padding-top: (50% / 1.5);

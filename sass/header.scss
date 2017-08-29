@@ -107,6 +107,7 @@ header {
     left:8px;
     top:8px;
     border-width: 3px;
+    background:$white;
   }
   &:after {
     z-index:-1;
@@ -142,6 +143,7 @@ input#navigation-toggle {
 #navigation-toggle:checked + .scrim + nav + #nav-opener {
   &:before {
     border-color:white;
+    background:none;
   }
   .open {
     display:none;

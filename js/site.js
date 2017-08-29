@@ -6,7 +6,7 @@ function siteInit() {
   }
   App.pointerEvents = pointerCheck();
 
-  colorSet();
+  colorSet(App.URL.path.replace('/','')+'_colormode');
 
   document.getElementById("color-mode-switcher").style.visibility = 'visible';
   if(App.pointerEvents) {

@@ -69,63 +69,45 @@ foreach($items as $k => $i ){
     $imgClass = 'cd';
   }
 
+  $today_num = date('j');
+  $time = human_time_diff($i['timestamp'] ).' ago';
+  if(strpos($time, 'hour')!== false || strpos($time, 'min')!== false) {
+    if($today_num !== date('j',$i['timestamp'])) {
+      $time = 'Yesterday';
+
+    } else {
+      $time = "Today";
+    }
+  }
+  if($time === '1 day ago') {
+    $time = "Yesterday";
+  }
+  ?>
+  <?php if($time !== $time_marker){
+   ?>
+   <h2 class="media-time sub-heading"><span><?= $time ;?></span></h2>
+   <?php
+   $time_marker = $time;
+  }
   ?>
   <div  class="media-item type-<?=$i['type'];?> above-line">
-    <?php
-    $today_num = date('j');
-      $time = human_time_diff($i['timestamp'] ).' ago';
-      if(strpos($time, 'hour')!== false || strpos($time, 'min')!== false) {
-    //    echo (date('j e G'));
-    //    echo (date('j e G',$i['timestamp']));
-        if($today_num !== date('j',$i['timestamp'])) {
-          $time = 'Yesterday';
 
-        } else {
-          $time = "Today";
-        }
-      }
 
-      if($time === '1 day ago') {
-        $time = "Yesterday";
-      }
-     ?>
-     <?php if($time !== $time_marker){
-      ?>
-      <div class="time font-sans">
-      <strong><?= $time ;?></strong>
-      </div>
-      <?php
-      $time_marker = $time;
-     }
-     ?>
 <div class="inner">
 
     <div class="img-container">
     <div class="media-image type-<?= $imgClass;?>">
 
       <?php
-      /*
-      if(in_array($i['type'],array('movie','episode','show'))){
-        if(!$i['img']) {
-          $lazy = lazyImg($i);
-          ?>
-        <img src="<?= $siteDir;?>/assets/imgs/blank.png" class="tmdb-post" data-key="<?= $k;?>" data-type="<?= $i['type'];?>" data-url="<?= urlencode($lazy['url']);?>" alt="<?= $lazy['title'];?>" />
-        <?php
-        } else {
-          ?>
-        <img src="<?= $i['img'];?>" alt="<?= $i['title'];?>" />
-        <?php
-        }
+      $imgURL = $i['img'];
 
-
-      }else {
-        ?>
-        <img src="<?= $i['img'];?>" alt="<?= $i['title'];?>" />
-        <?php
+      $pURL = parse_url($imgURL);
+      if($pURL['scheme'] !== 'https') {
+        $imgURL = $siteDir.'/image_proxy.php?url='.urlencode($imgURL);
       }
-      */
+
       ?>
-      <img src="<?= $i['img'];?>" alt="<?= $i['title'];?>" />
+      <img src="<?= $imgURL;?>" alt="<?= $i['title'];?>" />
     </div>
     </div>
     <div class="info">
