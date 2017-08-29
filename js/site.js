@@ -18,6 +18,7 @@ function siteInit() {
 
     lineSet();
     window.addEventListener("resize", _.debounce(lineSet,400));
+    window.addEventListener("scroll", _.debounce(lineSet,400));
   }
 
 
