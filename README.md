@@ -7,6 +7,7 @@
 - new sessions for new days
 - change time labels
 - make mediastream centered on widescreen
+- selectely redo line
 
 
 ## POST LAUNCH
