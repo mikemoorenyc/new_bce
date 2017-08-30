@@ -89,19 +89,29 @@ h2.hp.sub-heading {
       @media($dt) {
         margin: 0 12px 24px 12px;
         width: calc(50% - 24px);
-        display:flex;
+        //display:flex;
         a.area {
           z-index: 1;
         }
         .poster-image-container {
           width:calc(50% - 12px);
-          padding-top: (50% / 1.5);
           border-width: 0 2px 0 0;
-          height: 100%;
-          position: relative;
-
+          position:absolute;
+          left: 0;
+          top: 0;
+          width:50%;
+        }
+        &:before {
+          display:inline-block;
+          vertical-align:top;
+          content:'';
+          width: calc(50% - 4px);
+          position:relative;
+          padding-top: (percentage(9/16) / 2);
         }
         h3 {
+          display:inline-block;
+          vertical-align:top;
           width: calc(50% + 12px);
           padding: 24px;
           > a {
