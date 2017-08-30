@@ -2,7 +2,7 @@
 - fix color switch
 - check in firefox
 - check chrome imageproxy thing
-- make a new entry for a new day (white reaper)
+- new sessions for new days
 
 
 ## POST LAUNCH
