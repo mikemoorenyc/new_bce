@@ -6,6 +6,7 @@ function lazyImg() {
 
       document.querySelectorAll('img.lazy-img').forEach(function(e,i){
          swapSrc(e);
+
       });
 
    }
@@ -16,21 +17,22 @@ function lazyImg() {
       function onChange(changes) {
 
        changes.forEach(change => {
+        // console.log(change);
         if(change.isIntersecting) {
 
           swapSrc(change.target);
 
-            
+
          observer.unobserve(change.target);
            loaded++;
            if(loaded == imgs.length) {
-            observer.disconnect();  
+            observer.disconnect();
            }
         }
        })
       }
       const imgs = [ ...document.querySelectorAll('img.preload-image') ];
-      
+
       imgs.forEach(img => observer.observe(img));
    }
 

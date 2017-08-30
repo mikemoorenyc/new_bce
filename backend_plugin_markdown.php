@@ -718,7 +718,7 @@ class Parsedown
                     return;
                 }
 
-                if (preg_match("/<\/".$matches[1].">[ ]*$/i", $remainder))
+                if (preg_match('/<\/'.$matches[1].'>[ ]*$/i', $remainder))
                 {
                     $Block['closed'] = true;
                 }
@@ -735,12 +735,12 @@ class Parsedown
             return;
         }
 
-        if (preg_match('/^<'.$Block['name'].'(?:[ ]*'.$this->regexHtmlAttribute.')*[ ]*>/i', $Line['text'])) # open
+        if (preg_match('/^<'.$Block['name'].'(?:[ ]*'.$this->regexHtmlAttribute.')*[ ]*>/i', $Line['text']))
         {
             $Block['depth'] ++;
         }
 
-        if (preg_match('/(.*?)<\/'.$Block['name'].'>[ ]*$/i', $Line['text'], $matches)) # close
+        if (preg_match('/(.*?)<\/'.$Block['name'].'>[ ]*$/i', $Line['text'], $matches)) 
         {
             if ($Block['depth'] > 0)
             {
@@ -764,8 +764,7 @@ class Parsedown
         return $Block;
     }
 
-    #
-    # Reference
+
 
     protected function blockReference($Line)
     {
@@ -838,7 +837,7 @@ class Parsedown
                 $alignments []= $alignment;
             }
 
-            # ~
+
 
             $HeaderElements = array();
 
@@ -953,9 +952,7 @@ class Parsedown
         }
     }
 
-    #
-    # ~
-    #
+
 
     protected function paragraph($Line)
     {
@@ -970,9 +967,7 @@ class Parsedown
         return $Block;
     }
 
-    #
-    # Inline Elements
-    #
+
 
     protected $InlineTypes = array(
         '"' => array('SpecialCharacter'),
@@ -989,13 +984,11 @@ class Parsedown
         '\\' => array('EscapeSequence'),
     );
 
-    # ~
+
 
     protected $inlineMarkerList = '!"*_&[:<>`~\\';
 
-    #
-    # ~
-    #
+
 
     public function line($text)
     {
@@ -1063,9 +1056,6 @@ class Parsedown
         return $markup;
     }
 
-    #
-    # ~
-    #
 
     protected function inlineCode($Excerpt)
     {
@@ -1378,7 +1368,7 @@ class Parsedown
         }
     }
 
-    # ~
+
 
     protected function unmarkedText($text)
     {
@@ -1395,9 +1385,6 @@ class Parsedown
         return $text;
     }
 
-    #
-    # Handlers
-    #
 
     protected function element(array $Element)
     {
@@ -1453,7 +1440,7 @@ class Parsedown
         return $markup;
     }
 
-    # ~
+
 
     protected function li($lines)
     {
@@ -1474,9 +1461,7 @@ class Parsedown
         return $markup;
     }
 
-    #
-    # Deprecated Methods
-    #
+
 
     function parse($text)
     {
@@ -1485,9 +1470,7 @@ class Parsedown
         return $markup;
     }
 
-    #
-    # Static Methods
-    #
+
 
     static function instance($name = 'default')
     {
@@ -1505,14 +1488,10 @@ class Parsedown
 
     private static $instances = array();
 
-    #
-    # Fields
-    #
+
 
     protected $DefinitionData;
 
-    #
-    # Read-Only
 
     protected $specialCharacters = array(
         '\\', '`', '*', '_', '{', '}', '[', ']', '(', ')', '>', '#', '+', '-', '.', '!', '|',

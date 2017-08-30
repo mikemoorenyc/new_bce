@@ -34,9 +34,9 @@ function colorSwitcher() {
   }
   document.querySelector('body').style.color = App.colors[Math.floor((Math.random() * App.colors.length) + 0)];
 }
-document.getElementById("color-mode-switcher").addEventListener('click',function(e){
+document.getElementById("color-mode-button").addEventListener('click',function(e){
   e.preventDefault();
-  let mode = e.target.getAttribute('data-colormode');
+  let mode = e.target.parentNode.getAttribute('data-colormode');
   let newColor = 'bw';
   if(mode === 'bw') {
     newColor = 'color';

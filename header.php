@@ -1,5 +1,7 @@
 <?php
 
+
+
 $cacheBreaker = time();
 
 global $homeURL;
@@ -183,7 +185,7 @@ var App = {
     </div>
      <div class="nav-items">
      <?php
-     $nav_items = wp_get_nav_menu_items('main-menu') ?: array(); 
+     $nav_items = wp_get_nav_menu_items('main-menu') ?: array();
      foreach($nav_items as $item) {
 
        $activeClass="";
@@ -200,9 +202,9 @@ var App = {
 
      ?>
    </div>
-     <button id="color-mode-switcher" class="color-mode-switcher" style="visibility:hidden;">
-       <span class="slider"></span>
-     </button>
+     <div id="color-mode-switcher" class="color-mode-switcher" style="visibility:hidden;">
+       <button id="color-mode-button" class="slider"></span>
+     </div>
 
    </nav>
    <div role="presentation" id="nav-opener" class="button-style">

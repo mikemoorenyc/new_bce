@@ -5,7 +5,7 @@ if( php_sapi_name() !== 'cli' ){die();}
 
 date_default_timezone_set('UTC');
 
-
+///usr/local/bin/php -q /home/antilogyserver/public_html/bce2/site_2017/wp-content/themes/bce-prod-dev/cron_trakt_feed.php	 Edit
 
 $current_time = date('c');
 

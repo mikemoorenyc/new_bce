@@ -32,6 +32,7 @@
 foreach($projects as $p) {
   $pid = $p->ID;
   $alt_tag = $p->post_title;
+  
   if(!has_post_thumbnail($pid)) {
    if(!empty(get_option( 'social_icon_image', '' ))) {
      $img_id = get_option( 'social_icon_image', '' );
@@ -41,6 +42,7 @@ foreach($projects as $p) {
   } else {
     $img_id = get_post_thumbnail_id($pid);
   }
+
   include 'partial_project_card.php';
 }
 
@@ -69,7 +71,7 @@ foreach($posts as $p) {
   ?>
   <li class="post full-click-area stripe-hover">
     <a class="area" href="<?= get_the_permalink($pid);?>" role="presentation" aria-hidden="true"></a>
-  
+
     <a href="<?= get_the_permalink($pid);?>">
       <h3 class="title mid-heading"> <?= get_the_title($pid);?></h3>
       <span class="time meta"><?= human_time_diff( get_the_time('U', $pid), current_time('timestamp') ) . ' ago'; ?></span>

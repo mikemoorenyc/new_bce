@@ -1,14 +1,5 @@
 ## MVP
-- switch dashboard to run at dashboard.becreativeeveryday.com
-- ~~Make hover states for blog listings~~
-- ~~fix blog on homepage~~
-- ~~fix full width homepage cards~~
-- ~~fix media stream styling~~
-- ~~external http:// image proxy~~
-- ~~make whole logo clickable~~
-- ~~check "tagged as" page~~
-- ~~Implement "color switch"~~
-- ~~implement ie9 disclaimer hiding logic~~
+- fix color switch
 
 
 ## POST LAUNCH

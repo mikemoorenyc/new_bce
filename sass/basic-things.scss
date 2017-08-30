@@ -26,7 +26,7 @@ svg {
   fill: currentColor;
   * {
     fill:currentColor;
-    &[fill="none"] {
+    &[fill="none"], &[FILL="none"] {
       fill:none !important;
     }
   }

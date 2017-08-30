@@ -78,7 +78,7 @@ header {
       border-style:dashed;
       display:block;
       content:'';
-      left: calc(50% - 11px);
+      left: calc(50% - 11px) !important;
       top: calc(50% - 11px);
       width: 22px;
       height:22px;

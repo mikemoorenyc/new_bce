@@ -28,9 +28,10 @@ gulp.task('clean', function(){
 //CSS
 gulp.task('css', function(){
   var plugins = [
-      mqpacker(),
-      autoprefixer({browsers: ['last 3 versions']}),
-      cssnano()
+  //    mqpacker(),
+
+      cssnano(),
+      autoprefixer({browsers: ['last 3 versions']})
   ]
   gulp.src('sass/main.scss')
     .pipe(gulpif(argv.production, strip({start_comment: "/* REMOVE IN PRODUCTION*/", end_comment: "/* END REMOVE IN PRODUCTION*/"})))

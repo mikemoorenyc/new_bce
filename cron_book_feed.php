@@ -151,7 +151,7 @@ $traktObject = array(
   'items' => $new_array
 );
 
-//var_dump($traktObject);
+var_dump($traktObject);
 
 
 

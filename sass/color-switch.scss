@@ -1,9 +1,9 @@
-button#color-mode-switcher {
+#color-mode-switcher {
   display:block;
   margin-top: 16px;
   position: relative;
-  width: 120px;
-  height: 14px;
+  width: 100px;
+  height: 48px;
   @media(min-width:$dt-break) {
     position: fixed;
     right: 24px;
@@ -24,12 +24,13 @@ button#color-mode-switcher {
     background:#212121;
     position: absolute;
     left: 0;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     @media(min-width:$dt-break) {
       width: 10px;
       height: 10px;
       top:2px;
-      border-color:currentColor; 
+      border-color:currentColor;
     }
   }
   &:after {
@@ -47,10 +48,10 @@ button#color-mode-switcher {
   }
   .slider {
     display:block;
-    width: 75px;
-    height: 4px;
-    border-radius: 2px;
-    background:$white;
+    width: calc(100% - 40px);
+    height: 24px;
+    border-width:1px;
+    border-color:$white;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -59,11 +60,11 @@ button#color-mode-switcher {
       display:block;
       position: absolute;
       content:'';
-      width: 14px;
-      height: 14px;
+      width: 50%;
+      height: calc(100% - 2px);
       background:$white;
-      border-radius: 50%;
-      left: 2px;
+
+      left: 1px;
       top: 50%;
       transform:translateY(-50%);
     }
@@ -83,7 +84,7 @@ button#color-mode-switcher {
     .slider {
       &:before {
         left: auto;
-        right: 2px;
+        right: 1px;
       }
     }
   }
