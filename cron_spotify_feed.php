@@ -1,4 +1,5 @@
 <?php
+chdir(dirname(__FILE__));
 /*REMOVE IN DEV*/
 if( php_sapi_name() !== 'cli' ){die();}
 /*END REMOVE IN DEV*/
