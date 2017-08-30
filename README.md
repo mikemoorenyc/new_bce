@@ -6,6 +6,7 @@
 - check chrome imageproxy thing
 - new sessions for new days
 - change time labels
+- make mediastream centered on widescreen
 
 
 ## POST LAUNCH
