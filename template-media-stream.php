@@ -107,7 +107,7 @@ foreach($items as $k => $i ){
       }
 
       ?>
-      <img  src="<?= $siteDir;?>/assets/blank_<?= $imgClass;?>.png" data-src="<?= $imgURL;?>" alt="<?= $i['title'];?>" />
+      <img  src="<?= $siteDir;?>/assets/imgs/blank_<?= $imgClass;?>.png" data-src="<?= $imgURL;?>" alt="<?= $i['title'];?>" />
     </div>
     </div>
     <div class="info">
