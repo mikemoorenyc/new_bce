@@ -1,5 +1,7 @@
 ## MVP
 - fix color switch
+- check in firefox
+- check chrome imageproxy thing
 
 
 ## POST LAUNCH
