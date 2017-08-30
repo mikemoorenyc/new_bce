@@ -5,6 +5,7 @@
 - check in firefox
 - check chrome imageproxy thing
 - new sessions for new days
+- change time labels
 
 
 ## POST LAUNCH
