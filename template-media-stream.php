@@ -107,7 +107,7 @@ foreach($items as $k => $i ){
       }
 
       ?>
-      <img src="<?= $imgURL;?>" alt="<?= $i['title'];?>" />
+      <img  src="<?= $siteDir;?>/assets/blank_<?= $imgClass;?>.png" data-src="<?= $imgURL;?>" alt="<?= $i['title'];?>" />
     </div>
     </div>
     <div class="info">
@@ -133,7 +133,7 @@ foreach($items as $k => $i ){
 <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script>
-  var lazyImgs = document.querySelectorAll('img.tmdb-post');
+  var Imgs = document.querySelectorAll('img.tmdb-post');
   var securityCode = '<?= wp_create_nonce( "ajax-request-nonce") ;?>';
   var ajaxURL = '<?= admin_url( 'admin-ajax.php' );?>';
   lazyImgs.forEach( function(e, i){
