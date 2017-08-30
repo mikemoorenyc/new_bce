@@ -1,5 +1,7 @@
 ## MVP
 - fix color switch
+- check lazyimgs
+- media lazy images (make backgroundColor, etc);
 - check in firefox
 - check chrome imageproxy thing
 - new sessions for new days
