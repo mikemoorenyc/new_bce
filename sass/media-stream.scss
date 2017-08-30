@@ -150,6 +150,7 @@
         object-fit: cover;
         object-position: center center;
         max-width: none;
+        background-color:currentColor;
       }
       &.type-cd {
         padding-left: 5em;
@@ -178,9 +179,10 @@
 
 
         img {
-          border-width: 1px;
-          width: 75em;
-          height: (75em * (9/16));
+          width: calc(75em + 2px);
+          $tvH: (75em * (9/16));
+          height: calc(#{$tvH} + 2px);
+          padding: 1px;
         }
         &:before, &:after {
           display:block;
