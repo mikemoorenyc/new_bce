@@ -15,7 +15,10 @@ function siteInit() {
       line.setAttribute('id', 'liner');
       document.querySelector('body').appendChild(line);
     }
-
+    App.windowDimensions = {
+     w: document.documentElement.clientWidth,
+     h: document.documentElement.clientHeight
+    }
     lineSet();
     window.addEventListener("resize", _.debounce(lineSet,200));
     window.addEventListener("scroll", _.debounce(lineSet,200));
