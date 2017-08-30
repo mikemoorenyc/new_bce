@@ -1,4 +1,10 @@
 function lineSet() {
+	if(document.documentElement.clientWidth === App.windowDimensions.w && document.documentElement.clientHeight === App.windowDimensions.h) {
+		return;
+	}
+	
+	App.windowDimensions.w = document.documentElement.clientWidth
+	App.windowDimensions.h = document.documentElement.clientHeight
 	let tester = document.createElement('div');
 	tester.innerHTML = '<div style="visibility:hidden; position:fixed; left: 0; top: 0; width: 100%; height: 100%;">asdf</div>'
 	document.querySelector('body').appendChild(tester);
