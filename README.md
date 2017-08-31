@@ -1,12 +1,7 @@
 ## MVP
-- ~~fix color switch~~
-- ~~check lazyimgs~~
-- ~~media lazy images (make backgroundColor, etc)~~
-- ~~check in firefox~~
-- ~~new sessions for new days!~~
-- ~~change time labels~~
-- ~~make mediastream centered on widescreen~~
-- ~~only redraw line if dimesions changed~~
+- fix excerpt in header
+- see if more condensed media stream is ok
+- fix color switch width on dt
 
 
 ## POST LAUNCH

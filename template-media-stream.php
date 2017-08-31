@@ -69,19 +69,26 @@ foreach($items as $k => $i ){
     $imgClass = 'cd';
   }
 
-  $today_num = date('j');
+  $today = array(
+   'd' => intval(date('j')),
+   'm' => intval(date('n')),
+   'y' => intval(date('Y'))
+  );
+  $stamp = array(
+   'd' => intval(date('j',$i['timestamp'])),
+   'm' => intval(date('n',$i['timestamp'])),
+   'y' => intval(date('Y',$i['timestamp']))
+  );
   $time = human_time_diff($i['timestamp'] ).' ago';
-  if(strpos($time, 'hour')!== false || strpos($time, 'min')!== false) {
-    if($today_num !== date('j',$i['timestamp'])) {
-      $time = 'Yesterday';
-
-    } else {
-      $time = "Today";
-    }
+  if($today['m'] == $stamp['m'] && $today['y'] == $stamp['y']) {
+   if($today['d'] == $stamp['d']) {
+    $time = 'Today';
+   }
+   if(($today['d'] - 1) == $stamp['d']) {
+    $time = 'Yesterday';
+   }
   }
-  if($time === '1 day ago') {
-    $time = "Yesterday";
-  }
+  
   ?>
   <?php if($time !== $time_marker){
    ?>
@@ -132,40 +139,5 @@ foreach($items as $k => $i ){
 
 
 
-<!--
-<script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<script>
-  var Imgs = document.querySelectorAll('img.tmdb-post');
-  var securityCode = '<?= wp_create_nonce( "ajax-request-nonce") ;?>';
-  var ajaxURL = '<?= admin_url( 'admin-ajax.php' );?>';
-  lazyImgs.forEach( function(e, i){
-    var img = e;
-    setTimeout(function(){
-
-      $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        url:ajaxURL ,
-            data: {
-                'action': 'tmdbimage', //calls wp_ajax_nopriv_ajaxlogin
-                'type': img.getAttribute('data-type'),
-                'url': img.getAttribute('data-url'),
-                'security':  securityCode
-              },
-
-            success: function(data){
-
-                e.setAttribute('src',data.url);
-            }
-        });
-
-
-
-    }, i*250);
-  });
-
-
-</script>
--->
 <?php include_once 'footer.php';?>
