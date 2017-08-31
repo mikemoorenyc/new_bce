@@ -69,19 +69,26 @@ foreach($items as $k => $i ){
     $imgClass = 'cd';
   }
 
-  $today_num = date('j');
+  $today = array(
+   'd' => intval(date('j')),
+   'm' => intval(date('n')),
+   'y' => intval(date('Y'))
+  );
+  $stamp = array(
+   'd' => intval(date('j',$i['timestamp'])),
+   'm' => intval(date('n',$i['timestamp'])),
+   'y' => intval(date('Y',$i['timestamp']))
+  );
   $time = human_time_diff($i['timestamp'] ).' ago';
-  if(strpos($time, 'hour')!== false || strpos($time, 'min')!== false) {
-    if($today_num !== date('j',$i['timestamp'])) {
-      $time = 'Yesterday';
-
-    } else {
-      $time = "Today";
-    }
+  if($today['m'] == $stamp['m'] && $today['y'] == $stamp['y']) {
+   if($today['d'] == $stamp['d']) {
+    $time = 'Today';
+   }
+   if(($today['d'] - 1) == $stamp['d']) {
+    $time = 'Yesterday';
+   }
   }
-  if($time === '1 day ago') {
-    $time = "Yesterday";
-  }
+  
   ?>
   <?php if($time !== $time_marker){
    ?>
