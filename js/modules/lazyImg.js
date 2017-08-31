@@ -3,7 +3,8 @@ function lazyImg() {
 
       createIntersections();
    } else {
-      let imgs = document.querySelectorAll('img.preload-img');
+      let imgs = [...document.querySelectorAll('img.preload-img')];
+
       imgs.forEach(swapSrc);
 
    }
