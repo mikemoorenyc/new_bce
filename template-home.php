@@ -25,14 +25,14 @@
 ?>
 <?php if ( $project_query->have_posts() ) :?>
 <section class="hp projects clearfix mw-800">
-<h2 class="hp sub-heading">Projects</h2>
+<h2 class="hp sub-heading with-line">Projects</h2>
 <?php $projects = $project_query->get_posts(); ?>
 <div class="hp project-list">
 <?php
 foreach($projects as $p) {
   $pid = $p->ID;
   $alt_tag = $p->post_title;
-  
+
   if(!has_post_thumbnail($pid)) {
    if(!empty(get_option( 'social_icon_image', '' ))) {
      $img_id = get_option( 'social_icon_image', '' );
@@ -61,7 +61,7 @@ $post_query = new WP_Query($pargs);
  ?>
 <?php if ( $post_query->have_posts() ) :?>
 <section class="hp blog clearfix mw-800">
-<h2 class="hp sub-heading">From the Blog</h2>
+<h2 class="hp sub-heading width">From the Blog</h2>
 <ul class="hp blog-posts">
 <?php $posts = $post_query->get_posts(); ?>
 <?php

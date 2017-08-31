@@ -46,11 +46,13 @@ function book_status_maker($i) {
 function switch_media_info($i) {
  switch($i['type']):
   case 'movie':
+  ?> <div class="extra">Watched</div> <?php
  echo title_formatter($i['title']);
 
   break;
 
   case 'episode':
+  ?> <div class="extra">Watched</div> <?php
   echo title_formatter( $i['title'],'single');
   ?>
   <div class="show-title"><?= $i['show']['title']; ?></div>
@@ -65,6 +67,7 @@ function switch_media_info($i) {
   break;
 
   case 'album':
+  ?> <div class="extra">Listened to</div> <?php
    echo title_formatter($i['album']['title']);
    ?>
    <h3 class="byline"><?=  'by '.artistNames($i['album']['artists']);?></h3>
@@ -85,7 +88,9 @@ function switch_media_info($i) {
  </div>
 
   <?php
- }
+} else {
+  ?> <div class="extra">Listened to</div> <?php
+}
    echo title_formatter($i['title'], 'single');
    ?>
    <h3 class="byline"><?=  'by '.artistNames($i['album']['artists']);?></h3>

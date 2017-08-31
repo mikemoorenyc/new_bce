@@ -82,6 +82,8 @@ curl_close($ch);
 $items = json_decode($output,true);
 
 $items = $items['items'];
+var_dump($items);
+die();
 
 $track_blocks = [];
 $track_it = [];

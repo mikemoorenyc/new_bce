@@ -11,13 +11,14 @@
   }
 }
 h2.hp.sub-heading {
-  padding: 0 16px;
-  padding-bottom: 5px;
-  position: relative;
+  margin-left: 16px;
+  margin-right: 16px;
+
   @media($dt) {
-    padding-left: 24px;
-    padding-right: 24px;
+    margin-left: 24px;
+    margin-right: 24px;
   }
+  /*
   &:before {
     display: block;
     position: absolute;
@@ -30,7 +31,7 @@ h2.hp.sub-heading {
     @media(min-width:1024px) {
       left: 24px;
     }
-  }
+  }*/
 }
 .hp.bottom-button {
   display: block;
@@ -99,13 +100,14 @@ h2.hp.sub-heading {
           position:absolute;
           left: 0;
           top: 0;
-          width:50%;
+          height:100%;
+          padding: 0;
         }
         &:before {
           display:inline-block;
           vertical-align:top;
           content:'';
-          width: calc(50% - 4px);
+          width: calc(50% - 16px);
           position:relative;
           padding-top: (percentage(9/16) / 2);
         }

@@ -3,7 +3,7 @@ function lazyImg() {
 
       createIntersections();
    } else {
-      let imgs = document.querySelectorAll('img.preload-img');
+      let imgs = document.querySelectorAll('img.preload-image');
       imgs.forEach(swapSrc);
 
    }
@@ -38,6 +38,7 @@ function lazyImg() {
       let parent = i.parentNode,
           full = document.createElement('img');
           full.style.visibility = 'hidden';
+          full.style.position = 'absolute';
 
       function loadEvent() {
          full.removeEventListener('load',loadEvent);
@@ -45,6 +46,7 @@ function lazyImg() {
          full.classList.remove('preload-image');
          parent.removeChild(i);
          full.style.visibility = 'visible';
+         full.removeAttribute('style');
       }
       full.addEventListener('load',loadEvent);
       let  src = i.getAttribute('data-src'),

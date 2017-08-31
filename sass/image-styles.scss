@@ -17,6 +17,10 @@ img.poster-image {
 img.preload-image {
  filter:blur(10px);
  transform: scale(1.1);
+ &.no-blur {
+   filter:none;
+   transform: none;
+ }
 }
 
 .post-image {

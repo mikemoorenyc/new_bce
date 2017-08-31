@@ -85,7 +85,7 @@ foreach($items as $k => $i ){
   ?>
   <?php if($time !== $time_marker){
    ?>
-   <h2 class="media-time sub-heading"><span><?= $time ;?></span></h2>
+   <h2 class="sub-heading with-line"><span><?= $time ;?></span></h2>
    <?php
    $time_marker = $time;
   }
@@ -100,14 +100,17 @@ foreach($items as $k => $i ){
 
       <?php
       $imgURL = $i['img'];
-
+      $preload = "preload-image";
       $pURL = parse_url($imgURL);
       if($pURL['scheme'] !== 'https') {
         $imgURL = $siteDir.'/image_proxy.php?url='.urlencode($imgURL);
       }
+      if(!$i['img']) {
+        $preload="";
+      }
 
       ?>
-      <img  src="<?= $siteDir;?>/assets/imgs/blank_<?= $imgClass;?>.png" data-src="<?= $imgURL;?>" alt="<?= $i['title'];?>" />
+      <img title="<?=$title;?>" class="<?= $preload;?> no-blur"  src="<?= $siteDir;?>/assets/imgs/blank_<?= $imgClass ?>.png" data-src="<?= $imgURL;?>" alt="<?= $i['title'];?>" />
     </div>
     </div>
     <div class="info">

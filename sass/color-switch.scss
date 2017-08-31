@@ -7,11 +7,11 @@
   @media(min-width:$dt-break) {
     position: fixed;
     right: 24px;
-    bottom: 16px;
+    bottom: 0px;
     transform: rotate(90deg);
     transform-origin: center right;
     margin: 0;
-    width: 75px;
+    width: 60px;
 
   }
   &:before, &:after {
@@ -29,8 +29,8 @@
     @media(min-width:$dt-break) {
       width: 10px;
       height: 10px;
-      top:2px;
-      border-color:currentColor;
+
+
     }
   }
   &:after {
@@ -70,12 +70,15 @@
     }
     @media(min-width:$dt-break) {
       background:currentColor;
-      width: 40px;
+      width: calc(100% - 30px);
       height: 2px;
       &:before {
         background: currentColor;
         width: 10px;
         height: 10px;
+        border-radius:50%;
+        border-width: 1px;
+        border-color:$white;
       }
     }
 

@@ -1,13 +1,12 @@
 ## MVP
-- fix color switch
-- check lazyimgs
-- media lazy images (make backgroundColor, etc);
-- check in firefox
-- check chrome imageproxy thing
-- new sessions for new days
-- change time labels
-- make mediastream centered on widescreen
-- selectely redo line
+- ~~fix color switch~~
+- ~~check lazyimgs~~
+- ~~media lazy images (make backgroundColor, etc)~~
+- ~~check in firefox~~
+- ~~new sessions for new days!~~
+- ~~change time labels~~
+- ~~make mediastream centered on widescreen~~
+- ~~only redraw line if dimesions changed~~
 
 
 ## POST LAUNCH

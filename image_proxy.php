@@ -4,11 +4,14 @@ if(!$_GET['url']) {
   die();
 }
 $url = urldecode($_GET['url']);
-$handle = fopen($url , 'rb');
-$img = new Imagick();
-$img->readImageFile($handle);
-$img->setImageFormat( "jpg" );
+
+$im = @imagecreatefromjpeg( urldecode($_GET['url']));
+if(!$im) {
+  die();
+}
+
 header( "Content-Type: image/jpeg" );
-echo $img;
+imagejpeg($im);
+imagedestroy($im);
 die();
  ?>

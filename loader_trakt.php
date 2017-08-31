@@ -11,6 +11,15 @@ foreach($itemList['trakt']as $i) {
     continue;
   }
   if($currentshowID === $i['show']['ID']) {
+    if(date('j',$i['timestamp']) !== date('j',$traktItems[count($traktItems) - 1]['timestamp'] )) {
+      $traktItems[] = $i;
+      $traktItems[count($traktItems)-1]['bingeCount'] = 1;
+      $traktItems[count($traktItems)-1]['type'] = 'episode';
+      if(!$traktItems[count($traktItems)-1]['img']) {
+       $traktItems[count($traktItems)-1]['img'] = $traktItems[count($traktItems)-1]['show']['img'];
+      }
+      continue;
+    }
     $traktItems[count($traktItems) - 1]['bingeCount']++;
     $traktItems[count($traktItems) - 1]['type'] = 'show';
     if(!$traktItems[count($traktItems)-1]['show']['img']) {
