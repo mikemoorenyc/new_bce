@@ -1,13 +1,7 @@
 ## MVP
-- fix color switch
-- check lazyimgs
-- media lazy images (make backgroundColor, etc);
-- check in firefox
-- check chrome imageproxy thing
-- new sessions for new days
-- change time labels
-- make mediastream centered on widescreen
-- selectely redo line
+- fix excerpt in header
+- see if more condensed media stream is ok
+- fix color switch width on dt
 
 
 ## POST LAUNCH
