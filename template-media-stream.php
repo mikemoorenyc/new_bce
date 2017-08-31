@@ -136,40 +136,5 @@ foreach($items as $k => $i ){
 
 
 
-<!--
-<script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<script>
-  var Imgs = document.querySelectorAll('img.tmdb-post');
-  var securityCode = '<?= wp_create_nonce( "ajax-request-nonce") ;?>';
-  var ajaxURL = '<?= admin_url( 'admin-ajax.php' );?>';
-  lazyImgs.forEach( function(e, i){
-    var img = e;
-    setTimeout(function(){
-
-      $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        url:ajaxURL ,
-            data: {
-                'action': 'tmdbimage', //calls wp_ajax_nopriv_ajaxlogin
-                'type': img.getAttribute('data-type'),
-                'url': img.getAttribute('data-url'),
-                'security':  securityCode
-              },
-
-            success: function(data){
-
-                e.setAttribute('src',data.url);
-            }
-        });
-
-
-
-    }, i*250);
-  });
-
-
-</script>
--->
 <?php include_once 'footer.php';?>
