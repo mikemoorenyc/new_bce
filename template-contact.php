@@ -2,8 +2,7 @@
 /**
  * Template Name: Contact Page
  */
-?>
-<?php
+
 session_start();
 $security_questions = input_to_array(get_option( 'security_question_list', '' ));
 $alreadySubmitted = $_COOKIE['alreadySubmitted'];
