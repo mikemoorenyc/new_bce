@@ -9,6 +9,7 @@ function pageLoader() {
 
   //posterSwap();
   lazyImg();
+  externalLinks();
 
   //MAKE INTERNAL LINKS
   /*

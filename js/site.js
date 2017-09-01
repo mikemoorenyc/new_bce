@@ -23,7 +23,7 @@ function siteInit() {
     window.addEventListener("resize", _.debounce(lineSet,200));
     window.addEventListener("scroll", _.debounce(lineSet,200));
   }
-
+  
 
 
 

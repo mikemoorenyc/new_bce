@@ -13,7 +13,13 @@
       font-size: 42px;
     }
   }
+  .landing-header__excerpt {
+    @media($dt) {
+      width: calc((100% / 12) * 7 - 12px)
+    }
+  }
 }
+
 .gl-mod.landing-header-rule {
   height: 1px;
   border-top-width:1px;
