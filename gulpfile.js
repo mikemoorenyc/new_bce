@@ -1,4 +1,4 @@
-var buildDir = '../bce-prod-dev';
+var buildDir = '../bce';
 var gulp = require('gulp');
 var del = require('del');
 var plumber = require('gulp-plumber');
@@ -19,10 +19,15 @@ var sass = require('gulp-sass'),
 
 var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
-
+var dir = buildDir;
+if(argv.production) {
+  dir = buildDir+'_production';
+} else {
+  dir = buildDir+'_development';
+}
 //CLEAN
 gulp.task('clean', function(){
-  return del([buildDir+'/**'], {force:true});
+  return del([buildDir+'_production'+'/**'], {force:true});
   clean();
 });
 //CSS
@@ -33,12 +38,14 @@ gulp.task('css', function(){
       cssnano(),
       autoprefixer({browsers: ['last 3 versions']})
   ]
+
   gulp.src('sass/main.scss')
+
     .pipe(gulpif(argv.production, strip({start_comment: "/* REMOVE IN PRODUCTION*/", end_comment: "/* END REMOVE IN PRODUCTION*/"})))
     .pipe(plumber())
     .pipe(sass())
     .pipe(gulpif(argv.production, postcss(plugins)))
-    .pipe(gulp.dest(buildDir+'/css'));
+    .pipe(gulp.dest(dir+'/css'));
 });
 gulp.task('js', function(){
   gulp.src([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'])
@@ -48,7 +55,7 @@ gulp.task('js', function(){
     }))
     .pipe(concat('main.js'))
     .pipe(gulpif(argv.production, uglify()))
-    .pipe(gulp.dest(buildDir+'/js'));
+    .pipe(gulp.dest(dir+'/js'));
 });
 
 //Template Move
@@ -59,18 +66,22 @@ gulp.task('templates', function(){
     .pipe(gulpif(argv.production, replace('$cacheBreaker = time();','$cacheBreaker = 1.1;')))
     .pipe(gulpif(argv.production, htmlmin()))
 
-    .pipe(gulp.dest(buildDir));
+    .pipe(gulp.dest(dir));
 });
 //Asset Move
 gulp.task('assetmove', function(){
   return gulp.src('assets/**/*')
     .pipe(gulpif(argv.production, svgo()))
-    .pipe(gulp.dest(buildDir+'/assets'));
+    .pipe(gulp.dest(dir+'/assets'));
 });
 //WP
 gulp.task('wpdump', function(){
-  return gulp.src(['style.css', 'screenshot.png'])
-    .pipe(gulp.dest(buildDir));
+  gulp.src(['style.css' ])
+    .pipe(gulpif(!argv.production, replace('NEW BCE SITE SRC','NEW BCE SITE DEV VERSION')))
+    .pipe(gulpif(argv.production, replace('NEW BCE SITE SRC','NEW BCE SITE PRODUCTION VERSION')))
+    .pipe(gulp.dest(dir));
+  gulp.src(['screenshot.png' ])
+      .pipe(gulp.dest(dir));
 });
 gulp.task('watch', function() {
     gulp.watch('js/**/*.js', ['js']);

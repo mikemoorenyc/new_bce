@@ -7,6 +7,10 @@ body {
   font-weight: normal;
   font-size: 16px;
   transition: color 2s linear;
+  animation: bodyColor 30s infinite linear;
+  &[data-colormode="bw"] {
+    animation: none;
+  }
 }
 body {
   *, *:before, *:after {

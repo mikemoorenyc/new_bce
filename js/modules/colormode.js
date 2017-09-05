@@ -1,5 +1,10 @@
 //const s_path = App.URL.path.replace('/','')+'_colormode';
-
+/*
+function colorSet(path) {
+  var s_path = App.URL.path.replace('/','')+'_colormode';
+}
+*/
+/*
 function colorSet(path) {
   var s_path = App.URL.path.replace('/','')+'_colormode';
 
@@ -45,3 +50,4 @@ document.getElementById("color-mode-button").addEventListener('click',function(e
   colorSet();
 
 });
+*/

@@ -156,9 +156,13 @@ var App = {
   if($colormode === 'bw') {
     $firstColor = '';
   }
+$colormode = $_COOKIE['colormode'];
 
+if(!$_COOKIE['colormode']) {
+  $colormode = color;
+}
  ?>
-<body id="top" data-colormode="bw">
+<body id="top" data-colormode="<?= $colormode;?>">
 
  <header id="top-header">
    <a id="spinner" alt="<?= $siteTitle;?>" href="<?= $homeURL;?>"></a>
@@ -199,11 +203,15 @@ var App = {
         </div>
        <?php
      }
-
+     if($colormode == 'color') {
+       $cmode_title = 'Switch to simple mode';
+     } else {
+       $cmode_title = 'Switch to color mode';
+     }
      ?>
    </div>
      <div id="color-mode-switcher" class="color-mode-switcher" style="visibility:hidden;">
-       <button id="color-mode-button" class="slider"></span>
+       <button data-colormode="<?= $colormode;?>" title="<?= $cmode_title;?>" id="color-mode-button" class="slider"></span>
      </div>
 
    </nav>

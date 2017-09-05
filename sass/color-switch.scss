@@ -83,12 +83,13 @@
     }
 
   }
-  &[data-colormode="color"] {
-    .slider {
+
+  button#color-mode-button[data-colormode="color"] {
+
       &:before {
         left: auto;
         right: 1px;
       }
-    }
+
   }
 }

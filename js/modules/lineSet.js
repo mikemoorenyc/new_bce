@@ -26,4 +26,5 @@ function lineSet() {
 
 	var styleCookie = theLine.getAttribute('style');
 	Cookies.set('liner_styles', styleCookie);
+
 }

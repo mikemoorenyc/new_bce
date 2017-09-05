@@ -82,8 +82,8 @@ curl_close($ch);
 $items = json_decode($output,true);
 
 $items = $items['items'];
-var_dump($items);
-die();
+//var_dump($items);
+//die();
 
 $track_blocks = [];
 $track_it = [];
@@ -175,6 +175,6 @@ $traktObject = array(
 if(!file_exists($wp_base.'wp-content/feed_dump/')) {
   mkdir($wp_base.'wp-content/feed_dump', 0777);
 }
-//var_dump($traktObject);
+var_dump($traktObject);
 file_put_contents($wp_base.'wp-content/feed_dump/spotify.json', json_encode($traktObject));
 die();

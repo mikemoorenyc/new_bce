@@ -69,26 +69,19 @@ foreach($items as $k => $i ){
     $imgClass = 'cd';
   }
 
-  $today = array(
-   'd' => intval(date('j')),
-   'm' => intval(date('n')),
-   'y' => intval(date('Y'))
-  );
-  $stamp = array(
-   'd' => intval(date('j',$i['timestamp'])),
-   'm' => intval(date('n',$i['timestamp'])),
-   'y' => intval(date('Y',$i['timestamp']))
-  );
+  $today = date('j-n-Y');
+  $yesterday = date('j-n-Y',strtotime('-1 days'));
+  $stamp = date('j-n-Y',$i['timestamp']);
+
+
   $time = human_time_diff($i['timestamp'] ).' ago';
-  if($today['m'] == $stamp['m'] && $today['y'] == $stamp['y']) {
-   if($today['d'] == $stamp['d']) {
-    $time = 'Today';
-   }
-   if(($today['d'] - 1) == $stamp['d']) {
-    $time = 'Yesterday';
-   }
+  if($stamp === $today) {
+    $time = "Today";
   }
-  
+  if($stamp === $yesterday || $time == "1 day ago") {
+    $time = "Yesterday";
+  }
+
   ?>
   <?php if($time !== $time_marker){
    ?>
@@ -97,10 +90,11 @@ foreach($items as $k => $i ){
    $time_marker = $time;
   }
   ?>
-  <div  class="media-item type-<?=$i['type'];?> above-line">
+
+  <div class="media-item type-<?=$i['type'];?> above-line">
 
 
-<div class="inner">
+
 
     <div class="img-container">
     <div class="media-image type-<?= $imgClass;?>">
@@ -126,7 +120,7 @@ foreach($items as $k => $i ){
 
 
     </div>
-  </div>
+
   </div>
   <?php
 
