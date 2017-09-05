@@ -105,7 +105,7 @@ $siteDesc = substr($siteDesc, 0, 150);
     $twitterCard = 'summary';
     if(get_option( 'social_icon_image', '' )) {
       $socialImg = get_all_image_sizes(get_option( 'social_icon_image', '' ));
-      $socialImg = $socialImg['thumbnail']['url'];
+      $socialImg = $socialImg['full']['url'];
     }
 
   }
