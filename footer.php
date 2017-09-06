@@ -40,7 +40,7 @@
 <?php if($_COOKIE["liner_styles"]):?>
   <div id="liner" style="<?= $_COOKIE["liner_styles"]; ?>"></div>
 <?php endif; ?>
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,Array.from"></script>
 
 <script defer  src="<?= $siteDir;?>/js/main.js?v=<?= $cacheBreaker;?>"></script>
   </body>
