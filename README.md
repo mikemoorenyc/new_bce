@@ -1,7 +1,6 @@
 ## MVP
-- fix excerpt in header
-- see if more condensed media stream is ok
-- ~~fix color switch width on dt~~
+- switch to grid in contact / about view
+- smoosh media stream
 
 
 ## POST LAUNCH
