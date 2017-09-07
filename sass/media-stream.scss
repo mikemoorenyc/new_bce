@@ -1,25 +1,9 @@
 .media-stream.container {
   padding-bottom: 24px;
-  padding-left: 16px;
-  padding-right: 16px;
   @media(min-width: $dt-break) {
-    width: 800px;
-    margin: 0 auto;
-    display:grid;
-    template-grid-columns: repeat(8,1fr);
-    grid-column-gap: 16px;
     grid-row-gap: 16px;
-    padding-left:16px;
-    padding-right: 16px;
-
   }
   @media($dt) {
-    width: auto;
-    max-width: $dt-max;
-    padding-left: 24px;
-    padding-right: 24px;
-    template-grid-columns: repeat(12,1fr);
-    grid-column-gap: 24px;
     grid-row-gap: 24px;
   }
   h2.sub-heading {
