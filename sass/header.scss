@@ -61,6 +61,7 @@ header {
     left: calc(50% - 640px);
   }
   a#spinner, a#spinner:before {
+    background:$white;
     position: absolute;
     left: 16px;
     width: 32px;
