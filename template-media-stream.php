@@ -15,7 +15,7 @@
   <?= md_sc_parse($post->post_content);?>
 </div>
 
-<div class="media-stream container">
+<div class="gl-mod grid-blank media-stream container">
 <?php
 $feeds = ['goodreads','spotify','trakt'];
 $itemList = [];
