@@ -1,6 +1,6 @@
 ## MVP
 - switch to grid in contact / about view
-- smoosh media stream
+- ~~smoosh media stream~~
 - swap blanks in media stream
 
 ## POST LAUNCH

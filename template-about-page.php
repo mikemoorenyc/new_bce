@@ -7,7 +7,8 @@
 <?php $landing_post = $post;?>
 
 <?php include_once 'partial_landing_page_header.php';?>
-<div class="about-page gl-mod col-2-setup clearfix" >
+<div class="about-page gl-mod col-2-setup " >
+<div class="picture" style=" background:green;"><div style="height:200px">asdf</div></div>
 <div id="main-about-content" class=" left-col about-page reading-section">
  <?=  md_sc_parse($post->post_content); ?>
 </div>

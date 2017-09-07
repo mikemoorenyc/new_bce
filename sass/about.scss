@@ -1,3 +1,47 @@
+.about-page.gl-mod.col-2-setup {
+
+  @media(min-width:$dt-break) {
+    display:grid;
+    grid-template-columns: 16px [bar1] 1fr 16px [bar2] 1fr 16px [bar3] 1fr 16px [bar4] 1fr 16px [bar5] 1fr 16px [bar6] 1fr 16px [bar7] 1fr 16px [bar8] 1fr [colend] 16px;
+    grid-template-rows: auto 1fr;
+    .left-col, .right-col {
+      width: auto;
+      padding:0;
+    }
+    .left-col {
+      grid-column-start: bar1;
+      grid-column-end: 11;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+    .right-col, .picture {
+      grid-column-start: 12;
+      grid-column-end: colend;
+    }
+    .picture {
+      grid-row-start:1;
+      grid-row-end:2;
+    }
+    .right-col {
+      grid-row-start:2;
+      grid-row-end:3;
+    }
+  }
+  @media($dt) {
+    grid-template-columns:repeat(12, 1fr);
+    padding-right:24px;
+    padding-left:24px;
+    grid-column-gap: 24px;
+    .left-col {
+      grid-column-start: 1;
+      grid-column-end: 8;
+    }
+    .right-col, .picture {
+      grid-column-start: 9;
+      grid-column-end: 13;
+    }
+  }
+}
 
 
 .about-page.like-block {
