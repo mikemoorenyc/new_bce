@@ -1,5 +1,6 @@
 ## MVP
 - switch to grid in contact / about view
+- hide logo on scroll down
 - ~~smoosh media stream~~
 - swap blanks in media stream
 
