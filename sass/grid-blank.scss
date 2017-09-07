@@ -1,1 +1,20 @@
 
+.gl-mod.grid-blank {
+ @media(min-width:$dt-break) {
+   display:grid;
+   max-width: $dt-break - 1px;
+   margin: 0 auto;
+   padding-left: 16px;
+   padding-right: 16px;
+   template-grid-columns: repeat(8,1fr);
+   grid-column-gap: 16px;
+  }
+  @media($dt) {
+    max-width: $dt-max;
+    padding-left: 24px;
+    padding-right: 24px;
+    template-grid-columns: repeat(12,1fr);
+    grid-column-gap: 24px;
+  }
+  
+}
