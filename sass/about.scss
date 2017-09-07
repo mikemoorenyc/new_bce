@@ -1,45 +1,24 @@
 .about-page.gl-mod.col-2-setup {
 
   @media(min-width:$dt-break) {
-    display:grid;
-    padding-left: 16px;
-    padding-right: 16px;
-    grid-template-columns: repeat(8,1fr);
-    grid-column-gap: 16px;
+
     grid-template-rows: auto 1fr;
-    .left-col, .right-col {
-      width: auto;
-      padding:0;
-    }
+
     .left-col {
-      grid-column-start: 1;
-      grid-column-end: span 5;
+
       grid-row-start: 1;
       grid-row-end: span 2;
     }
     .right-col, .picture {
-      grid-column-start: 6;
-      grid-column-end: span 3;
+
       grid-row-start: 1;
       grid-row-end: span 2;
     }
     .right-col {
-      grid-row-start: 1;
+      grid-row-start: 2;
     }
   }
-  @media($dt) {
-    grid-template-columns:repeat(12, 1fr);
-    padding-right:24px;
-    padding-left:24px;
-    grid-column-gap: 24px;
-    .left-col {
-      grid-column-end: span 7;
-    }
-    .right-col, .picture {
-      grid-column-start: 9;
-      grid-column-end: span 4;
-    }
-  }
+  
 }
 
 
