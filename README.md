@@ -1,6 +1,6 @@
 ## MVP
-- switch to grid in contact / about view
-- hide logo on scroll down
+- check my grids
+- fix fonts https://archetypeapp.com/#
 - ~~smoosh media stream~~
 - swap blanks in media stream
 
