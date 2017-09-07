@@ -6,7 +6,7 @@
 
 
 <?php include 'header.php'; ?>
-<section class="hp top-content nav-spacer mw-800">
+<section class="hp top-content nav-spacer gl-mod grid-blank">
   <h1 class="story-title">
   <?= md_sc_parse($post->post_content);?>
   </h1>
