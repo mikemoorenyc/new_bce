@@ -1,11 +1,11 @@
 
 .gl-mod.grid-blank {
+ padding-left: 16px;
+ padding-right: 16px;
  @media(min-width:$dt-break) {
    display:grid;
    max-width: $dt-break - 1px;
    margin: 0 auto;
-   padding-left: 16px;
-   padding-right: 16px;
    template-grid-columns: repeat(8,1fr);
    grid-column-gap: 16px;
   }
