@@ -1,70 +1,49 @@
 .media-stream.container {
   padding-bottom: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
   @media(min-width: $dt-break) {
     width: 800px;
     margin: 0 auto;
-    display:flex;
-    flex-wrap:wrap;
-    padding-left:8px;
-    padding-right: 8px;
+    display:grid;
+    template-grid-columns: repeat(8,1fr);
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    padding-left:16px;
+    padding-right: 16px;
 
   }
   @media($dt) {
     width: auto;
     max-width: $dt-max;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
+    template-grid-columns: repeat(12,1fr);
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
   }
   h2.sub-heading {
-    width: 100%;
-    margin-left: 16px;
-    margin-right: 16px;
     @media(min-width:$dt-break) {
-      margin-right: 8px;
-      margin-left: 8px;
+      grid-column-start: 1;
+      grid-column-end: span 8;
     }
     @media($dt) {
-      margin-right: 12px;
-      margin-left: 12px;
+      grid-column-end: span 12;
     }
   }
-  /*
-  .media-time {
-    span {
-      display:inline-block;
-      border-width:  1px;
-      border-style:dotted;
-      padding: 0 8px ;
-      box-shadow: 1px 1px currentColor;
-    }
-    width: 100%;
-    padding-right: 16px;
-    padding-left:16px;
-    padding-top:12px;
-    @media(min-width:$dt-break) {
-      padding-left: 8px;
-      padding-right: 8px;
-    }
-    @media($dt) {
-      padding-left: 12px;
-      padding-right:12px;
-    }
 
-  }*/
   .media-item {
     position: relative;
-    margin: 0 16px 16px 16px;
+    margin-bottom:16px;
     display:flex;
     align-items: center;
 
     @media(min-width: $dt-break) {
-      width: calc(50% - 16px);
-    //  padding-top: 24px;
-      margin: 0 8px 16px 8px;
+      margin: 0;
+      grid-column-start: span 4;
     }
     @media($dt) {
-      width: calc((100% / 4) - 24px);
-      margin: 0 12px 24px 12px;
+      grid-column-start: span 3;
 
     }
 
