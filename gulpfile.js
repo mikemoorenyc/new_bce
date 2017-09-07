@@ -34,9 +34,9 @@ gulp.task('clean', function(){
 gulp.task('css', function(){
   var plugins = [
   //    mqpacker(),
-
+      autoprefixer({grid:true}),
       cssnano(),
-      autoprefixer({browsers: ['last 3 versions']})
+
   ]
 
   gulp.src('sass/main.scss')
