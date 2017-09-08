@@ -1,8 +1,5 @@
 ## MVP
-- check my grids
-- fix fonts https://archetypeapp.com/#
-- ~~smoosh media stream~~
-- swap blanks in media stream
+
 
 ## POST LAUNCH
 - implement svg drawing of myself
