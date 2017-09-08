@@ -142,7 +142,8 @@ var App = {
   URL: {
     homeURL: <?= json_encode($homeURL);?>,
     path: <?= json_encode($homeArray['path'].'/');?>,
-    domain: <?= json_encode($homeArray['host']);?>
+    domain: <?= json_encode($homeArray['host']);?>,
+    siteDir: <?= json_encode($siteDir);?>
   }
 }
 

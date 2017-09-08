@@ -11,14 +11,14 @@
     }
     .right-col, .picture {
 
-      grid-row-start: 1;
-      grid-row-end: span 2;
-    }
-    .right-col {
       grid-row-start: 2;
+      grid-row-end: span 1;
+    }
+    .picture {
+      grid-row-start: 1;
     }
   }
-  
+
 }
 
 

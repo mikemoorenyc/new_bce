@@ -7,9 +7,13 @@ function pageLoader() {
 //  $('nav ul li.'+theSlug).addClass('__active');
 //  $('nav ul li.'+theSlug).find('a').addClass('__active');
 
-  //posterSwap();
+if(document.getElementById('media-stream')) {
+  mediaBlanks();
+}
   lazyImg();
   externalLinks();
+
+
 
   //MAKE INTERNAL LINKS
   /*
