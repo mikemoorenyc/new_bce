@@ -20,8 +20,9 @@ function artistNames($i) {
 }
 
 function title_formatter($title,$classString ='') {
- if(strlen($title) >= 50) {
+ if(strlen($title) >= 40) {
   $long_title = 'long-title';
+  $title = substr($title,0,30).'...';
  }
  if(strlen($title) < 18) {
   $long_title = 'short-title';
@@ -46,28 +47,28 @@ function book_status_maker($i) {
 function switch_media_info($i) {
  switch($i['type']):
   case 'movie':
-  ?> <div class="extra">Watched</div> <?php
+  ?> <div class="extra font-sans">Watched</div> <?php
  echo title_formatter($i['title']);
 
   break;
 
   case 'episode':
-  ?> <div class="extra">Watched</div> <?php
+  ?> <div class="extra font-sans">Watched</div> <?php
   echo title_formatter( $i['title'],'single');
   ?>
-  <div class="show-title"><?= $i['show']['title']; ?></div>
+  <div class="show-title font-sans"><?= $i['show']['title']; ?></div>
   <?php
   break;
 
   case 'show':
   ?>
-  <div class="extra">Watched <?= $i['bingeCount'];?> episodes</div>
+  <div class="extra font-sans">Watched <?= $i['bingeCount'];?> episodes</div>
   <?php
   echo title_formatter($i['show']['title']);
   break;
 
   case 'album':
-  ?> <div class="extra">Listened to</div> <?php
+  ?> <div class="extra font-sans">Listened to</div> <?php
    echo title_formatter($i['album']['title']);
    ?>
    <h3 class="byline"><?=  'by '.artistNames($i['album']['artists']);?></h3>
@@ -83,13 +84,13 @@ function switch_media_info($i) {
    $s = 's';
   }
   ?>
- <div class="extra">
+ <div class="extra font-sans">
  <?= $i['listenCount']-1;?> repeat<?= $s;?>
  </div>
 
   <?php
 } else {
-  ?> <div class="extra">Listened to</div> <?php
+  ?> <div class="extra font-sans">Listened to</div> <?php
 }
    echo title_formatter($i['title'], 'single');
    ?>
@@ -101,7 +102,7 @@ function switch_media_info($i) {
  ?>
 
 
-<div class="extra"><?= book_status_maker($i);?></div>
+<div class="extra font-sans"><?= book_status_maker($i);?></div>
 <?= title_formatter($i['title']);?>
 <h3 class="byline"><?=  'by '.artistNames($i['authors']);?></h3>
 

@@ -35,7 +35,7 @@
     margin-bottom:.5em;
   }
   ul {
-    font-family: $font-sans;
+
     @media(max-width: ($dt-break - 1px)) {
       column-count: 2;
       column-gap: 16px;

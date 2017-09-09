@@ -15,7 +15,7 @@
   <?= md_sc_parse($post->post_content);?>
 </div>
 
-<div id="media-stream" class="gl-mod grid-blank media-stream container">
+<div id="media-stream" class=" media-stream container">
 <?php
 $feeds = ['goodreads','spotify','trakt'];
 $itemList = [];
@@ -61,7 +61,7 @@ function lazyImg($i) {
 include_once 'switch_media_info.php';
 $time_marker = "";
 ?>
-<script> App.mediaContent = <?= json_encode($items);?>;  </script>
+
 <?php
 foreach($items as $k => $i ){
   $imgClass = $i['type'];

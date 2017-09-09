@@ -45,12 +45,13 @@ header {
   @media(min-width:402px) {
     width: 402px;
     left: calc(50% - 201px);
-    top: 8px;
+
   }
   @media(min-width:802px) {
     width: 800px;
     height: $dt-header-padding;
     left: calc(50% - 400px);
+    top: 8px;
   }
   @media($dt) {
     width: 100%;

@@ -21,14 +21,35 @@
     }
   }
 }
+@media(min-width:$dt-break) {
+  #contact-page {
+    grid-template-rows: auto 1fr;
+    .social-links {
+      grid-row-start: 1;
+      grid-row-end: span 2;
+    }
+    .left-col, #contact-form-container {
+      grid-row-start: 1;
+      grid-row-end: span 1;
+    }
+    #contact-form-container {
+      grid-row-start: 2;
+
+    }
+  }
+
+}
+#contact-form-container {
+  padding-bottom:48px;
+}
 .contact-page.contact-form {
-  margin: 0 16px 32px 16px;
+
   padding: 16px;
   position: relative;
   border-width: 3px;
   box-shadow: 3px 3px 0 currentColor;
   @media(min-width:$dt-break) {
-    max-width: (800px - 32px);
+  
     margin-left: auto;
     margin-right: auto;
     padding-left: 8px;
@@ -36,13 +57,11 @@
   }
   @media($dt) {
     max-width: none;
-    width: calc(((100% / 12) * 7) - 12px);
-    margin-left: 24px;
+
     padding: 24px 12px 24px 12px;
   }
   @media(min-width:$dt-max) {
-    margin-right: 0;
-    margin-left: calc((100% - #{$dt-max - 48px}) / 2);
+
   }
   h2.error-msg {
     padding: 8px;

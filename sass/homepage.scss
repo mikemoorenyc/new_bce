@@ -1,15 +1,16 @@
 .hp.top-content {
- @media(min-width:$dt-break) {
-  grid-column-end: span 8;  
- }
- @media($dt) {
-   grid-column-end: span 7;
-  }
+
 }
 .hp.top-content h1 {
   font-size: 24px;
   font-weight: 200;
   padding-bottom: 24px;
+  @media(min-width:$dt-break) {
+   grid-column-end: span 8;
+  }
+  @media($dt) {
+    grid-column-end: span 7;
+   }
   @media(min-width:802px) {
     font-size:32px;
   }
@@ -41,7 +42,6 @@ h2.hp.sub-heading {
   display: block;
   margin: 0 16px;
   text-align: right;
-  font-family: $font-sans;
   font-weight: bold;
   text-decoration: none;
   line-height: 40px;

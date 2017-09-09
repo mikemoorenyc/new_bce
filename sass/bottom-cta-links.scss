@@ -1,7 +1,7 @@
 .bottom-cta-links {
   border-width: 1rem 0;
   display:flex;
-  font-family: $font-sans;
+
   > a {
     width: 50%;
     border-left-width:1rem;
@@ -40,7 +40,7 @@
     }
     &.prev-link {
       svg {
-       transform: rotate(180deg);  
+       transform: rotate(180deg);
       }
     }
     &.next-link {

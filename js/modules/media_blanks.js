@@ -1,18 +1,23 @@
 function mediaBlanks() {
   let observer = new IntersectionObserver(onChange);
   const sets = [ ...document.querySelectorAll('.media-item') ];
-
+  const mediaHTML = [];
   sets.forEach(function(e,i){
+    mediaHTML.push(e.innerHTML);
     e.innerHTML = '';
     e.classList.add('blank');
   });
-
   function onChange(changes) {
 
    changes.forEach(change => {
      if(change.isIntersecting) {
-       change.target.innerHTML = contentFill(parseInt(change.target.getAttribute('data-key')));
+       change.target.innerHTML = mediaHTML[parseInt(change.target.getAttribute('data-key'))];
        change.target.classList.remove('blank');
+       let img = change.target.querySelector('img');
+       if(img.classList.contains('preload-image')) {
+         img.setAttribute('src', img.getAttribute('data-src'));
+       }
+
 
      } else {
        change.target.classList.add('blank');

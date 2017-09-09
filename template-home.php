@@ -48,7 +48,13 @@ foreach($projects as $p) {
 
  ?>
  </div>
- <a href="<?= $homeURL;?>/projects" class="button-style hp bottom-button">See All Projects <span class="bug "><?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?></span></a>
+
+
+ <?php
+ $button_URL = $homeURL.'/projects';
+ $button_copy = 'See All Projects';
+ include 'partial-bottom-button.php';
+  ?>
 </section>
 
 <?php endif;?>
@@ -87,7 +93,11 @@ foreach($posts as $p) {
 
  ?>
 </ul>
-<a href="<?= $homeURL;?>/blog" class="button-style hp bottom-button">See All Blog Posts <span class="bug "><?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?></span></a>
+<?php
+$button_URL = $homeURL.'/blog';
+$button_copy = 'See All Blog Posts';
+include 'partial-bottom-button.php';
+ ?>
 </section>
 <?php endif;?>
 
