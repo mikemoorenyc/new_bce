@@ -20,11 +20,11 @@ function artistNames($i) {
 }
 
 function title_formatter($title,$classString ='') {
- if(strlen($title) >= 40) {
+ if(strlen($title) >= 35) {
   $long_title = 'long-title';
   $title = substr($title,0,30).'...';
  }
- if(strlen($title) < 18) {
+ if(strlen($title) < 15) {
   $long_title = 'short-title';
  }
  return '<h2 class="'.$long_title.' '.$classString.'">'.$title.'</h2>';
@@ -56,7 +56,7 @@ function switch_media_info($i) {
   ?> <div class="extra font-sans">Watched</div> <?php
   echo title_formatter( $i['title'],'single');
   ?>
-  <div class="show-title font-sans"><?= $i['show']['title']; ?></div>
+  <div class="show-title font-sans text-overflow"><?= $i['show']['title']; ?></div>
   <?php
   break;
 

@@ -55,11 +55,11 @@
       padding-left: 16px;
       line-height: 1.2;
 
-
+      min-width: 0;
       h2 {
         font-size: 18px;
         &.long-title {
-          font-size:16px;
+          font-size:14px;
         }
         &.short-title {
           font-size: 22px;
@@ -86,6 +86,7 @@
         font-family: $font-serif;
         font-weight: normal;
         font-style: italic;
+        font-size:14px;
       }
       .show-title {
 

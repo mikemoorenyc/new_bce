@@ -63,6 +63,47 @@ $time_marker = "";
 ?>
 
 <?php
+function returnS($s) {
+  if($s > 1) {
+    return 's';
+  } else {
+    return '';
+  }
+}
+function timeSet($stamp) {
+  $today = array(intval(date('j')),intval(date('n')),intval(date('Y')));
+  $timeA =  array(intval(date('j',$stamp)),intval(date('n',$stamp)),intval(date('Y',$stamp)));
+
+  $largeDiff = ($today[0]+($today[1]*30)+($today[2]*365)) - ($timeA[0]+($timeA[1]*30)+($timeA[2]*365));
+
+  if(date('j-n-Y') === date('j-n-Y',$stamp)) {
+    return 'Today';
+  }
+  if(date('j-n-Y',strtotime('-1 days')) === date('j-n-Y',$stamp)) {
+    return 'Yesterday';
+  }
+  //YEARS
+  if($largeDiff >= 365) {
+    $diff = $today[2] - $timeA[2];
+    return $diff.' year'.returnS($diff).' ago';
+  }
+  //MONTHS
+  if($largeDiff > 30) {
+    $diff = $today[1] - $timeA[1];
+    return $diff.' month'.returnS($diff).' ago';
+  }
+  //WEEKS
+  if($largeDiff > 6) {
+    $diff = floor($largeDiff / 7);
+    return $diff.' week'.returnS($diff).' ago';
+  }
+  //DAYS
+  return ($today[0] - $timeA[0]).' day'.returnS($today[0] - $timeA[0]).' ago';
+}
+
+ ?>
+
+<?php
 foreach($items as $k => $i ){
   $imgClass = $i['type'];
   if(in_array($imgClass,array('episode','show') )) {
@@ -71,19 +112,22 @@ foreach($items as $k => $i ){
   if(in_array($imgClass,array('track','album'))) {
     $imgClass = 'cd';
   }
-
+  /*
   $today = date('j-n-Y');
   $yesterday = date('j-n-Y',strtotime('-1 days'));
   $stamp = date('j-n-Y',$i['timestamp']);
 
-
-  $time = human_time_diff($i['timestamp'] ).' ago';
+  $datetime = new DateTime(date('c',$i['timestamp']) );
+  $ny_time = new DateTimeZone('America/New_York');
+  $datetime->setTimezone($ny_time);
+  $time = human_time_diff($datetime->format('U') ).' ago';
   if($stamp === $today) {
     $time = "Today";
   }
   if($stamp === $yesterday || $time == "1 day ago") {
     $time = "Yesterday";
-  }
+  }*/
+  $time = timeSet($i['timestamp']);
 
   ?>
   <?php if($time !== $time_marker){
