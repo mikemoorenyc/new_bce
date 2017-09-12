@@ -108,8 +108,20 @@ function checkShowImg($id) {
     - if success on img, set post id meta imgURL to url
     - continue;
   - if 'show'
+    - turn this into a single function
     - $storedImg = checkShowImg($show meta showID);
     - if($storedImg){set post id meta showImgURL = $storedImg; continue;}
     - curl to get tmdb
     - curl++
-    - 
+    - if($storedImg){set post id meta showImgURL = $storedImg; continue;}
+    - curl to get_tvdb
+    - curltvdb++
+    - if($storedImg){set post id meta showImgURL = $storedImg; continue;}
+  - if episode
+    - if(showimg
+    - curl to get tmdb
+    - curl++
+    - if($storedImg){set post id meta showImgURL = $storedImg; continue;}
+    - curl to get_tvdb
+    - curltvdb++
+    - if($storedImg){set post id meta showImgURL = $storedImg; continue;}
