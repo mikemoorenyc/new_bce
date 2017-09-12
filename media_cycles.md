@@ -13,6 +13,7 @@
 - Get working array (books.json)
 - foreach item 
   - if(inDB){continue}
+  - if tax term doesnt exist, create it
   - add item to db, if success (update in working array `[inDB] ==== true`)
 - save working array (books.json)
 ## Adding to DB / Albums
@@ -32,11 +33,13 @@
     - mark as inDB in working array
     - continue
   - ($albumID == currentAlbumID && its on the same day) 
+    - if "album" doesn't exist, create term
     - update current DBID with category 'album'
     - update current DBID title to album title
     - mark as inDB in working array
     - continue
   - we are good to reset
+    - if "track" doesn't exist, create term
     - create new post
     - currentDBID (return on insertPOST)
     - currentListenCount = 1
@@ -46,3 +49,12 @@
     - mark as inDB in working array
  - re-save working array
 
+## Adding to DB / Shows
+- get working array
+- get latest show or episode entry
+  - current = latest || null if no latest
+    - DBid
+    - play date
+    - showID
+    - bingeCount
+**Not done**
