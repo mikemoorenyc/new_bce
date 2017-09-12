@@ -77,24 +77,24 @@
     - set DBID meta 'showID' to currentShowID
     - mark as inDB in working array
 
-function checkShowImg($id) {
-  $posts = get_media_posts whose meta value for 'showID' === $id;
-  if(!$posts) {
-    $posts = array();
-  }
-  foreach($posts as $p) {
-    if(get_meta_value($p,'showImgURL')){
-      return get_meta_value($p,'showImgURL');
-      exit;
+  function checkShowImg($id) {
+    $posts = get_media_posts whose meta value for 'showID' === $id;
+    if(!$posts) {
+      $posts = array();
     }
+    foreach($posts as $p) {
+      if(get_meta_value($p,'showImgURL')){
+        return get_meta_value($p,'showImgURL');
+        exit;
+      }
+    }
+    global tmdbcurls;
+    if(tmdbcurls < 25) { curl tmdb tmdbcurls++ if(there is show image){return image; }}
+    global tvdbcurl;
+    curl tvdb
+    if(this is a tvdb image){return image;}
+    return false;
   }
-  global tmdbcurls;
-  if(tmdbcurls < 25) { curl tmdb tmdbcurls++ if(there is show image){return image; }}
-  global tvdbcurl;
-  curl tvdb
-  if(this is a tvdb image){return image;}
-  return false;
-}
     
 ## GETTING THE IMAGES
 - get all 'episode', 'movie' & 'show'  where meta_query meta_key 'imgURL' doesn't exist **check if i can do this**
