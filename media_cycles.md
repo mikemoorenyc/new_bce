@@ -25,13 +25,16 @@
     - trackID
     - listenCount
 - foreach item
+  if(`inDB === true`){continue;}
   - if($itrackID == currentTrackID)
     - post meta listenCount = current listenCount+ 1;
     - currentListenCount++
+    - mark as inDB in working array
     - continue
   - ($albumID == currentAlbumID && its on the same day) 
     - update current DBID with category 'album'
     - update current DBID title to album title
+    - mark as inDB in working array
     - continue
   - we are good to reset
     - create new post
@@ -40,4 +43,6 @@
     - currentTrackID = $itrackID
     - currentAlbumID = $albumID
     - play date
+    - mark as inDB in working array
+ - re-save working array
 
