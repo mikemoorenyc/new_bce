@@ -63,7 +63,7 @@ function getShowImgURL($data) {
   )
  );
  if(!empty($storedImg)) {
-  return get_post_meta($storedImg[0]->ID, 'showImgURL');  
+  return get_post_meta($storedImg[0]->ID, 'showImgURL',true);  
  }
  $response = curlTMDB('https://api.themoviedb.org/3/tv/'.$showID);
  if($response && !empty($response['backdrop_path'])) {
