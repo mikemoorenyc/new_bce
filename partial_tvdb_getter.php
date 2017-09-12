@@ -79,6 +79,9 @@ function get_tvdb($type, $id) {
   if($type == 'show') {
     curl_setopt($ch, CURLOPT_URL, 'https://api.thetvdb.com/series/'.$id.'/images/query?keyType=fanart');
     $output = curl_exec($ch);
+	  
+		$tvdbCURLs++;    
+	  
     if($output === false) {
 
       return $url;
