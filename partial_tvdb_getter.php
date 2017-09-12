@@ -33,15 +33,16 @@ curl_close($ch);
 
 
 
-
+$tvdbCURLs = 0;
 
 function get_tvdb($type, $id) {
   global $tvdb_jwt;
-
+  global $tvdbCURLs;
   $url = null;
   if($tvdb_jwt === false) {
     return $url;
   }
+  if($tvdbCURLS > 25) {return false;}
 
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -58,6 +59,9 @@ function get_tvdb($type, $id) {
   if($type === 'episode') {
     curl_setopt($ch, CURLOPT_URL, 'https://api.thetvdb.com/episodes/'.$id);
     $output = curl_exec($ch);
+    
+    $tvdbCURLs++;          
+           
     if($output === false) {
       echo curl_error($ch);
       return $url;
