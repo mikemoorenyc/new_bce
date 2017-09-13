@@ -19,11 +19,13 @@ $wp_base = ABSPATH;
 $keys = api_key_generator();
 
 
-function imageReplacer($o_URL,$isbn, $type = 'ISBN') {
-
+function imageReplacer($o_URL,$isbn, $type = 'ISBN',$desc=null) {
+  
   $a_URL = 'http://images.amazon.com/images/P/'.$isbn.'.01.LZZZZ.jpg';
   if($size[0] > 50) {
-    return $o_URL;
+    if(!$desc){return $o_URL;}
+    $doc = new DOMDocument();
+    $doc->loadHTML($desc);
   }
   return $a_URL;
 
@@ -46,7 +48,7 @@ if(file_exists($wp_base.'wp-content/feed_dump/goodreads.json')) {
   $start_time = $month_ago;
 }
 
-$status = new SimpleXMLElement(file_get_contents('https://www.goodreads.com/user/updates_rss/'.$keys['goodreads_uid'].'?key=18ioDaauDhEjysrttqWKDR03F_rvL_JFKT4MUW5jz8sl5px7'));
+$status = new SimpleXMLElement(file_get_contents('https://www.goodreads.com/user/updates_rss/'.$keys['goodreads_uid'].'?key=18ioDaauDhEjysrttqWKDR03F_rvL_JFKT4MUW5jz8sl5px7'),LIBXML_NOCDATA);
 
 
 $bookUpdates = [];
