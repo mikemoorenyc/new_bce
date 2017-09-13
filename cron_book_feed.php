@@ -22,14 +22,21 @@ $keys = api_key_generator();
 function imageReplacer($o_URL,$isbn, $type = 'ISBN',$desc=null) {
   
   $a_URL = 'http://images.amazon.com/images/P/'.$isbn.'.01.LZZZZ.jpg';
-  if($size[0] > 50) {
+  $size = getimagesize($a_URL);
+  if($size[0] < 50) {
     if(!$desc){return $o_URL;}
     $doc = new DOMDocument();
     @$doc->loadHTML($desc);
     $img = $dom->getElementsByTagName('img');
     foreach($img as $i) {
      $url = $i->getAttribute('src');
-     return str_replace('s/','m/',$url);
+     $url = str_replace('s/','m/',$url);
+     $size = getimagesize($url);
+     if($size[0] > 50) {
+      return $url; 
+     } else {
+      return $o_URL; 
+     }
      exit;
     }
   }
