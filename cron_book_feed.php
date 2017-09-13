@@ -37,7 +37,7 @@ function imageReplacer($o_URL,$isbn, $type = 'ISBN',$desc=null) {
      } else {
       return $o_URL; 
      }
-     exit;
+     break;
     }
   }
   return $a_URL;
