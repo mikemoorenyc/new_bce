@@ -27,7 +27,7 @@ function imageReplacer($o_URL,$isbn, $type = 'ISBN',$desc=null) {
     if(!$desc){return $o_URL;}
     $doc = new DOMDocument();
     @$doc->loadHTML($desc);
-    $img = $dom->getElementsByTagName('img');
+    $img = $doc->getElementsByTagName('img');
     foreach($img as $i) {
      $url = $i->getAttribute('src');
      $url = str_replace('s/','m/',$url);
