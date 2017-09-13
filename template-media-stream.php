@@ -105,7 +105,7 @@ function timeSet($stamp) {
 
 <?php
 foreach($items as $k => $i ){
- if($k > 99) {exit;}
+ if($k > 99) {break;}
   $imgClass = $i['type'];
   if(in_array($imgClass,array('episode','show') )) {
     $imgClass = 'tv';
