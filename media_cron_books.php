@@ -1,20 +1,6 @@
 <?php
-
-//BOOKS
-if(file_exists($wp_base.'wp-content/feed_dump/books.json')) {
-  $workingArray = json_decode(file_get_contents($wp_base.'wp-content/feed_dump/books.json'),true);
-} else {
-  $workingArray = array();
-}
-$status = new SimpleXMLElement(file_get_contents('https://www.goodreads.com/user/updates_rss/'.$keys['goodreads_uid'].'?key=18ioDaauDhEjysrttqWKDR03F_rvL_JFKT4MUW5jz8sl5px7'));
-$GUIDs = array_map(function($i){
-  return $i['GUID'];
-},$workingArray);
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+$mediaType = 'books';
+include_once('media_cron_header.php');
 
 function imageReplacer($o_URL,$isbn, $type = 'ISBN') {
   $a_URL = 'http://images.amazon.com/images/P/'.$isbn.'.01.LZZZZ.jpg';
@@ -23,6 +9,15 @@ function imageReplacer($o_URL,$isbn, $type = 'ISBN') {
   }
   return $a_URL;
 }
+
+$status = new SimpleXMLElement(file_get_contents('https://www.goodreads.com/user/updates_rss/'.$keys['goodreads_uid'].'?key=18ioDaauDhEjysrttqWKDR03F_rvL_JFKT4MUW5jz8sl5px7'));
+
+
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
 foreach($status->channel->item as $i) {
   if(in_array($i->guid,$GUIDs) || strpos($i->guid,'Review')!== false ) {
@@ -75,9 +70,6 @@ foreach($status->channel->item as $i) {
   $workingArray[] = $update;
 }
 
-
-include_once 'cron_media_footer.php';
-
-
+include 'media_cron_footer.php';
 
 ?>
