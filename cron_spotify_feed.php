@@ -122,7 +122,7 @@ foreach($track_blocks as $tb) {
   $output = curl_exec($ch);
   if ($output === FALSE) {
     echo "cURL Error: " . curl_error($ch);
-    die();
+    continue;
   }
   $tracks = json_decode($output,true);
   $allTracks = array_merge($allTracks, $tracks['tracks']);
