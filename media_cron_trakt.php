@@ -30,30 +30,12 @@ $items = json_decode($output, true);
 
 $oldest_play = $items[count($items)-1]['watched_at'];
 
-$compare_posts = get_posts(array(
-  'posts_per_page'   => -1,
-  'post_type' => 'consumed',
-	'tax_query' => array(
-		array(
-			'taxonomy' => 'consumed_types',
-			'field'    => 'slug',
-			'terms'    => ['episode','show'],
-		),
-	),
-  'date_query' => array(
-    'after'=> $oldest_play
-  )
-));
 
-$GUIDs = array();
+$compare_posts = comparePosts(['episode','show'], $oldest_play);
 
-foreach($compare_posts as $p) {
- $data = json_decode($p->post_content,true); 
- $GUIDs = array_merge($GUIDs, $data['GUID']); 
-}
 $items = array_filter($items, function($i) {
   global $GUIDs;
-  return in_array($i['id'],$GUIDs) === false;
+  return in_array($i['id'],$compare_posts['GUID']) === false;
 });
 
 $resetValues = array(
@@ -63,13 +45,13 @@ $resetValues = array(
     'showID' => null
 );
 $current = $resetValues;
-if(!empty($compare_posts)) {
- $data = json_decode($compare_posts[0]->post_content,true);
+if(!empty($compare_posts['posts'])) {
+ $data = json_decode($compare_posts['posts'][0]->post_content,true);
  $current = array(
     'timestamp' => intval($data['timestamp']),
-    'bingeCount' => intval(get_post_meta($compare_posts[0]->ID,'bingeCount',true)),
+    'bingeCount' => intval(get_post_meta($compare_posts['posts'][0]->ID,'bingeCount',true)),
     'dbID' => $compare_posts[0]->ID,
-    'showID' => get_post_meta($compare_posts[0]->ID,'showID',true)
+    'showID' => get_post_meta($compare_posts['posts'][0]->ID,'showID',true)
  ); 
 }
 $GUID = [];
