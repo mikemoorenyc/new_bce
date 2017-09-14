@@ -2,6 +2,8 @@
 $mediaType = 'books';
 include_once('media_cron_header.php');
 
+createTerm('Book');
+
 function imageReplacer($o_URL,$isbn,$desc=null, $type = 'ISBN') {
 
   $a_URL = 'http://images.amazon.com/images/P/'.$isbn.'.01.LZZZZ.jpg';
@@ -42,9 +44,13 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
-foreach($status->channel->item as $i) {
+$items = $status->channel->item;
+$oldest_play = $items[count($items) -1]->pubDate.'';
+$compare_posts = comparePosts(['book'], $oldest_play);
 
-  if(in_array($i->guid,$GUIDs) || strpos($i->guid,'Review')!== false ) {
+foreach($items as $i) {
+
+  if(in_array($i->guid,$compare_posts['GUID']) || strpos($i->guid,'Review')!== false ) {
    continue;
   }
   $updateID =  str_replace("ReadStatus","",$i->guid);
@@ -65,10 +71,10 @@ foreach($status->channel->item as $i) {
   } else {
     $readStatus = $readStatus->read_status;
   }
-  $authors = [];
-  foreach($readStatus->book->authors->author as $a) {
-    $authors[] = $a->name.'';
-  }
+  $authors = array_map(function($a){
+    return $a->name.'';
+  },$readStatus->book->authors->author);
+
   $imgURL = $readStatus->book->image_url.'';
   if(strpos($imgURL, 'nophoto') !== false) {
 
@@ -83,7 +89,7 @@ foreach($status->channel->item as $i) {
     }
   }
 
-  $update = array(
+  $data = array(
     'percent' => $readStatus->percent.'',
     'title' => $readStatus->book->title.'',
     'img' => $imgURL,
@@ -92,11 +98,25 @@ foreach($status->channel->item as $i) {
     'type' => 'book',
     'authors' => $authors,
     'inDB' => false,
-    'GUID' => $i->guid.''
+    'GUID' => [$i->guid.'']
   );
-  $workingArray[] = $update;
+
+  
+   
+  $dates = dateMaker($data['timestamp']);
+
+  $insert = wp_insert_post( array(
+    'post_title' => $data['title'],
+    'post_type' => 'consumed',
+    'post_status'=> 'publish',
+    'post_content' => json_encode($data),
+    'post_date' => $dates['est'],
+    'post_date_gmt'=> $dates['gmt']
+  ) );
+  if($insert) {
+    wp_set_object_terms( $insert, 'book', 'consumed_types' );
+  }
 }
 
-include 'media_cron_footer.php';
 
 ?>
