@@ -130,7 +130,24 @@ foreach($posts as $k => $p) {
       </div>
     </div>
     <div class="info">
-      <?php infoSwitch($p);?>
+      <?php infoSwitch(
+        array(
+         'title'=>$p->post_title,
+         'type' => $type,
+         'show' => array(
+           'title'=> $data['show']['title']
+          ),
+         'album' => array(
+          'title' => $data['album'['title'],
+          'artists' => $data['album']['artists']
+         ),
+         'bingeCount' => intval(get_post_meta($p->ID, 'bingeCount',true)),
+         'listenCount' => intval(get_post_meta($p->ID, 'listenCount',true)),
+         'authors' => $data['authors'],                 
+         'percent' => $data['percent'],
+         'status' => $data['status']
+        )
+       );?>
     </div>
     
   </div>
