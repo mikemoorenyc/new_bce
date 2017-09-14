@@ -31,37 +31,102 @@ curl_close($ch);
 
 $items = json_decode($output, true);
 
+$oldest_play = $items[count($items)-1]['watched_at'];
+
+$compare_posts = get_posts(array(
+  'posts_per_page'   => -1,
+  'post_type' => 'consumed',
+	'tax_query' => array(
+		array(
+			'taxonomy' => 'consumed_types',
+			'field'    => 'slug',
+			'terms'    => ['episode','show',],
+		),
+	),
+  'date_query' => array(
+    'after'=> $oldest_play
+  )
+
+));
+$GUIDs = array_map(function($i){
+  $data = json_decode($i->post_content,true);
+  return $data['GUID'];
+},$compare_posts);
+$current = array(
+      'timestamp' => time(),
+    'bingeCount' => 0,
+    'dbID' => null,
+    'showID' => null
+);
+if(!empty($compare_posts)) {
+ $data = json_decode($compare_posts[0]->post_content,true);
+ $current = array(
+    'timestamp' => intval($data['timestamp']),
+    'bingeCount' => intval(get_post_meta($compare_posts[0]->ID,'bingeCount',true)),
+    'dbID' => $compare_posts[0]->ID,
+    'showID' => get_post_meta($compare_posts[0]->ID,'showID',true)
+ ); 
+}
+
+
 foreach($items as $i) {
   if(in_array($i['id'],$GUIDs)){continue;}
+  $dates = dateMaker($i);
   if($i['type'] === 'movie') {
-    $workingArray[] = array(
-      'GUID' => $i['id'],
-      'inDB' => false,
-      'title' => $i['movie']['title'],
-      'ID' => $i['movie']['ids']['tmdb'],
-      'type' => 'movie',
-      'timestamp' => strtotime($i['watched_at']),
-    );
+    createTerm('Movie');
+    $insert = wp_insert_post( array(
+      'post_title' => $i['title'],
+      'post_type' => 'consumed',
+      'post_status'=> 'publish',
+      'post_content' => json_encode($i),
+      'post_date' => $dates['est'],
+      'post_date_gmt'=> $dates['gmt']
+    ) );
+    if($insert) {
+      wp_set_object_terms( $insert, 'movie', 'consumed_types' );
+    }
   }
   if($i['type'] === 'episode') {
-    $workingArray[] = array(
-      'GUID' => $i['id'],
-      'inDB' => false,
-      'type' => 'episode',
-      'title' => $i['episode']['title'],
-      'ID' => $i['episode']['ids']['tmdb'],
-      'timestamp' => strtotime($i['watched_at']),
-      'season' => $i['episode']['season'],
-      'number' => $i['episode']['number'],
-      'tvdb_ID' => $i['episode']['ids']['tvdb'],
-      'show' => array(
-        'title' => $i['show']['title'],
-        'ID' => $i['show']['ids']['tmdb'],
-        'tvdb_ID' => $i['show']['ids']['tvdb']
-      )
-
-    );
+     // SAME DAY BINGE
+    if( $current['showID'] === $i['show']['ID'] && date('j-n-Y',$current['timestamp']) === date('j-n-Y',intval($i['timestamp'])) ){
+      createTerm('Show');
+      wp_set_object_terms( $current['dbID'], 'show', 'consumed_types' );
+      $updated = wp_update_post( array(
+        'ID'=>$current['dbID'],
+        'post_title' =>$i'show']['title']
+      ) );
+      $current['bingeCount']++;
+      update_post_meta($current['dbID'], 'bingeCount', $current['bingeCount']);
+      continue;
+    }
+    // NEW EP
+    createTerm('Episode');
+    $insert = wp_insert_post( array(
+      'post_title' => $i['title'],
+      'post_type' => 'consumed',
+      'post_status'=> 'publish',
+      'post_content' => json_encode($i),
+      'post_date' => $dates['est'],
+      'post_date_gmt'=> $dates['gmt']
+    ) );
+    if($insert) {
+      $current = array(
+        'timestamp' => intval($t['timestamp']),
+        'bingeCount' => 1,
+        'dbID' => $insert,
+        'showID' => $i['show']['ID']
+      );
+      wp_set_object_terms( $insert, 'episode', 'consumed_types' );
+      update_post_meta($current['dbID'], 'showID', $current['showID']);
+    }
+    
+    
+    
+    
   }
+  
+  
+ 
 }
 
 
