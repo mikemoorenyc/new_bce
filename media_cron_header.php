@@ -9,7 +9,7 @@ require_once get_template_directory().'/partial_api_key_generator.php';
 $wp_base = ABSPATH;
 $keys = api_key_generator();
 
-
+/*
 if(file_exists($wp_base.'wp-content/feed_dump/'.$mediaType.'.json')) {
   $workingArray = json_decode(file_get_contents($wp_base.'wp-content/feed_dump/'.$mediaType.'.json'),true);
 } else {
@@ -19,5 +19,6 @@ if(file_exists($wp_base.'wp-content/feed_dump/'.$mediaType.'.json')) {
 $GUIDs = array_map(function($i){
   return $i['GUID'];
 },$workingArray);
+*/
 
  ?>
