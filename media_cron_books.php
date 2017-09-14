@@ -97,7 +97,6 @@ foreach($items as $i) {
     'status' => $readStatus->status.'',
     'type' => 'book',
     'authors' => $authors,
-    'inDB' => false,
     'GUID' => [$i->guid.'']
   );
 
