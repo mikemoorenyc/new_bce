@@ -32,14 +32,14 @@ function title_formatter($title,$classString ='') {
 
 }
 
-function book_status_maker($i) {
- if(!empty($i['percent'])) {
-  return 'Finished '.$i['percent'].'%';
+function book_status_maker($percent,$status) {
+ if(!empty($percent)) {
+  return 'Finished '.$percent.'%';
  }
- if($i['status'] === 'read') {
+ if($status === 'read') {
   return 'Finished reading';
  }
- if($i['status'] === 'currently-reading') {
+ if($status === 'currently-reading') {
   return 'Started reading';
  }
 
@@ -103,7 +103,7 @@ function switch_media_info($i) {
  ?>
 
 
-<div class="extra font-sans"><?= book_status_maker($i);?></div>
+<div class="extra font-sans"><?= book_status_maker($i['percent'],$i['status']);?></div>
 <?= title_formatter($i['title']);?>
 <h3 class="byline"><?=  'by '.artistNames($i['authors']);?></h3>
 
