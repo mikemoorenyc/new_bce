@@ -32,6 +32,34 @@ function dateMaker($b) {
 }
 
 
+function comparePosts($types, $oldest_play) {
+  $compare_posts = get_posts(array(
+    'posts_per_page'   => -1,
+    'post_type' => 'consumed',
+    'tax_query' => array(
+      array(
+        'taxonomy' => 'consumed_types',
+        'field'    => 'slug',
+        'terms'    => $types
+      ),
+    ),
+    'date_query' => array(
+      'after'=> $oldest_play
+    )
+  ));
+  $GUIDs = array();
+  foreach($compare_posts as $p) {
+   $data = json_decode($p->post_content,true); 
+   $GUIDs = array_merge($GUIDs, $data['GUID']); 
+  } 
+  
+  return array(
+    'posts' => $compare_posts,
+    'GUID' => $GUIDs
+  )
+}
+
+
 /*
 if(file_exists($wp_base.'wp-content/feed_dump/'.$mediaType.'.json')) {
   $workingArray = json_decode(file_get_contents($wp_base.'wp-content/feed_dump/'.$mediaType.'.json'),true);
