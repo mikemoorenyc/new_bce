@@ -6,6 +6,9 @@ include_once('media_cron_header.php');
 if( !isset($keys['spotify_id']) || !isset($keys['spotify_secret']) || !isset($keys['spotify_refresh'])) {
   die();
 }
+
+createTerm("Album");
+createTerm('Track');
 //GET REFRESH
 $headers = array(
             "Accept: */*",
@@ -118,7 +121,7 @@ foreach($items as $k => $i) {
 
 $resetValues = array(
 	'timestamp' => time(),
-	'listenCount' => 0,
+	'listenCount' => 1,
 	'dbID' => null,
 	'albumID' => null,
 	'trackID' => null
@@ -127,23 +130,43 @@ $current = $resetValues;
 if(!empty($compare_posts['posts'])) {
  $data = json_decode($compare_posts['posts'][0]->post_content,true);
  $current = array(
-    'timestamp' => intval($data['timestamp']),
-    'listenCount' => intval(get_post_meta($compare_posts['posts'][0]->ID,'listenCount',true)),
-    'dbID' => $compare_posts[0]->ID,
-	 	'albumID' -> $data['album']['ID']
-    'showID' => $data['ID']
+    'timestamp' => strtotime(get_the_date('c',$compare_posts['posts'][0]->ID)),
+    'listenCount' => intval(get_post_meta($compare_posts['posts'][0]->ID,'listenCount',true)) ?: 1,
+    'dbID' => $compare_posts['posts'][0]->ID,
+	 	'albumID' -> $data['album']['ID'],
+    'trackID' => $data['ID']
  ); 
 }
 
-
+$GUID = [];
 //TRACK INFO GOT!!!!
-foreach($items as $i) {
+foreach($items as $k => $i) {
   $dates = dateMaker($i);
   $info = $i['track_info'];
   $artists = array_map(function($a){
     return $a['name'];
   },$info['album']['artists']);
-  $workingArray[] = array(
+	
+	$GUID[] = $i['track']['id'].'_'.$i['played_at'];
+	
+	//SAME TRACK
+	if($i['track']['id'] === $current['trackID']) {
+		$current['listenCount']++;
+		if($k !== count($items) -1 ) {
+			continue;
+		}
+	}
+	// SAME ALBUM
+	if($info['album']['id'] === $current['albumID'] {
+		$current['type'] = 'album';
+		$current['listenCount'] = 1;
+		if($k !== count($items) -1 ) {
+			continue;
+		}
+	}
+	
+	//STREAK BROKEN
+	$data = array(
     'GUID' => $GUID,
     'ID' => $i['track']['id'],
     'timestamp' => strtotime($i['played_at']),
@@ -155,8 +178,69 @@ foreach($items as $i) {
       'artists' => $artists,
       'img' => $info['album']['images'][0]['url']
     )
-
   );
+	
+	//UPDATE CURRENT TO ALBUM
+	if($current['type'] === 'album') {
+		$current_post = get_post($current['dbID']);
+		$data = json_decode($current_post->post_content,true);
+		$data['GUID'] = $GUID;
+		$updated = wp_update_post( array(
+			'ID'=>$current['dbID'],
+			'post_title' =>$data['album']['title'],
+			'post_content'=>json_encode($data)
+		) );
+		if($updated) {
+			wp_set_object_terms( $current['dbID'], 'show', 'consumed_types' );
+			delete_post_meta($current['dbID'], 'listenCount');
+		}
+		if(count($items) - 1 === $k) {
+			continue;
+		}
+
+		
+	}
+	if($current['type']!== 'album' && $current['listenCount'] > 1) {
+		$current_post = get_post($current['dbID']);
+		$data = json_decode($current_post->post_content,true);
+		$data['GUID'] = $GUID;
+		$updated = wp_update_post( array(
+			'ID'=>$current['dbID'],
+			'post_content'=>json_encode($data)
+		) );
+		if($updated) {
+			update_post_meta($current['dbID'], 'listenCount', $current['listenCount']);
+		}
+		if(count($items) - 1 === $k) {
+			continue;
+		}
+	}
+		 
+	//CREATE NEW ENTRY
+	$insert = wp_insert_post( array(
+		'post_title' => $data['title'],
+		'post_type' => 'consumed',
+		'post_status'=> 'publish',
+		'post_content' => json_encode($data),
+		'post_date' => $dates['est'],
+		'post_date_gmt'=> $dates['gmt']
+	) )
+	if($insert) {
+		wp_set_object_terms( $current['dbID'], 'show', 'consumed_types' );
+		$current = array(
+			'dbID' => $insert,
+			'trackID'=>$data['ID'],
+			'listenCount'=>1,
+			'albumID'=>$data['album']['ID'],
+			'timestamp'=>$data['timestamp']
+		);
+		$GUID = [];
+	} else {
+		break;
+	}
+	
+	
+  
 }
 
 
