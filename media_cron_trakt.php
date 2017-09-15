@@ -48,7 +48,7 @@ $current = $resetValues;
 if(!empty($compare_posts['posts'])) {
  $data = json_decode($compare_posts['posts'][0]->post_content,true);
  $current = array(
-    'timestamp' => intval($data['timestamp']),
+    'timestamp' => strtotime(get_the_date('c',$compare_posts['posts'][0])),
     'bingeCount' => intval(get_post_meta($compare_posts['posts'][0]->ID,'bingeCount',true)),
     'dbID' => $compare_posts[0]->ID,
     'showID' => get_post_meta($compare_posts['posts'][0]->ID,'showID',true)
