@@ -56,6 +56,15 @@ curl_close($ch);
 $items = json_decode($output,true);
 $items = $items['items'];
 
+
+$oldest_play = $items[count($items)-1]['played_at'];
+$compare_posts = comparePosts(['album','track'], $oldest_play);
+$items = array_filter($items, function($i) {
+  global $GUIDs;
+  return in_array($i['track']['id'].'_'.$i['played_at'],$compare_posts['GUID']) === false;
+});
+
+
 $track_blocks = [];
 $track_fetch = [];
 function trackFetch($tracks) {
@@ -93,10 +102,7 @@ function trackFetch($tracks) {
 
 }
 foreach($items as $k => $i) {
-  $GUID = $i['track']['id'].'_'.$i['played_at'];
-  if(in_array($GUID,$GUIDs)) {
-   continue;
-  }
+
   $block = array(
     'ID' => $i['track']['id'],
     'item_id' => $k
@@ -109,12 +115,30 @@ foreach($items as $k => $i) {
 
 
 }
+
+$resetValues = array(
+	'timestamp' => time(),
+	'listenCount' => 0,
+	'dbID' => null,
+	'albumID' => null,
+	'trackID' => null
+);
+$current = $resetValues;
+if(!empty($compare_posts['posts'])) {
+ $data = json_decode($compare_posts['posts'][0]->post_content,true);
+ $current = array(
+    'timestamp' => intval($data['timestamp']),
+    'listenCount' => intval(get_post_meta($compare_posts['posts'][0]->ID,'listenCount',true)),
+    'dbID' => $compare_posts[0]->ID,
+	 	'albumID' -> $data['album']['ID']
+    'showID' => $data['ID']
+ ); 
+}
+
+
 //TRACK INFO GOT!!!!
 foreach($items as $i) {
-  $GUID = $i['track']['id'].'_'.$i['played_at'];
-  if(in_array($GUID,$GUIDs)) {
-   continue;
-  }
+  $dates = dateMaker($i);
   $info = $i['track_info'];
   $artists = array_map(function($a){
     return $a['name'];
@@ -134,8 +158,6 @@ foreach($items as $i) {
 
   );
 }
-var_dump($workingArray);
-include 'media_cron_footer.php';
 
 
 
