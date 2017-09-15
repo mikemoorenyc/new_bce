@@ -86,16 +86,15 @@ foreach($items as $k => $i) {
 	}
 	
 	
-	
-	
-  if($current['showID'] === $i['show']['ID'] && date('j-n-Y',$current['timestamp']) === date('j-n-Y',intval($i['timestamp']))) {
-    $current['bingeCount']++;
+	if(bingeCheck($current['showID'],$current['timestamp'],$i['show']['ids']['tmdb'],strtotime($i['watched_at'])) {
+		$current['bingeCount']++;
     
 		if($k !== count($items) - 1) {
 			continue;
 		}
-		
-  }
+	}
+	
+
 	
   //BREAK
   //UPDATE CURRENT ONE
