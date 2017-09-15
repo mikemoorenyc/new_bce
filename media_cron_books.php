@@ -37,14 +37,17 @@ function imageReplacer($o_URL,$isbn,$desc=null, $type = 'ISBN') {
 }
 $status = new SimpleXMLElement(file_get_contents('https://www.goodreads.com/user/updates_rss/'.$keys['goodreads_uid'].'?key=18ioDaauDhEjysrttqWKDR03F_rvL_JFKT4MUW5jz8sl5px7'),LIBXML_NOCDATA);
 
+$items = [];
 
+foreach($status->channel->item as $i) {
+ $items[] = $i; 
+}
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
-$items = $status->channel->item;
 $oldest_play = $items[count($items) -1]->pubDate.'';
 $compare_posts = comparePosts(['book'], $oldest_play);
 
