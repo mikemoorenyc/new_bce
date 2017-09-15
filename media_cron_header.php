@@ -31,6 +31,17 @@ function dateMaker($b) {
   );
 }
 
+function bingeCheck($currentID, $currentTimestamp, $itemID, $itemTimestamp) {
+  $binge = true;
+  if ($currentID !== $itemID) {
+   return false; 
+  }
+  if(date('j-n-Y',intval($currentTimestamp) !== date('j-n-Y',intval($itemTimestamp) {
+   return false; 
+  }
+  return true;
+}
+
 
 function comparePosts($types, $oldest_play) {
   $compare_posts = get_posts(array(
