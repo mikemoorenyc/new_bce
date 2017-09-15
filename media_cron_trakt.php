@@ -90,7 +90,11 @@ foreach($items as $k => $i) {
 	
   if($current['showID'] === $i['show']['ID'] && date('j-n-Y',$current['timestamp']) === date('j-n-Y',intval($i['timestamp']))) {
     $current['bingeCount']++;
-    continue;
+    
+		if($k !== count($items) - 1) {
+			continue;
+		}
+		
   }
 	
   //BREAK
