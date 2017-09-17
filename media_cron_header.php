@@ -34,10 +34,12 @@ function dateMaker($b) {
 function bingeCheck($currentID, $currentTimestamp, $itemID, $itemTimestamp) {
   $binge = true;
   if ($currentID !== $itemID) {
-   return false; 
+   return false;
   }
-  if(date('j-n-Y',intval($currentTimestamp) !== date('j-n-Y',intval($itemTimestamp) {
-   return false; 
+  $currentDate = date('j-n-Y',intval($currentTimestamp));
+  $itemDate = date('j-n-Y',intval($itemTimestamp));
+  if($currentDate !== $itemDate)  {
+   return false;
   }
   return true;
 }
@@ -55,19 +57,24 @@ function comparePosts($types, $oldest_play) {
       ),
     ),
     'date_query' => array(
-      'after'=> $oldest_play
+      'after'=> date('c', strtotime('-2 days', $oldest_play))
     )
   ));
   $GUIDs = array();
   foreach($compare_posts as $p) {
-   $data = json_decode($p->post_content,true); 
-   $GUIDs = array_merge($GUIDs, $data['GUID']); 
-  } 
-  
+   $data = json_decode($p->post_content,true);
+   if($data['GUID']) {
+     foreach($data['GUID'] as $guid) {
+       $GUIDs[] = $guid;
+     }
+   }
+
+  }
+
   return array(
     'posts' => $compare_posts,
     'GUID' => $GUIDs
-  )
+  );
 }
 
 
