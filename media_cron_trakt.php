@@ -123,29 +123,48 @@ foreach($items as $k => $i) {
 
 
 }
+$workingCompare = array_map(function($i){
+	return array(
+		'dbID' => $i->ID,
+		'timestamp' => strtotime($i->post_date_gmt),
+		'content'=>$i->post_content;
+		'show' => array(
+			'ID' => get_post_meta($i->ID, 'showID',true)
+		) 
+	);
+},$compare_posts['posts']);
+
+$workingArray = array_merge($workingArray, $workingCompare);
 
 usort($workingArray, function($a, $b){
   return $a['timestamp'] - $b['timestamp'];
 });
+$keyValue = array();
 foreach($workingArray as $k => $w) {
   $dates = dateMaker($w);
-  if($k === 0 && bingeCheck($w['show']['ID'],$w['timestamp'],get_post_meta($compare_posts['posts'][0]->ID,'showID',true),strtotime($compare_posts['posts'][0]->post_date_gmt))) {
-    //UPDATE
-    $newBinge = $w['bingeCount'] + intval(get_post_meta($compare_posts['posts'][0]->ID,'bingeCount',true));
-    $data = json_decode($compare_posts['posts'][0]->post_content,true);
+  if(bingeCheck($w['show']['ID'],$w['timestamp'],$keyValue['show']['ID'],$keyValue['timestamp'])) {
+    $dbID = $w['dbID'] ?: $keyValue['dbID'];
+		$content = $w['content'] ?: $keyValue['content'];
+	 	$data = json_decode($content,true);
+    $data['bingeCount'] = $w['bingeCount'] + intval($data['bingeCount']);
+   
     foreach($w['GUID'] as $guid) {
       $data["GUID"][] = $guid;
     }
     $updated = wp_update_post( array(
-			'ID'=>$compare_posts['posts'][0]->ID,
-			'post_title' =>$w['show']['title'],
+			'ID'=>$dbID,
+			'post_title' =>$data['show']['title'],
 			'post_content'=>json_encode($data)
 		) );
     if($updated) {
-      wp_set_object_terms($compare_posts['posts'][0]->ID, 'show', 'consumed_types' );
+      wp_set_object_terms($dbID, 'show', 'consumed_types' );
     }
     continue;
   }
+	if($w['dbID']) {
+		$keyValue = $w;
+		continue;
+	}
 
   //EVERYONE ELSE IS NEW
   $post_title = $w['title'];
@@ -163,10 +182,10 @@ foreach($workingArray as $k => $w) {
   if($insert) {
     wp_set_object_terms($insert, $w['type'], 'consumed_types' );
     if($w['type'] === 'episode' || $w['type'] === 'show') {
-      update_post_meta($insert, 'bingeCount', $w['bingeCount']);
       update_post_meta($insert, 'showID', $w['show']['ID']);
     }
   }
+	$keyValue = $w;
 
 }
 ?>
