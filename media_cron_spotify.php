@@ -115,9 +115,11 @@ foreach($items as $k => $i) {
     trackFetch($track_fetch);
     $track_fetch = [];
   }
-
-
 }
+
+$items = array_filter($items, function($i){
+	return !empty($i['track_info']);
+});
 
 $resetValues = array(
 	'timestamp' => time(),
@@ -137,8 +139,23 @@ if(!empty($compare_posts['posts'])) {
     'trackID' => $data['ID']
  ); 
 }
-
+$current = $resetValues;
+$workingArray = [];
 $GUID = [];
+foreach($items as $k => $i) {
+	$info = $i['track_info'];
+
+  $artists = array_map(function($a){
+    return $a['name'];
+  },$info['album']['artists']);
+	
+	//CHECK IF SAME TRACK
+	if(bingeCheck($current['trackID'],$current['timestamp'],$i['track']['id'],strtotime($i['played_at']) ) {
+		$current['listenCount']++;
+		$workingArray[count($workingArray)-1]['GUID'][] = $i['id'];
+	}
+	
+}
 //TRACK INFO GOT!!!!
 foreach($items as $k => $i) {
   $dates = dateMaker($i);
