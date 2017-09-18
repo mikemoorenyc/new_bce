@@ -146,6 +146,13 @@
           max-width:none;
         }
       }
+      &.type-other {
+       img {
+         padding: 1px;
+         width: calc(74em + 2px);
+         height: calc(74em + 2px);
+        }
+      }
       &.type-movie {
 
         img {
