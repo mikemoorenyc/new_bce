@@ -46,6 +46,14 @@ function imageData($p) {
     $imgURL =  get_post_meta($p->ID, 'showImgURL',true);
   }
  }
+ if($type === 'other') {
+  if(has_post_thumbnail($p->ID)) {
+   $urls =  get_all_image_sizes(get_post_thumbnail_id($p->ID));
+   $imgURL = $urls['medium']['url'];
+  } else {
+   $imgURL = '';
+  }
+ }
   $pURL = parse_url($imgURL);
   if($pURL['scheme'] !== 'https') {
     $imgURL = $siteDir.'/image_proxy.php?url='.urlencode($imgURL);
