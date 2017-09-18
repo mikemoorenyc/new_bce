@@ -62,7 +62,7 @@ if(!empty($compare_posts['posts'])) {
  );
 }
 $GUID = [];
-
+$current = $resetValues;
 foreach($items as $k => $i) {
 
   $data = array();
