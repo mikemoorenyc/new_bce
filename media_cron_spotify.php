@@ -129,11 +129,12 @@ $resetValues = array(
 	'trackID' => null
 );
 $current = $resetValues;
+$compareValues = $resetValues
 if(!empty($compare_posts['posts'])) {
  $data = json_decode($compare_posts['posts'][0]->post_content,true);
- $current = array(
+ $compareValues = array(
     'timestamp' => strtotime(get_the_date('c',$compare_posts['posts'][0]->ID)),
-    'listenCount' => intval(get_post_meta($compare_posts['posts'][0]->ID,'listenCount',true)) ?: 1,
+    'listenCount' => $data['listenCount'],
     'dbID' => $compare_posts['posts'][0]->ID,
 	 	'albumID' -> $data['album']['ID'],
     'trackID' => $data['ID']
@@ -144,48 +145,31 @@ $workingArray = [];
 $GUID = [];
 foreach($items as $k => $i) {
 	$info = $i['track_info'];
-
+	$track_GUID = $i['track']['id'].'_'.$i['played_at'];
   $artists = array_map(function($a){
     return $a['name'];
   },$info['album']['artists']);
 	
 	//CHECK IF SAME TRACK
-	if(bingeCheck($current['trackID'],$current['timestamp'],$i['track']['id'],strtotime($i['played_at']) ) {
+	if($current['type'] !== 'album' && bingeCheck($current['trackID'],$current['timestamp'],$i['track']['id'],strtotime($i['played_at']) ) {
 		$current['listenCount']++;
-		$workingArray[count($workingArray)-1]['GUID'][] = $i['id'];
+		$workingArray[count($workingArray)-1]['GUID'][] = $track_GUID;
+		$workingArray[count($workingArray)-1]['listenCount'] = $current['listenCount'];
+		continue;
 	}
-	
-}
-//TRACK INFO GOT!!!!
-foreach($items as $k => $i) {
-  $dates = dateMaker($i);
-  $info = $i['track_info'];
-  $artists = array_map(function($a){
-    return $a['name'];
-  },$info['album']['artists']);
-	
-	$GUID[] = $i['track']['id'].'_'.$i['played_at'];
-	
-	//SAME TRACK
-	if($i['track']['id'] === $current['trackID']) {
-		$current['listenCount']++;
-		if($k !== count($items) -1 ) {
-			continue;
-		}
-	}
-	// SAME ALBUM
-	if($info['album']['id'] === $current['albumID'] {
+	//CHECK IF SAME ALBUM
+	if(bingeCheck($current['albumID'],$current['timestamp'],$info['album']['id'],strtotime($i['played_at'])) {
 		$current['type'] = 'album';
-		$current['listenCount'] = 1;
-		if($k !== count($items) -1 ) {
-			continue;
-		}
+		$workingArray[count($workingArray)-1]['type'] = 'album';
+    $workingArray[count($workingArray)-1]['GUID'][] = $itrack_GUID;
+		continue;
 	}
 	
-	//STREAK BROKEN
-	$data = array(
-    'GUID' => $GUID,
+	//NEW TRACK
+	$workingArray[] = array(
+		'GUID' => [$track_GUID],
     'ID' => $i['track']['id'],
+		'type' => 'track',
     'timestamp' => strtotime($i['played_at']),
     'title' => $info['name'],
     'img' =>  $info['album']['images'][0]['url'],
@@ -195,72 +179,74 @@ foreach($items as $k => $i) {
       'artists' => $artists,
       'img' => $info['album']['images'][0]['url']
     )
-  );
-	
-	//UPDATE CURRENT TO ALBUM
-	if($current['type'] === 'album') {
-		$current_post = get_post($current['dbID']);
-		$data = json_decode($current_post->post_content,true);
-		$data['GUID'] = $GUID;
-		$updated = wp_update_post( array(
-			'ID'=>$current['dbID'],
-			'post_title' =>$data['album']['title'],
-			'post_content'=>json_encode($data)
-		) );
-		if($updated) {
-			wp_set_object_terms( $current['dbID'], 'show', 'consumed_types' );
-			delete_post_meta($current['dbID'], 'listenCount');
-		}
-		if(count($items) - 1 === $k) {
-			continue;
-		}
-
-		
-	}
-	if($current['type']!== 'album' && $current['listenCount'] > 1) {
-		$current_post = get_post($current['dbID']);
-		$data = json_decode($current_post->post_content,true);
-		$data['GUID'] = $GUID;
-		$updated = wp_update_post( array(
-			'ID'=>$current['dbID'],
-			'post_content'=>json_encode($data)
-		) );
-		if($updated) {
-			update_post_meta($current['dbID'], 'listenCount', $current['listenCount']);
-		}
-		if(count($items) - 1 === $k) {
-			continue;
-		}
-	}
+	);
 		 
-	//CREATE NEW ENTRY
-	$insert = wp_insert_post( array(
-		'post_title' => $data['title'],
-		'post_type' => 'consumed',
-		'post_status'=> 'publish',
-		'post_content' => json_encode($data),
-		'post_date' => $dates['est'],
-		'post_date_gmt'=> $dates['gmt']
-	) )
-	if($insert) {
-		wp_set_object_terms( $current['dbID'], 'show', 'consumed_types' );
-		$current = array(
-			'dbID' => $insert,
-			'trackID'=>$data['ID'],
-			'listenCount'=>1,
-			'albumID'=>$data['album']['ID'],
-			'timestamp'=>$data['timestamp']
-		);
-		$GUID = [];
-	} else {
-		break;
-	}
+	//RESET
+	$GUID = [];
+	$current = array(
+		'timestamp'=> strtotime($i['played_at']),
+		'listenCount'=>1,
+		'albumID' =>  $info['album']['id'],
+		'trackID' => $i['track']['id']
+	);
 	
-	
-  
 }
 
+usort($workingArray, function($a, $b){
+  return $a['timestamp'] - $b['timestamp'];
+});
 
+foreach($workingArray as $k=>$w) {
+	$dates = dateMaker($w);
+	//CHECK TRACK
+	if($k===0 && $w['type'] === 'track' && bingeCheck($w['ID'],$w['timestamp'],$compareValues['trackID'],$compareValues['timestamp'])){
+		$trackData = json_decode($compare_posts['posts'][0]->post_content,true);
+		$trackData['listenCount'] = $w['listenCount'] + intval($trackData['listenCount']);
+		foreach($w['GUID'] as $g) {
+			$trackData['GUID'][] = $g;
+		}
+		$updated = wp_update_post( array(
+			'ID'=>$compare_posts['posts'][0]->ID,
+			'post_content'=>json_encode($trackData)
+		) );
+		continue;
+	}
+	if($k === 0 && bingeCheck($w['album']['ID'],$w['timestamp'],$compareValues['albumID'],$compareValues['timestamp'])) {
+		$trackData = json_decode($compare_posts['posts'][0]->post_content,true);
+		foreach($w['GUID'] as $g) {
+			$trackData['GUID'][] = $g;
+		}
+		$updated = wp_update_post( array(
+			'ID'=>$compare_posts['posts'][0]->ID,
+			'post_content'=>json_encode($trackData),
+			'post_title' => $w['album']['title']
+		) );
+		if($updated) {
+			 wp_set_object_terms($compare_posts['posts'][0]->ID, 'album', 'consumed_types' );
+		}
+		continue;
+		
+		
+	}
+	//ALL NEW
+	$post_title = $w['title'];
+	if($w['type'] === 'album') {
+		$post_title = $w['album']['title'];
+	}
+	$insert =  wp_insert_post( array(
+		'post_title' => $post_title,
+		'post_type' => 'consumed',
+		'post_status'=> 'publish',
+		'post_content' => json_encode($w),
+		'post_date' => $dates['est'],
+		'post_date_gmt'=> $dates['gmt']
+	) );
+	if($insert) {
+    wp_set_object_terms($insert, $w['type'], 'consumed_types' );
+  }
+}
+		 
+	
 
 
  ?>
