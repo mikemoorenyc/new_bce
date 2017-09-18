@@ -129,7 +129,7 @@ usort($workingArray, function($a, $b){
 });
 foreach($workingArray as $k => $w) {
   $dates = dateMaker($w);
-  if($k === 0 && bingeCheck($w['show']['ID'],$w['timestamp'],get_post_meta($compare_posts['posts'][0]->ID,'showID',true),get_post_meta($compare_posts['posts'][0]->ID,'showID',true))) {
+  if($k === 0 && bingeCheck($w['show']['ID'],$w['timestamp'],get_post_meta($compare_posts['posts'][0]->ID,'showID',true),strtotime($compare_posts['posts'][0]->post_date_gmt))) {
     //UPDATE
     $newBinge = $w['bingeCount'] + intval(get_post_meta($compare_posts['posts'][0]->ID,'bingeCount',true));
     $data = json_decode($compare_posts['posts'][0]->post_content,true);
