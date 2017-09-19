@@ -43,13 +43,12 @@ function curlTMDB($url) {
 
   $tmdbCURLs++;
   if($output === false || json_decode($output,true)['status_code'] === 34) {
-    return false;
+    return [];
   }
   return json_decode($output,true);
 }
 
-function getShowImgURL($data) {
-  $showID = $data['show']['ID'];
+function getShowImgURL($showID,$tvdbID) {
   $storedImg = get_posts(
   array(
     'posts_per_page'   => 1,
@@ -67,16 +66,19 @@ function getShowImgURL($data) {
     )
   )
   );
+	
   if(!empty($storedImg)) {
-  return get_post_meta($storedImg[0]->ID, 'showImgURL',true);
+  	return get_post_meta($storedImg[0]->ID, 'showImgURL',true);
   }
+	
   $response = curlTMDB('https://api.themoviedb.org/3/tv/'.$showID);
   if($response && !empty($response['backdrop_path'])) {
    return 'https://image.tmdb.org/t/p/w300'.$response['backdrop_path'];
   }
-  $response = get_tvdb('show', $data['show']['tvdb_ID']);
+	
+  $response = get_tvdb('show', $tvdbID);
   if($response) {
-  return $response;
+  	return $response;
   }
   return false;
 
@@ -89,45 +91,40 @@ foreach($posts as $p) {
 
  $type = get_the_terms($p->ID, 'consumed_types');
  if($type){$type = $type[0]->slug;}
- var_dump($type);
+	
+	switch ($type):
+		case "movie":
+			$response = curlTMDB('https://api.themoviedb.org/3/movie/'.$data['ID']);
+			if($response['poster_path']) {
+				update_post_meta( $p->ID, 'imgURL', 'https://image.tmdb.org/t/p/w185'.$response['poster_path'] );
+			}
+			break;
+	
+		case "show":
+			$showImgURL = getShowImgURL($data['show']["ID"],$data['show']["tvdb_ID"]);
+			if($showImgURL) {
+				update_post_meta( $p->ID, 'imgURL', $showImgURL);
+  			update_post_meta( $p->ID, 'showImgURL', $showImgURL);
+			}
+			break;
+	
+		case "episode":
+			$showImgURL = getShowImgURL($data['show']["ID"],$data['show']["tvdb_ID"]);
+  		if($showImgURL) {
+    		update_post_meta( $p->ID, 'showImgURL', $showImgURL);
+  		}
+			$response = curlTMDB('https://api.themoviedb.org/3/tv/'.$data['show']['ID'].'/season/'.$data['season'].'/episode/'.$data['number']);
+			if($response['still_path']) {
+				update_post_meta( $p->ID, 'imgURL', 'https://image.tmdb.org/t/p/w300'.$response['still_path']);
+				break;
+			}
+			$response = get_tvdb('episode', $data['tvdb_ID']);
+			if($response) {
+    		update_post_meta( $p->ID, 'imgURL', $response);
+  		}
+			break;
+	endswitch;
 
- if($type === 'movie') {
-  $response = curlTMDB('https://api.themoviedb.org/3/movie/'.$data['ID']);
-  if(!$response || empty($response['poster_path'])) {
-   continue;
-  }
-  update_post_meta( $p->ID, 'imgURL', 'https://image.tmdb.org/t/p/w185'.$response['poster_path'] );
-  continue;
- }
- if($type === 'show') {
-  $showImgURL = getShowImgURL($data);
-  if(!$showImgURL) {
-    continue;
-  }
-  update_post_meta( $p->ID, 'imgURL', $showImgURL);
-  update_post_meta( $p->ID, 'showImgURL', $showImgURL);
-
- }
- if($type === 'episode') {
-   echo 'asf<br/>';
-  $showImgURL = getShowImgURL($data);
-  if($showImgURL) {
-    update_post_meta( $p->ID, 'showImgURL', $showImgURL);
-  }
-  $response = curlTMDB('https://api.themoviedb.org/3/tv/'.$data['show']['ID'].'/season/'.$data['season'].'/episode/'.$data['number']);
-  if($response && !empty($response['still_path'])) {
-    var_dump($response);
-   update_post_meta( $p->ID, 'imgURL', 'https://image.tmdb.org/t/p/w300'.$response['still_path']);
-   continue;
-  }
-  $response = get_tvdb('episode', $data['tvdb_ID']);
-  var_dump($response);
-  if($response) {
-    update_post_meta( $p->ID, 'imgURL', $response);
-    continue;
-  }
-  continue;
- }
 
 
 }
