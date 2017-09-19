@@ -108,6 +108,11 @@ function switch_media_info($i) {
 <h3 class="byline"><?=  'by '.artistNames($i['authors']);?></h3>
 
 <?php
+ break;
+ 
+ default: 
+ 	echo title_formatter($i['title']);
+  break;
 
  endswitch;
 }
