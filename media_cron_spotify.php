@@ -62,8 +62,9 @@ $items = $items['items'];
 
 $oldest_play = $items[count($items)-1]['played_at'];
 $compare_posts = comparePosts(['album','track'], $oldest_play);
+
 $items = array_filter($items, function($i) {
-  global $GUIDs;
+  global $compare_posts;
   return in_array($i['track']['id'].'_'.$i['played_at'],$compare_posts['GUID']) === false;
 });
 
@@ -129,16 +130,16 @@ $resetValues = array(
 	'trackID' => null
 );
 $current = $resetValues;
-$compareValues = $resetValues
+$compareValues = $resetValues;
 if(!empty($compare_posts['posts'])) {
  $data = json_decode($compare_posts['posts'][0]->post_content,true);
  $compareValues = array(
     'timestamp' => strtotime(get_the_date('c',$compare_posts['posts'][0]->ID)),
     'listenCount' => $data['listenCount'],
     'dbID' => $compare_posts['posts'][0]->ID,
-	 	'albumID' -> $data['album']['ID'],
+	 	'albumID' => $data['album']['ID'],
     'trackID' => $data['ID']
- ); 
+ );
 }
 $current = $resetValues;
 $workingArray = [];
@@ -149,22 +150,22 @@ foreach($items as $k => $i) {
   $artists = array_map(function($a){
     return $a['name'];
   },$info['album']['artists']);
-	
+
 	//CHECK IF SAME TRACK
-	if($current['type'] !== 'album' && bingeCheck($current['trackID'],$current['timestamp'],$i['track']['id'],strtotime($i['played_at']) ) {
+	if($current['type'] !== 'album' && bingeCheck($current['trackID'],$current['timestamp'],$i['track']['id'],strtotime($i['played_at']) )) {
 		$current['listenCount']++;
 		$workingArray[count($workingArray)-1]['GUID'][] = $track_GUID;
 		$workingArray[count($workingArray)-1]['listenCount'] = $current['listenCount'];
 		continue;
 	}
 	//CHECK IF SAME ALBUM
-	if(bingeCheck($current['albumID'],$current['timestamp'],$info['album']['id'],strtotime($i['played_at'])) {
+	if(bingeCheck($current['albumID'],$current['timestamp'],$info['album']['id'],strtotime($i['played_at']))) {
 		$current['type'] = 'album';
 		$workingArray[count($workingArray)-1]['type'] = 'album';
     $workingArray[count($workingArray)-1]['GUID'][] = $itrack_GUID;
 		continue;
 	}
-	
+
 	//NEW TRACK
 	$workingArray[] = array(
 		'GUID' => [$track_GUID],
@@ -180,7 +181,7 @@ foreach($items as $k => $i) {
       'img' => $info['album']['images'][0]['url']
     )
 	);
-		 
+
 	//RESET
 	$GUID = [];
 	$current = array(
@@ -189,45 +190,67 @@ foreach($items as $k => $i) {
 		'albumID' =>  $info['album']['id'],
 		'trackID' => $i['track']['id']
 	);
-	
+
+}
+foreach($compare_posts['posts'] as $c) {
+  $data = json_decode($c->post_content,true);
+
+  $workingArray[] = array(
+    'dbID' => $c->ID,
+    'content'=>$c->post_content,
+    'trackID'=>$data['ID'],
+    'albumID'=>$data['album']['ID'],
+    'timestamp'=>strtotime($c->post_date_gmt)
+  );
 }
 
 usort($workingArray, function($a, $b){
   return $a['timestamp'] - $b['timestamp'];
 });
-
+$workingArray = array_reverse($workingArray);
+$keyValue = array();
 foreach($workingArray as $k=>$w) {
-	$dates = dateMaker($w);
+	$dates = dateMaker($w['timestamp']);
 	//CHECK TRACK
-	if($k===0 && $w['type'] === 'track' && bingeCheck($w['ID'],$w['timestamp'],$compareValues['trackID'],$compareValues['timestamp'])){
-		$trackData = json_decode($compare_posts['posts'][0]->post_content,true);
+	if($w['type'] === 'track' && bingeCheck($w['ID'],$w['timestamp'],$keyValue['trackID'],$keyValue['timestamp'])){
+    $dbID = $w['dbID'] ?: $keyValue['dbID'];
+		$content = $w['content'] ?: $keyValue['content'];
+		$trackData = json_decode($content,true);
 		$trackData['listenCount'] = $w['listenCount'] + intval($trackData['listenCount']);
 		foreach($w['GUID'] as $g) {
 			$trackData['GUID'][] = $g;
 		}
 		$updated = wp_update_post( array(
-			'ID'=>$compare_posts['posts'][0]->ID,
+			'ID'=>$dbID ,
 			'post_content'=>json_encode($trackData)
 		) );
 		continue;
 	}
-	if($k === 0 && bingeCheck($w['album']['ID'],$w['timestamp'],$compareValues['albumID'],$compareValues['timestamp'])) {
-		$trackData = json_decode($compare_posts['posts'][0]->post_content,true);
+	if(bingeCheck($w['album']['ID'],$w['timestamp'],$keyValue['albumID'],$keyValue['timestamp'])) {
+    $dbID = $w['dbID'] ?: $keyValue['dbID'];
+		$content = $w['content'] ?: $keyValue['content'];
+		$trackData = json_decode($content,true);
 		foreach($w['GUID'] as $g) {
 			$trackData['GUID'][] = $g;
 		}
 		$updated = wp_update_post( array(
-			'ID'=>$compare_posts['posts'][0]->ID,
+			'ID'=>$dbID ,
 			'post_content'=>json_encode($trackData),
 			'post_title' => $w['album']['title']
 		) );
 		if($updated) {
-			 wp_set_object_terms($compare_posts['posts'][0]->ID, 'album', 'consumed_types' );
+			 wp_set_object_terms($dbID , 'album', 'consumed_types' );
 		}
 		continue;
-		
-		
+
+
 	}
+
+  if($w['dbID']) {
+		$keyValue = $w;
+		continue;
+	}
+
 	//ALL NEW
 	$post_title = $w['title'];
 	if($w['type'] === 'album') {
@@ -244,9 +267,10 @@ foreach($workingArray as $k=>$w) {
 	if($insert) {
     wp_set_object_terms($insert, $w['type'], 'consumed_types' );
   }
+  $keyValue = $w;
 }
-		 
-	
+
+
 
 
  ?>

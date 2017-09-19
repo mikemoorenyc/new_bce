@@ -60,6 +60,7 @@ function comparePosts($types, $oldest_play) {
       'after'=> date('c', strtotime('-2 days', $oldest_play))
     )
   ));
+
   $GUIDs = array();
   foreach($compare_posts as $p) {
    $data = json_decode($p->post_content,true);
