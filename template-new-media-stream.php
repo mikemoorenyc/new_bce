@@ -31,11 +31,17 @@ if(empty($posts)) {
 include_once 'switch_media_info.php';
 
 function imageData($p) {
+	if(has_post_thumbnail($p->ID)) {
+		$urls =  get_all_image_sizes(get_post_thumbnail_id($p->ID));
+		$imgURL = $urls['medium']['url'];
+		} else {
+			$imgURL = '';
+	}
  $data = json_decode($p->post_content,true);
  $type = get_the_terms($p->ID, 'consumed_types');
  if($type){$type = $type[0]->slug;}
  $preloadClass = 'preload-image';
- $imgURL = $data['img'];
+ $imgURL = $data['img'] ?: $imgURL ;
  if($type === 'movie' || $type === 'show') {
   $imgURL = get_post_meta($p->ID, 'imgURL',true);
  }
@@ -46,18 +52,11 @@ function imageData($p) {
     $imgURL =  get_post_meta($p->ID, 'showImgURL',true);
   }
  }
- if($type === 'other') {
-  if(has_post_thumbnail($p->ID)) {
-   $urls =  get_all_image_sizes(get_post_thumbnail_id($p->ID));
-   $imgURL = $urls['medium']['url'];
-  } else {
-   $imgURL = '';
-  }
- }
-  $pURL = parse_url($imgURL);
-  if($pURL['scheme'] !== 'https') {
-    $imgURL = $siteDir.'/image_proxy.php?url='.urlencode($imgURL);
-  }
+
+	$pURL = parse_url($imgURL);
+	if($pURL['scheme'] !== 'https') {
+		$imgURL = $siteDir.'/image_proxy.php?url='.urlencode($imgURL);
+	}
  if(empty($imgURL)) {
   $preloadClass = ''; 
  }
@@ -114,8 +113,11 @@ foreach($posts as $k => $p) {
   $time = timeSet($i['timestamp']);
   $type = get_the_terms($p->ID, 'consumed_types');
   if($type){$type = $type[0]->slug;}
-  $imgClass = $type;
-  $imgData = imageData($p);
+  $imgClass = 'other';
+	$imgData = imageData($p);
+	if(in_array($type, array('movie','book','episode','show','track','album')) {
+		$imgClass = $type;
+	}
   if(in_array($imgClass,array('episode','show') )) {
     $imgClass = 'tv';
   }
