@@ -127,10 +127,10 @@ $workingCompare = array_map(function($i){
 	return array(
 		'dbID' => $i->ID,
 		'timestamp' => strtotime($i->post_date_gmt),
-		'content'=>$i->post_content;
+		'content'=>$i->post_content,
 		'show' => array(
 			'ID' => get_post_meta($i->ID, 'showID',true)
-		) 
+		)
 	);
 },$compare_posts['posts']);
 
@@ -140,14 +140,20 @@ usort($workingArray, function($a, $b){
   return $a['timestamp'] - $b['timestamp'];
 });
 $keyValue = array();
+
+$workingArray = array_reverse($workingArray);
+
 foreach($workingArray as $k => $w) {
-  $dates = dateMaker($w);
-  if(bingeCheck($w['show']['ID'],$w['timestamp'],$keyValue['show']['ID'],$keyValue['timestamp'])) {
+  $dates = dateMaker($w['timestamp']);
+  if(!empty($w['show']['ID']) && bingeCheck($w['show']['ID'],$w['timestamp'],$keyValue['show']['ID'],$keyValue['timestamp'])) {
     $dbID = $w['dbID'] ?: $keyValue['dbID'];
 		$content = $w['content'] ?: $keyValue['content'];
+
+    var_dump($w);
+    var_dump($keyValue);
 	 	$data = json_decode($content,true);
     $data['bingeCount'] = $w['bingeCount'] + intval($data['bingeCount']);
-   
+
     foreach($w['GUID'] as $guid) {
       $data["GUID"][] = $guid;
     }

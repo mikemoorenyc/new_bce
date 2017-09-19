@@ -21,7 +21,7 @@ function createTerm($term) {
 }
 
 function dateMaker($b) {
-  $stamp = $b['timestamp'];
+  $stamp = $b;
   $datetime = new DateTime(date('Y-m-d H:i:s',$stamp));
   $ny_time = new DateTimeZone('America/New_York');
   $datetime->setTimezone($ny_time);

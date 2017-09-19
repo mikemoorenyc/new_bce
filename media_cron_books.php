@@ -40,7 +40,7 @@ $status = new SimpleXMLElement(file_get_contents('https://www.goodreads.com/user
 $items = [];
 
 foreach($status->channel->item as $i) {
- $items[] = $i; 
+ $items[] = $i;
 }
 
 $ch = curl_init();
@@ -49,7 +49,8 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
 $oldest_play = $items[count($items) -1]->pubDate.'';
-$compare_posts = comparePosts(['book'], $oldest_play);
+
+$compare_posts = comparePosts(['book'], strtotime($oldest_play));
 
 foreach($items as $i) {
 
@@ -74,9 +75,10 @@ foreach($items as $i) {
   } else {
     $readStatus = $readStatus->read_status;
   }
-  $authors = array_map(function($a){
-    return $a->name.'';
-  },$readStatus->book->authors->author);
+  $authors = [];
+  foreach($readStatus->book->authors->author as $a) {
+    $authors[] = $a->name.'';
+  }
 
   $imgURL = $readStatus->book->image_url.'';
   if(strpos($imgURL, 'nophoto') !== false) {
@@ -103,8 +105,8 @@ foreach($items as $i) {
     'GUID' => [$i->guid.'']
   );
 
-  
-   
+
+
   $dates = dateMaker($data['timestamp']);
 
   $insert = wp_insert_post( array(
