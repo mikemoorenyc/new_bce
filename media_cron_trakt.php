@@ -32,37 +32,21 @@ $items = json_decode($output, true);
 if($items === null) {var_dump($output);die();}
 
 $oldest_play = $items[count($items)-1]['watched_at'];
+$post_types = ['episode','show','movie'];
 
-
-$compare_posts = comparePosts(['episode','show','movie'], $oldest_play);
+$compare_posts = comparePosts($post_types, $oldest_play);
 
 $items = array_filter($items, function($i) {
   global $compare_posts;
 
   return in_array($i['id'],$compare_posts['GUID']) === false;
 });
+if(empty($items)){echo 'no new posts'; die();}
 
 
 
-$resetValues = array(
-      'timestamp' => time(),
-    'bingeCount' => 1,
-    'dbID' => null,
-    'showID' => null
-);
-$current = $resetValues;
-$workingArray = [];
-if(!empty($compare_posts['posts'])) {
- $data = json_decode($compare_posts['posts'][0]->post_content,true);
- $current = array(
-    'timestamp' => strtotime(get_the_date('c',$compare_posts['posts'][0])),
-    'bingeCount' => intval(get_post_meta($compare_posts['posts'][0]->ID,'bingeCount',true)),
-    'dbID' => $compare_posts[0]->ID,
-    'showID' => get_post_meta($compare_posts['posts'][0]->ID,'showID',true)
- );
-}
 $GUID = [];
-$current = $resetValues;
+$current = null;
 foreach($items as $k => $i) {
 
   $data = array();
@@ -115,7 +99,6 @@ foreach($items as $k => $i) {
 	//RESET
 	$GUID = [];
 	$current = array(
-
 		'timestamp'=> strtotime($i['watched_at']),
 		'bingeCount'=>1,
 		'showID' => $i['show']['ids']['tmdb']
@@ -123,56 +106,8 @@ foreach($items as $k => $i) {
 
 
 }
-$workingCompare = array_map(function($i){
-	return array(
-		'dbID' => $i->ID,
-		'timestamp' => strtotime($i->post_date_gmt),
-		'content'=>$i->post_content,
-		'show' => array(
-			'ID' => get_post_meta($i->ID, 'showID',true)
-		)
-	);
-},$compare_posts['posts']);
-
-$workingArray = array_merge($workingArray, $workingCompare);
-
-usort($workingArray, function($a, $b){
-  return $a['timestamp'] - $b['timestamp'];
-});
-$keyValue = array();
-
-$workingArray = array_reverse($workingArray);
-
-foreach($workingArray as $k => $w) {
+foreach($workingArray as $w) {
   $dates = dateMaker($w['timestamp']);
-  if(!empty($w['show']['ID']) && bingeCheck($w['show']['ID'],$w['timestamp'],$keyValue['show']['ID'],$keyValue['timestamp'])) {
-    $dbID = $w['dbID'] ?: $keyValue['dbID'];
-		$content = $w['content'] ?: $keyValue['content'];
-
-    var_dump($w);
-    var_dump($keyValue);
-	 	$data = json_decode($content,true);
-    $data['bingeCount'] = $w['bingeCount'] + intval($data['bingeCount']);
-
-    foreach($w['GUID'] as $guid) {
-      $data["GUID"][] = $guid;
-    }
-    $updated = wp_update_post( array(
-			'ID'=>$dbID,
-			'post_title' =>$data['show']['title'],
-			'post_content'=>json_encode($data)
-		) );
-    if($updated) {
-      wp_set_object_terms($dbID, 'show', 'consumed_types' );
-    }
-    continue;
-  }
-	if($w['dbID']) {
-		$keyValue = $w;
-		continue;
-	}
-
-  //EVERYONE ELSE IS NEW
   $post_title = $w['title'];
   if($w['type'] === 'show') {
     $post_title = $w['show']['title'];
@@ -191,7 +126,36 @@ foreach($workingArray as $k => $w) {
       update_post_meta($insert, 'showID', $w['show']['ID']);
     }
   }
-	$keyValue = $w;
+}
+$to_consolidate = returnBatch($item_types, $oldest_play);
+$to_consolidate = array_reverse($to_consolidate);
+foreach($to_consolidate as $k => $c) {
+  $current_type = get_the_terms($c->ID, 'consumed_types')[0]->slug;
+  $prev_type = get_the_terms($prev->ID, 'consumed_types')[0]->slug;
+
+  if($k === 0 || $current_type === 'movie') {
+    continue;
+  }
+  $prev = $to_consolidate[$k-1];
+  $prev_data = json_decode($prev->post_content,true);
+  $current_data = json_decode($c->post_content,true);
+  $bingeShow = bingeCheck($current_data['show']['ID'],strtotime($current->post_date_gmt),$prev_data['show']['ID'],strtotime($prev->post_date_gmt));
+
+  //CHECK IF CONSECUTIVE SHOW PLAYS
+  if($bingeShow) {
+    $current_data['GUID'] = array_merge($prev_data['GUID'], $current_data['GUID']);
+    $current_data['bingeCount'] = intval($prev_data['bingeCount']) + intval($current_data['bingeCount']);
+    $updated = wp_update_post(array(
+      'ID' => $c->ID,
+      'post_content'=>json_encode($current_data)
+    ));
+    if($updated) {
+      $to_consolidate[$k] = get_post($c->ID);
+      $delete = wp_trash_post( $prev->ID, false );
+      wp_set_object_terms($c->ID, 'show', 'consumed_types' );
+    }
+    continue;
+  }
 
 }
 ?>

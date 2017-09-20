@@ -1,7 +1,6 @@
 <?php
 
 
-
 $cacheBreaker = time();
 
 global $homeURL;

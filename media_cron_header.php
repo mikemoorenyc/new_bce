@@ -44,9 +44,8 @@ function bingeCheck($currentID, $currentTimestamp, $itemID, $itemTimestamp) {
   return true;
 }
 
-
-function comparePosts($types, $oldest_play) {
-  $compare_posts = get_posts(array(
+function returnBatch($types, $oldest_play) {
+  $posts = get_posts(array(
     'posts_per_page'   => -1,
     'post_type' => 'consumed',
     'tax_query' => array(
@@ -60,7 +59,15 @@ function comparePosts($types, $oldest_play) {
       'after'=> date('c', strtotime('-2 days', $oldest_play))
     )
   ));
+  if(empty($posts)) {
+    return [];
+  }
+  return $posts;
 
+}
+
+function comparePosts($types, $oldest_play) {
+  $compare_posts = returnBatch($types, $oldest_play);
   $GUIDs = array();
   foreach($compare_posts as $p) {
    $data = json_decode($p->post_content,true);

@@ -61,13 +61,17 @@ $items = $items['items'];
 
 
 $oldest_play = $items[count($items)-1]['played_at'];
-$compare_posts = comparePosts(['album','track'], $oldest_play);
+$item_types = ['album','track'];
+$compare_posts = comparePosts($item_types, $oldest_play);
 
 $items = array_filter($items, function($i) {
   global $compare_posts;
   return in_array($i['track']['id'].'_'.$i['played_at'],$compare_posts['GUID']) === false;
 });
-
+if(empty($items)) {
+  echo 'no new posts';
+  die();
+}
 
 $track_blocks = [];
 $track_fetch = [];
@@ -122,26 +126,8 @@ $items = array_filter($items, function($i){
 	return !empty($i['track_info']);
 });
 
-$resetValues = array(
-	'timestamp' => time(),
-	'listenCount' => 1,
-	'dbID' => null,
-	'albumID' => null,
-	'trackID' => null
-);
-$current = $resetValues;
-$compareValues = $resetValues;
-if(!empty($compare_posts['posts'])) {
- $data = json_decode($compare_posts['posts'][0]->post_content,true);
- $compareValues = array(
-    'timestamp' => strtotime(get_the_date('c',$compare_posts['posts'][0]->ID)),
-    'listenCount' => $data['listenCount'],
-    'dbID' => $compare_posts['posts'][0]->ID,
-	 	'albumID' => $data['album']['ID'],
-    'trackID' => $data['ID']
- );
-}
-$current = $resetValues;
+
+$current = [];
 $workingArray = [];
 $GUID = [];
 foreach($items as $k => $i) {
@@ -162,7 +148,7 @@ foreach($items as $k => $i) {
 	if(bingeCheck($current['albumID'],$current['timestamp'],$info['album']['id'],strtotime($i['played_at']))) {
 		$current['type'] = 'album';
 		$workingArray[count($workingArray)-1]['type'] = 'album';
-    $workingArray[count($workingArray)-1]['GUID'][] = $itrack_GUID;
+    $workingArray[count($workingArray)-1]['GUID'][] = $track_GUID;
 		continue;
 	}
 
@@ -174,6 +160,7 @@ foreach($items as $k => $i) {
     'timestamp' => strtotime($i['played_at']),
     'title' => $info['name'],
     'img' =>  $info['album']['images'][0]['url'],
+    'listenCount'=> $current['listenCount'],
     'album' => array(
       'ID' => $info['album']['id'],
       'title' => $info['album']['name'],
@@ -192,66 +179,9 @@ foreach($items as $k => $i) {
 	);
 
 }
-foreach($compare_posts['posts'] as $c) {
-  $data = json_decode($c->post_content,true);
-
-  $workingArray[] = array(
-    'dbID' => $c->ID,
-    'content'=>$c->post_content,
-    'trackID'=>$data['ID'],
-    'albumID'=>$data['album']['ID'],
-    'timestamp'=>strtotime($c->post_date_gmt)
-  );
-}
-
-usort($workingArray, function($a, $b){
-  return $a['timestamp'] - $b['timestamp'];
-});
-$workingArray = array_reverse($workingArray);
-$keyValue = array();
-foreach($workingArray as $k=>$w) {
-	$dates = dateMaker($w['timestamp']);
-	//CHECK TRACK
-	if($w['type'] === 'track' && bingeCheck($w['ID'],$w['timestamp'],$keyValue['trackID'],$keyValue['timestamp'])){
-    $dbID = $w['dbID'] ?: $keyValue['dbID'];
-		$content = $w['content'] ?: $keyValue['content'];
-		$trackData = json_decode($content,true);
-		$trackData['listenCount'] = $w['listenCount'] + intval($trackData['listenCount']);
-		foreach($w['GUID'] as $g) {
-			$trackData['GUID'][] = $g;
-		}
-		$updated = wp_update_post( array(
-			'ID'=>$dbID ,
-			'post_content'=>json_encode($trackData)
-		) );
-		continue;
-	}
-	if(bingeCheck($w['album']['ID'],$w['timestamp'],$keyValue['albumID'],$keyValue['timestamp'])) {
-    $dbID = $w['dbID'] ?: $keyValue['dbID'];
-		$content = $w['content'] ?: $keyValue['content'];
-		$trackData = json_decode($content,true);
-		foreach($w['GUID'] as $g) {
-			$trackData['GUID'][] = $g;
-		}
-		$updated = wp_update_post( array(
-			'ID'=>$dbID ,
-			'post_content'=>json_encode($trackData),
-			'post_title' => $w['album']['title']
-		) );
-		if($updated) {
-			 wp_set_object_terms($dbID , 'album', 'consumed_types' );
-		}
-		continue;
-
-
-	}
-
-  if($w['dbID']) {
-		$keyValue = $w;
-		continue;
-	}
-
-	//ALL NEW
+foreach($workingArray as $w) {
+  //ALL NEW
+  $dates = dateMaker($w['timestamp']);
 	$post_title = $w['title'];
 	if($w['type'] === 'album') {
 		$post_title = $w['album']['title'];
@@ -267,10 +197,51 @@ foreach($workingArray as $k=>$w) {
 	if($insert) {
     wp_set_object_terms($insert, $w['type'], 'consumed_types' );
   }
-  $keyValue = $w;
 }
 
-
+$to_consolidate = returnBatch($item_types, $oldest_play);
+$to_consolidate = array_reverse($to_consolidate);
+foreach($to_consolidate as $k => $c) {
+  if($k === 0) {
+    continue;
+  }
+  $prev = $to_consolidate[$k-1];
+  $prev_data = json_decode($prev->post_content,true);
+  $current_data = json_decode($c->post_content,true);
+  $current_type = get_the_terms($c->ID, 'consumed_types')[0]->slug;
+  $prev_type = get_the_terms($prev->ID, 'consumed_types')[0]->slug;
+  $bingeTrack = bingeCheck($current_data['ID'],strtotime($current->post_date_gmt),$prev_data['ID'],strtotime($prev->post_date_gmt));
+  $bingeAlbum = bingeCheck($current_data['album']['ID'],strtotime($current->post_date_gmt),$prev_data['album']['ID'],strtotime($prev->post_date_gmt));
+  $updated = false;
+  //CHECK IF BOTH CONSECUTIVE PLAYS WERE SAME TRACK ON SAME DAY
+  if($current_type === 'track' && $prev_type === 'track' && $bingeTrack) {
+    $current_data['GUID'] = array_merge($prev_data['GUID'], $current_data['GUID']);
+    $current_data['listenCount'] = intval($prev_data['listenCount']) + intval($current_data['listenCount']);
+    $updated = wp_update_post(array(
+      'ID' => $c->ID,
+      'post_content'=>json_encode($current_data)
+    ));
+    if($updated) {
+      $to_consolidate[$k] = get_post($c->ID);
+      $delete = wp_trash_post( $prev->ID, false );
+    }
+    continue;
+  }
+  //CHECK IF SAME ALBUM CONSECTIVELY ON SAME DAY
+  if($bingeAlbum) {
+    $current_data['GUID'] = array_merge($prev_data['GUID'], $current_data['GUID']);
+    $updated = wp_update_post(array(
+      'ID' => $c->ID,
+      'post_content'=>json_encode($current_data)
+    ));
+    if($updated) {
+      $to_consolidate[$k] = get_post($c->ID);
+      $delete = wp_trash_post( $prev->ID, false );
+      wp_set_object_terms($c->ID, 'album', 'consumed_types' );
+    }
+    continue;
+  }
+}
 
 
  ?>

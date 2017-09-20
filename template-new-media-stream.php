@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Media Stream
+ * Template Name: NEW Media Stream
  */
  date_default_timezone_set('America/New_York');
 ?>
@@ -16,31 +16,36 @@
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $posts = get_posts(
   array(
-    'posts_per_page'   => 25,
+    'posts_per_page'   => 50,
     'post_type' => 'consumed',
     'paged' => $paged
   )
 );
+
 if(empty($posts)) {
   echo '<h2>There is nothing to show you.</h2>';
-  include 'footer.php'; 
+  include 'footer.php';
   die();
 }
 ?>
 <?php
 include_once 'switch_media_info.php';
 
-function imageData($p) {
+function imageData($p,$imgClass) {
+  global $siteDir;
+  $preloadClass = 'preload-image';
 	if(has_post_thumbnail($p->ID)) {
 		$urls =  get_all_image_sizes(get_post_thumbnail_id($p->ID));
 		$imgURL = $urls['medium']['url'];
-		} else {
-			$imgURL = '';
+    return array(
+      'url' => $urls['medium']['url'],
+      'preload' => $preloadClass
+    );
 	}
  $data = json_decode($p->post_content,true);
  $type = get_the_terms($p->ID, 'consumed_types');
  if($type){$type = $type[0]->slug;}
- $preloadClass = 'preload-image';
+
  $imgURL = $data['img'] ?: $imgURL ;
  if($type === 'movie' || $type === 'show') {
   $imgURL = get_post_meta($p->ID, 'imgURL',true);
@@ -54,18 +59,18 @@ function imageData($p) {
  }
 
 	$pURL = parse_url($imgURL);
-	if($pURL['scheme'] !== 'https') {
+	if($pURL['scheme'] !== 'https' && !empty($imgURL)) {
 		$imgURL = $siteDir.'/image_proxy.php?url='.urlencode($imgURL);
 	}
  if(empty($imgURL)) {
-  $preloadClass = ''; 
+  $preloadClass = '';
  }
  return array(
   'url' => $imgURL,
   'preload' => $preloadClass
-  
+
  );
-  
+
 }
 
 
@@ -106,16 +111,16 @@ function timeSet($stamp) {
 }
  ?>
 <div id="media-stream" class=" media-stream container">
-<?php 
+<?php
 $time_marker = "";
 foreach($posts as $k => $p) {
   $data = json_decode($p->post_content,true);
-  $time = timeSet($i['timestamp']);
+  $time = timeSet(strtotime($p->post_date));
   $type = get_the_terms($p->ID, 'consumed_types');
   if($type){$type = $type[0]->slug;}
   $imgClass = 'other';
-	$imgData = imageData($p);
-	if(in_array($type, array('movie','book','episode','show','track','album')) {
+
+	if(in_array($type, array('movie','book','episode','show','track','album')) ){
 		$imgClass = $type;
 	}
   if(in_array($imgClass,array('episode','show') )) {
@@ -124,8 +129,9 @@ foreach($posts as $k => $p) {
   if(in_array($imgClass,array('track','album'))) {
     $imgClass = 'cd';
   }
+  $imgData = imageData($p,$imgClass);
   if($time !== $time_marker) {
-    echo '<h2 class="sub-heading with-line"><span>'.$time.'</span></h2>'
+    echo '<h2 class="sub-heading with-line"><span>'.$time.'</span></h2>';
   }
   $time_marker = $time;
   ?>
@@ -133,14 +139,14 @@ foreach($posts as $k => $p) {
     <div class="img-container">
       <div class="media-image type-<?= $imgClass;?>">
         <img
-          class="<?= $imgData['preload'];?> no-blur" 
-          src="<?= $siteDir;?>/assets/imgs/blank_<?= $imgClass ?>.png" 
-          data-src="<?= $imgURL;?>" 
+          class="<?= $imgData['preload'];?> no-blur"
+          src="<?= $siteDir;?>/assets/imgs/blank_<?= $imgClass ?>.png"
+          data-src="<?= $imgData['url'];?>"
           alt="<?= $p->post_title;?>" />
       </div>
     </div>
     <div class="info">
-      <?php infoSwitch(
+      <?php switch_media_info(
         array(
          'title'=>$p->post_title,
          'type' => $type,
@@ -148,28 +154,28 @@ foreach($posts as $k => $p) {
            'title'=> $data['show']['title']
           ),
          'album' => array(
-          'title' => $data['album'['title'],
+          'title' => $data['album']['title'],
           'artists' => $data['album']['artists']
          ),
-         'bingeCount' => intval(get_post_meta($p->ID, 'bingeCount',true)),
-         'listenCount' => intval(get_post_meta($p->ID, 'listenCount',true)),
-         'authors' => $data['authors'],                 
+         'bingeCount' => $data['bingeCount'],
+         'listenCount' => $data['listenCount'],
+         'authors' => $data['authors'],
          'percent' => $data['percent'],
          'status' => $data['status']
         )
        );?>
     </div>
-    
+
   </div>
-  
+
   <?php
-  
-  
+
+
 }
 ?>
-  
-  
-  
+
+
+
 </div>
 
 
