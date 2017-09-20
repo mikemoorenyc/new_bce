@@ -6,12 +6,11 @@
   height: 48px;
   @media(min-width:$dt-break) {
     position: fixed;
-    right: 24px;
-    bottom: 0px;
-    transform: rotate(90deg);
-    transform-origin: center right;
+    right: 16px;
+    bottom: -2px;
+
     margin: 0;
-    width: 60px;
+
 
   }
   &:before, &:after {
@@ -26,12 +25,6 @@
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    @media(min-width:$dt-break) {
-      width: 10px;
-      height: 10px;
-
-
-    }
   }
   &:after {
     left: auto;
@@ -70,16 +63,6 @@
     }
     @media(min-width:$dt-break) {
       background:currentColor;
-      width: calc(100% - 30px);
-      height: 3px;
-      &:before {
-        background: currentColor;
-        width: 10px;
-        height: 10px;
-        border-radius:50%;
-        border-width: 1px;
-        border-color:$white;
-      }
     }
 
   }
