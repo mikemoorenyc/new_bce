@@ -14,7 +14,7 @@
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args = array(
   'post_type' 		=> 'post',
-  'posts_per_page' => 24,
+  'posts_per_page' => 1,
   'paged' => $paged
 );
 query_posts($args);
@@ -50,10 +50,14 @@ if(has_post_thumbnail()) {
 
 
 <?php endwhile;?>
-<?php include_once 'partial_landing_page_pagination.php';?>
+
 </div>
 
-
+<?php
+$older_link = get_next_posts_link();
+$newer_link = get_previous_posts_link();
+ ?>
+<?php include_once 'partial_landing_page_pagination.php';?>
 
 
 <?php include_once 'footer.php';?>

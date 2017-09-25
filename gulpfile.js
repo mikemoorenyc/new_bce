@@ -25,6 +25,7 @@ if(argv.production) {
 } else {
   dir = buildDir+'_development';
 }
+var buildDate = Math.floor(new Date() / 1000);
 //CLEAN
 gulp.task('clean', function(){
   return del([buildDir+'_production'+'/**'], {force:true});
@@ -63,7 +64,7 @@ gulp.task('templates', function(){
   return gulp.src(['*.html', '*.php'])
     .pipe(gulpif(!argv.production, strip({start_comment: "REMOVE IN DEV", end_comment: "END REMOVE IN DEV"})))
     .pipe(gulpif(argv.production, strip({start_comment: "REMOVE FROM PRODUCTION", end_comment: "END REMOVE FROM PRODUCTION"})))
-    .pipe(gulpif(argv.production, replace('$cacheBreaker = time();','$cacheBreaker = 1.1;')))
+    .pipe(gulpif(argv.production, replace('$cacheBreaker = time();','$cacheBreaker = '+buildDate+';')))
     .pipe(gulpif(argv.production, htmlmin()))
 
     .pipe(gulp.dest(dir));

@@ -163,7 +163,7 @@ if(!$_COOKIE['colormode']) {
 }
  ?>
 <body id="top" data-colormode="<?= $colormode;?>">
-
+  <header id="test"></header>
  <header id="top-header">
    <a id="spinner" alt="<?= $siteTitle;?>" href="<?= $homeURL;?>"></a>
    <input type="checkbox" alt="Toggle Navigation" role="button" id="navigation-toggle" class="button-style" />

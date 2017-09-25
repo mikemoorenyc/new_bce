@@ -1,6 +1,7 @@
 <?php
 $mediaType = 'trakt';
 include_once('media_cron_header.php');
+include 'media_image_functions.php';
 if( !isset($keys['trakt']) || !isset($keys['trakt_username'])) {
   die();
 }
@@ -41,9 +42,10 @@ $items = array_filter($items, function($i) {
 
   return in_array($i['id'],$compare_posts['GUID']) === false;
 });
-if(empty($items)){echo 'no new posts'; die();}
 
+//if(empty($items)){echo 'no new posts'; die();}
 
+$workingArray = [];
 
 $GUID = [];
 $current = null;
@@ -106,6 +108,7 @@ foreach($items as $k => $i) {
 
 
 }
+
 foreach($workingArray as $w) {
   $dates = dateMaker($w['timestamp']);
   $post_title = $w['title'];
@@ -121,13 +124,19 @@ foreach($workingArray as $w) {
 		'post_date_gmt'=> $dates['gmt']
 	) );
   if($insert) {
+
     wp_set_object_terms($insert, $w['type'], 'consumed_types' );
     if($w['type'] === 'episode' || $w['type'] === 'show') {
+      $cached_show_image = checkCachedImage($w['show']['ID']);
+      if($cached_show_image) {
+        update_post_meta( $insert, 'showImgURL', $cached_show_image);
+      }
       update_post_meta($insert, 'showID', $w['show']['ID']);
     }
+
   }
 }
-$to_consolidate = returnBatch($item_types, $oldest_play);
+$to_consolidate = returnBatch($post_types, $oldest_play);
 $to_consolidate = array_reverse($to_consolidate);
 foreach($to_consolidate as $k => $c) {
   $current_type = get_the_terms($c->ID, 'consumed_types')[0]->slug;
@@ -139,15 +148,16 @@ foreach($to_consolidate as $k => $c) {
   $prev = $to_consolidate[$k-1];
   $prev_data = json_decode($prev->post_content,true);
   $current_data = json_decode($c->post_content,true);
-  $bingeShow = bingeCheck($current_data['show']['ID'],strtotime($current->post_date_gmt),$prev_data['show']['ID'],strtotime($prev->post_date_gmt));
 
+  $bingeShow = bingeCheck($current_data['show']['ID'],strtotime($c->post_date_gmt),$prev_data['show']['ID'],strtotime($prev->post_date_gmt));
   //CHECK IF CONSECUTIVE SHOW PLAYS
   if($bingeShow) {
     $current_data['GUID'] = array_merge($prev_data['GUID'], $current_data['GUID']);
     $current_data['bingeCount'] = intval($prev_data['bingeCount']) + intval($current_data['bingeCount']);
     $updated = wp_update_post(array(
       'ID' => $c->ID,
-      'post_content'=>json_encode($current_data)
+      'post_content'=>json_encode($current_data),
+      'post_title' => $current_data['show']['title']
     ));
     if($updated) {
       $to_consolidate[$k] = get_post($c->ID);

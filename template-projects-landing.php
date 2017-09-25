@@ -38,9 +38,16 @@ include 'partial_project_card.php';
 <?php endwhile;?>
 
 
-<?php include_once 'partial_landing_page_pagination.php';?>
+
 
 
 </div>
+<?php
+$older_link = get_next_posts_link();
+$newer_link = get_previous_posts_link();
+
+
+ ?>
+<?php include_once 'partial_landing_page_pagination.php';?>
 
 <?php include 'footer.php'; ?>

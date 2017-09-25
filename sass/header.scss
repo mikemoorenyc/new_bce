@@ -27,6 +27,12 @@ $dt-header-padding: 64px;
 }
 
 header {
+  &#test {
+    position: absolute;
+    background:blue;
+    opacity: 0;
+    visibility: hidden;
+  }
   .scrim {
     display:none;
     position: absolute;

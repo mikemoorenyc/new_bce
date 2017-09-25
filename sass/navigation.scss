@@ -64,6 +64,9 @@ nav {
       left: 56px;
       top: 50%;
       transform: translateY(-50%);
+      &.over-fold {
+        display:none;
+      }
       @media(min-width: 1024px) {
         left: 56px + (24px - 16px);
       }

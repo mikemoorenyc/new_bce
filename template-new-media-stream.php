@@ -14,9 +14,11 @@
 </div>
 <?php
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$per_page = 32;
+
 $posts = get_posts(
   array(
-    'posts_per_page'   => 50,
+    'posts_per_page'   => $per_page,
     'post_type' => 'consumed',
     'paged' => $paged
   )
@@ -177,7 +179,14 @@ foreach($posts as $k => $p) {
 
 
 </div>
+<?php
 
+$newer_link = ($paged > 1) ? array('url'=> get_the_permalink()."page/".($paged-1).'/', 'copy' => 'More Recent') : false ;
+$older_link = (($paged-1) * $per_page + count($posts) < intval(wp_count_posts('consumed')->publish)) ?  array('url'=> get_the_permalink().'page/'.($paged+1).'/', 'copy' => 'Less Recent') : false;
+
+include_once 'partial_landing_page_pagination.php';
+
+?>
 
 
 <?php include_once 'footer.php';?>

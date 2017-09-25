@@ -23,6 +23,14 @@
     width: 100%;
     text-decoration: none;
     padding: 8px;
+    &.full-width {
+      &.older-posts {
+        padding-left: 12px;
+      }
+      &.newer-posts {
+        padding-right:12px;
+      }
+    }
     &.half-width {
       width: 50%;
       text-align: left;

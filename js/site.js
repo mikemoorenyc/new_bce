@@ -59,6 +59,18 @@ function siteInit() {
   if(document.getElementById('ie9_mask')) {
     ieIdc();
   }
+  // HEADER THING
+  const headFold = new IntersectionObserver(function(changes){
+    if(changes[0].isIntersecting) {
+      document.querySelector('header .lockup').classList.remove('over-fold');
+    } else {
+      document.querySelector('header .lockup').classList.add('over-fold');
+    }
+  });
+
+  headFold.observe(document.querySelector('header#test'));
+
+
 }
 function colorSetter(set) {
   Cookies.set('colormode', set);

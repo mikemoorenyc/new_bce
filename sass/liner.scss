@@ -10,7 +10,7 @@
   pointer-events: none;
   height:1px;
   z-index:1;
-  opacity:.65;
+  //opacity:.65;
 
   body[data-colormode="bw"] & {
     display:none !important;

@@ -68,10 +68,7 @@ $items = array_filter($items, function($i) {
   global $compare_posts;
   return in_array($i['track']['id'].'_'.$i['played_at'],$compare_posts['GUID']) === false;
 });
-if(empty($items)) {
-  echo 'no new posts';
-  die();
-}
+
 
 $track_blocks = [];
 $track_fetch = [];
@@ -210,8 +207,8 @@ foreach($to_consolidate as $k => $c) {
   $current_data = json_decode($c->post_content,true);
   $current_type = get_the_terms($c->ID, 'consumed_types')[0]->slug;
   $prev_type = get_the_terms($prev->ID, 'consumed_types')[0]->slug;
-  $bingeTrack = bingeCheck($current_data['ID'],strtotime($current->post_date_gmt),$prev_data['ID'],strtotime($prev->post_date_gmt));
-  $bingeAlbum = bingeCheck($current_data['album']['ID'],strtotime($current->post_date_gmt),$prev_data['album']['ID'],strtotime($prev->post_date_gmt));
+  $bingeTrack = bingeCheck($current_data['ID'],strtotime($c->post_date_gmt),$prev_data['ID'],strtotime($prev->post_date_gmt));
+  $bingeAlbum = bingeCheck($current_data['album']['ID'],strtotime($c->post_date_gmt),$prev_data['album']['ID'],strtotime($prev->post_date_gmt));
   $updated = false;
   //CHECK IF BOTH CONSECUTIVE PLAYS WERE SAME TRACK ON SAME DAY
   if($current_type === 'track' && $prev_type === 'track' && $bingeTrack) {
@@ -232,7 +229,8 @@ foreach($to_consolidate as $k => $c) {
     $current_data['GUID'] = array_merge($prev_data['GUID'], $current_data['GUID']);
     $updated = wp_update_post(array(
       'ID' => $c->ID,
-      'post_content'=>json_encode($current_data)
+      'post_content'=>json_encode($current_data),
+      'post_title' =>$current_data['album']['title']
     ));
     if($updated) {
       $to_consolidate[$k] = get_post($c->ID);
