@@ -40,10 +40,8 @@ $siteTitle = get_bloginfo('name');
 global $siteDesc;
 $siteDesc = get_bloginfo('description');
 
-$pageThumb = false;
-if(get_post_thumbnail_id()) {
-  $pageThumb = get_all_image_sizes(get_post_thumbnail_id());
-}
+$pageThumb = (get_post_thumbnail_id()) ? get_all_image_sizes(get_post_thumbnail_id()) : false;
+
 
 
 ?>
@@ -152,15 +150,9 @@ var App = {
 <link rel="canonical" href="<?php echo get_the_permalink();?>">
 </head>
 <?php
-  $firstColor = 'color:'.$colors[rand(0,count($colors)-1)].';';
-  if($colormode === 'bw') {
-    $firstColor = '';
-  }
-$colormode = $_COOKIE['colormode'];
 
-if(!$_COOKIE['colormode']) {
-  $colormode = color;
-}
+  
+$colormode = (!$_COOKIE['colormode']) ? 'color' : $_COOKIE['colormode'];
  ?>
 <body id="top" data-colormode="<?= $colormode;?>">
   <header id="test"></header>
