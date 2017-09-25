@@ -24,11 +24,8 @@ query_posts($args);
 <?php while ( have_posts() ) : the_post(); ?>
 
 <?php
-$hide_image = true;
-if(has_post_thumbnail()) {
-  $img_id = get_post_thumbnail_id();
-  $hide_image = false;
-}
+$hide_image = (has_post_thumbnail()) ? false : true;
+$img_id = get_post_thumbnail_id();
 $pid = get_the_ID();
 include 'partial_project_card.php';
 
