@@ -220,7 +220,7 @@ foreach($to_consolidate as $k => $c) {
     ));
     if($updated) {
       $to_consolidate[$k] = get_post($c->ID);
-      $delete = wp_trash_post( $prev->ID, false );
+      $delete = wp_delete_post( $prev->ID, false );
     }
     continue;
   }
@@ -234,7 +234,7 @@ foreach($to_consolidate as $k => $c) {
     ));
     if($updated) {
       $to_consolidate[$k] = get_post($c->ID);
-      $delete = wp_trash_post( $prev->ID, false );
+      $delete = wp_delete_post( $prev->ID, false );
       wp_set_object_terms($c->ID, 'album', 'consumed_types' );
     }
     continue;
