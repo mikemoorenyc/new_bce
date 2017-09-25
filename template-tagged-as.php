@@ -4,40 +4,40 @@
  */
 ?>
 <?php
-$content_ids = [];
-$tagged_ids = [];
-if(!empty($_GET['types'])) {
-  $content_ids = explode("|",$_GET['types']);
-}
-if(!empty($_GET['tags'])) {
-  $tagged_ids = explode("|",$_GET['tags']);
+
+function readableList($ids, $type) {
+  $listItems = []; 
+  if($type === 'type') {
+    foreach ($ids as $i) {
+      $listItems[] = get_post_type_object( $c )->labels->name;
+    }
+  }
+  if($type === 'tag') {
+   $listItems[] = get_term($t)->name;
+  }
+  $output = '';
+  foreach($listItems as $k => $li) {
+    if($k > 0 && $k < count($listItems) - 1) {
+     $output .= ', '; 
+    }
+    if($k === count($listItems)-1) {
+     $output .= ' & '; 
+    }
+    $output .= $li;
+  }
+  return $output;
 }
 
+$content_ids = (!empty($_GET['types'])) ? explode("|",$_GET['types']) : array();
+$tagged_ids = (!empty($_GET['tags'])) ? explode("|",$_GET['tags']) : array();
 
-if(empty($content_ids)) {
- $content_title = 'Content';
-} else {
- $name_array = [];
- foreach($content_ids as $c) {
-  $name_array[] = get_post_type_object( $c )->labels->name;
- }
- $content_title = implode(' & ',$name_array);
-}
-if(empty($tagged_ids)) {
- $content_tag = '';
-} else {
- $tag_list = [];
- foreach($tagged_ids as $t) {
-  $tag_list[] = get_term($t)->name;
- }
- $content_tag = ' tagged with: '.implode(', ',$tag_list);
-}
+$content_title = (empty($content_ids)) ? 'Content' : readableList($content_ids, 'type');
+$content_tag = (empty($tagged_ids)) ? '' : 'tagged with: '.readableList($tagged_ids, 'tag');
 
 
-$tagged_as_page = $content_title.$content_tag;
-if(empty($content_ids)&& empty($tagged_ids)) {
- $tagged_as_page = 'Content Archive';
-}
+
+$tagged_as_page = (empty($content_ids)&& empty($tagged_ids)) ? 'Content Archive' : $content_title.$content_tag;
+
  ?>
 <?php include_once "header.php";?>
 
@@ -138,13 +138,10 @@ foreach($posts as $p):?>
 
 $pid = $p->ID;
 $alt_tag = $p->post_title;
-$hide_image = false;
-if(!has_post_thumbnail($pid)) {
-   $hide_image = true;
-}
-else {
-   $img_id = get_post_thumbnail_id($pid);
-}
+
+$img_id = get_post_thumbnail_id($pid);
+$hide_image ($img_id) ? false : true;
+
 if(get_post_type($pid) === 'post') {
  $card_meta = 'A blog post from '.get_the_date('F Y',$pid);
 }
