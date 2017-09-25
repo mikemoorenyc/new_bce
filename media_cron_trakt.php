@@ -148,8 +148,11 @@ foreach($to_consolidate as $k => $c) {
   $prev = $to_consolidate[$k-1];
   $prev_data = json_decode($prev->post_content,true);
   $current_data = json_decode($c->post_content,true);
+	
+	$current_ID = ($current_data['show']['ID']) ? $current_data['show']['ID'] : $current_data['show']['tvdb_ID'];
+	$prev_ID = ($prev_data['show']['ID']) ? $prev_data['show']['ID'] : $prev_data['show']['tvdb_ID'];
 
-  $bingeShow = bingeCheck($current_data['show']['ID'],strtotime($c->post_date_gmt),$prev_data['show']['ID'],strtotime($prev->post_date_gmt));
+  $bingeShow = bingeCheck($current_ID,strtotime($c->post_date_gmt),$prev_ID,strtotime($prev->post_date_gmt));
   //CHECK IF CONSECUTIVE SHOW PLAYS
   if($bingeShow) {
     $current_data['GUID'] = array_merge($prev_data['GUID'], $current_data['GUID']);
@@ -161,7 +164,7 @@ foreach($to_consolidate as $k => $c) {
     ));
     if($updated) {
       $to_consolidate[$k] = get_post($c->ID);
-      $delete = wp_trash_post( $prev->ID, false );
+      $delete = wp_delete_post( $prev->ID, false );
       wp_set_object_terms($c->ID, 'show', 'consumed_types' );
     }
     continue;
