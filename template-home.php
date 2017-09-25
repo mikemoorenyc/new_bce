@@ -32,16 +32,9 @@
 foreach($projects as $p) {
   $pid = $p->ID;
   $alt_tag = $p->post_title;
-
-  if(!has_post_thumbnail($pid)) {
-   if(!empty(get_option( 'social_icon_image', '' ))) {
-     $img_id = get_option( 'social_icon_image', '' );
-   } else {
-    $hide_image = true;
-   }
-  } else {
-    $img_id = get_post_thumbnail_id($pid);
-  }
+  $img_id = (has_post_thumbnail($pid)) ? get_post_thumbnail_id($pid) : get_option( 'social_icon_image', '' );
+  $hide_image = ($img_id) ? false : true;
+  
 
   include 'partial_project_card.php';
 }
