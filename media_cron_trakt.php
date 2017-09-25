@@ -142,7 +142,7 @@ foreach($to_consolidate as $k => $c) {
   $current_type = get_the_terms($c->ID, 'consumed_types')[0]->slug;
   $prev_type = get_the_terms($prev->ID, 'consumed_types')[0]->slug;
 
-  if($k === 0 || $current_type === 'movie') {
+  if($k === 0 || $current_type === 'movie' || $prev_type === 'movie') {
     continue;
   }
   $prev = $to_consolidate[$k-1];
