@@ -69,6 +69,10 @@ $items = array_filter($items, function($i) {
   return in_array($i['track']['id'].'_'.$i['played_at'],$compare_posts['GUID']) === false;
 });
 
+if(empty($items)) {
+	echo "No new Items.";
+	die();
+}
 
 $track_blocks = [];
 $track_fetch = [];
