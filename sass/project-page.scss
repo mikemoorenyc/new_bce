@@ -1,6 +1,8 @@
 .p-s.top-hero {
   height: 56.25vw;
   max-height: calc(100vh / 2);
+  max-width: $dt-max;
+  margin: 0 auto;
   @media(min-width:402px) and (max-width: 801px){
     height: 0;
     padding-top: 56.25%;
