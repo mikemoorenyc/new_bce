@@ -43,7 +43,7 @@ $items = array_filter($items, function($i) {
   return in_array($i['id'],$compare_posts['GUID']) === false;
 });
 
-//if(empty($items)){echo 'no new posts'; die();}
+if(empty($items)){echo 'no new posts'; die();}
 
 $workingArray = [];
 
