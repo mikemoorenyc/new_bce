@@ -149,8 +149,8 @@ foreach($to_consolidate as $k => $c) {
   $prev_data = json_decode($prev->post_content,true);
   $current_data = json_decode($c->post_content,true);
 	
-	$current_ID = ($current_data['show']['ID']) ? $current_data['show']['ID'] : $current_data['show']['tvdb_ID'];
-	$prev_ID = ($prev_data['show']['ID']) ? $prev_data['show']['ID'] : $prev_data['show']['tvdb_ID'];
+	$current_ID = $current_data['show']['ID'] ?: $current_data['show']['tvdb_ID'] ?: $current_data['show']['title'];
+	$prev_ID = $prev_data['show']['ID'] ?: $prev_data['show']['tvdb_ID'] ?: $prev_data['show']['title'] ;
 
   $bingeShow = bingeCheck($current_ID,strtotime($c->post_date_gmt),$prev_ID,strtotime($prev->post_date_gmt));
   //CHECK IF CONSECUTIVE SHOW PLAYS
