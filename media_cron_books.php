@@ -9,32 +9,37 @@ function imageReplacer($o_URL,$isbn,$desc=null, $type = 'ISBN') {
   $a_URL = 'http://images.amazon.com/images/P/'.$isbn.'.01.LZZZZ.jpg';
   $size = @getimagesize($a_URL);
 
-  if(!$size || $size[0] < 50) {
-
-
-    if(!$desc){return $o_URL;}
-    $doc = new DOMDocument();
-    @$doc->loadHTML($desc);
-    $img = $doc->getElementsByTagName('img');
-
-    foreach($img as $i) {
-     $url = $i->getAttribute('src');
-     $url = str_replace('books/','REPLACELATER',$url);
-     $url = str_replace('s/','m/',$url);
-     $url = str_replace('REPLACELATER','books/',$url);
-
-     $size = @getimagesize($url);
-     if($size && $size[0] > 50) {
-      return $url;
-     } else {
-      return $o_URL;
-     }
-     break;
-    }
+  if($size && $size[0] > 50) {
+    return $a_URL;
   }
-  return $a_URL;
+  if(!$desc) {
+    return $o_URL;
+  }
 
+  $doc = new DOMDocument();
+  @$doc->loadHTML($desc);
+  if(!$doc) {
+    return $o_URL;
+  }
+  $img = $doc->getElementsByTagName('img');
+
+  foreach($img as $i) {
+   $url = $i->getAttribute('src');
+   $url = str_replace('books/','REPLACELATER',$url);
+   $url = str_replace('s/','m/',$url);
+   $url = str_replace('REPLACELATER','books/',$url);
+
+   $size = @getimagesize($url);
+   if($size && $size[0] > 50) {
+    return $url;
+   } else {
+    return $o_URL;
+   }
+   break;
+  }
+  return $o_URL;
 }
+
 $status = new SimpleXMLElement(file_get_contents('https://www.goodreads.com/user/updates_rss/'.$keys['goodreads_uid'].'?key=18ioDaauDhEjysrttqWKDR03F_rvL_JFKT4MUW5jz8sl5px7'),LIBXML_NOCDATA);
 
 $items = [];

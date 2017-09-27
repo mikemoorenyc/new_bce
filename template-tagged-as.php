@@ -6,22 +6,27 @@
 <?php
 
 function readableList($ids, $type) {
-  $listItems = []; 
+  $listItems = [];
   if($type === 'type') {
     foreach ($ids as $i) {
       $listItems[] = get_post_type_object( $c )->labels->name;
     }
   }
   if($type === 'tag') {
-   $listItems[] = get_term($t)->name;
+   foreach($ids as $t) {
+     $listItems[] = get_term($t)->name;
+   }
+  }
+  if(count($listItems) < 2) {
+    return $listItems[0];
   }
   $output = '';
   foreach($listItems as $k => $li) {
     if($k > 0 && $k < count($listItems) - 1) {
-     $output .= ', '; 
+     $output .= ', ';
     }
     if($k === count($listItems)-1) {
-     $output .= ' & '; 
+     $output .= ' & ';
     }
     $output .= $li;
   }
@@ -32,7 +37,7 @@ $content_ids = (!empty($_GET['types'])) ? explode("|",$_GET['types']) : array();
 $tagged_ids = (!empty($_GET['tags'])) ? explode("|",$_GET['tags']) : array();
 
 $content_title = (empty($content_ids)) ? 'Content' : readableList($content_ids, 'type');
-$content_tag = (empty($tagged_ids)) ? '' : 'tagged with: '.readableList($tagged_ids, 'tag');
+$content_tag = (empty($tagged_ids)) ? '' : ' tagged with: '.readableList($tagged_ids, 'tag');
 
 
 
@@ -140,7 +145,7 @@ $pid = $p->ID;
 $alt_tag = $p->post_title;
 
 $img_id = get_post_thumbnail_id($pid);
-$hide_image ($img_id) ? false : true;
+$hide_image = ($img_id) ? false : true;
 
 if(get_post_type($pid) === 'post') {
  $card_meta = 'A blog post from '.get_the_date('F Y',$pid);

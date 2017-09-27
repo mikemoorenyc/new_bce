@@ -7,6 +7,7 @@ $url = urldecode($_GET['url']);
 
 $im = @imagecreatefromjpeg( urldecode($_GET['url']));
 if(!$im) {
+  http_response_code(404);
   die();
 }
 
