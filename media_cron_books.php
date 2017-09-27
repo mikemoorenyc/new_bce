@@ -57,8 +57,8 @@ foreach($items as $i) {
   if(in_array($i->guid,$compare_posts['GUID']) || strpos($i->guid,'Review')!== false ) {
    continue;
   }
-  $updateID =  str_replace("ReadStatus","",$i->guid);
-  $updateID = str_replace("UserStatus","",$updateID);
+  $updateID =  str_replace(["ReadStatus","UserStatus"],"",$i->guid);
+
   if(strpos($i->guid,'UserStatus')!== false) {
     $apiURL = 'https://www.goodreads.com/user_status/show/'.$updateID.'?format=xml&key='.$keys['goodreads'];
   } else {
