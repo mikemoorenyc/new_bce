@@ -20,8 +20,8 @@ function artistNames($i) {
 }
 
 function title_formatter($title,$classString ='') {
- $title = str_replace('(Remastered)','',$title);
- $title = str_replace('(Deluxe Edition)','',$title);
+ $title = str_replace(['(Remastered)','(Deluxe Edition)'],'',$title);
+
  if(strlen($title) >= 35) {
   $long_title = 'long-title';
   $title = substr($title,0,30).'...';
