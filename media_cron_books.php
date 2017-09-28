@@ -107,6 +107,7 @@ foreach($items as $i) {
     'status' => $readStatus->status.'',
     'type' => 'book',
     'authors' => $authors,
+    'clickthru' => $readStatus->book->link.''
     'GUID' => [$i->guid.'']
   );
 
