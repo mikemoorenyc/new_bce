@@ -34,9 +34,27 @@ foreach($projects as $p) {
   $alt_tag = $p->post_title;
   $img_id = (has_post_thumbnail($pid)) ? get_post_thumbnail_id($pid) : get_option( 'social_icon_image', '' );
   $hide_image = ($img_id) ? false : true;
-  
 
-  include 'partial_project_card.php';
+  ?>
+  <a class="hp project-link no-underline stripe-hover" href="<?= get_the_permalink($pid);?>">
+    <span class="img-container">
+      <?php
+      include 'partial_lazy_load_img.php';
+     ?>
+    </span>
+
+    <span class="callout above-line">
+      <h2><?= $p->post_title;?></h2>
+      <?php if(get_post_meta( $pid, 'tagline', true )):?>
+<span class="tagline"><?= get_post_meta( $pid, 'tagline', true );?></span>
+      <?php endif;?>
+    </span>
+
+
+  </a>
+
+  <?php
+
 }
 
  ?>

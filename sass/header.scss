@@ -71,7 +71,7 @@ header {
   a#spinner, a#spinner:before {
     background:$white;
     position: absolute;
-    left: 16px;
+    left: 24px;
     width: 32px;
     height: 32px;
     border-width: 1px;
@@ -102,7 +102,7 @@ header {
     display:none;
   }
   position: absolute;
-  right: 8px ;
+  right: (24px - 8px) ;
   top: 50%;
   transform: translateY(-50%);
   width: 48px;

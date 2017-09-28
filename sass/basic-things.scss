@@ -52,8 +52,6 @@ button {
   margin-left: auto;
   margin-right: auto;
   @media(min-width:402px) {
-    border-width:0 1px;
-    border-style: dashed;
     position: relative;
     background:$white;
   }
