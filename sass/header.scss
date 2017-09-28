@@ -93,6 +93,11 @@ header {
       height:22px;
       animation: spinner 5s infinite linear;
     }
+    body[data-colormode="bw"] & {
+     &:before {
+       animation: none;
+     }
+    }
   }
 
 }
