@@ -39,10 +39,12 @@ h2.hp.sub-heading {
     }
   }*/
 }
+.hp.bottom-button-wrapper {
+ text-align:right; 
+}
 .hp.bottom-button {
-  display: block;
+  display: inline-block;
   margin: 0 16px;
-  text-align: right;
   font-weight: bold;
   text-decoration: none;
   line-height: 40px;
