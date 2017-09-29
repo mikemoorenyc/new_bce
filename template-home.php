@@ -36,7 +36,7 @@ foreach($projects as $p) {
   $hide_image = ($img_id) ? false : true;
 
   ?>
-  <a class="hp project-link no-underline stripe-hover" href="<?= get_the_permalink($pid);?>">
+  <a class="hp project-link no-underline " href="<?= get_the_permalink($pid);?>">
     <span class="img-container">
       <?php
       include 'partial_lazy_load_img.php';
@@ -61,13 +61,13 @@ foreach($projects as $p) {
  </div>
 
 
- <?php
- $button_URL = $homeURL.'/projects';
- $button_copy = 'See All Projects';
- include 'partial-bottom-button.php';
-  ?>
-</section>
 
+</section>
+<?php
+$button_URL = $homeURL.'/projects';
+$button_copy = 'See All Projects';
+include 'partial-bottom-button.php';
+ ?>
 <?php endif;?>
 <?php
 $pargs = array(
@@ -78,7 +78,7 @@ $post_query = new WP_Query($pargs);
  ?>
 <?php if ( $post_query->have_posts() ) :?>
 <section class="hp blog clearfix mw-800">
-<h2 class="hp sub-heading width">From the Blog</h2>
+<h2 class="hp sub-heading with-line">From the Blog</h2>
 <ul class="hp blog-posts">
 <?php $posts = $post_query->get_posts(); ?>
 <?php
@@ -86,12 +86,13 @@ foreach($posts as $p) {
   $pid = $p->ID;
 
   ?>
-  <li class="post full-click-area stripe-hover">
+  <li class="post full-click-area ">
     <a class="area" href="<?= get_the_permalink($pid);?>" role="presentation" aria-hidden="true"></a>
 
     <a href="<?= get_the_permalink($pid);?>">
-      <h3 class="title mid-heading"> <?= get_the_title($pid);?></h3>
       <span class="time meta"><?= human_time_diff( get_the_time('U', $pid), current_time('timestamp') ) . ' ago'; ?></span>
+      <h3 class="title mid-heading"> <span><?= get_the_title($pid);?></span></h3>
+
     </a>
 
 
@@ -104,12 +105,13 @@ foreach($posts as $p) {
 
  ?>
 </ul>
+
+</section>
 <?php
 $button_URL = $homeURL.'/blog';
 $button_copy = 'See All Blog Posts';
 include 'partial-bottom-button.php';
  ?>
-</section>
 <?php endif;?>
 
 

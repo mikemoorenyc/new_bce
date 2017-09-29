@@ -1,11 +1,49 @@
 
 </div>
 <footer id="footer">
+
+
+
   <div class="inner font-sans">
+
+    <?php
+     $nav_items = wp_get_nav_menu_items('main-menu') ?: array();
+
+    if(!empty($nav_items)):?>
+    <ul class="contact-footer">
+      <?php
+      foreach($nav_items as $item) {
+
+        ?>
+        <li>
+          <a href="<?= $item->url;?>" target="_blank">
+            <?= $item->title;?>
+
+          </a>
+
+        </li>
+
+        <?php
+      }
+
+
+      ?>
+
+    </ul>
+
+
+    <?php endif; ?>
+    <div class="copyright">
   &copy;<?= date('Y');?> Mike Moore
+</div>
+
+
+
   </div>
 
 </footer>
+
+</div>
 <?php if(!$_COOKIE['idc_ie9']):?>
 
 <!--[if lte IE 9]>

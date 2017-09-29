@@ -1,5 +1,7 @@
 
-
+html {
+  height: 100%;
+}
 body {
   background: $white;
   color: #212121;
@@ -8,10 +10,29 @@ body {
   font-size: 16px;
   transition: color 2s linear;
   animation: bodyColor 30s infinite linear;
+  min-height: 100%;
   &[data-colormode="bw"] {
     animation: none;
   }
 }
+
+//STICKY FOOTER
+#footer-grid-wrap {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+
+}
+#footer {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin-top: 80px;
+}
+#main-content-container {
+
+}
+
+
 body {
   *, *:before, *:after {
     color:currentColor;

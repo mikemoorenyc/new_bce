@@ -96,6 +96,8 @@ header {
     body[data-colormode="bw"] & {
      &:before {
        animation: none;
+       transform: translateY(-50%);
+       top: 50%;
      }
     }
   }

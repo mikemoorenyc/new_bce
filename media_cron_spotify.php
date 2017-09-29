@@ -74,6 +74,7 @@ if(empty($items)) {
 	die();
 }
 
+
 $track_blocks = [];
 $track_fetch = [];
 function trackFetch($tracks) {
@@ -149,6 +150,7 @@ foreach($items as $k => $i) {
 	if(bingeCheck($current['albumID'],$current['timestamp'],$info['album']['id'],strtotime($i['played_at']))) {
 		$current['type'] = 'album';
 		$workingArray[count($workingArray)-1]['type'] = 'album';
+    $workingArray[count($workingArray)-1]['clickthru'] = $info['album']['external_urls']['spotify'];
     $workingArray[count($workingArray)-1]['GUID'][] = $track_GUID;
 		continue;
 	}
@@ -162,11 +164,13 @@ foreach($items as $k => $i) {
     'title' => $info['name'],
     'img' =>  $info['album']['images'][0]['url'],
     'listenCount'=> $current['listenCount'],
+    'clickthru' => $info['external_urls']['spotify'],
     'album' => array(
       'ID' => $info['album']['id'],
       'title' => $info['album']['name'],
       'artists' => $artists,
-      'img' => $info['album']['images'][0]['url']
+      'img' => $info['album']['images'][0]['url'],
+      'url' => $info['album']['external_urls']['spotify']
     )
 	);
 
@@ -231,6 +235,7 @@ foreach($to_consolidate as $k => $c) {
   //CHECK IF SAME ALBUM CONSECTIVELY ON SAME DAY
   if($bingeAlbum) {
     $current_data['GUID'] = array_merge($prev_data['GUID'], $current_data['GUID']);
+    $current_data['clickthru'] = $current_data['album']['url'];
     $updated = wp_update_post(array(
       'ID' => $c->ID,
       'post_content'=>json_encode($current_data),

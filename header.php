@@ -151,7 +151,7 @@ var App = {
 </head>
 <?php
 
-  
+
 $colormode = (!$_COOKIE['colormode']) ? 'color' : $_COOKIE['colormode'];
  ?>
 <body id="top" data-colormode="<?= $colormode;?>">
@@ -217,5 +217,5 @@ $colormode = (!$_COOKIE['colormode']) ? 'color' : $_COOKIE['colormode'];
      </span>
    </div>
  </header>
-
+<div id="footer-grid-wrap">
  <div id="main-content-container">

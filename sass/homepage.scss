@@ -40,15 +40,17 @@ h2.hp.sub-heading {
   }*/
 }
 .hp.bottom-button-wrapper {
- text-align:right; 
+ text-align:right;
+ margin: 16px 24px 24px 24px;
+
 }
 .hp.bottom-button {
   display: inline-block;
-  margin: 0 16px;
+
   font-weight: bold;
   text-decoration: none;
   line-height: 48px;
-  margin-bottom: 24px;
+
   @media($dt) {
     margin-left: 24px;
     margin-right: 24px;
@@ -57,20 +59,52 @@ h2.hp.sub-heading {
   .bug {
     display: inline-block;
     vertical-align: middle;
+    transition: transform .15s;
   }
   svg {
     width: 12px;
     height: 12px;
   }
+  &:hover {
+    text-decoration: underline;
+    .bug {
+      transform: translateX(4px);
+    }
+  }
 }
 .hp.blog-posts {
+
+  border-width: 1px;
+  margin: 0 24px;
   > li {
-    padding: 16px;
+    padding: 16px 24px;
     border-style: dashed;
     border-bottom-width:1px;
     position:relative;
-    &:first-child {
-      border-top-width: 1px;
+    &:before {
+      display:block;
+      content:'';
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-right-width: 2px;
+      width: 2px;
+      position: absolute;
+      transition: transform .15s;
+      transform: scaleX(0);
+      transform-origin: center left;
+    }
+    &:hover {
+      &:before {
+        transform: scale(1);
+      }
+
+      h3 {
+        text-decoration: underline;
+      }
+    }
+    &:last-child {
+      border-width: 0;
     }
     a {
       display:block;
@@ -78,13 +112,16 @@ h2.hp.sub-heading {
     }
     .time{
       display: block;
+      margin-bottom: 8px;
     }
   }
 }
 .hp.project-link {
   margin: 0 24px 24px 24px;
   position: relative;
-  padding: 0 0 16px 16px;
+  &:last-child {
+    margin-bottom: 0;
+  }
   display:block;
   * {
     display:block;
@@ -98,17 +135,34 @@ h2.hp.sub-heading {
   }
   .callout {
     position: absolute;
-    left: 0;
-    bottom: 0;
+    left: -8px;
+    bottom: -8px;
     padding: 16px;
     border-width: 2px;
+    transition: box-shadow .15s;
     box-shadow: 2px 2px 0 currentColor;
-    max-width: calc(100% - 16px);
+    max-width: calc(100% );
     background:$white;
     h2 {
       font-size:20px;
       font-weight: normal;
       line-height: 1.2;
+      span {
+        border-bottom-width: 2px;
+        border-color: transparent;
+        display:inline;
+      }
+    }
+  }
+  &:hover {
+    .callout {
+      box-shadow: 4px 4px 0 currentColor;
+      h2 {
+        text-decoration: underline;
+        span {
+          border-bottom-color: currentColor;
+        }
+      }
     }
   }
 }

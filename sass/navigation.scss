@@ -1,5 +1,5 @@
 nav {
-  position: absolute;
+  position: fixed;
   right: 0;
   width:calc(100% - 56px);
   height: 100vh;
@@ -7,7 +7,7 @@ nav {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   background-color:currentColor;
-  padding-left: 16px;
+  padding-left: 24px;
   transform: translateX(200%);
   transition: transform .15s;
   transition-timing-function: ease-in;
@@ -21,10 +21,13 @@ nav {
   a {
     text-decoration: none;
   }
+  .lockup {
+    display:inline-block;
+  }
 
   #top-logo {
     line-height: 1;
-    padding-top: 16px;
+    padding-top: 24px;
     .title {
       text-transform: uppercase;
       font-weight: bold;

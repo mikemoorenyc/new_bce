@@ -76,7 +76,7 @@ foreach($items as $k => $i) {
 		$workingArray[count($workingArray)-1]['bingeCount'] = $current['bingeCount'];
     $workingArray[count($workingArray)-1]['type'] = 'show';
     $workingArray[count($workingArray)-1]['GUID'][] = $i['id'];
-		$workingArray[count($workingArray)-1]['clickthru'] = 'https://trakt.tv/shows/'.$i['show']['ids']['slug']
+		$workingArray[count($workingArray)-1]['clickthru'] = 'https://trakt.tv/shows/'.$i['show']['ids']['slug'];
     continue;
 	}
 
@@ -91,9 +91,9 @@ foreach($items as $k => $i) {
     'number' => $i['episode']['number'],
     'tvdb_ID' => $i['episode']['ids']['tvdb'],
     'bingeCount' => 1,
-		'clickthru' => 'https://trakt.tv/shows/'.$i['show']['ids']['slug'].'/seasons/'.$i['episode']['season'].'/episodes/'.$i['episode']['number']
+		'clickthru' => 'https://trakt.tv/shows/'.$i['show']['ids']['slug'].'/seasons/'.$i['episode']['season'].'/episodes/'.$i['episode']['number'],
     'show' => array(
-			'slug' => $i['show']['ids']['slug']
+			'slug' => $i['show']['ids']['slug'],
       'title' => $i['show']['title'],
       'ID' => $i['show']['ids']['tmdb'],
       'tvdb_ID' => $i['show']['ids']['tvdb']
@@ -152,7 +152,7 @@ foreach($to_consolidate as $k => $c) {
   $prev = $to_consolidate[$k-1];
   $prev_data = json_decode($prev->post_content,true);
   $current_data = json_decode($c->post_content,true);
-	
+
 	$current_ID = $current_data['show']['ID'] ?: $current_data['show']['tvdb_ID'] ?: $current_data['show']['title'];
 	$prev_ID = $prev_data['show']['ID'] ?: $prev_data['show']['tvdb_ID'] ?: $prev_data['show']['title'] ;
 
