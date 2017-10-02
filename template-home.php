@@ -36,14 +36,14 @@ foreach($projects as $p) {
   $hide_image = ($img_id) ? false : true;
 
   ?>
-  <a class="hp project-link no-underline " href="<?= get_the_permalink($pid);?>">
+  <a class="hp project-link no-underline above-line " href="<?= get_the_permalink($pid);?>">
     <span class="img-container">
       <?php
       include 'partial_lazy_load_img.php';
      ?>
     </span>
 
-    <span class="callout above-line">
+    <span class="callout ">
       <h2><?= $p->post_title;?></h2>
       <?php if(get_post_meta( $pid, 'tagline', true )):?>
 <span class="tagline"><?= get_post_meta( $pid, 'tagline', true );?></span>
