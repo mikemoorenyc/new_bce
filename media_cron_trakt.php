@@ -43,7 +43,7 @@ $items = array_filter($items, function($i) {
   return in_array($i['id'],$compare_posts['GUID']) === false;
 });
 
-if(empty($items)){echo 'no new posts'; die();}
+//if(empty($items)){echo 'no new posts'; die();}
 
 $workingArray = [];
 
@@ -143,19 +143,15 @@ foreach($workingArray as $w) {
 $to_consolidate = returnBatch($post_types, $oldest_play);
 $to_consolidate = array_reverse($to_consolidate);
 $i = 0;
-$the_count = count($to_consolidate)
-while($i < $the_count) {
-	if($i === 0) {
-		$i++;
-		continue;
-	}
+$the_count = count($to_consolidate);
+for($i = 1; $i < $the_count; $i++) {
+	
 	$prev = $to_consolidate[$i-1];
 	$current = $to_consolidate[$i];
 	$current_type = get_the_terms($current->ID, 'consumed_types')[0]->slug;
   $prev_type = get_the_terms($prev->ID, 'consumed_types')[0]->slug;
 	
 	if($current_type === 'movie' || $prev_type === 'movie') {
-		$i++;
     continue;
   }
   
@@ -183,7 +179,7 @@ while($i < $the_count) {
     }
     
   }
-	$i++;
+
 
 }
 ?>
