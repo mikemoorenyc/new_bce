@@ -109,7 +109,7 @@ function timeSet($stamp) {
     return $diff.' week'.returnS($diff).' ago';
   }
   //DAYS
-  return ($today[0] - $timeA[0]).' day'.returnS($today[0] - $timeA[0]).' ago';
+  return ($diff).' day'.returnS($diff).' ago';
 }
  ?>
 <div id="media-stream" class=" media-stream container">
