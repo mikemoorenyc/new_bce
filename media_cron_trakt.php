@@ -142,16 +142,25 @@ foreach($workingArray as $w) {
 }
 $to_consolidate = returnBatch($post_types, $oldest_play);
 $to_consolidate = array_reverse($to_consolidate);
-foreach($to_consolidate as $k => $c) {
-  $current_type = get_the_terms($c->ID, 'consumed_types')[0]->slug;
+$i = 0;
+$the_count = count($to_consolidate)
+while($i < $the_count) {
+	if($i === 0) {
+		$i++;
+		continue;
+	}
+	$prev = $to_consolidate[$i-1];
+	$current = $to_consolidate[$i];
+	$current_type = get_the_terms($current->ID, 'consumed_types')[0]->slug;
   $prev_type = get_the_terms($prev->ID, 'consumed_types')[0]->slug;
-
-  if($k === 0 || $current_type === 'movie' || $prev_type === 'movie') {
+	
+	if($current_type === 'movie' || $prev_type === 'movie') {
+		$i++;
     continue;
   }
-  $prev = $to_consolidate[$k-1];
+  
   $prev_data = json_decode($prev->post_content,true);
-  $current_data = json_decode($c->post_content,true);
+  $current_data = json_decode($current->post_content,true);
 
 	$current_ID = $current_data['show']['ID'] ?: $current_data['show']['tvdb_ID'] ?: $current_data['show']['title'];
 	$prev_ID = $prev_data['show']['ID'] ?: $prev_data['show']['tvdb_ID'] ?: $prev_data['show']['title'] ;
@@ -163,17 +172,18 @@ foreach($to_consolidate as $k => $c) {
     $current_data['bingeCount'] = intval($prev_data['bingeCount']) + intval($current_data['bingeCount']);
 		$current_data['clickthru'] = 'https://trakt.tv/shows/'.$current_data['show']['slug'];
     $updated = wp_update_post(array(
-      'ID' => $c->ID,
+      'ID' => $current->ID,
       'post_content'=>json_encode($current_data),
       'post_title' => $current_data['show']['title']
     ));
     if($updated) {
-      $to_consolidate[$k] = get_post($c->ID);
+      $to_consolidate[$k] = get_post($current->ID);
       $delete = wp_delete_post( $prev->ID, false );
       wp_set_object_terms($c->ID, 'show', 'consumed_types' );
     }
-    continue;
+    
   }
+	$i++;
 
 }
 ?>
