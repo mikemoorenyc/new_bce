@@ -29,10 +29,7 @@ body {
   margin-top: 80px;
 }
 #main-content-container {
-  @media(min-width:402px) {
-    padding-left: calc( (100% - 402px) / 2);
-    padding-right: calc( (100% - 402px) / 2);
-  } 
+
 }
 
 
