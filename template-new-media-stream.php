@@ -163,7 +163,9 @@ foreach($posts as $k => $p) {
          'listenCount' => $data['listenCount'],
          'authors' => $data['authors'],
          'percent' => $data['percent'],
-         'status' => $data['status']
+         'status' => $data['status'],
+					'other_meta' => get_post_meta($p->ID, 'other_meta',true)
+		
         )
        );?>
     </div>
