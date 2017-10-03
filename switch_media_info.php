@@ -113,6 +113,11 @@ function switch_media_info($i) {
  
  default: 
  	echo title_formatter($i['title']);
+  if($i['other_meta']) {
+   ?>
+   <div class="show-title font-sans text-overflow"><?= $i['other_meta']; ?></div>
+   <?php
+  }
   break;
 
  endswitch;
