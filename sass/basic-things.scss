@@ -29,7 +29,8 @@ body {
   margin-top: 80px;
 }
 #main-content-container {
-
+  padding-left: calc( (100% - 402px) / 2);
+  padding-right: calc( (100% - 402px) / 2);
 }
 
 
@@ -67,20 +68,7 @@ a {
 button {
   cursor: pointer;
 }
-#main-content-container {
 
-  max-width: 402px;
-  margin-left: auto;
-  margin-right: auto;
-  @media(min-width:402px) {
-    position: relative;
-    background:$white;
-  }
-  @media(min-width:802px) {
-    max-width: none;
-    border-width:0;
-  }
-}
 
 .mw-800 {
   @media(min-width:800px) {
