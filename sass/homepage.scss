@@ -41,7 +41,7 @@ h2.hp.sub-heading {
 }
 .hp.bottom-button-wrapper {
  text-align:right;
- margin: 16px 24px 24px 24px;
+ margin: 12px 24px 24px 24px;
 
 }
 .hp.bottom-button {
@@ -50,7 +50,7 @@ h2.hp.sub-heading {
   font-weight: bold;
   text-decoration: none;
   line-height: 48px;
-
+  font-size:14px;
   @media($dt) {
     margin-left: 24px;
     margin-right: 24px;

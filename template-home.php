@@ -37,7 +37,7 @@ foreach($projects as $p) {
 
   ?>
   <a class="hp project-link no-underline above-line " href="<?= get_the_permalink($pid);?>">
-    <span class="img-container">
+    <span class="img-container poster-image-container preload-image-container">
       <?php
       include 'partial_lazy_load_img.php';
      ?>

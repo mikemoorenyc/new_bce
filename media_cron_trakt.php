@@ -145,24 +145,32 @@ $to_consolidate = array_reverse($to_consolidate);
 $i = 0;
 $the_count = count($to_consolidate);
 for($i = 1; $i < $the_count; $i++) {
-	
+
 	$prev = $to_consolidate[$i-1];
 	$current = $to_consolidate[$i];
 	$current_type = get_the_terms($current->ID, 'consumed_types')[0]->slug;
   $prev_type = get_the_terms($prev->ID, 'consumed_types')[0]->slug;
-	
+
 	if($current_type === 'movie' || $prev_type === 'movie') {
     continue;
   }
-  
+
+
+
   $prev_data = json_decode($prev->post_content,true);
   $current_data = json_decode($current->post_content,true);
+
+
+
 
 	$current_ID = $current_data['show']['ID'] ?: $current_data['show']['tvdb_ID'] ?: $current_data['show']['title'];
 	$prev_ID = $prev_data['show']['ID'] ?: $prev_data['show']['tvdb_ID'] ?: $prev_data['show']['title'] ;
 
-  $bingeShow = bingeCheck($current_ID,strtotime($c->post_date_gmt),$prev_ID,strtotime($prev->post_date_gmt));
+
+
+  $bingeShow = bingeCheck($current_ID,strtotime($current->post_date),$prev_ID,strtotime($prev->post_date));
   //CHECK IF CONSECUTIVE SHOW PLAYS
+
   if($bingeShow) {
     $current_data['GUID'] = array_merge($prev_data['GUID'], $current_data['GUID']);
     $current_data['bingeCount'] = intval($prev_data['bingeCount']) + intval($current_data['bingeCount']);
@@ -173,11 +181,11 @@ for($i = 1; $i < $the_count; $i++) {
       'post_title' => $current_data['show']['title']
     ));
     if($updated) {
-      $to_consolidate[$k] = get_post($current->ID);
+      $to_consolidate[$i] = get_post($current->ID);
       $delete = wp_delete_post( $prev->ID, false );
-      wp_set_object_terms($c->ID, 'show', 'consumed_types' );
+      wp_set_object_terms($current->ID, 'show', 'consumed_types' );
     }
-    
+
   }
 
 

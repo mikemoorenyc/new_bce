@@ -215,8 +215,8 @@ foreach($to_consolidate as $k => $c) {
   $current_data = json_decode($c->post_content,true);
   $current_type = get_the_terms($c->ID, 'consumed_types')[0]->slug;
   $prev_type = get_the_terms($prev->ID, 'consumed_types')[0]->slug;
-  $bingeTrack = bingeCheck($current_data['ID'],strtotime($c->post_date_gmt),$prev_data['ID'],strtotime($prev->post_date_gmt));
-  $bingeAlbum = bingeCheck($current_data['album']['ID'],strtotime($c->post_date_gmt),$prev_data['album']['ID'],strtotime($prev->post_date_gmt));
+  $bingeTrack = bingeCheck($current_data['ID'],strtotime($c->post_date),$prev_data['ID'],strtotime($prev->post_date));
+  $bingeAlbum = bingeCheck($current_data['album']['ID'],strtotime($c->post_date),$prev_data['album']['ID'],strtotime($prev->post_date));
   $updated = false;
   //CHECK IF BOTH CONSECUTIVE PLAYS WERE SAME TRACK ON SAME DAY
   if($current_type === 'track' && $prev_type === 'track' && $bingeTrack) {
