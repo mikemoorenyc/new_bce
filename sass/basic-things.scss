@@ -28,8 +28,10 @@ body {
   grid-row-end: span 1;
   margin-top: 80px;
 }
-#main-content-container {
-
+.content-centerer {
+  max-width: 402px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
