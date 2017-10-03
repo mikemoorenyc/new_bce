@@ -54,10 +54,10 @@
       position: absolute;
       content:'';
       width: 50%;
-      height: calc(100% - 2px);
+      height: calc(100% - 4px);
       background:$white;
 
-      left: 1px;
+      left: 2px;
       top: 50%;
       transform:translateY(-50%);
     }
@@ -71,7 +71,7 @@
 
       &:before {
         left: auto;
-        right: 1px;
+        right: 2px;
       }
 
   }
