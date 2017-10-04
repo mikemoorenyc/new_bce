@@ -29,9 +29,15 @@ body {
   margin-top: 80px;
 }
 .content-centerer {
-  max-width: 480px;
+  max-width: $m4;
   margin-left: auto;
   margin-right: auto;
+  &.no-padding {
+    max-width:($m4 - 48px);
+  }
+  @media(min-width:$t7) {
+    max-width: $d9;
+  }
 }
 
 

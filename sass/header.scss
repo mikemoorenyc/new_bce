@@ -1,4 +1,4 @@
-$dt-header-padding: 64px;
+$dt-header-padding: 112px;
 #main-content-container {
   padding-top: $header-top-padding;
   html.slug-projects & {
@@ -8,23 +8,15 @@ $dt-header-padding: 64px;
 .navigation_spacer {
   padding-top: $header-top-padding;
 }
-@media(min-width:802px) {
+@media(min-width:$t7) {
   #main-content-container {
-    padding-top:$dt-header-padding + 16px;
-    html.slug-projects & {
-      padding-top: 0;
-    }
+    padding-top:$dt-header-padding ;
   }
   .navigation_spacer {
-    padding-top: $dt-header-padding + 16px;
+    padding-top: $dt-header-padding;
   }
 }
-.header-top-padding {
-  padding-top: $header-top-padding !important;
-  @media(min-width: $dt-break) {
-    padding-top: $dt-header-padding + 16px !important;
-  }
-}
+
 
 header {
   &#test {
@@ -48,26 +40,22 @@ header {
   top: 0;
   width: 100%;
   height: $header-top-padding;
-  @media(min-width:402px) {
-    width: 402px;
-    left: calc(50% - 201px);
+  @media(min-width:$m4) {
+    width: $m4;
+    left: calc(50% - #{($m4 / 2)});
 
   }
-  @media(min-width:802px) {
-    width: 800px;
+  @media(min-width:$t7 ){
+    max-width: $d9;
     height: $dt-header-padding;
-    left: calc(50% - 400px);
-    top: 8px;
-  }
-  @media($dt) {
+    left:0;
     width: 100%;
-    left: 0;
-    max-width: $dt-max;
   }
-  @media(min-width:1280px) {
-    width: 1280px;
-    left: calc(50% - 640px);
+  @media(min-width:$d9) {
+    width: $d9;
+    left: calc(50% - #{($d9 / 2)});
   }
+
   a#spinner, a#spinner:before {
     background:$white;
     position: absolute;
@@ -78,9 +66,10 @@ header {
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
-    @media($dt) {
-      left: 24px;
+    @media(min-width:$t7) {
+      left: 36px;
     }
+
   }
   a#spinner {
     &:before {
@@ -105,7 +94,7 @@ header {
 }
 
 #nav-opener, input#navigation-toggle {
-  @media(min-width:802px) {
+  @media(min-width:$t7) {
     display:none;
   }
   position: absolute;

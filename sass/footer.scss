@@ -3,13 +3,13 @@ footer#footer {
   @include bg-stripe();
 
 
-  padding: 72px 24px;
+  padding: 48px 24px;
   border-top-width:1px;
   .inner {
     border-width: 1px;
     padding: 16px;
     background: $white;
-    max-width: (402 - (24px * 2));
+  
     margin: 0 auto;
     font-size: 12px;
     line-height: 1.8;

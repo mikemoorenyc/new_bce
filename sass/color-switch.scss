@@ -4,7 +4,7 @@
   position: relative;
   width: 100px;
   height: 48px;
-  @media(min-width:$dt-break) {
+  @media(min-width:$t7) {
     position: fixed;
     right: 16px;
     bottom: -2px;
@@ -61,7 +61,7 @@
       top: 50%;
       transform:translateY(-50%);
     }
-    @media(min-width:$dt-break) {
+    @media(min-width:$t7) {
       background:currentColor;
     }
 

@@ -12,36 +12,26 @@
   @media($dt) {
     grid-column-end: span 7;
    }
-  @media(min-width:802px) {
-    font-size:32px;
+  @media(min-width:$t7) {
+    font-size:30px;
+    padding-bottom: 36px;
   }
 }
 h2.hp.sub-heading {
   margin-left: 24px;
   margin-right: 24px;
 
-  @media($dt) {
-    margin-left: 24px;
-    margin-right: 24px;
+  @media(min-width: $t7) {
+    margin-left: 36px;
+    margin-right: 36px;
   }
-  /*
-  &:before {
-    display: block;
-    position: absolute;
-    content:'';
-    left: 16px;
-    bottom: 0;
-    width: 48px;
-    height: 2px;
-    background: currentColor;
-    @media(min-width:1024px) {
-      left: 24px;
-    }
-  }*/
+
 }
 .hp.bottom-button-wrapper {
  text-align:right;
- margin: 12px 24px 24px 24px;
+ margin-top: 12px;
+ margin-bottom: 24px;
+ padding: 0 24px;
 
 }
 .hp.bottom-button {
@@ -76,6 +66,12 @@ h2.hp.sub-heading {
 
   border-width: 1px;
   margin: 0 24px;
+  @media(min-width:$t7) {
+    margin: 0 36px;
+    column-count: 2;
+    column-gap: 36px;
+    border: 0;
+  }
   > li {
     padding: 16px 24px;
     border-style: dashed;
@@ -116,11 +112,25 @@ h2.hp.sub-heading {
     }
   }
 }
+.hp.project-list {
+  @media(min-width:$t7) {
+    display:flex;
+     flex-wrap:wrap;
+     padding: 0 (36px / 2);
+  }
+}
 .hp.project-link {
   margin: 0 24px 24px 24px;
   position: relative;
+  @media(min-width:$t7) {
+    float: left;
+    width: calc(50% - 36px);
+    margin: 0 (36px / 2) 36px ;
+  }
   &:last-child {
-    margin-bottom: 0;
+    @media(max-width: ($t7 - 1px)) {
+      margin-bottom: 0;
+    }
   }
   display:block;
   * {
@@ -168,7 +178,7 @@ h2.hp.sub-heading {
 }
 @media(min-width:802px) {
   .hp.project-list {
-    display:flex;
+  /*  display:flex;
     flex-wrap:wrap;
     padding: 0 8px;
     @media($dt) {
@@ -212,9 +222,10 @@ h2.hp.sub-heading {
           }
         }
       }
-    }
+    }*/
   }
   .hp.blog-posts {
+    /*
     margin-left: 16px;
     margin-right: 16px;
     border-width: 1px;
@@ -253,6 +264,6 @@ h2.hp.sub-heading {
           margin-right: 0;
         }
       }
-    }
+    }*/
   }
 }

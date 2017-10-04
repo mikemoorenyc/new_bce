@@ -2,6 +2,11 @@
 .gl-mod.grid-blank {
  padding-left: 24px;
  padding-right: 24px;
+ @media(min-width:$t7) {
+   padding-left: 36px;
+   padding-right: 36px;
+ }
+ /*
  @media(min-width:$dt-break) {
    display:grid;
    max-width: $dt-break - 1px;
@@ -16,5 +21,6 @@
     grid-template-columns: repeat(12,1fr);
     grid-column-gap: 24px;
   }
+  */
 
 }

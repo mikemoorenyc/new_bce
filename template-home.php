@@ -6,7 +6,7 @@
 
 
 <?php include 'header.php'; ?>
-<section class="hp top-content nav-spacer gl-mod grid-blank">
+<section class=" hp top-content nav-spacer gl-mod grid-blank content-centerer">
   <h1 class="story-title">
   <?= md_sc_parse($post->post_content);?>
   </h1>
@@ -24,7 +24,7 @@
   $project_query = new WP_Query($args);
 ?>
 <?php if ( $project_query->have_posts() ) :?>
-<section class="hp projects clearfix mw-800">
+<section class="hp projects clearfix content-centerer">
 <h2 class="hp sub-heading with-line">Projects</h2>
 <?php $projects = $project_query->get_posts(); ?>
 <div class="hp project-list">
@@ -77,7 +77,7 @@ $pargs = array(
 $post_query = new WP_Query($pargs);
  ?>
 <?php if ( $post_query->have_posts() ) :?>
-<section class="hp blog clearfix mw-800">
+<section class="hp blog clearfix content-centerer">
 <h2 class="hp sub-heading with-line">From the Blog</h2>
 <ul class="hp blog-posts">
 <?php $posts = $post_query->get_posts(); ?>

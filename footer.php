@@ -4,7 +4,7 @@
 
 
 
-  <div class="inner font-sans">
+  <div class="content-centerer no-padding inner font-sans">
 
     <?php
      $nav_items = wp_get_nav_menu_items('main-menu') ?: array();
