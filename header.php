@@ -157,8 +157,8 @@ $colormode = (!$_COOKIE['colormode']) ? 'color' : $_COOKIE['colormode'];
 <body id="top" data-colormode="<?= $colormode;?>">
   <header id="test"></header>
  <header id="top-header">
-   <a id="spinner" aria-label="<?= $siteTitle;?>" href="<?= $homeURL;?>"></a>
-   <input type="checkbox" aria-label="Toggle Navigation" role="button" id="navigation-toggle" class="button-style" />
+   <a id="spinner" aria-label="<?= $siteTitle;?>" href="<?= $homeURL;?>" class="before-block"></a>
+   <input type="checkbox" aria-label="Toggle Navigation" role="button" id="navigation-toggle" class="button-style before-block after-block" />
    <div class="scrim"></div>
    <nav>
      <div class="lockup">
@@ -207,7 +207,7 @@ $colormode = (!$_COOKIE['colormode']) ? 'color' : $_COOKIE['colormode'];
      </div>
 
    </nav>
-   <div role="presentation" id="nav-opener" class="button-style">
+   <div role="presentation" id="nav-opener" class="button-style before-block after-block">
 
      <span class="open middle-center">
        <?= file_get_contents(get_template_directory().'/assets/svgs/icon_menu.svg');?>
