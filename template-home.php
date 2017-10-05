@@ -86,7 +86,7 @@ foreach($posts as $p) {
   $pid = $p->ID;
 
   ?>
-  <li class="post full-click-area ">
+  <li class="post full-click-area before-block">
     <a class="area" href="<?= get_the_permalink($pid);?>" role="presentation" aria-hidden="true"></a>
 
     <a href="<?= get_the_permalink($pid);?>">
