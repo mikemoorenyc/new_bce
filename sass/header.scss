@@ -74,8 +74,6 @@ header {
   a#spinner {
     &:before {
       border-style:dashed;
-      display:block;
-      content:'';
       left: calc(50% - 11px) !important;
       top: calc(50% - 11px);
       width: 22px;
@@ -104,8 +102,6 @@ header {
   width: 48px;
   height: 48px;
   &:before {
-    display: block;
-    content:'';
     position: absolute;
     right: 8px;
     bottom:8px;
@@ -116,9 +112,7 @@ header {
   }
   &:after {
     z-index:-1;
-    display: block;
     position: absolute;
-    content: '';
     height:calc(100% - 16px);
     right: 5px;
     top: 11px;
