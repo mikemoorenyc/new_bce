@@ -202,8 +202,8 @@ $colormode = (!$_COOKIE['colormode']) ? 'color' : $_COOKIE['colormode'];
      }
      ?>
    </div>
-     <div id="color-mode-switcher" class="color-mode-switcher" style="visibility:hidden;">
-       <button data-colormode="<?= $colormode;?>" title="<?= $cmode_title;?>" id="color-mode-button" class="slider"></button>
+     <div id="color-mode-switcher" class="color-mode-switcher before-block after-block" style="visibility:hidden;">
+       <button data-colormode="<?= $colormode;?>" title="<?= $cmode_title;?>" id="color-mode-button" class="slider before-block"></button>
      </div>
 
    </nav>
