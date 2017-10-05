@@ -87,12 +87,12 @@ h2.hp.sub-heading {
       width: 2px;
       position: absolute;
       transition: transform .15s;
-      transform: scaleX(0);
-      transform-origin: center left;
+      transform: scale(0,1);
+      transform-origin: left center;
     }
     &:hover {
       &:before {
-        transform: scale(1);
+        transform: scale(1,1);
       }
 
       h3 {
