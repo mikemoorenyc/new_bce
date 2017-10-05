@@ -8,14 +8,11 @@
     position: fixed;
     right: 16px;
     bottom: -2px;
-
     margin: 0;
 
 
   }
   &:before, &:after {
-    display:block;
-    content:'';
     width: 14px;
     height: 14px;
     border-width: 1px;
@@ -50,13 +47,10 @@
     top: 50%;
     transform:translate(-50%,-50%);
     &:before {
-      display:block;
       position: absolute;
-      content:'';
       width: 50%;
       height: calc(100% - 4px);
       background:$white;
-
       left: 2px;
       top: 50%;
       transform:translateY(-50%);
