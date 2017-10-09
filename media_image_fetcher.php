@@ -34,6 +34,10 @@ $tmdbCURLs = 0;
 
 
 foreach($posts as $p) {
+	
+	if(has_post_thumbnail($p->ID)) {continue;}
+	
+	
  $data = json_decode($p->post_content,true);
 
  $type = get_the_terms($p->ID, 'consumed_types');
