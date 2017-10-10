@@ -1,12 +1,11 @@
-
-.bs.page-content-container {
-  @media(min-width:$dt-break) {
-    max-width:700px;
-    margin-right: auto;
-    margin-left: auto;
-    > * {
-      padding-right: 0;
-      padding-left: 0;
+.bs {
+  &.header {
+    margin-bottom:24px;
+    .meta {
+      margin-bottom:8px;
+    }
+    .tagline {
+      margin-top: 8px;
     }
   }
 }

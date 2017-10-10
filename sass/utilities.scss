@@ -137,6 +137,9 @@
 }
 .font-sans {
   font-family: $font-sans;
+  * {
+    font-family: $font-sans;
+  }
 }
 .font-serif {
   font-family: $font-serif;
@@ -213,4 +216,3 @@
     content:'';
   }
 }
-

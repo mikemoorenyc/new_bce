@@ -1,8 +1,19 @@
 .reading-section {
   line-height: 1.5;
+  max-width: $m4;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 24px;
+  @media(min-width:$t7) {
+    max-width: $t7;
+  }
+}
+
+.reading-section .content{
+
   h1,h2,h3,h4,h5,h6 {
-    font-size: 24px;
-    margin-bottom: 4px;
+    font-size: 20px;
+    margin-bottom: 16px;
     line-height:1.2;
   }
   p, ul, ol, blockquote, pre, hr {
@@ -14,6 +25,9 @@
     margin-left: 16px;
     padding:0;
     list-style-type: circle;
+    @media(min-width:$dt-break) {
+      margin-left: 0;
+    }
     > li {
       margin-bottom: 8px;
       line-height: 1.2;
@@ -94,29 +108,27 @@
   pre {
     position: relative;
     padding: 1px;
-    border-width: 1px;
-    border-style:dotted;
+    background: currentColor;
+    margin-left:4px;
+    margin-right: 4px;
     code {
+      color:$white;
       border-width:0;
       display: block;
-      padding: 8px;
+      padding: 16px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
     }
-    &:before, &:after {
+    &:before {
       display: block;
       content:'';
       position: absolute;
-      left: -1px;
-      top: -1px;
-      width: 5px;
-      height: calc(100% + 2px);
-      border-width: 1px 0 1px 1px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      top: -4px;
+      border: 1px dashed currentColor;
     }
-    &:after {
-      left: auto;
-      right: -1px;
-      border-width: 1px 1px 1px 0;
-    }
+
   }
 }

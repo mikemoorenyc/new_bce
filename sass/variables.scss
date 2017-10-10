@@ -2,7 +2,8 @@ $ts: 0.25s;
 
 $m4: 480px;
 $t7: 760px;
-$d9: (960px);
+$d9: (950px);
+$d-mq: $d9 + 48px + 16px;
 
 /*BREAK POINTS*/
 $dt-break: 801px;

@@ -1,7 +1,7 @@
 .p-s.top-hero {
   height: 56.25vw;
   max-height: calc(100vh / 2);
-  max-width: 1400px;
+  max-width: $d9;
   margin: 0 auto;
   @media(min-width:402px) and (max-width: 801px){
     height: 0;
@@ -9,27 +9,14 @@
   }
 }
 
-@media(min-width: 802px) {
-  .p-s.project-page-content-container {
-    width: 700px;
-    margin-right: auto;
-    margin-left: auto;
-    > * {
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
-}
+
 
 .p-s {
-  &.heading {
-    .tagline {
-      font-size: 16px;
-    }
-  }
+
   &.top-links {
     position: relative;
-    margin-top: 4px;
+    margin-top: 8px;
+    font-size: 14px;
     * {
       display: inline-block;
 
@@ -37,53 +24,63 @@
     h3 {
       margin-right: 4px;
     }
+    a {
+      margin-left: 4px;
+    }
   }
 
 &.what-i-learned {
   position: relative;
-  margin: -10px 16px 24px 16px;
-  padding: 8px 8px 4px 8px;
-  border-width: 1px;
-  border-style: dashed;
-  ul {
-    > li {
-      width: 50%;
-      margin-bottom: 4px;
-      float: left;
-      padding-right: 8px;
-      &:nth-child(even) {
-        padding: 0 0 0 8px;
-      }
-    }
+  margin: 24px 0 0 0;
+  padding: 16px 0;
+  border-width: 1px 0;
+  border-style: dotted;
+  h3 {
+    margin-bottom:8px;
+    font-size: 14px;
   }
-  @media(min-width:$dt-break) {
-    box-sizing: content-box;
-    width: 700px;
-    padding: 16px;
-    margin-left: 0;
-    margin-right: 0;
-    left:50%;
-    transform:translateX(-50%);
-    ul > li {
-      width: auto;
-      margin:0 4px 0 0;
-      float: none;
+  ul {
+  margin: 0;
+  list-style: none;
+    > li {
+      list-style:none;
+      margin: 0 4px 0 0;
       display: inline-block;
-      padding:0 !important;
       &:after {
         content:',';
       }
       &:last-child {
         &:after {
-          display: none;
+          content:none;
         }
       }
     }
   }
+
 }
 
 }
 .p-s.top-section {
+  max-width: ($m4);
+  margin: 0 auto;
+  padding: 24px;
+  position: relative;
+  background:$white;
+  margin-top: -24px;
+  margin-bottom: 24px;
+  @media(min-width:$m4) {
+    border-width:2px;
+    box-shadow: 2px 2px currentColor;
+
+  }
+  @media(min-width: $t7) {
+    max-width:$t7;
+    margin-top: -32px;
+  }
+  .tagline {
+    margin-top: 8px;
+  }
+  /*
   box-sizing: content-box;
   padding: 16px;
   margin-bottom: 8px;
@@ -102,6 +99,7 @@
       background: $white;
     }
   }
+  */
 
 
 }

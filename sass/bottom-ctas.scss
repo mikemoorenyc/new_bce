@@ -1,104 +1,65 @@
 .gl-mod.bottom-ctas {
 
-  display: flex;
-  border-top-width:1px;
-  > a {
-    display: block;
-    position: relative;
-    vertical-align: middle;
+  margin-top: 48px;
+  h3.sub-heading {
+    margin-right: 0;
+    margin-left: 0;
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+  .links {
+    border-width: 1px;
+  }
+  .links > a {
+    display:block;
     padding: 16px;
-    text-decoration: none;
-    width: 50%;
-    line-height: 1.2;
+    position: relative;
     &:first-child {
-      border-right-width:1px;
-      padding-left: 32px;
+      border-bottom-width:1px;
+      border-style: dashed;
     }
     &:before {
-      height: 100%;
-      width:0;
-      content:'';
-    }
-    &:before, span {
-      display: inline-block;
-      vertical-align: middle;
-    }
-    span {
-      max-width: calc(100% - 4px)
-    }
-    svg {
       position: absolute;
-      left: 8px;
-      width: 16px;
-      height: 16px;
-      top: calc(50% - 8px);
-    //  transform: rotate(180deg);
+      left: 0;
+      top: 0;
+      width:2px;
+      height: 100%;
+      background: currentColor;
+      transform: scale(0,1);
+      transform-origin: left center;
+      transition: transform .15s;
     }
-    &:last-child {
-      padding-right: 32px;
-      text-align: right;
-      svg {
-        left: auto;
-        right: 8px;
-        transform: none;
+    &:hover {
+      text-decoration: underline;
+      &:before {
+        transform: scale(1,1);
       }
     }
+
   }
-  @media(min-width: $dt-break) {
-    border:0;
-    z-index: 2;
-    position: relative;
-    > a {
-      position: fixed;
-      top: 50%;
-      margin-top:-24px;
-      border-width:1px;
-      border-style:dotted;
-      box-shadow: 1px 1px 0 currentColor;
-      width: auto;
-
-      padding: 0;
-      width: 48px;
-      height: 48px;
-      &:first-child {
-        left: 24px;
-        svg {
-          left: 16px;
-        }
-        span.title {
-          padding-left: 16px;
-          padding-right: 24px;
-        }
+  @media(min-width:$t7) {
+    .links {
+      display:flex;
+      position: relative;
+      &:before {
+        display: block;
+        content:'';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        border-left-width:1px;
+        border-style:dashed;
       }
-      &:last-child {
-        right: 24px;
-        svg {
-          right: 16px;
-        }
-        span.title {
-          padding-left: 24px;
-          padding-right: 16px;
-        }
-      }
-      span.title {
-        width: 0px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        max-width: 340px;
-        color:transparent;
-      }
-
-      &:hover {
-        border-style: solid;
-        width: auto;
-        background-color:$white;
-        box-shadow: 2px 2px 0 currentColor;
-        span.title {
-          width:auto;
-          color:currentColor;
+      > a {
+        width: 50%;
+        &:first-child {
+          border:0;
         }
       }
     }
   }
+
+
 }

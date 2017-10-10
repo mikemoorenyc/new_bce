@@ -65,7 +65,7 @@ function postimage_shortcode( $atts, $content = null ) {
   <?php endif;?>
 
   <?php if(!empty($caption)):?>
-  <figcaption class="meta font-sans"><?php echo $caption;?></figcaption>
+  <figcaption class="font-sans"><?php echo $caption;?></figcaption>
   <?php endif;?>
 
 </figure>

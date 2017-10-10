@@ -70,45 +70,52 @@ include 'partial_lazy_load_img.php';
 
 
 
-  <div class="p-s reading-section gutter mar-10">
-
+  <div class="p-s reading-section ">
+    <div class="content">
     <?php echo md_sc_parse($post->post_content);?>
+  </div>
+
+    <?php
+    $whatilearned = input_to_array(get_post_meta( $post->ID, 'whatilearned', true ));
+     if(!empty($whatilearned)):?>
+  <div class="p-s what-i-learned font-sans">
+    <h3 class="">What I Learned</h3>
+    <ul class="clearfix type-smaller">
+      <?php foreach($whatilearned as $w):?>
+        <li ><?= $w[0];?></li>
+      <?php endforeach;?>
+    </ul>
 
   </div>
-  <?php
-  $whatilearned = input_to_array(get_post_meta( $post->ID, 'whatilearned', true ));
-   if(!empty($whatilearned)):?>
-<div class="p-s what-i-learned font-sans">
-  <h3 class="sub-heading sm">What I Learned</h3>
-  <ul class="clearfix type-smaller">
-    <?php foreach($whatilearned as $w):?>
-      <li ><?= $w[0];?></li>
-    <?php endforeach;?>
-  </ul>
+   <?php endif;?>
+
+   <?php
+   $tagged_post_id = $post->ID;
+   include_once 'partial_tagged_list.php';
+   ?>
+
+   <?php
+   $cta_vals = array(
+    'post_type' => 'project',
+    'orderby' => 'menu_order',
+    'heading' => 'More Projects',
+
+   );
+   include_once 'partial_bottom_ctas.php';
+
+   ?>
+
+
+
+  </div>
+
+
+
+
 
 </div>
- <?php endif;?>
-
- <?php
- $tagged_post_id = $post->ID;
- include_once 'partial_tagged_list.php';
- ?>
 
 
-</div>
-
-<?php
-$cta_vals = array(
- 'post_type' => 'project',
- 'orderby' => 'menu_order',
- 'empty_link' => array(
-  "title" => 'All Projects',
-   "url" => $homeURL.'/projects/'
- )
-);
-include_once 'partial_bottom_ctas.php';
-
-?>
 
 
 

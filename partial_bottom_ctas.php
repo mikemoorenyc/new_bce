@@ -16,40 +16,39 @@ foreach ($pagelist as $page) {
    $pages[] = $page->ID;
 }
 $current = array_search($post->ID, $pages);
+$total = intval(wp_count_posts($cta_vals['post_type'])->publish);
 $nextID = $pages[$current+1];
 $prevID = $pages[$current-1];
 
+if(empty($nextID) && $total > 2) {
+  $nextID = $pages[$current - 2];
+}
+if(empty($prevID) && $total > 2) {
+  $prevID = $pages[$current + 2];
+}
+
 ?>
+<?php if(!empty($prevID) || !empty($nextID)):?>
 <div class="gl-mod bottom-ctas meta">
-<?php
-  $url = $cta_vals['empty_link']['url'];
-  $title = $cta_vals['empty_link']['title'];
-  if(!empty($prevID)) {
-    $url = get_the_permalink($prevID);
-    $title = get_the_title($prevID);
-  }
-?>
-<a href="<?= $url;?>" class="previous-link">
-     <span>
-       <?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_left.svg');?> <span class="title"><?= $title;?></span>
-     </span>
-</a>
+  <h3 class=" sub-heading with-line"><?= $cta_vals["heading"];?></h3>
+  <div class="links">
+
+    <?php if(!empty($prevID)):?>
+      <a class="mid-heading no-underline before-block" href="<?= get_the_permalink($prevID);?>"><?= get_the_title($prevID);?></a>
+    <?php endif;?>
+
+    <?php if(!empty($nextID)):?>
+      <a class="mid-heading no-underline before-block" href="<?= get_the_permalink($nextID);?>"><?= get_the_title($nextID);?></a>
+    <?php endif;?>
 
 
 
-<?php
-  $url = $cta_vals['empty_link']['url'];
-  $title = $cta_vals['empty_link']['title'];
-  if(!empty($nextID)) {
-    $url = get_the_permalink($nextID);
-    $title = get_the_title($nextID);
-  }
-?>
-<a href="<?= $url;?>" class="previous-link">
-     <span>
-    <span class="title">  <?= $title;?></span> <?= file_get_contents(get_template_directory().'/assets/svgs/icon_arrow_right.svg');?>
-     </span>
-</a>
+  </div>
+
+
 
 
 </div>
+
+
+<?php endif;?>

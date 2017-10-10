@@ -9,22 +9,24 @@
   @media(min-width:$dt-break) {
    grid-column-end: span 8;
   }
-  @media($dt) {
-    grid-column-end: span 7;
-   }
+
   @media(min-width:$t7) {
+    grid-column-end: span 4;
     font-size:30px;
-    padding-bottom: 36px;
+    padding-bottom: 32px;
+  }
+  @media(min-width:$d-mq) {
+    grid-column-end: span 3;
+   }
+  a {
+    display: inline-block;
   }
 }
 h2.hp.sub-heading {
   margin-left: 24px;
   margin-right: 24px;
 
-  @media(min-width: $t7) {
-    margin-left: 36px;
-    margin-right: 36px;
-  }
+
 
 }
 .hp.bottom-button-wrapper {
@@ -32,6 +34,9 @@ h2.hp.sub-heading {
  margin-top: 12px;
  margin-bottom: 24px;
  padding: 0 24px;
+ @media(min-width:$t7) {
+   margin-top:0;
+ }
 
 }
 .hp.bottom-button {
@@ -41,11 +46,7 @@ h2.hp.sub-heading {
   text-decoration: none;
   line-height: 48px;
   font-size:14px;
-  @media($dt) {
-    margin-left: 24px;
-    margin-right: 24px;
-    margin-bottom: 24px;
-  }
+  
   .bug {
     display: inline-block;
     vertical-align: middle;
@@ -67,16 +68,31 @@ h2.hp.sub-heading {
   border-width: 1px;
   margin: 0 24px;
   @media(min-width:$t7) {
-    margin: 0 36px;
-    column-count: 2;
-    column-gap: 36px;
-    border: 0;
+
+    display:flex;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+    padding-top:12px;
+    padding-bottom:12px;
   }
   > li {
     padding: 16px 24px;
     border-style: dashed;
     border-bottom-width:1px;
     position:relative;
+    @media(min-width:$t7) {
+      width: calc(50% );
+      border-width:0px !important;
+      border-style:dotted;
+      margin:0;
+      padding-top:12px;
+      padding-bottom:12px;
+      padding-right: 12px;
+      &:nth-child(even) {
+        padding-right:24px;
+        padding-left:12px;
+      }
+    }
     &:before {
       left: 0;
       top: 0;
@@ -87,6 +103,9 @@ h2.hp.sub-heading {
       transition: transform .15s;
       transform: scale(0,1);
       transform-origin: left center;
+      @media(min-width:$t7) {
+        display:none;
+      }
     }
     &:hover {
       &:before {
@@ -114,7 +133,7 @@ h2.hp.sub-heading {
   @media(min-width:$t7) {
     display:flex;
      flex-wrap:wrap;
-     padding: 0 (36px / 2);
+     padding: 0 (24px / 2);
   }
 }
 .hp.project-link {
@@ -122,8 +141,8 @@ h2.hp.sub-heading {
   position: relative;
   @media(min-width:$t7) {
     float: left;
-    width: calc(50% - 36px);
-    margin: 0 (36px / 2) 36px ;
+    width: calc(50% - 24px);
+    margin: 0 (24px / 2) 24px ;
   }
   &:last-child {
     @media(max-width: ($t7 - 1px)) {
