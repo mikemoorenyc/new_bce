@@ -88,7 +88,7 @@ img.preload-image {
     border-radius: 7px 7px 0 0;
 
     position: relative;
-    max-width: 1000px;
+    max-width: $d9;
     .poster-image-container {
       border-top-width: 1px;
     }
@@ -125,9 +125,9 @@ img.preload-image {
     transform:translateX(-50%);
     margin-left: 0;
     margin-right: 0;
-    @media(min-width:$dt-break) {
+    @media(min-width:$d-mq {
       width: 100vw;
-      max-width: 1000px;
+      max-width: $d9;
 
     }
   }
