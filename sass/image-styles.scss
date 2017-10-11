@@ -125,7 +125,7 @@ img.preload-image {
     transform:translateX(-50%);
     margin-left: 0;
     margin-right: 0;
-    @media(min-width:$d-mq {
+    @media(min-width:$d-mq) {
       width: 100vw;
       max-width: $d9;
 
