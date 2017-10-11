@@ -11,7 +11,7 @@ if(!$landing_header_title) {
   <?php
   $excerpt = get_the_excerpt();
   if($excerpt):?>
-  <div class="landing-header__excerpt tagline type-smaller"><?= md_sc_parse($excerpt);?></div>
+  <div class="landing-header__excerpt tagline "><?= md_sc_parse($excerpt);?></div>
   <?php endif;?>
 
 </div>
