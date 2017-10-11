@@ -16,8 +16,10 @@
     }
   }
   .landing-header__excerpt {
+    font-size: 14px;
     @media($dt) {
-      width: calc((100% / 12) * 7 - 12px)
+      width: calc((100% / 12) * 7 - 12px);
+      font-size: 16px;
     }
   }
 
