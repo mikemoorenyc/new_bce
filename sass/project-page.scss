@@ -67,9 +67,10 @@
   position: relative;
   background:$white;
   margin-top: -24px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   @media(min-width:$m4) {
     border-width:2px;
+    margin-bottom:24px;
     box-shadow: 2px 2px currentColor;
 
   }

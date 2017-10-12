@@ -1,23 +1,23 @@
 .gl-mod.landing-header {
 
-  padding-bottom:16px;
+  .content-centerer {
+    padding: 0 24px ;
 
-  @media($dt) {
-    padding-bottom: 24px;
   }
 
   h1 {
     font-size: 30px;
-    @media(min-width: 800px) {
+    margin-bottom:16px;
+    @media(min-width: $t7) {
       font-size: 36px;
     }
-    @media($dt) {
+    @media(min-width:$d-mq) {
       font-size: 42px;
     }
   }
   .landing-header__excerpt {
-    @media($dt) {
-      width: calc((100% / 12) * 7 - 12px)
+    @media(min-width:$t7) {
+      width: 75%;
     }
   }
 
@@ -26,4 +26,8 @@
 .gl-mod.landing-header-rule {
   height: 1px;
   border-top-width:1px;
+  margin: 24px 0;
+  @media(min-width:$d-mq) {
+    margin:32px 0;
+  }
 }
