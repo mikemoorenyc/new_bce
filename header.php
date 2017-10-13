@@ -115,7 +115,7 @@ $siteDesc = substr($siteDesc, 0, 150);
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?= get_the_permalink();?>" />
 <meta property="og:image" content="<?= $socialImg;?>" />
-<meta property="og:description" content="<?= $siteDesc;?>" />
+<meta property="og:description" content="<?= $siteDesc;?>..." />
 
 <?php
   if(!empty($twitterUsername)) {
@@ -127,7 +127,7 @@ $siteDesc = substr($siteDesc, 0, 150);
 ?>
 <meta name="twitter:card" content="<?= $twitterCard;?>">
 <meta name="twitter:title" content="<?= $pageTitle;?> ">
-<meta name="twitter:description" content="<?= $siteDesc;?>">
+<meta name="twitter:description" content="<?= $siteDesc;?>...">
 <meta name="twitter:image" content="<?= $socialImg;?>">
 
 
