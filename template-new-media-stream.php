@@ -47,8 +47,22 @@ function imageData($p,$imgClass) {
  $data = json_decode($p->post_content,true);
  $type = get_the_terms($p->ID, 'consumed_types');
  if($type){$type = $type[0]->slug;}
-
- $imgURL = $data['img'] ?: $imgURL ;
+	$imgURL = '';
+	switch ($type) {
+		case "movie":
+			$imgURL = get_post_meta($p->ID, 'imgURL',true);
+			break;
+		case "episode":
+		case "show":
+			$imgURL = get_post_meta($p->ID, 'imgURL',true) ?: get_post_meta($p->ID, 'showImgURL',true);
+			break;
+		default:
+			$imgURL = $data['img'] ?: $imgURL ;
+			break;
+	}
+		
+	
+ 
  if($type === 'movie' || $type === 'show') {
   $imgURL = get_post_meta($p->ID, 'imgURL',true);
  }
