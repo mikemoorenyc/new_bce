@@ -52,7 +52,7 @@ function imageData($p,$imgClass) {
  if($type === 'movie' || $type === 'show') {
   $imgURL = get_post_meta($p->ID, 'imgURL',true);
  }
- if($type === 'episode') {
+ if($type === 'episode'|| $type === 'show') {
   if( get_post_meta($p->ID, 'imgURL',true)) {
    $imgURL =  get_post_meta($p->ID, 'imgURL',true);
   } else {
