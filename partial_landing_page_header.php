@@ -9,7 +9,7 @@ if(!$landing_header_title) {
   <div class="content-centerer grid-blank">
     <h1 class="landing-header__title article-heading "><?= $landing_header_title;?></h1>
     <?php
-    $excerpt = get_the_excerpt();
+    $excerpt = $excerpt ?: get_the_excerpt();
     if($excerpt):?>
     <div class="landing-header__excerpt tagline"><?= md_sc_parse($excerpt);?></div>
     <?php endif;?>
