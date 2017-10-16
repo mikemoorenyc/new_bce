@@ -9,7 +9,7 @@ function readableList($ids, $type) {
   $listItems = [];
   if($type === 'type') {
     foreach ($ids as $i) {
-      $listItems[] = get_post_type_object( $c )->labels->name;
+      $listItems[] = get_post_type_object( $i )->labels->name;
     }
   }
   if($type === 'tag') {
@@ -36,12 +36,12 @@ function readableList($ids, $type) {
 $content_ids = (!empty($_GET['types'])) ? explode("|",$_GET['types']) : array();
 $tagged_ids = (!empty($_GET['tags'])) ? explode("|",$_GET['tags']) : array();
 
-$tagged_ids = array_map(function($tag){
+$tagged_ids_quotes = array_map(function($tag){
   return '&ldquo;'.$tag.'$rdquo;';
 },$tagged_ids);
 
 $content_title = (empty($content_ids)) ? 'content' : readableList($content_ids, 'type');
-$content_tag = (empty($tagged_ids)) ? '' : ' tagged with: '.readableList($tagged_ids, 'tag');
+$content_tag = (empty($tagged_ids)) ? '' : ' tagged with: '.readableList($tagged_ids_quotes, 'tag');
 
 
 
@@ -77,49 +77,61 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_tags);
 ?>
 
 <ul class="content-types hide">
- <?php
- foreach($all_content_ids as $i => $c) {
-  $c_ids = $content_ids;
-  if(($key = array_search($c, $c_ids)) !== false) {
-    unset($c_ids[$key]);
-  } else {
-   $c_ids[] = $c;
-  }
-  $href = get_permalink().'?tags='.implode('|',$tagged_ids).'&types='.implode('|',$c_ids);
-  ?>
-  <li>
-
-   <a href="<?= $href; ?>"><?= $all_content[$i]['label']; ?></a>
- </li>
+ <?php foreach($all_content as $c):?>
+  
   <?php
- }
-
-
- ?>
-
+  $content_links = $content_ids;
+  $selected ='';
+  if(in_array($c['slug'], $content_ids)) {
+   $selected = 'selected'; 
+   $content_links = array_filter($content_links, function($l){
+    return $l !== $c['slug']; 
+   });
+  } else {
+    $content_links[] = $c['slug'];
+  }
+  
+  ?>
+  
+  <li class="<?= $selected;?>">
+    <a href="<?= get_permalink();?>?types=<?= implode('|', $content_links) ?>&tags=<?= implode('|',$tagged_ids); ?>">
+      <?= $c['label'];?>
+    </a>
+  </li>
+  
+  
+  <?php endforeach;?>
 
 </ul>
 
 <ul class="tags hide">
  <?php
- foreach($all_tag_ids as $i => $c) {
-  $c_ids = $tagged_ids;
-  if(($key = array_search($c, $c_ids)) !== false) {
-    unset($c_ids[$key]);
-  } else {
-   $c_ids[] = $c;
-  }
-  $href = get_permalink().'?tags='.implode('|',$c_ids).'&types='.implode('|',$content_ids);
-  ?>
-  <li>
-
-   <a href="<?= $href; ?>"><?= $all_tags[$i]->name;?></a>
- </li>
+ foreach($all_tags as $i => $c):?>
   <?php
- }
+  $t_links = $tagged_ids;
+  $selected = '';
+  if(in_array($c->term_id, $content_ids)) {
+    $selected = 'true';
+    $t_links = array_filter($t_links, function($l){
+      return $l !== $c->term_id; 
+    });
+  } else {
+   $t_links[] = $c->term_id;
+  }
+
+  ?>
+
+  
+  <li class="<?= $selected;?>">
+    <a href="<?= get_permalink();?>?types=<?= implode('|', $content_ids) ?>&tags=<?= implode('|',$t_links); ?>">
+      <?= $c->name;?>
+    </a>
+  </li>
+
+ 
 
 
- ?>
+ <?php endforeach; ?>
 
 
 </ul>
