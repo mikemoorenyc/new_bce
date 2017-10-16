@@ -81,5 +81,29 @@
 <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,Array.from"></script>
 
 <script defer  src="<?= $siteDir;?>/js/main.js?v=<?= $cacheBreaker;?>"></script>
+
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<?php if(!is_user_logged_in()):?>
+
+<?php
+include_once get_template_directory().'/partial_api_key_generator.php';
+$keys = api_key_generator();
+?>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?= $keys['GA'];?>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '<?= $keys['GA'];?>');
+</script>
+<?php endif;?>
+
+
+
   </body>
 </html>
