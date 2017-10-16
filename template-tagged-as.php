@@ -36,7 +36,11 @@ function readableList($ids, $type) {
 $content_ids = (!empty($_GET['types'])) ? explode("|",$_GET['types']) : array();
 $tagged_ids = (!empty($_GET['tags'])) ? explode("|",$_GET['tags']) : array();
 
-$content_title = (empty($content_ids)) ? 'Content' : readableList($content_ids, 'type');
+$tagged_ids = array_map(function($tag){
+  return '&ldquo;'.$tag.'$rdquo;';
+},$tagged_ids);
+
+$content_title = (empty($content_ids)) ? 'content' : readableList($content_ids, 'type');
 $content_tag = (empty($tagged_ids)) ? '' : ' tagged with: '.readableList($tagged_ids, 'tag');
 
 
