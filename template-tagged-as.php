@@ -41,14 +41,14 @@ $content_tag = (empty($tagged_ids)) ? '' : ' tagged with: '.readableList($tagged
 
 
 
-$tagged_as_page = (empty($content_ids)&& empty($tagged_ids)) ? 'Content Archive' : $content_title.$content_tag;
+
 
  ?>
 <?php include_once "header.php";?>
 
 <?php
-$landing_header_title = $tagged_as_page;
-
+$landing_header_title = 'Content Archive';
+$excerpt = (empty($content_ids)&& empty($tagged_ids)) ? '' : 'Showing '.$content_title.$content_tag;
  ?>
 <?php include_once 'partial_landing_page_header.php';?>
 
