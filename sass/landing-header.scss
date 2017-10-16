@@ -2,7 +2,8 @@
 
   .content-centerer {
     padding: 0 24px ;
-
+    @media(min-width:$t7) {
+      grid-template-rows: auto auto;
   }
 
   h1 {
@@ -10,6 +11,9 @@
     margin-bottom:16px;
     @media(min-width: $t7) {
       font-size: 36px;
+      grid-row-start: 1;
+      grid-row-end: span 1;
+      grid-column-end: span 4;
     }
     @media(min-width:$d-mq) {
       font-size: 42px;
@@ -18,7 +22,9 @@
   .landing-header__excerpt {
     font-size:14px;
     @media(min-width:$t7) {
-      width: 75%;
+      grid-row-start: 2;
+      grid-row-end: span 2;
+      grid-column-end: span 3;
     }
     @media(min-width:$d-mq) {
       font-size:16px;
