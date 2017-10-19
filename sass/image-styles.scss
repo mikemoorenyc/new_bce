@@ -125,6 +125,8 @@ img.preload-image {
     transform:translateX(-50%);
     margin-left: 0;
     margin-right: 0;
+    box-shadow: 4px 4px 0 currentColor;
+    border-width:1px;
     @media(min-width:$d-mq) {
       width: 100vw;
       max-width: $d9;
