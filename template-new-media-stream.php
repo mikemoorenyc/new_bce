@@ -60,19 +60,8 @@ function imageData($p,$imgClass) {
 			$imgURL = $data['img'] ?: $imgURL ;
 			break;
 	}
-		
 	
  
- if($type === 'movie' || $type === 'show') {
-  $imgURL = get_post_meta($p->ID, 'imgURL',true);
- }
- if($type === 'episode'|| $type === 'show') {
-  if( get_post_meta($p->ID, 'imgURL',true)) {
-   $imgURL =  get_post_meta($p->ID, 'imgURL',true);
-  } else {
-    $imgURL =  get_post_meta($p->ID, 'showImgURL',true);
-  }
- }
 
 	$pURL = parse_url($imgURL);
 	if($pURL['scheme'] !== 'https' && !empty($imgURL)) {
