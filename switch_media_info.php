@@ -64,7 +64,9 @@ function switch_media_info($i) {
 
   case 'show':
   ?>
+  <?php if($i['bingeCount']):?>
   <div class="extra font-sans">Watched <?= $i['bingeCount'];?> episodes</div>
+  <?php endif;?>
   <?php
   echo title_formatter($i['show']['title']);
   break;
