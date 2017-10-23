@@ -151,12 +151,15 @@ foreach($posts as $k => $p) {
       </div>
     </div>
     <div class="info">
+			<?php
+				$showTitle = $data['show']['title'] ?: $p->post_title;
+			?>
       <?php switch_media_info(
         array(
          'title'=>$p->post_title,
          'type' => $type,
          'show' => array(
-           'title'=> $data['show']['title']
+           'title'=> $showTitle
           ),
          'album' => array(
           'title' => $data['album']['title'],
