@@ -68,7 +68,7 @@ function siteInit() {
     }
   });
 
-  headFold.observe(document.querySelector('header#test'));
+  headFold.observe(document.querySelector('#header-test'));
 
 
 }
