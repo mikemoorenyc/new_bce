@@ -23,15 +23,16 @@ $header-padding-full: 128px;
     padding-top:$header-padding-full;
   }
 }
-
+#header-test {
+  position:absolute;
+  width: 0;
+  height: $header-top-padding;
+  opacity: 0;
+  visibility:hidden;
+  z-index:-1;
+}
 
 header {
-  &#test {
-    position: absolute;
-    background:blue;
-    opacity: 0;
-    visibility: hidden;
-  }
   .scrim {
     display:none;
     position: absolute;
@@ -46,7 +47,7 @@ header {
   left: 0;
   top: 0;
   width: 100%;
-  height: $header-top-padding;
+  height: 0;
   @media(min-width:$m4) {
     width: $m4;
     left: calc(50% - #{($m4 / 2)});
@@ -62,38 +63,38 @@ header {
     height: $header-padding-full;
     left: calc(50% - #{(($d9 + 48px) / 2)});
   }
-
   a#spinner, a#spinner:before {
-    background:$white;
     position: absolute;
+    border-width:1px;
+    border-radius: 50%;
+    background:$white;
+  }
+  a#spinner {
     left: 24px;
     width: 32px;
     height: 32px;
-    border-width: 1px;
-    border-radius: 50%;
-    top: 50%;
-    transform: translateY(-50%);
-
-
-  }
-  a#spinner {
     &:before {
-      border-style:dashed;
-      left: calc(50% - 11px) !important;
-      top: calc(50% - 11px);
       width: 22px;
-      height:22px;
+      height: 22px;
+      border-style:dashed;
+      left: calc(50% - 11px);
+      top: calc(50% - 11px);
       animation: spinner 5s infinite linear;
+      will-change:transform;
     }
     body[data-colormode="bw"] & {
      &:before {
        animation: none;
-       transform: translateY(-50%);
-       top: 50%;
      }
     }
   }
+  
 
+}
+
+header a#spinner, #nav-opener, input#navigation-toggle {
+ top: ($header-top-padding / 2);
+ transform: translateY(-50%);
 }
 
 #nav-opener, input#navigation-toggle {
@@ -102,8 +103,6 @@ header {
   }
   position: absolute;
   right: (24px - 8px) ;
-  top: 50%;
-  transform: translateY(-50%);
   width: 48px;
   height: 48px;
   &:before {
