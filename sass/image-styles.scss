@@ -35,7 +35,8 @@ img.preload-image {
     border-width:1px;
     padding: 65px 10px;
     border-radius: 30rem;
-    max-width: (320px + 20px);
+    max-width: (300px + 20px);
+    box-shadow: 4px 4px 0 currentColor;
     .phone-image {
       border-width:1px;
     }
@@ -86,9 +87,12 @@ img.preload-image {
     padding-top: 30px;
     border-width:1px;
     border-radius: 7px 7px 0 0;
-
+    box-shadow: 4px 4px 0 currentColor;
     position: relative;
     max-width: $d9;
+    &:not(.full-bleed) {
+
+    }
     .poster-image-container {
       border-top-width: 1px;
     }
@@ -134,7 +138,7 @@ img.preload-image {
     }
   }
   figcaption {
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
     max-width: 400px;
     margin-top: 8px;

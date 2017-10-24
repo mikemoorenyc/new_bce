@@ -5,7 +5,11 @@
  date_default_timezone_set('America/New_York');
 ?>
 <?php include_once 'header.php';?>
-<?php $landing_post = $post;?>
+<?php
+$landing_excerpt = get_the_excerpt($post);
+$landing_post = $post;
+
+?>
 
 <?php include_once 'partial_landing_page_header.php';?>
 
@@ -60,8 +64,8 @@ function imageData($p,$imgClass) {
 			$imgURL = $data['img'] ?: $imgURL ;
 			break;
 	}
-	
- 
+
+
 
 	$pURL = parse_url($imgURL);
 	if($pURL['scheme'] !== 'https' && !empty($imgURL)) {
@@ -171,7 +175,7 @@ foreach($posts as $k => $p) {
          'percent' => $data['percent'],
          'status' => $data['status'],
 					'other_meta' => get_post_meta($p->ID, 'other_meta',true)
-		
+
         )
        );?>
     </div>

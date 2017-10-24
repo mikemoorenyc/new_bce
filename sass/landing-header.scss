@@ -4,11 +4,15 @@
     padding: 0 24px ;
     @media(min-width:$t7) {
       grid-template-rows: auto auto;
+    }
   }
 
   h1 {
     font-size: 30px;
     margin-bottom:16px;
+    &:last-child {
+      margin-bottom:0;
+    }
     @media(min-width: $t7) {
       font-size: 36px;
       grid-row-start: 1;
