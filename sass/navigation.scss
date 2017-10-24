@@ -65,8 +65,7 @@ nav {
     .lockup {
       position: absolute;
       left:63px;
-      top: 50%;
-      transform: translateY(-50%);
+
       &.over-fold {
         display:none;
       }
@@ -88,7 +87,7 @@ nav {
     .nav-items {
       position: absolute;
       right: 24px;
-      top: calc(50% - (38px / 2));
+      
       border-width:3px;
       box-shadow: 3px 3px 0 currentColor;
       padding: 0 4px;
