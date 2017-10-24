@@ -96,6 +96,16 @@ header a#spinner, #nav-opener, input#navigation-toggle {
  top: ($header-top-padding / 2);
  transform: translateY(-50%);
 }
+header a#spinner, nav .lockup, nav .nav-items {
+  @media(min-width: $t7) {
+    top: ($dt-header-padding / 2);
+    transform: translateY(-50%);
+  }
+  @media(min-width: $d-mq) {
+    top: ($header-padding-full / 2);
+  }
+}
+
 
 #nav-opener, input#navigation-toggle {
   @media(min-width:$t7) {
