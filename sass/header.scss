@@ -77,8 +77,10 @@ header {
       width: 22px;
       height: 22px;
       border-style:dashed;
-      left: calc(50% - 11px);
-      top: calc(50% - 11px);
+      left: 50%;
+      top: 50%;
+      margin-left: -11px;
+      margin-top: -11px;
       animation: spinner 5s infinite linear;
       will-change:transform;
     }
@@ -88,7 +90,7 @@ header {
      }
     }
   }
-  
+
 
 }
 

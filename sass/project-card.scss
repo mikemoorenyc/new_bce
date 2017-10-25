@@ -1,10 +1,10 @@
 
 .project-card {
-  margin: 0 16px 16px 16px;
+  margin: 0 0 24px 0;
   position:relative;
   border-width: 2px;
   box-shadow: 2px 2px 0px currentColor;
-  
+  transition: box-shadow .15s;
   .poster-image-container {
     width: 100%;
     height:0;
@@ -13,6 +13,10 @@
     &.post {
       padding-top: percentage((9/16)/2);
     }
+  }
+  h3 {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
   h3 > a {
     text-decoration: none;
@@ -23,6 +27,10 @@
     span {
       display: block;
     }
+    .meta {
+      font-size: 10px;
+      text-transform: uppercase;
+    }
     .title {
       font-size: 20px;
       line-height: 1.1;
@@ -30,6 +38,15 @@
       font-weight: bold;
       &.post {
         font-size: 24px;
+      }
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    box-shadow: 4px 4px 0 currentColor;
+    h3 {
+      .title {
+        text-decoration: underline;
       }
     }
   }

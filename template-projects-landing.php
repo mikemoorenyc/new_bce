@@ -8,7 +8,7 @@
 <?php $navigation_spacer = 'navigation_spacer';?>
 <?php include_once 'partial_landing_page_header.php';?>
 
-<div class="gl-mod project-card-container">
+<div class="gl-mod project-card-container content-centerer">
 <?php
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args = array(

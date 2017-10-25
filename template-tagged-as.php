@@ -36,23 +36,45 @@ function readableList($ids, $type) {
 $content_ids = (!empty($_GET['types'])) ? explode("|",$_GET['types']) : array();
 $tagged_ids = (!empty($_GET['tags'])) ? explode("|",$_GET['tags']) : array();
 
-$tagged_ids_quotes = array_map(function($tag){
-  return '&ldquo;'.$tag.'$rdquo;';
-},$tagged_ids);
+function readableTags($ids) {
+  $output = '';
+  $loop = 0;
+  $names = [];
+  foreach($ids as $k => $i) {
+    $name = get_term($i)->name;
+    if(!$name) {
+      continue;
+    }
+    $names[] = '&ldquo;'.$name.'&rdquo;';
+  }
+  foreach($names as $k=>$n) {
+    if($k === 0) {
+      $output .= $n;
+      continue;
+    }
+    if($k !== count($names)-1) {
+      $output.= ', '.$n;
+    } else {
+      $output .= ' & '.$n;
+    }
+  }
+  return $output;
+}
+
 
 $content_title = (empty($content_ids)) ? 'content' : readableList($content_ids, 'type');
-$content_tag = (empty($tagged_ids)) ? '' : ' tagged with: '.readableList($tagged_ids_quotes, 'tag');
+$content_tag = (empty($tagged_ids)) ? '' : ' tagged with: '.readableTags($tagged_ids);
 
 
-
-
+$landing_header_title = 'Content Archive';
+$landing_excerpt = (empty($content_ids)&& empty($tagged_ids)) ? '' : 'Showing '.$content_title.$content_tag;
+$tagged_as_page = $landing_excerpt;
 
  ?>
 <?php include_once "header.php";?>
 
 <?php
-$landing_header_title = 'Content Archive';
-$excerpt = (empty($content_ids)&& empty($tagged_ids)) ? '' : 'Showing '.$content_title.$content_tag;
+
  ?>
 <?php include_once 'partial_landing_page_header.php';?>
 
@@ -78,28 +100,28 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_tags);
 
 <ul class="content-types hide">
  <?php foreach($all_content as $c):?>
-  
+
   <?php
   $content_links = $content_ids;
   $selected ='';
   if(in_array($c['slug'], $content_ids)) {
-   $selected = 'selected'; 
+   $selected = 'selected';
    $content_links = array_filter($content_links, function($l){
-    return $l !== $c['slug']; 
+    return $l !== $c['slug'];
    });
   } else {
     $content_links[] = $c['slug'];
   }
-  
+
   ?>
-  
+
   <li class="<?= $selected;?>">
     <a href="<?= get_permalink();?>?types=<?= implode('|', $content_links) ?>&tags=<?= implode('|',$tagged_ids); ?>">
       <?= $c['label'];?>
     </a>
   </li>
-  
-  
+
+
   <?php endforeach;?>
 
 </ul>
@@ -113,7 +135,7 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_tags);
   if(in_array($c->term_id, $content_ids)) {
     $selected = 'true';
     $t_links = array_filter($t_links, function($l){
-      return $l !== $c->term_id; 
+      return $l !== $c->term_id;
     });
   } else {
    $t_links[] = $c->term_id;
@@ -121,21 +143,21 @@ $all_tag_ids = array_map(function ($c) { return $c->term_id; }, $all_tags);
 
   ?>
 
-  
+
   <li class="<?= $selected;?>">
     <a href="<?= get_permalink();?>?types=<?= implode('|', $content_ids) ?>&tags=<?= implode('|',$t_links); ?>">
       <?= $c->name;?>
     </a>
   </li>
 
- 
+
 
 
  <?php endforeach; ?>
 
 
 </ul>
-<div class="gl-mod project-card-container">
+<div class="gl-mod project-card-container content-centerer">
 <?php
 
 if(empty($content_ids)) {

@@ -1,24 +1,18 @@
 .gl-mod.project-card-container {
-  padding-bottom: 16px;
+  padding: 0 24px;
 
-  @media(min-width:$dt-break) {
-    padding-left: 8px;
-    padding-right: 8px;
+  @media(min-width:$t7) {
+    padding: 0 12px;
     display:flex;
-    flex-wrap:wrap;
-    max-width: 800px;
-    margin: 0 auto;
+    flex-wrap: wrap;
     .project-card {
-      width: calc((100% / 3) - 16px);
-      margin: 0 8px 16px 8px;
+      margin: 0 12px 24px 12px;
+      width: calc(50% - 24px);
     }
   }
-  @media($dt) {
-    padding: 4px 12px 24px 12px;
-    max-width: $dt-max;
+  @media(min-width:$d-mq) {
     .project-card {
-      width: calc((100% / 4) - 24px);
-      margin:0 12px 24px 12px;
+      width: calc(33.333% - 24px);
     }
   }
 }
