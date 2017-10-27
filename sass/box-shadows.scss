@@ -1,1 +1,44 @@
+.gl-box-shadow {
+  &.bs-trans {
+    transition: box-shadow .15s;
+  }
+  &.bs-1 {
+   .bs-child {
+     box-shadow: 1px 1px 0 currentColor; 
+    }
+    &.bs-trans {
+     &:hover {
+       .bs-child {
+         box-shadow: 2px 2px 0 currentColor;
+       }
+     }
+    }
+  }
+  &.bs-2 {
+   .bs-child {
+     box-shadow: 2px 2px 0 currentColor;
+   }
+   &.bs-trans {
+    &:hover {
+     .bs-child {
+      box-shadow: 4px 4px 0 currentColor; 
+     }
+    }
+   }
+  }
+  &.bs-3 {
+    .bs-child {
+      box-shadow: 3px 3px 0 currentColor;
+    }
+  }
+  &.bs-4 {
+    .bs-child {
+      box-shadow: 4px 4px 0 currentColor;
+    }
+  }
+
+}
+
+
+
 
