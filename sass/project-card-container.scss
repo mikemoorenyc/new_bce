@@ -2,17 +2,28 @@
   padding: 0 24px;
 
   @media(min-width:$t7) {
-    padding: 0 12px;
+    padding: 0 24px;
     display:flex;
     flex-wrap: wrap;
     .project-card {
-      margin: 0 12px 24px 12px;
-      width: calc(50% - 24px);
+      margin: 0 12px 24px 0;
+      width: calc( (( 100% - ( 24px * 1 ) ) / 2) * 1 + ( 24px * 0) );
+      &:nth-child(even) {
+        margin-right:0;
+        margin-left: 12px;
     }
   }
   @media(min-width:$d-mq) {
     .project-card {
-      width: calc(33.333% - 24px);
+      width: calc( (( 100% - ( 24px * 2 ) ) / 3) * 1 + ( 24px * 0) );
+      margin: 0 12px 24px;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+      &:nth-child(3n - 2) {
+       margin-left: 0; 
+      }
+        
     }
   }
 }
