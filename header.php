@@ -70,11 +70,12 @@ if($tagged_as_page) {
 <title><?= $html_title;?></title>
 <!-- HERE'S WHERE WE GET THE SITE DESCRIPTION -->
 <?php
-$excerpt = get_the_excerpt() ?: $post->post_content ?:  get_bloginfo('description');
+if(has_excerpt()) {
+  $siteDesc = get_the_excerpt();
+} else {
+  $siteDesc = global_excerpter($post->post_content) ?: global_excerpter(get_bloginfo('description'));
+}
 
-
-$siteDesc = preg_replace( "/\r|\n/", " ", preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", strip_tags(md_sc_parse($excerpt))) );
-$siteDesc = substr($siteDesc, 0, 150);
 ?>
 <meta name="description" content="<?= $siteDesc;?>" />
 

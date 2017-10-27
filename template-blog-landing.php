@@ -14,7 +14,7 @@
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args = array(
   'post_type' 		=> 'post',
-  'posts_per_page' => 1,
+  'posts_per_page' => 20,
   'paged' => $paged
 );
 query_posts($args);
@@ -22,12 +22,13 @@ while ( have_posts() ) : the_post(); ?>
 <?php
 $class_no_thumbnail = '';
 if(has_post_thumbnail()) {
- $class_no_thumbnail = 'with_thumbnail';
+ $class_no_thumbnail = 'with-thumbnail';
 }
 ?>
 
-<article class="<?= $class_no_thumbnail;?> bl post  full-click-area stripe-hover clearfix">
+<article class="<?= $class_no_thumbnail;?> bl post  full-click-area  clearfix">
   <a class="area" href="<?= get_the_permalink();?>" role="presentation" aria-hidden="true"></a>
+  <div class="grid-container content-centerer ">
   <?php
   if(has_post_thumbnail()):?>
   <?php
@@ -40,11 +41,26 @@ if(has_post_thumbnail()) {
     ));?>
   </a>
   <?php endif; ?>
-  <a class="copy no-underline <?= $class_no_thumbnail;?>" href="<?= get_the_permalink();?>">
-    <h1 class="title"><?= get_the_title();?></h1>
-    <div class="excerpt type-smaller"><?= get_the_excerpt();?></div>
-    <div class="date meta">Published on <?= get_the_date('M j Y'); ?></div>
-  </a>
+  <div class="copy above-line <?= $class_no_thumbnail;?>">
+    <a href="<?= get_the_permalink();?>" class="date meta no-underline">
+
+      <?= get_the_date('M j Y') ?>
+    </a>
+    <h2 class="mid-heading"><a class="no-underline" href="<?= get_the_permalink();?>"><?= get_the_title();?></a></h2>
+    <a class="excerpt type-smaller tagline no-underline" href="<?= get_the_permalink();?>">
+        <?php
+        if(has_excerpt()) {
+          $desc = get_the_excerpt();
+        } else {
+          $desc = global_excerpter(get_the_content(), 75);
+        }
+        echo $desc.'...';
+         ?>
+
+    </a>
+  </div>
+
+</div>
 
 </article>
 
