@@ -7,7 +7,7 @@
     flex-wrap: wrap;
     .project-card {
       margin: 0 12px 24px 0;
-      width: calc( (( 100% - ( 24px * 1 ) ) / 2) * 1 + ( 24px * 0) );
+      @include grid-width(2, 24px, 1);
       &:nth-child(even) {
         margin-right:0;
         margin-left: 12px;
@@ -15,7 +15,7 @@
   }
   @media(min-width:$d-mq) {
     .project-card {
-      width: calc( (( 100% - ( 24px * 2 ) ) / 3) * 1 + ( 24px * 0) );
+      @include grid-width(3, 24px, 1);
       margin: 0 12px 24px;
       &:nth-child(3n) {
         margin-right: 0;
