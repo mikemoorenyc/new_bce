@@ -1,1 +1,8 @@
 /// BLANK FILE FOR RANDOM MIXINS
+@mixin grid-width($columns, $gutter, $span) {
+ 
+  width: calc( (( 100% - ( #{$gutter} * #{($columns - 1)} ) ) / #{$columns}) * #{$span} + ( #{$gutter} * #{($span - 1)}) );
+
+}
+
+width: calc( (( 100% - ( 24px * 1 ) ) / 2) * 1 + ( 24px * 0) );
