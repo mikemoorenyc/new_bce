@@ -36,15 +36,15 @@ foreach($projects as $p) {
   $hide_image = ($img_id) ? false : true;
 
   ?>
-  <a class="hp project-link no-underline above-line " href="<?= get_the_permalink($pid);?>">
+  <a class="hp project-link no-underline above-line gl-box-shadow bs-trans bs-2 gl-line-hover" href="<?= get_the_permalink($pid);?>">
     <span class="img-container poster-image-container preload-image-container">
       <?php
       include 'partial_lazy_load_img.php';
      ?>
     </span>
 
-    <span class="callout ">
-      <h2><?= $p->post_title;?></h2>
+    <span class="callout bs-child">
+      <h2 class="h-child"><?= $p->post_title;?></h2>
       <?php if(get_post_meta( $pid, 'tagline', true )):?>
 <span class="tagline"><?= get_post_meta( $pid, 'tagline', true );?></span>
       <?php endif;?>
@@ -86,12 +86,12 @@ foreach($posts as $p) {
   $pid = $p->ID;
 
   ?>
-  <li class="post full-click-area before-block">
+  <li class="post full-click-area before-block gl-line-hover">
     <a class="area" href="<?= get_the_permalink($pid);?>" role="presentation" aria-hidden="true"></a>
 
     <a href="<?= get_the_permalink($pid);?>">
       <span class="time meta"><?= human_time_diff( get_the_time('U', $pid), current_time('timestamp') ) . ' ago'; ?></span>
-      <h3 class="title mid-heading"> <span><?= get_the_title($pid);?></span></h3>
+      <h3 class="title mid-heading h-child"> <span><?= get_the_title($pid);?></span></h3>
 
     </a>
 

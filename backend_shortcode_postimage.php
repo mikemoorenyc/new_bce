@@ -52,8 +52,8 @@ function postimage_shortcode( $atts, $content = null ) {
    $full_bleed_class = 'full-bleed';
   }
   ?>
-  <div class="normal-image-container <?= $full_bleed_class;?>" style="<?= $max_width;?>">
-    <div class="poster-image-container" style="padding-top:<?php echo $ratio;?>%">
+  <div class="normal-image-container gl-box-shadow bs-4 <?= $full_bleed_class;?>" style="<?= $max_width;?>">
+    <div class="poster-image-container bs-child" style="padding-top:<?php echo $ratio;?>%">
       <?php
         $img_id = $id;
        $alt_tag = $baseurl;

@@ -1,5 +1,5 @@
 
-<article class="project-card above-line full-click-area ">
+<article class="project-card above-line full-click-area gl-box-shadow bs-child bs-trans bs-2 gl-line-hover ">
   <a href="<?= get_the_permalink($pid);?>" class="area" aria-hidden="true" role="presentation"></a>
   <!-- IF YOU DO WANT AN IMAGE -->
   <?php if($hide_image !== true):?>
@@ -21,7 +21,7 @@
       <?php if($card_meta):?>
       <span class="meta"><?= $card_meta;?></span>
       <?php endif;?>
-      <span class="title <?= $post_type;?>"><?= get_the_title($pid);?></span>
+      <span class="title h-child <?= $post_type;?>"><?= get_the_title($pid);?></span>
       <span class="tagline font-serif"><?= get_post_meta( $pid, 'tagline', true );?></span>
     </div>
   </a>

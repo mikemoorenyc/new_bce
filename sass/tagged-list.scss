@@ -13,11 +13,11 @@
       font-size: 12px;
       border-width: 1px;
       border-style:dotted;
-      box-shadow: 1px 1px 0 currentColor;
-      transition: box-shadow .15s;
+    //  box-shadow: 1px 1px 0 currentColor;
+    //  transition: box-shadow .15s;
       &:hover {
         border-style: solid;
-        box-shadow: 2px 2px 0 currentColor;
+        //box-shadow: 2px 2px 0 currentColor;
       }
     }
   }

@@ -26,7 +26,7 @@ if(has_post_thumbnail()) {
 }
 ?>
 
-<article class="<?= $class_no_thumbnail;?> bl post  full-click-area  clearfix">
+<article class="<?= $class_no_thumbnail;?> bl post  full-click-area  clearfix gl-line-hover">
   <a class="area" href="<?= get_the_permalink();?>" role="presentation" aria-hidden="true"></a>
   <div class="grid-container content-centerer ">
   <?php
@@ -46,7 +46,7 @@ if(has_post_thumbnail()) {
 
       <?= get_the_date('M j Y') ?>
     </a>
-    <h2 class="mid-heading"><a class="no-underline" href="<?= get_the_permalink();?>"><?= get_the_title();?></a></h2>
+    <h2 class="mid-heading"><a class="no-underline h-child" href="<?= get_the_permalink();?>"><?= get_the_title();?></a></h2>
     <a class="excerpt type-smaller tagline no-underline" href="<?= get_the_permalink();?>">
         <?php
         if(has_excerpt()) {

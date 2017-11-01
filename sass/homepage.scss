@@ -57,7 +57,7 @@ h2.hp.sub-heading {
     height: 12px;
   }
   &:hover {
-    text-decoration: underline;
+    //text-decoration: underline;
     .bug {
       transform: translateX(4px);
     }
@@ -72,26 +72,33 @@ h2.hp.sub-heading {
     display:flex;
     flex-wrap:wrap;
     margin-bottom:16px;
-    padding-top:12px;
-    padding-bottom:12px;
+
   }
   > li {
-    padding: 16px 24px;
+    padding: 16px;
     border-style: dashed;
     border-bottom-width:1px;
     position:relative;
+    &:last-child {
+      border-width: 0;
+    }
     @media(min-width:$t7) {
-      width: calc(50% );
-      border-width:0px !important;
-      border-style:dotted;
-      margin:0;
-      padding-top:12px;
-      padding-bottom:12px;
-      padding-right: 12px;
+      width: 50%;
+
+      border-width: 0;
+      padding: 16px 20px 16px 16px;
       &:nth-child(even) {
-        padding-right:24px;
-        padding-left:12px;
+        padding-left: 20px;
+        padding-right: 16px;
       }
+      &:nth-child(1),&:nth-child(2) {
+        border-bottom:1px dashed;
+      }
+      &:nth-child(odd) {
+        border-right: 1px dashed;
+      }
+
+
     }
     &:before {
       left: 0;
@@ -103,9 +110,7 @@ h2.hp.sub-heading {
       transition: transform .15s;
       transform: scale(0,1);
       transform-origin: left center;
-      @media(min-width:$t7) {
-        display:none;
-      }
+
     }
     &:hover {
       &:before {
@@ -113,12 +118,10 @@ h2.hp.sub-heading {
       }
 
       h3 {
-        text-decoration: underline;
+        //text-decoration: underline;
       }
     }
-    &:last-child {
-      border-width: 0;
-    }
+
     a {
       display:block;
       text-decoration: none;
@@ -133,7 +136,7 @@ h2.hp.sub-heading {
   @media(min-width:$t7) {
     display:flex;
      flex-wrap:wrap;
-     padding: 0 (24px / 2);
+     padding: 0 (24px );
   }
 }
 .hp.project-link {
@@ -141,8 +144,11 @@ h2.hp.sub-heading {
   position: relative;
   @media(min-width:$t7) {
     float: left;
-    width: calc(50% - 24px);
-    margin: 0 (24px / 2) 24px ;
+    width: calc( (((100% - (24px * 3)) / 4) * 2) + (24px * 1) );
+    margin: 0 (24px / 2) 24px 0;
+    &:nth-child(even) {
+      margin: 0 0 24px 12px;
+    }
   }
   &:last-child {
     @media(max-width: ($t7 - 1px)) {
@@ -166,8 +172,8 @@ h2.hp.sub-heading {
     bottom: -8px;
     padding: 16px;
     border-width: 2px;
-    transition: box-shadow .15s;
-    box-shadow: 2px 2px 0 currentColor;
+  //  transition: box-shadow .15s;
+  //  box-shadow: 2px 2px 0 currentColor;
     max-width: calc(100% );
     background:$white;
     h2 {
@@ -183,17 +189,7 @@ h2.hp.sub-heading {
       }
     }
   }
-  &:hover {
-    .callout {
-      box-shadow: 4px 4px 0 currentColor;
-      h2 {
-        text-decoration: underline;
-        span {
-          border-bottom-color: currentColor;
-        }
-      }
-    }
-  }
+
 }
 @media(min-width:802px) {
   .hp.project-list {

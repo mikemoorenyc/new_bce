@@ -1,0 +1,7 @@
+.gl-line-hover {
+  &:hover {
+    .h-child, &.h-child {
+      text-decoration: underline;
+    }
+  }
+}

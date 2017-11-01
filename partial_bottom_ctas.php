@@ -34,11 +34,11 @@ if(empty($prevID) && $total > 2) {
   <div class="links">
 
     <?php if(!empty($prevID)):?>
-      <a class="mid-heading no-underline before-block" href="<?= get_the_permalink($prevID);?>"><?= get_the_title($prevID);?></a>
+      <a class="mid-heading no-underline before-block gl-line-hover h-child" href="<?= get_the_permalink($prevID);?>"><?= get_the_title($prevID);?></a>
     <?php endif;?>
 
     <?php if(!empty($nextID)):?>
-      <a class="mid-heading no-underline before-block" href="<?= get_the_permalink($nextID);?>"><?= get_the_title($nextID);?></a>
+      <a class="mid-heading no-underline before-block gl-line-hover h-child" href="<?= get_the_permalink($nextID);?>"><?= get_the_title($nextID);?></a>
     <?php endif;?>
 
 

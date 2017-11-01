@@ -8,7 +8,7 @@ img.poster-image {
   object-position: center center;
 }
 .poster-image-container, .preload-image-container {
- background-color:currentColor;
+ //background-color:currentColor;
  position: relative;
  display:block;
  overflow:hidden;
@@ -129,8 +129,10 @@ img.preload-image {
     transform:translateX(-50%);
     margin-left: 0;
     margin-right: 0;
-    box-shadow: 4px 4px 0 currentColor;
-    border-width:1px;
+    //box-shadow: 4px 4px 0 currentColor;
+    .poster-image-container {
+      border-width:1px;
+    }
     @media(min-width:$d-mq) {
       width: 100vw;
       max-width: $d9;

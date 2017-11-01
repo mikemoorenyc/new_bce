@@ -8,9 +8,15 @@
     .project-card {
       margin: 0 12px 24px 0;
       @include grid-width(2, 24px, 1);
+
+    }
+  }
+  @media(min-width:$t7) and (max-width: ($d-mq - 1)) {
+    .project-card {
       &:nth-child(even) {
         margin-right:0;
         margin-left: 12px;
+      }
     }
   }
   @media(min-width:$d-mq) {
@@ -21,9 +27,9 @@
         margin-right: 0;
       }
       &:nth-child(3n - 2) {
-       margin-left: 0; 
+       margin-left: 0;
       }
-        
+
     }
   }
 }
