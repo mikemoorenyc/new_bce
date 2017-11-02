@@ -41,7 +41,7 @@ if(has_post_thumbnail()) {
     ));?>
   </a>
   <?php endif; ?>
-  <div class="copy above-line <?= $class_no_thumbnail;?>">
+  <div class="copy  <?= $class_no_thumbnail;?>">
     <a href="<?= get_the_permalink();?>" class="date meta no-underline">
 
       <?= get_the_date('M j Y') ?>
@@ -52,7 +52,7 @@ if(has_post_thumbnail()) {
         if(has_excerpt()) {
           $desc = get_the_excerpt();
         } else {
-          $desc = global_excerpter(get_the_content(), 75);
+          $desc = global_excerpter(get_the_content(),100);
         }
         echo $desc.'...';
          ?>

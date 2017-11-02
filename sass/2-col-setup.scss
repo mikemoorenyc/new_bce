@@ -4,24 +4,29 @@ $c-1240: (100% / 12);
 ///MUST BE USED WITH .grid-blank
 
 .gl-mod.col-2-setup {
-  .left-col {
-    @media(min-width:$dt-break) {
+  @media(min-width: $t7) {
+    grid-template-columns: repeat(3,1fr);
+    .left-col {
       grid-column-start: 1;
-      grid-column-end: span 5;
+      grid-column-end: span 2;
     }
-    @media($dt) {
-      grid-column-end: span 7;
+    .right-col {
+      grid-column-start: 3;
+      grid-column-end: span 1;
     }
   }
-  .right-col {
-    margin-bottom:16px;
-    @media(min-width:$dt-break) {
+  @media(min-width: $d-mq) {
+    grid-column-gap: 40px;
+
+    grid-template-columns: repeat(8,1fr);
+
+    .left-col {
+      grid-column-end: span 5;
+    }
+    .right-col {
       grid-column-start: 6;
       grid-column-end: span 3;
     }
-    @media($dt) {
-      grid-column-start: 9;
-      grid-column-end: span 4;
-    }
+
   }
 }

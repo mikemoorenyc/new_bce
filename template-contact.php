@@ -13,8 +13,8 @@ $alreadySubmitted = $_COOKIE['alreadySubmitted'];
 
 <?php $landing_post = $post;?>
 <?php include_once 'partial_landing_page_header.php';?>
-<div id="contact-page" class="gl-mod grid-blank col-2-setup">
-  <div class="left-col reading-section"><?= md_sc_parse($post->post_content);?></div>
+<div id="contact-page" class="gl-mod grid-blank col-2-setup content-centerer">
+  <div class="left-col reading-section no-padding"><div class="content"><?= md_sc_parse($post->post_content);?></div></div>
 
   <div class="right-col contact-page social-links">
     <?php

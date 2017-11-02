@@ -1,4 +1,5 @@
 .contact-page.social-links {
+  margin-bottom: 24px;
   h2 {
     margin-bottom:.25em;
   }
@@ -21,7 +22,7 @@
     }
   }
 }
-@media(min-width:$dt-break) {
+@media(min-width:$t7) {
   #contact-page {
     grid-template-rows: auto 1fr;
     .social-links {
@@ -48,7 +49,7 @@
   position: relative;
   border-width: 3px;
   box-shadow: 3px 3px 0 currentColor;
-  @media(min-width:$dt-break) {
+  @media(min-width:$t7) {
 
     margin-left: auto;
     margin-right: auto;

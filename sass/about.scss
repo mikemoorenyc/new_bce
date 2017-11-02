@@ -1,6 +1,6 @@
 .about-page.gl-mod.col-2-setup {
 
-  @media(min-width:$dt-break) {
+  @media(min-width:$t7) {
 
     grid-template-rows: auto 1fr;
 
@@ -16,6 +16,7 @@
     }
     .picture {
       grid-row-start: 1;
+      margin-bottom: 24px;
     }
   }
 
@@ -27,7 +28,7 @@
   border-width: 1px;
   border-style: dashed;
   padding: 16px;
-  @media($dt) {
+  @media(min-width:$t7) {
     margin-bottom: 24px;
 
   }
@@ -36,7 +37,7 @@
   }
   ul {
 
-    @media(max-width: ($dt-break - 1px)) {
+    @media(max-width: ($t7 - 1px)) {
       column-count: 2;
       column-gap: 16px;
     }
@@ -46,7 +47,7 @@
       font-size: .85em;
       line-height: 1.2;
 
-      @media($dt) {
+      @media(min-width: $d-mq) {
         display:inline-block;
         margin: 0;
         &:after {
