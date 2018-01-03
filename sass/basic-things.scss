@@ -63,6 +63,9 @@ svg {
   fill: currentColor;
   * {
     fill:currentColor;
+    &[stroke] {
+      stroke:currentColor;
+    }
     &[fill="none"], &[FILL="none"] {
       fill:none !important;
     }
