@@ -1,39 +1,17 @@
 .media-stream.container {
   padding-bottom: 24px;
-  @media(min-width: $dt-break) {
-    width: 800px;
-    margin: 0 auto;
-    display:flex;
-    flex-wrap:wrap;
-    padding-left:8px;
-    padding-right: 8px;
-  }
-  @media($dt) {
-    width: auto;
-    max-width: $dt-max;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-  h2.sub-heading {
-    width: 100%;
-    margin-left: 16px;
-    margin-right: 16px;
-    @media(min-width:$dt-break) {
-      margin-right: 8px;
-      margin-left: 8px;
-    }
-    @media($dt) {
-      margin-right: 12px;
-      margin-left: 12px;
-    }
-  }
+
+
 
   .media-item {
     position: relative;
-    margin: 0 16px 16px 16px;
+    margin: 0 0 24px 0;
+    padding: 16px;
+    border-width: 1px;
+    border-style: dotted;
     display:flex;
     align-items: center;
-    height: 100px;
+    height: 132px;
     overflow:hidden;
     &.blank {
       color:white;

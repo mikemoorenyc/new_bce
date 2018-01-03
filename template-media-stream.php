@@ -75,7 +75,7 @@ function timeSet($stamp) {
   $timeA =  array(intval(date('j',$stamp)),intval(date('n',$stamp)),intval(date('Y',$stamp)));
 
   $largeDiff = ($today[0]+($today[1]*30)+($today[2]*365)) - ($timeA[0]+($timeA[1]*30)+($timeA[2]*365));
-
+  echo $largeDiff.'<br/><br/>';
   if(date('j-n-Y') === date('j-n-Y',$stamp)) {
     return 'Today';
   }

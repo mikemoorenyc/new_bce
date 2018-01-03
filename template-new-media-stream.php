@@ -13,9 +13,7 @@ $landing_post = $post;
 
 <?php include_once 'partial_landing_page_header.php';?>
 
-<div class="media-stream copy reading-section">
-  <?= md_sc_parse($post->post_content);?>
-</div>
+
 <?php
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $per_page = 32;
@@ -94,6 +92,7 @@ function timeSet($stamp) {
   $today = array(intval(date('j')),intval(date('n')),intval(date('Y')));
   $timeA =  array(intval(date('j',$stamp)),intval(date('n',$stamp)),intval(date('Y',$stamp)));
   $largeDiff = ($today[0]+($today[1]*30)+($today[2]*365)) - ($timeA[0]+($timeA[1]*30)+($timeA[2]*365));
+
   if(date('j-n-Y') === date('j-n-Y',$stamp)) {
     return 'Today';
   }
@@ -107,7 +106,9 @@ function timeSet($stamp) {
   }
   //MONTHS
   if($largeDiff > 30) {
-    $diff = $today[1] - $timeA[1];
+
+    $diff = ($today[1]+($today[2]*12)) - ($timeA[1]+($timeA[2]*12));
+
     return $diff.' month'.returnS($diff).' ago';
   }
   //WEEKS
@@ -119,7 +120,7 @@ function timeSet($stamp) {
   return ($largeDiff).' day'.returnS($largeDiff).' ago';
 }
  ?>
-<div id="media-stream" class=" media-stream container">
+<div id="media-stream" class=" media-stream container gl-mod project-card-container content-centerer">
 <?php
 $time_marker = "";
 foreach($posts as $k => $p) {

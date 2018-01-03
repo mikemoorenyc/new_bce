@@ -40,7 +40,7 @@ function imageReplacer($o_URL,$isbn,$desc=null, $type = 'ISBN') {
   return $o_URL;
 }
 
-$status = new SimpleXMLElement(file_get_contents('https://www.goodreads.com/user/updates_rss/'.$keys['goodreads_uid'].'?key=18ioDaauDhEjysrttqWKDR03F_rvL_JFKT4MUW5jz8sl5px7'),LIBXML_NOCDATA);
+$status = new SimpleXMLElement(file_get_contents('https://www.goodreads.com/user/updates_rss/'.$keys['goodreads_uid'].'?key='.$keys['goodreads']),LIBXML_NOCDATA);
 
 $items = [];
 

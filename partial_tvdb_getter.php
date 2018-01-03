@@ -70,7 +70,7 @@ function get_tvdb($type, $id) {
       return $url;
     }
     $out = json_decode($output,true);
-    var_dump($out);
+    //var_dump($out);
     if(!empty($out['data']['filename'])) {
 
       return 'http://thetvdb.com/banners/'.$out['data']['filename'];
