@@ -23,7 +23,7 @@
  }
  if(!empty($profile_imgs)) {
   ?>
- <div class="right-col picture" style=" background:green;">
+ <div class="right-col picture" >
  <?php
   $rando = mt_rand(0, count($profile_imgs) - 1);
   echo file_get_contents($svgPath.$profile_imgs[$rando]);
