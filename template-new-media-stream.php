@@ -141,7 +141,12 @@ foreach($posts as $k => $p) {
   }
   $imgData = imageData($p,$imgClass);
   if($time !== $time_marker) {
+    if($k > 0) {
+			echo '</div>';    
+    }
     echo '<h2 class="sub-heading with-line"><span>'.$time.'</span></h2>';
+		echo '<div class="media-item-block">';
+
   }
   $time_marker = $time;
   ?>
@@ -184,7 +189,9 @@ foreach($posts as $k => $p) {
   </div>
 
   <?php
-
+	if($k === count($posts) -1) {
+		echo '</div>';
+	}
 
 }
 ?>
