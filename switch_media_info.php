@@ -29,7 +29,7 @@ function title_formatter($title,$classString ='') {
  if(strlen($title) < 15) {
   $long_title = 'short-title';
  }
- return '<h2 class="'.$long_title.' '.$classString.'">'.$title.'</h2>';
+ return '<h2 class="'.$long_title.' '.$classString.'"><span class="hover">'.$title.'</span></h2>';
 
 }
 
@@ -112,8 +112,8 @@ function switch_media_info($i) {
 
 <?php
  break;
- 
- default: 
+
+ default:
  	echo title_formatter($i['title']);
   if($i['other_meta']) {
    ?>

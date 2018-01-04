@@ -149,8 +149,9 @@ foreach($posts as $k => $p) {
 
   }
   $time_marker = $time;
+  $clickClass = ($data['clickthru']) ? 'clickthru' : '';
   ?>
-  <div data-key="<?= $k; ?>" class="media-item type-<?=$type;?> blank above-line">
+  <div data-key="<?= $k; ?>" class="media-item <?= $clickClass;?> type-<?=$type;?> blank above-line">
     <div class="img-container">
       <div class="media-image type-<?= $imgClass;?>">
         <img
@@ -185,7 +186,10 @@ foreach($posts as $k => $p) {
         )
        );?>
     </div>
+    <?php if($data['clickthru']):?>
+      <a class="poster" target="_blank" href="<?= $data['clickthru'];?>"></a>
 
+    <?php endif;?>
   </div>
 
   <?php
