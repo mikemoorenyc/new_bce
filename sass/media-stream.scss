@@ -91,11 +91,9 @@
       transform: translate(-50%,-50%);
 
       vertical-align: middle;
-      font-size:1px;
+      font-size:1.14px;
 
-      @media(min-width:400px) {
-        font-size:1.14px;
-      }
+      
       /*
       @media($dt) {
         font-size:.093vw
