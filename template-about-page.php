@@ -25,16 +25,13 @@
 
   $rando = mt_rand(0, count($profile_imgs) - 1);
   $svg = file_get_contents($svgPath.$profile_imgs[$rando]);
-  $dom = new SimpleXMLElement($svg);
-  $view = $dom->attributes()['viewBox'];
-  $view = explode(' ',$view);
-  $percentage = round(($view[3] / $view[2])*100);
+
 
   ?>
 <div class="right-col picture">
-<div class="inner"  style="padding-top: <?php echo $percentage;?>%">
+
 <?php echo $svg;?>
-</div>
+
 
 </div>
   <?php
