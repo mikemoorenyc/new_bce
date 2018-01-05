@@ -1,15 +1,13 @@
 .media-stream.container {
-  padding-bottom: 24px;
+  padding: 0 24px 24px;
+
   @media(min-width:$t7) {
-    padding: 0 12px 24px 12px;
-    h2.sub-heading {
-      width: calc(100% - 24px);
-      margin-left: 12px;
-      margin-right: 12px;
+    .media-item-block {
+      display:flex;
+      width: 100%;
+      flex-wrap: wrap;
     }
   }
-
-
 
   .media-item {
     &.clickthru {
@@ -41,14 +39,19 @@
       color:white;
       visibility: hidden;
     }
-    @media(min-width: $dt-break) {
-      width: calc(50% - 16px);
-      margin: 0 8px 16px 8px;
+    @media(min-width:$t7) {
+      margin-bottom:24px;
+      @include grid-width(2, 24px, 1);
+      &:nth-child(even) {
+        margin-left: 24px;
+      }
     }
-    @media($dt) {
-      width: calc((100% / 4) - 24px);
-      margin: 0 12px 24px 12px;
-
+    @media(min-width:$d-mq) {
+      @include grid-width(3,24px,1);
+      margin: 0 0 24px 24px;
+      &:nth-child(3n-2) {
+        margin-left: 0;
+      }
     }
 
 
@@ -117,7 +120,7 @@
       vertical-align: middle;
       font-size:1.14px;
 
-      
+
       /*
       @media($dt) {
         font-size:.093vw

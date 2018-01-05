@@ -120,7 +120,7 @@ function timeSet($stamp) {
   return ($largeDiff).' day'.returnS($largeDiff).' ago';
 }
  ?>
-<div id="media-stream" class=" media-stream container gl-mod project-card-container content-centerer">
+<div id="media-stream" class=" media-stream container gl-mod content-centerer">
 <?php
 $time_marker = "";
 foreach($posts as $k => $p) {
@@ -142,7 +142,7 @@ foreach($posts as $k => $p) {
   $imgData = imageData($p,$imgClass);
   if($time !== $time_marker) {
     if($k > 0) {
-			echo '</div>';    
+			echo '</div>';
     }
     echo '<h2 class="sub-heading with-line"><span>'.$time.'</span></h2>';
 		echo '<div class="media-item-block">';
