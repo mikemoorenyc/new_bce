@@ -68,34 +68,43 @@ h2.hp.sub-heading {
   border-width: 1px;
   margin: 0 24px;
   @media(min-width:$t7) {
-
+    position:relative;
     display:flex;
     flex-wrap:wrap;
     margin-bottom:16px;
+    &:before {
+      display:block;
+      content:'';
+      border-left-width:1px;
+      border-style:dashed;
+      height: 100%;
+      position:absolute;
+      left: calc(50% - 1px);
+    }
 
   }
   > li {
     padding: 16px;
     border-style: dashed;
-    border-bottom-width:1px;
     position:relative;
-    &:last-child {
-      border-width: 0;
+    &not(:last-child) {
+      border-bottom-width:1px;
     }
     @media(min-width:$t7) {
       width: 50%;
-
-      border-width: 0;
+      &not(:last-child) {
+        border-bottom-width:1px;
+      }
       padding: 16px 20px 16px 16px;
-      &:nth-child(even) {
-        padding-left: 20px;
-        padding-right: 16px;
-      }
-      &:nth-child(1),&:nth-child(2) {
-        border-bottom:1px dashed;
-      }
-      &:nth-child(odd) {
-        border-right: 1px dashed;
+      &:after {
+        display:block;
+        content:'';
+        position:absolute;
+        left: 0;
+        bottom: -1px;
+        width: 100%;
+        border-bottom-width:1px;
+        border-style:dashed;
       }
 
 
