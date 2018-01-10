@@ -1,1 +1,34 @@
-
+ul.gl-mod.link-box-list {
+  border-width:1px;
+  @media(min-width:$t7) {
+    display:flex;
+    flex-wrap:wrap;
+  }
+  >li {
+    border-style:dashed;
+    position:relative;
+    &:not(:last-child) {
+     border-top-width: 1px; 
+    }
+    @media(min-width:$t7) {
+      width: 50%;
+      &:nth-child(odd) {
+       border-right-width:1px; 
+      }
+      &:last-child, &:nth-last-child(2) {
+       border-bottom-width:0; 
+      }
+      &:nth-last-child(2):nth-child(even) {
+        border-bottom-width:1px;
+      }
+    }
+    a {
+      display:block;
+      padding: 16px;
+      @media(min-width: $t7) {
+        padding: 16pc 20px 16px 16px;
+      }
+    }
+    
+   
+}
