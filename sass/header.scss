@@ -55,12 +55,12 @@ header {
   }
   @media(min-width:$t7 ){
     width: $t7;
-    height: $dt-header-padding;
+    height: 0;
     left: calc(50% - #{($t7 / 2)});
   }
   @media(min-width:$d-mq) {
     width: $d9 + 48px;
-    height: $header-padding-full;
+
     left: calc(50% - #{(($d9 + 48px) / 2)});
   }
   a#spinner, a#spinner:before {
