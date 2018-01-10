@@ -31,14 +31,14 @@ if(empty($prevID) && $total > 2) {
 <?php if(!empty($prevID) || !empty($nextID)):?>
 <div class="gl-mod bottom-ctas meta">
   <h3 class=" sub-heading with-line"><?= $cta_vals["heading"];?></h3>
-  <div class="links">
+  <ul class="gl-mod link-box-list">
 
     <?php if(!empty($prevID)):?>
-      <a class="mid-heading no-underline before-block gl-line-hover h-child" href="<?= get_the_permalink($prevID);?>"><?= get_the_title($prevID);?></a>
+      <li><a class="mid-heading no-underline before-block gl-line-hover h-child" href="<?= get_the_permalink($prevID);?>"><?= get_the_title($prevID);?></a></li>
     <?php endif;?>
 
     <?php if(!empty($nextID)):?>
-      <a class="mid-heading no-underline before-block gl-line-hover h-child" href="<?= get_the_permalink($nextID);?>"><?= get_the_title($nextID);?></a>
+      <li><a class="mid-heading no-underline before-block gl-line-hover h-child" href="<?= get_the_permalink($nextID);?>"><?= get_the_title($nextID);?></a></li>
     <?php endif;?>
 
 
