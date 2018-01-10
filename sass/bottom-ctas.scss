@@ -7,59 +7,8 @@
     font-size: 12px;
     margin-bottom: 16px;
   }
-  .links {
-    border-width: 1px;
-  }
-  .links > a {
-    display:block;
-    padding: 16px;
-    position: relative;
-    &:first-child {
-      border-bottom-width:1px;
-      border-style: dashed;
-    }
-    &:before {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width:2px;
-      height: 100%;
-      background: currentColor;
-      transform: scale(0,1);
-      transform-origin: left center;
-      transition: transform .15s;
-    }
-    &:hover {
-      //text-decoration: underline;
-      &:before {
-        transform: scale(1,1);
-      }
-    }
 
-  }
-  @media(min-width:$t7) {
-    .links {
-      display:flex;
-      position: relative;
-      &:before {
-        display: block;
-        content:'';
-        position: absolute;
-        left: 50%;
-        top: 0;
-        height: 100%;
-        width: 1px;
-        border-left-width:1px;
-        border-style:dashed;
-      }
-      > a {
-        width: 50%;
-        &:first-child {
-          border:0;
-        }
-      }
-    }
-  }
-
+  
+  
 
 }
