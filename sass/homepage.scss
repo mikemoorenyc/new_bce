@@ -64,77 +64,11 @@ h2.hp.sub-heading {
   }
 }
 .hp.blog-posts {
-
-  border-width: 1px;
   margin: 0 24px;
   @media(min-width:$t7) {
-    position:relative;
-    display:flex;
-    flex-wrap:wrap;
     margin-bottom:16px;
-    &:before {
-      display:block;
-      content:'';
-      border-left-width:1px;
-      border-style:dashed;
-      height: 100%;
-      position:absolute;
-      left: calc(50% - 1px);
-    }
-
   }
   > li {
-    padding: 16px;
-    border-style: dashed;
-    position:relative;
-    &not(:last-child) {
-      border-bottom-width:1px;
-    }
-    @media(min-width:$t7) {
-      width: 50%;
-      &not(:last-child) {
-        border-bottom-width:1px;
-      }
-      padding: 16px 20px 16px 16px;
-      &:after {
-        display:block;
-        content:'';
-        position:absolute;
-        left: 0;
-        bottom: -1px;
-        width: 100%;
-        border-bottom-width:1px;
-        border-style:dashed;
-      }
-
-
-    }
-    &:before {
-      left: 0;
-      top: 0;
-      height: 100%;
-      border-right-width: 2px;
-      width: 2px;
-      position: absolute;
-      transition: transform .15s;
-      transform: scale(0,1);
-      transform-origin: left center;
-
-    }
-    &:hover {
-      &:before {
-        transform: scale(1,1);
-      }
-
-      h3 {
-        //text-decoration: underline;
-      }
-    }
-
-    a {
-      display:block;
-      text-decoration: none;
-    }
     .time{
       display: block;
       margin-bottom: 8px;
