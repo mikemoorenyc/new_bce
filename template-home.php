@@ -79,7 +79,7 @@ $post_query = new WP_Query($pargs);
 <?php if ( $post_query->have_posts() ) :?>
 <section class="hp blog clearfix content-centerer">
 <h2 class="hp sub-heading with-line">From the Blog</h2>
-<ul class="hp blog-posts">
+<ul class="gl-mod link-box-list hp blog-posts">
 <?php $posts = $post_query->get_posts(); ?>
 <?php
 foreach($posts as $p) {
@@ -87,7 +87,7 @@ foreach($posts as $p) {
 
   ?>
   <li class="post full-click-area before-block gl-line-hover">
-    <a class="area" href="<?= get_the_permalink($pid);?>" role="presentation" aria-hidden="true"></a>
+   <!-- <a class="area" href="<?= get_the_permalink($pid);?>" role="presentation" aria-hidden="true"></a> -->
 
     <a href="<?= get_the_permalink($pid);?>">
       <span class="time meta"><?= human_time_diff( get_the_time('U', $pid), current_time('timestamp') ) . ' ago'; ?></span>
