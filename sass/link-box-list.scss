@@ -24,15 +24,15 @@ ul.gl-mod.link-box-list {
       }
     }
     &:not(:last-child) {
-     border-top-width: 1px; 
+     border-bottom-width: 1px;
     }
     @media(min-width:$t7) {
       width: 50%;
       &:nth-child(odd) {
-       border-right-width:1px; 
+       border-right-width:1px;
       }
       &:last-child, &:nth-last-child(2) {
-       border-bottom-width:0; 
+       border-bottom-width:0;
       }
       &:nth-last-child(2):nth-child(even) {
         border-bottom-width:1px;
@@ -46,6 +46,6 @@ ul.gl-mod.link-box-list {
         padding: 16px 20px 16px 16px;
       }
     }
-    
-   
+  }
+
 }
