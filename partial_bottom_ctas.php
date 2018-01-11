@@ -43,7 +43,7 @@ if(empty($prevID) && $total > 2) {
 
 
 
-  </div>
+  </ul>
 
 
 
