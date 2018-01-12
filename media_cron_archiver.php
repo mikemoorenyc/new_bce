@@ -38,13 +38,16 @@ if(empty($posts)) {
 }
 $filePath = $csv_dir.'/'.$fileName.'.csv';
 $csv = fopen($filePath, 'w');
-$headers = array(
+if(!$csv) {
+  die();
+}
+$headers = fputcsv($csv, array(
   'Title',
   'Date',
   'Type',
   'GUIDs',
   'Permalink'
-);
+));
 foreach ($posts as $p) {
   $data = json_decode($p->post_content,true);
   $fields[] = $p->post_title;
@@ -54,7 +57,10 @@ foreach ($posts as $p) {
   $fields[] = $type;
   $fields[] = json_encode($data['GUID']);
   $fields[] = $data['clickthru'];
-  fputcsv($csv, $fields);
+  $addFile = fputcsv($csv, $fields);
+  if($addFile) {
+   $delete = wp_trash_post( $p->ID, false ); 
+  }
 }
 
 fclose($csv);
