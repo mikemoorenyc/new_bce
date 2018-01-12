@@ -18,7 +18,7 @@ $csv_dir =  get_home_path().'wp-content/media_dumps';
  $dir_iterator = new DirectoryIterator($csv_dir);
 $files = [];
 foreach($dir_iterator as $d) {
-  if(!$d->isFile()) {
+  if(!$d->isFile() || $fileinfo->getExtension() !== 'csv') {
     continue;
   }
   $filename = explode('.',$d->getFilename())[0];
