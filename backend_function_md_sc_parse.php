@@ -2,8 +2,9 @@
 function md_sc_parse($string) {
   $theReturn = '';
   $Parsedown = new Parsedown();
-  $theReturn = $Parsedown->text($string);
-  return do_shortcode( $theReturn );
+  $theReturn = do_shortcode($string);
+  return $Parsedown->text($theReturn);
+  
 }
 
 
