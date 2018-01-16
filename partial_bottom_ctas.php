@@ -34,11 +34,11 @@ if(empty($prevID) && $total > 2) {
   <ul class="gl-mod link-box-list">
 
     <?php if(!empty($prevID)):?>
-      <li><a class="mid-heading no-underline before-block gl-line-hover h-child" href="<?= get_the_permalink($prevID);?>"><?= get_the_title($prevID);?></a></li>
+      <li class="before-block"><a class="mid-heading no-underline before-block gl-line-hover h-child" href="<?= get_the_permalink($prevID);?>"><?= get_the_title($prevID);?></a></li>
     <?php endif;?>
 
     <?php if(!empty($nextID)):?>
-      <li><a class="mid-heading no-underline before-block gl-line-hover h-child" href="<?= get_the_permalink($nextID);?>"><?= get_the_title($nextID);?></a></li>
+      <li class="before-block"><a class="mid-heading no-underline before-block gl-line-hover h-child" href="<?= get_the_permalink($nextID);?>"><?= get_the_title($nextID);?></a></li>
     <?php endif;?>
 
 
