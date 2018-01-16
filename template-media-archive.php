@@ -15,7 +15,12 @@ $landing_post = $post;
 
 <?php
 $csv_dir =  str_replace('/uploads','',wp_upload_dir()['basedir']).'/media_dumps' ;
- $dir_iterator = new DirectoryIterator($csv_dir);
+if (!file_exists($csv_dir) && !is_dir($csv_dir)) {
+    $dir_iterator = new DirectoryIterator($csv_dir);
+} else {
+ $dir_iterator = [];
+}
+ 
 $files = [];
 foreach($dir_iterator as $d) {
   if(!$d->isFile() || $d->getExtension() !== 'json') {
