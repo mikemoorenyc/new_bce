@@ -34,7 +34,7 @@ $posts = get_posts(array(
   'post_type' => 'consumed',
   'date_query' => array(
 		array(
-      'before'    => date('Y-m-d',strtotime('-6 months')),
+      'before'    => date('Y-m-d',strtotime('-5 months')),
 			/*'after'     => $afterDate,*/
 			'inclusive' => true,
 		),
@@ -44,6 +44,22 @@ $posts = get_posts(array(
 if(empty($posts)) {
   die();
 }
+$dateSchema = [];
+foreach($posts as $p) {
+	$fileDate = date('m',strtotime($p->post_date)).'_'.date('Y',strtotime($p->post_date));
+	$filePath = $csv_dir.'/'.$fileDate.'.json';
+	//If this month is already in the Schema, just skip
+	if($dateSchema[$fileDate]) {
+		continue;
+	}
+	//If this month is already saved, open it. Else, create blank. 
+	if(file_exists($filePath)) {
+    $dateSchema[$fileDate] = json_decode(file_get_contents($filePath,TRUE));
+  } else {
+    $dateSchema[$fileDate] = [];
+  }
+}
+
 /*
 $filePath = $csv_dir.'/'.$fileName.'.csv';
 $csv = fopen($filePath, 'w');
@@ -59,15 +75,8 @@ $headers = fputcsv($csv, array(
 ));
 */
 foreach ($posts as $p) {
-  $fileDate = date('m',strtotime($p->post_date)).'_'.date('Y',strtotime($p->post_date));
-
-  $filePath = $csv_dir.'/'.$fileDate.'.json';
-  if(file_exists($filePath)) {
-    $stream = json_decode(file_get_contents($filePath,TRUE));
-  } else {
-    $stream = [];
-  }
-
+  
+	$fileDate = date('m',strtotime($p->post_date)).'_'.date('Y',strtotime($p->post_date));
   $data = json_decode($p->post_content,true);
   $fields = [];
   $fields['title'] = $p->post_title;
@@ -77,7 +86,9 @@ foreach ($posts as $p) {
   $fields['type'] = $type;
   $fields['GUID'] = json_encode($data['GUID']);
   $fields['permalink'] = $data['clickthru'];
-  $stream[] = $fields;
+	$fields['ID'] = $p->ID;
+	$dateSchema[$fileDate][] = $fields;
+	/*
   usort($stream,function($a,$b){
       return $a['date'] - $b['date'];
   });
@@ -86,7 +97,23 @@ foreach ($posts as $p) {
   if($put) {
    $delete = wp_trash_post( $p->ID, false );
   }
+	*/
 
+}
+foreach($dateSchema as $k => $d) {
+	$filePath = $csv_dir.'/'.$k.'.json';
+	$stream = $d;
+	usort($stream,function($a,$b){
+      return $a['date'] - $b['date'];
+  });
+  $stream = array_reverse($stream);
+	$put = file_put_contents($filePath,json_encode($stream));
+  if($put) {
+   foreach($d as $i) {
+		$delete = wp_trash_post($i['ID'],false); 
+	 }
+  }
+	
 }
 
 //fclose($csv);
