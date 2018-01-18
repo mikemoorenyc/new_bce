@@ -76,7 +76,7 @@
 <!-- [/*END REMOVE FROM PRODUCTION*/] -->
 
 <?php if($_COOKIE["liner_styles"]):?>
-  <div id="liner" style="<?= $_COOKIE["liner_styles"]; ?>"></div>
+  <script>document.write('<div id="liner" style="<?= $_COOKIE["liner_styles"]; ?>"></div>');</script>
 <?php endif; ?>
 <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,Array.from"></script>
 
