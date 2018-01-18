@@ -15,7 +15,7 @@ function postimage_shortcode( $atts, $content = null ) {
   ob_start();
 
   ?>
-<div>
+
 <figure class="post-image above-line <?php echo $type;?> <?php echo $post_type;?>">
 
   <?php if($type ==='phone'):?>
@@ -70,7 +70,7 @@ function postimage_shortcode( $atts, $content = null ) {
   <?php endif;?>
 
 </figure>
-</div>
+
   <?php
   return ob_get_clean();
 }

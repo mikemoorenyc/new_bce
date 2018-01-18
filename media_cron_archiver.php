@@ -52,9 +52,9 @@ foreach($posts as $p) {
 	if($dateSchema[$fileDate]) {
 		continue;
 	}
-	//If this month is already saved, open it. Else, create blank. 
+	//If this month is already saved, open it. Else, create blank.
 	if(file_exists($filePath)) {
-    $dateSchema[$fileDate] = json_decode(file_get_contents($filePath,TRUE));
+    $dateSchema[$fileDate] = json_decode(file_get_contents($filePath),true);
   } else {
     $dateSchema[$fileDate] = [];
   }
@@ -75,7 +75,7 @@ $headers = fputcsv($csv, array(
 ));
 */
 foreach ($posts as $p) {
-  
+
 	$fileDate = date('m',strtotime($p->post_date)).'_'.date('Y',strtotime($p->post_date));
   $data = json_decode($p->post_content,true);
   $fields = [];
@@ -100,21 +100,27 @@ foreach ($posts as $p) {
 	*/
 
 }
+
 foreach($dateSchema as $k => $d) {
 	$filePath = $csv_dir.'/'.$k.'.json';
 	$stream = $d;
+
 	usort($stream,function($a,$b){
       return $a['date'] - $b['date'];
   });
   $stream = array_reverse($stream);
+
+
 	$put = file_put_contents($filePath,json_encode($stream));
   if($put) {
    foreach($d as $i) {
-		$delete = wp_trash_post($i['ID'],false); 
+		$delete = wp_trash_post($i['ID'],false);
 	 }
   }
-	
+
+
 }
+
 
 //fclose($csv);
 
