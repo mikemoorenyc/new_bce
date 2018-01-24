@@ -16,7 +16,7 @@ $afterDate = array(
 );
 $beforeDate = $afterDate;
 */
-$six_months_ago = strtotime('-6 months');
+$six_months_ago = strtotime('-4 months');
 /*
 $beforeDate['month'] = 6;
 $beforeDate['minute'] = 0;
