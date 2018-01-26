@@ -34,7 +34,7 @@ $posts = get_posts(array(
   'post_type' => 'consumed',
   'date_query' => array(
 		array(
-      'before'    => date('Y-m-d',strtotime('-5 months')),
+      'before'    => date('Y-m-d',strtotime('-4 months')),
 			/*'after'     => $afterDate,*/
 			'inclusive' => true,
 		),
