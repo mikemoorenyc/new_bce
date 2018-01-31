@@ -29,10 +29,10 @@ foreach($dir_iterator as $d) {
     continue;
   }
   $filename = explode('.',$d->getFilename())[0];
-  $dateSort = explode('_',explode('_',$a)[0]);
+  $dateSort = explode('_',$filename);
   $files[] = array(
     'filename_full' => $d->getFilename(),
-    'dateSort' =>  intval($dateSort[0].$$dateSort[1]),
+    'dateSort' =>  intval($dateSort[1].$$dateSort[0]),
     'filename' => $filename
   );
 }
