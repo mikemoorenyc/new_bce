@@ -67,7 +67,7 @@ function imageData($p,$imgClass) {
 
 	$pURL = parse_url($imgURL);
 	if($pURL['scheme'] !== 'https' && !empty($imgURL)) {
-		$imgURL = $siteDir.'/image_proxy.php?url='.urlencode($imgURL);
+		$imgURL = '';
 	}
  if(empty($imgURL)) {
   $preloadClass = '';
