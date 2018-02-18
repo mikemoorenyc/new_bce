@@ -102,7 +102,7 @@ foreach($items as $i) {
   $data = array(
     'percent' => $readStatus->percent.'',
     'title' => $readStatus->book->title.'',
-    'img' => $imgURL,
+    'img' => httpcheck($imgURL),
     'timestamp' => strtotime($readStatus->updated_at.''),
     'status' => $readStatus->status.'',
     'type' => 'book',

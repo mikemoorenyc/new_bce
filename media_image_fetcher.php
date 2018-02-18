@@ -34,10 +34,10 @@ $tmdbCURLs = 0;
 
 
 foreach($posts as $p) {
-	
+
 	if(has_post_thumbnail($p->ID)) {continue;}
-	
-	
+
+
  $data = json_decode($p->post_content,true);
 
  $type = get_the_terms($p->ID, 'consumed_types');
@@ -71,7 +71,11 @@ foreach($posts as $p) {
 			}
 			$response = get_tvdb('episode', $data['tvdb_ID']);
 			if($response) {
-    		update_post_meta( $p->ID, 'imgURL', $response);
+        $url = httpcheck($response);
+        if($url) {
+          update_post_meta( $p->ID, 'imgURL', $url);
+        }
+
   		}
 			break;
 	endswitch;

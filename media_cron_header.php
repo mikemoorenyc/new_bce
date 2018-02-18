@@ -6,6 +6,9 @@ if( php_sapi_name() !== 'cli' ){die();}
 date_default_timezone_set('UTC');
 require_once("../../../wp-load.php");
 require_once get_template_directory().'/partial_api_key_generator.php';
+include_once('function_httpcheck.php');
+
+
 $wp_base = ABSPATH;
 $keys = api_key_generator();
 

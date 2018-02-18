@@ -162,7 +162,7 @@ foreach($items as $k => $i) {
 		'type' => 'track',
     'timestamp' => strtotime($i['played_at']),
     'title' => $info['name'],
-    'img' =>  $info['album']['images'][0]['url'],
+    'img' =>  httpcheck($info['album']['images'][0]['url']),
     'listenCount'=> $current['listenCount'],
     'clickthru' => $info['external_urls']['spotify'],
     'album' => array(
@@ -170,7 +170,7 @@ foreach($items as $k => $i) {
       'title' => $info['album']['name'],
       'artists' => $artists,
       'img' => $info['album']['images'][0]['url'],
-      'url' => $info['album']['external_urls']['spotify']
+      'url' => httpcheck($info['album']['external_urls']['spotify'])
     )
 	);
 
