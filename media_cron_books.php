@@ -58,7 +58,9 @@ $oldest_play = $items[count($items) -1]->pubDate.'';
 $compare_posts = comparePosts(['book'], strtotime($oldest_play));
 
 foreach($items as $i) {
-
+  if(strpos($i->guid,'UserStatus') === false && strpos($i->guid,'ReadStatus') === false) {
+    continue;
+  }
   if(in_array($i->guid,$compare_posts['GUID']) || strpos($i->guid,'Review')!== false ) {
    continue;
   }
