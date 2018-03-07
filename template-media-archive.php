@@ -32,7 +32,7 @@ foreach($dir_iterator as $d) {
   $dateSort = explode('_',$filename);
   $files[] = array(
     'filename_full' => $d->getFilename(),
-    'dateSort' =>  intval($dateSort[1].$$dateSort[0]),
+    'dateSort' =>  intval($dateSort[1].$dateSort[0]),
     'filename' => $filename
   );
 }
