@@ -35,7 +35,7 @@
       echo '<div class="blog-post-hero mar-20">'.$html.'</div>';
     }
      ?>
-     <div class="content">
+     <div class="content with-bullet">
      <?= md_sc_parse($post->post_content);?>
     </div>
 
