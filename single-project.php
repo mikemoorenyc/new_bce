@@ -71,7 +71,7 @@ include 'partial_lazy_load_img.php';
 
 
   <div class="p-s reading-section ">
-    <div class="content">
+    <div class="content with-bullet">
     <?php echo md_sc_parse($post->post_content);?>
   </div>
 
