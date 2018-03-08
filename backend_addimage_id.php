@@ -14,7 +14,7 @@ add_action('media_buttons', 'add_insert_image_id_button');
    ?>
  <script>
  jQuery(document).ready(function($){
-   $("#insert-media-button").hide();
+   $("#insert-media-button").remove();
    $('#ed_toolbar').height(0).css('min-height','0');
    $('#ed_toolbar *').hide();
    $('button#add-image-id').click(function(e){
