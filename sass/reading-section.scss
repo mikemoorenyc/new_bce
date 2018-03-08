@@ -13,7 +13,7 @@
 }
 
 .reading-section .content{
-  &:after {
+  &.with-bullet:after {
     display:block;
     content:'';
     margin: 2em auto;
