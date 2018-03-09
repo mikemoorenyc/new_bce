@@ -48,15 +48,21 @@ gulp.task('css', function(){
     .pipe(gulpif(argv.production, postcss(plugins)))
     .pipe(gulp.dest(dir+'/css'));
 });
-gulp.task('js', function(){
-  gulp.src([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'])
+
+function jsBuilder(srcArray, newName) {
+ return gulp.src(srcArray)
     .pipe(plumber())
     .pipe(babel({
         presets: [["es2015", { "modules": false }]]
     }))
-    .pipe(concat('main.js'))
+    .pipe(concat(newName))
     .pipe(gulpif(argv.production, uglify()))
-    .pipe(gulp.dest(dir+'/js'));
+    .pipe(gulp.dest(dir+'/js'));   
+    
+}
+
+gulp.task('js', function(){
+    jsBuilder([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'], 'main.js');
 });
 
 //Template Move
