@@ -65,13 +65,26 @@ class App extends Component {
     );
   }
 }
-function PostItem(props) {
-  
+class PostList extends Component {
+ constructor(props) {
+  super(props); 
+   
+ }
+ render(props,state) {
+   let type = '';
+   if(props.search) {
+    type = <span className="type-pill">{e.type}</span>; 
+   }
   return(
-    <div className="post-section">
-      <h2>
+    <div className="post-item">
+    {type}
+    {props.item.title}
     </div>
-  )
+  
+  ) 
+   
+ }
+  
 }
 class PostList extends Component {
   constructor(props) {
@@ -89,6 +102,15 @@ class PostList extends Component {
         return e.type === key;
       });
       if(!filtered.length){return false};
+      let items = filtered.map(function(e,i){
+        return <PostItem item={e} key={e.id}/>;
+      });
+      return (
+        <div className="post-section" key={i}>
+          <h2>{e+'s'}</h2>
+          {items}
+        </div>
+      )
       //return <PostSection items={filtered} header={key} />
     });
     
