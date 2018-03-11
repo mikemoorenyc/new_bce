@@ -43,29 +43,40 @@ function assignID(e) {
       afterInsert = content.substring(cEnd);
 
     tarea.value = beforeInsert+id+afterInsert;
-    jQuery('.page-id-modal-backdrop').remove();
-    document.querySelector('body').classList.remove('modal-open');
     tarea.focus();
     tarea.selectionStart = cStart+id.length;
     tarea.selectionEnd = cStart+id.length;
 
-    window.scrollTo(0, scrollPos);
+    closeModal();
 
 }
-jQuery(document).ready(function($){
-  $('button#add-post-id').on('click',createModal);
 
+function closeModal() {
+  var modal = document.querySelector('.page-id-modal-backdrop');
+  modal.parentNode.removeChild(modal);
+  document.querySelector('body').classList.remove('modal-open');
+  window.scrollTo(0, scrollPos);
+}
 
+function domready(fn) {
+  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
 
-//  $('button#add-post-id').click();
+domready(function(){
+  document.querySelector('button#add-post-id').addEventListener('click',createModal);
+
   function createModal(e) {
     e.preventDefault();
-
-    scrollPos = $(window).scrollTop();
-
-    $('body').addClass('modal-open');
-
-    $('body').append(
+    scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+    var theBody = document.querySelector('body')
+    theBody.classList.add('modal-open');
+    var modalContainer = document.createElement('div');
+    modalContainer.setAttribute('class', 'page-id-modal-backdrop');
+    modalContainer.innerHTML = (
       `
       <div  class="page-id-modal-backdrop">
         <div id="page-id-modal">
@@ -87,11 +98,14 @@ jQuery(document).ready(function($){
       </div>
       `
     );
+    theBody.appendChild(modalContainer);
     var sections = ['post','project','page'];
+    var baseItems = document.querySelector('#page-id-modal .modal-body.items');
     sections.forEach(function(e,i){
       var type = e;
+      var sectionClass = '';
       if(i === 0) {
-        var sectionClass = 'opened';
+         sectionClass = 'opened';
       }
       var fItems = allPosts.filter(function(e,i){
         return e.type === type;
@@ -102,42 +116,50 @@ jQuery(document).ready(function($){
           `<div class="post-item" onClick="assignID(this)" data-id=${e.id}>${e.title}</div>`
         )
       });
-      $('#page-id-modal .items').append(
+      var section = document.createElement('div');
+
+      section.innerHTML = (
         `
-        <h2 class="section-header ${sectionClass}"><span>${type+'s'}</span> <button class="visibility-toggle"></button></h2>
+        <h2 class="section-header ${sectionClass}"><span class="text">${type+'s'}</span> <span class="visibility-toggle"></span> </h2>
       <div class="post-items ${sectionClass}">  ${divs.join("")} </div>
         `
       );
+      baseItems.appendChild(section);
     });
 
-    $('#page-id-modal button.cancel').on('click',function(e){
+    document.querySelector('#page-id-modal button.cancel').addEventListener('click',function(e){
       e.preventDefault();
-      $('.page-id-modal-backdrop').remove();
-      $('body').removeClass('modal-open');
+      closeModal();
     });
-    $("#page-id-modal h2.section-header button.visibility-toggle").on('click',function(e){
-      e.preventDefault();
-      $(this).parent().toggleClass('opened');
-      $(this).parent().next().toggleClass('opened');
-      $(this).blur();
+    var headers = document.querySelectorAll("#page-id-modal h2.section-header");
+    Array.prototype.forEach.call(headers, function(e, i){
+      e.addEventListener('click',function(e){
+        this.classList.toggle('opened');
+        this.nextElementSibling.classList.toggle('opened');
+        this.blur();
+        return false;
+      });
     });
 
-    $('#page-id-modal #page-search-bar').on('input',function(e){
-      var needle = $(this).val().toLowerCase();
-
+    document.querySelector('#page-id-modal #page-search-bar').addEventListener('input',function(e){
+      var needle = e.target.value.toLowerCase();
+      var regItems = document.querySelector('#page-id-modal .items');
+      var searchItems =  document.querySelector('#page-id-modal .search-items');
       if(!needle){
-        $('#page-id-modal .items').show();
-        $('#page-id-modal .search-items').hide().html('');
+        regItems.style.display = 'block';
+        searchItems.style.display = 'none';
+        searchItems.innerHTML = '';
         return false;
       }
-      $('#page-id-modal .items').hide();
-      $('#page-id-modal .search-items').show().html('');
+      regItems.style.display = 'none';
+      searchItems.style.display = 'block';
+      searchItems.innerHTML = '';
       var filtered = allPosts.filter(function(e,i){
         let search = e.title.toLowerCase();
         return search.includes(needle);
       });
       if(!filtered.length){
-        $("#page-id-modal .search-items").html('<h2 class="no-matches">No matching posts found</h2>');
+        searchItems.innerHTML = '<h2 class="no-matches">No matching posts found</h2>';
         return false;
       }
       var items = filtered.map(function(e,i){
@@ -151,13 +173,16 @@ jQuery(document).ready(function($){
                   ${sec1}<b>${sec2}</b>${sec3}
                 </div>`);
       });
-      $("#page-id-modal .search-items").html(items.join(''));
+      searchItems.innerHTML = items.join('')
 
     });
+
+
+    return false;
   }
 
-});
 
+});
 </script>
 <style>
 .page-id-modal-backdrop {
@@ -210,10 +235,10 @@ jQuery(document).ready(function($){
   display:flex;
   border-bottom:1px solid #ccc;
   position:relative;
-
+  cursor: pointer;
 }
 
-#page-id-modal h2.section-header > span {
+#page-id-modal h2.section-header > span.text {
   padding: 12px;
   overflow:hidden;
   text-overflow: ellipsis;
@@ -222,17 +247,17 @@ jQuery(document).ready(function($){
   flex:1;
   text-transform: capitalize;
 }
-#page-id-modal h2.section-header > button {
+#page-id-modal h2.section-header > span.visibility-toggle {
   position:relative;
   flex-basis: 48px;
   border: 0;
   background:none;
   cursor:pointer;
 }
-#page-id-modal h2.section-header.opened > button {
+#page-id-modal h2.section-header.opened > span.visibility-toggle {
   transform: rotate(180deg);
 }
-#page-id-modal h2.section-header > button:before {
+#page-id-modal h2.section-header > span.visibility-toggle:before {
   display:block;
   content:'';
   position: absolute;
