@@ -35,6 +35,27 @@ if(empty($posts)) {
 <?php
 include_once 'switch_media_info.php';
 
+
+function media_alt_tag_creator($type, $title) {
+	switch ($type) {
+    case "movie":
+        return "Poster for "+$title;
+        break;
+    case "track":
+    case "album":
+    case "book"
+        return "Cover for "+$title;
+        break;
+    case "show":
+    case "episode"
+        echo "Still of "+$title;
+        break;
+    default: 
+       return $title;
+  }
+	
+}
+
 function imageData($p,$imgClass) {
   global $siteDir;
   $preloadClass = 'preload-image';
@@ -158,7 +179,7 @@ foreach($posts as $k => $p) {
           class="<?= $imgData['preload'];?> no-blur"
           src="<?= $siteDir;?>/assets/imgs/blank_<?= $imgClass ?>.png"
           data-src="<?= $imgData['url'];?>"
-          alt="<?= $p->post_title;?>" />
+          alt="<?= media_alt_tag_creator($type, $p->post_title);?>" />
       </div>
     </div>
     <div class="info">
