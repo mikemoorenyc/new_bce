@@ -37,23 +37,24 @@ include_once 'switch_media_info.php';
 
 
 function media_alt_tag_creator($type, $title) {
+
 	switch ($type) {
     case "movie":
-        return "Poster for "+$title;
+        return "Poster for ".$title;
         break;
     case "track":
     case "album":
-    case "book"
-        return "Cover for "+$title;
+    case "book":
+        return "Cover for ".$title;
         break;
     case "show":
-    case "episode"
-        echo "Still of "+$title;
+    case "episode":
+        return "Still of ".$title;
         break;
-    default: 
+    default:
        return $title;
   }
-	
+
 }
 
 function imageData($p,$imgClass) {
@@ -171,6 +172,7 @@ foreach($posts as $k => $p) {
   }
   $time_marker = $time;
   $clickClass = ($data['clickthru']) ? 'clickthru' : '';
+
   ?>
   <div data-key="<?= $k; ?>" class="media-item <?= $clickClass;?> type-<?=$type;?> blank above-line">
     <div class="img-container">
