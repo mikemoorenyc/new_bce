@@ -219,4 +219,4 @@ $colormode = (!$_COOKIE['colormode']) ? 'color' : $_COOKIE['colormode'];
    </div>
  </header>
 <div id="footer-grid-wrap">
- <div id="main-content-container">
+ <main id="main-content-container">
