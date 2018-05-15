@@ -10,7 +10,7 @@
 
 
 
-  <div class="bs post-content  reading-section  ">
+  <article class="bs post-content  reading-section  ">
     <div class="bs header ">
       <div class="meta">
 
@@ -57,7 +57,7 @@
 
 
 
-  </div>
+  </article>
 
 
 
