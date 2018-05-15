@@ -1,5 +1,5 @@
 
-</div>
+</main>
 <footer id="footer">
 
 
