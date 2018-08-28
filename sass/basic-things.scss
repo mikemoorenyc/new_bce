@@ -17,16 +17,22 @@ body {
 }
 
 //STICKY FOOTER
+body {
+  display:flex;
+}
 #footer-grid-wrap {
   min-height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr auto;
   width:100%;
-  grid-template-columns: 100%;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+#main-content-container {
+  flex-grow: 1;
 }
 #footer {
-  grid-row-start: 2;
-  grid-row-end: span 1;
+  flex-shrink: 0;
   margin-top: 80px;
 }
 .content-centerer {
