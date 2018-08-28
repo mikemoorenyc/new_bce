@@ -25,3 +25,8 @@ body {
 html {
   font-size: 1px;
 }
+@media (prefers-reduced-motion) {
+	*, *:before, *:after {
+   animation: none !important; 
+  }
+}
