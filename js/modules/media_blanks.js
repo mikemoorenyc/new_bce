@@ -171,6 +171,6 @@ function infoSwitch(item) {
 
     default:
       return `${titleFormatter(item.title)}`;
-  }
+  }*/
 }
-*/
+
