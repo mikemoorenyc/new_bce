@@ -82,7 +82,16 @@
 
 <script defer  src="<?= $siteDir;?>/js/main.js?v=<?= $cacheBreaker;?>"></script>
 
-
+<noscript>
+  <style>
+    .media-stream.container .media-item.blank {
+      color: inherit;
+      visibility: visible;
+    }
+    
+  </style>
+  
+</noscript>
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
