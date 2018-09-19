@@ -31,6 +31,9 @@ function mediaBlanks() {
   sets.forEach(set => observer.observe(set));
 }
 
+
+//This is unused
+/*
 function contentFill(key) {
   let item = App.mediaContent[key];
   let imgClass = item.type;
@@ -170,3 +173,4 @@ function infoSwitch(item) {
       return `${titleFormatter(item.title)}`;
   }
 }
+*/
