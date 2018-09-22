@@ -174,7 +174,8 @@ foreach($posts as $k => $p) {
   $clickClass = ($data['clickthru']) ? 'clickthru' : '';
 
   ?>
-  <div data-key="<?= $k; ?>" class="media-item <?= $clickClass;?> type-<?=$type;?> blank above-line">
+  <div data-key="<?= $k; ?>" class="media-item <?= $clickClass;?> type-<?=$type;?>  above-line">
+
     <div class="img-container">
       <div class="media-image type-<?= $imgClass;?>">
         <img
@@ -188,6 +189,7 @@ foreach($posts as $k => $p) {
 			<?php
 				$showTitle = $data['show']['title'] ?: $p->post_title;
 			?>
+      <?= json_encode($data['album']); ?>
       <?php switch_media_info(
         array(
          'title'=>$p->post_title,

@@ -136,7 +136,7 @@ foreach($items as $k => $i) {
 	$info = $i['track_info'];
 	$track_GUID = $i['track']['id'].'_'.$i['played_at'];
   $artists = array_map(function($a){
-    return $a['name'];
+    return htmlentities($a['name'], ENT_QUOTES);
   },$info['album']['artists']);
 
 	//CHECK IF SAME TRACK
@@ -161,13 +161,13 @@ foreach($items as $k => $i) {
     'ID' => $i['track']['id'],
 		'type' => 'track',
     'timestamp' => strtotime($i['played_at']),
-    'title' => $info['name'],
+    'title' => htmlentities($info['name'], ENT_QUOTES),
     'img' =>  httpcheck($info['album']['images'][0]['url']),
     'listenCount'=> $current['listenCount'],
     'clickthru' => $info['external_urls']['spotify'],
     'album' => array(
       'ID' => $info['album']['id'],
-      'title' => $info['album']['name'],
+      'title' => htmlentities($info['album']['name'], ENT_QUOTES),
       'artists' => $artists,
       'img' => $info['album']['images'][0]['url'],
       'url' => httpcheck($info['album']['external_urls']['spotify'])

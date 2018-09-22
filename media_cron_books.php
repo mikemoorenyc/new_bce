@@ -84,7 +84,7 @@ foreach($items as $i) {
   }
   $authors = [];
   foreach($readStatus->book->authors->author as $a) {
-    $authors[] = $a->name.'';
+    $authors[] = htmlentities($a->name.'', ENT_QUOTES);
   }
 
   $imgURL = $readStatus->book->image_url.'';
@@ -102,11 +102,11 @@ foreach($items as $i) {
   }
 
   $data = array(
-    'percent' => $readStatus->percent.'',
-    'title' => $readStatus->book->title.'',
+    'percent' => htmlentities($readStatus->percent.'', ENT_QUOTES),
+    'title' => htmlentities($readStatus->book->title.'', ENT_QUOTES),
     'img' => httpcheck($imgURL),
     'timestamp' => strtotime($readStatus->updated_at.''),
-    'status' => $readStatus->status.'',
+    'status' =>htmlentities($readStatus->status.'', ENT_QUOTES) ,
     'type' => 'book',
     'authors' => $authors,
     'clickthru' => $readStatus->book->link.'',

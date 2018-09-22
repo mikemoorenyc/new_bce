@@ -1,34 +1,71 @@
 function mediaBlanks() {
   let observer = new IntersectionObserver(onChange);
   const sets = [ ...document.querySelectorAll('.media-item') ];
-  const mediaHTML = [];
+  const innerContents = [];
   sets.forEach(function(e,i){
-    mediaHTML.push(e.innerHTML);
-    e.innerHTML = '';
-    e.classList.add('blank');
+    innerContents.push({
+      html: e.innerHTML,
+      styles: e.getAttribute('style') || ""
+    });
+    e.setAttribute('data-intersector-key', i);
+    let img = e.querySelector('img');
+    if(img.classList.contains('preload-image')) {
+      img.setAttribute('src', img.getAttribute('data-src'));
+    }
   });
+
   function onChange(changes) {
 
    changes.forEach(change => {
+     var key = parseInt(change.target.getAttribute('data-intersector-key'));
      if(change.isIntersecting) {
-       change.target.innerHTML = mediaHTML[parseInt(change.target.getAttribute('data-key'))];
-       change.target.classList.remove('blank');
-       let img = change.target.querySelector('img');
-       if(img.classList.contains('preload-image')) {
-         img.setAttribute('src', img.getAttribute('data-src'));
-       }
-
+       returnContents(change.target)
 
      } else {
-       change.target.classList.add('blank');
+       innerContents[key]['html'] = change.target.innerHTML;
+       innerContents[key]['styles'] = change.target.getAttribute('style') || "";
+      // change.target.style.height = change.target.offsetHeight+'px';
+       change.target.setAttribute('style', "border: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; height: "+change.target.offsetHeight+"px");
+       change.target.classList.add('offScreen');
        change.target.innerHTML = '';
      }
    });
   }
 
+  function returnContents(thetarget) {
+    var key = parseInt(thetarget.getAttribute('data-intersector-key'));
+    thetarget.innerHTML = innerContents[key]['html'];
+    thetarget.style.height = "";
+    thetarget.setAttribute('style',innerContents[key]['styles']);
+    thetarget.classList.remove('offScreen');
+    let img = thetarget.querySelector('img');
+    if(img.classList.contains('preload-image')) {
+      img.setAttribute('src', img.getAttribute('data-src'));
+    }
+  }
 
 
   sets.forEach(set => observer.observe(set));
+
+  window.addEventListener('resize', function(){
+    leader();
+  });
+
+  window.addEventListener('resize', function(){
+    trailer();
+  });
+
+  var leader = _.debounce(function(){
+    sets.forEach(e => {
+      returnContents(e);
+      observer.unobserve(e)
+    });
+  },400,{leading:true,trailing:false});
+
+  var trailer = _.debounce(function(){
+    sets.forEach(set => observer.observe(set));
+  },400,{leading:false,trailing:true});
+
 }
 
 

@@ -20,12 +20,12 @@ function artistNames($i) {
 }
 
 function title_formatter($title,$classString ='') {
- 
+
  $title = trim(preg_replace("/\([^)]+\)/","",$title));
 
  if(strlen($title) >= 35) {
   $long_title = 'long-title';
-  $title = substr($title,0,30).'...';
+  //$title = substr($title,0,30).'...';
  }
  if(strlen($title) < 15) {
   $long_title = 'short-title';

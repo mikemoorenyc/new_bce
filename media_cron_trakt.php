@@ -57,7 +57,7 @@ foreach($items as $k => $i) {
 	if($i['type'] === 'movie') {
 		$workingArray[] = array(
       'GUID' =>  [$i['id']],
-      'title' => $i['movie']['title'],
+      'title' => htmlentities($i['movie']['title'], ENT_QUOTES),
       'ID' => $i['movie']['ids']['tmdb'],
       'type' => 'movie',
       'timestamp' => strtotime($i['watched_at']),
@@ -84,7 +84,7 @@ foreach($items as $k => $i) {
   $workingArray[] = array(
     'GUID'=>[$i['id']],
     'type' => 'episode',
-    'title' => $i['episode']['title'],
+    'title' => htmlentities($i['episode']['title'], ENT_QUOTES),
     'ID' => $i['episode']['ids']['tmdb'],
     'timestamp' => strtotime($i['watched_at']),
     'season' => $i['episode']['season'],
@@ -94,7 +94,7 @@ foreach($items as $k => $i) {
 		'clickthru' => 'https://trakt.tv/shows/'.$i['show']['ids']['slug'].'/seasons/'.$i['episode']['season'].'/episodes/'.$i['episode']['number'],
     'show' => array(
 			'slug' => $i['show']['ids']['slug'],
-      'title' => $i['show']['title'],
+      'title' => htmlentities($i['show']['title'], ENT_QUOTES),
       'ID' => $i['show']['ids']['tmdb'],
       'tvdb_ID' => $i['show']['ids']['tvdb']
     )
