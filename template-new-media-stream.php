@@ -189,7 +189,7 @@ foreach($posts as $k => $p) {
 			<?php
 				$showTitle = $data['show']['title'] ?: $p->post_title;
 			?>
-      <?= json_encode($data['album']); ?>
+
       <?php switch_media_info(
         array(
          'title'=>$p->post_title,
