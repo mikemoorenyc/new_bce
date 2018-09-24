@@ -5,3 +5,4 @@
 - Refactor JS, single IntersectionObserver (use custom events https://javascript.info/dispatch-events )
 - Refactor JS, try to remove scroll event
 - Refactor JS, shut off color change when not in frame. 
+- Make GRID work correctly
