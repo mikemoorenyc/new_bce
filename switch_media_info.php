@@ -59,7 +59,7 @@ function switch_media_info($i) {
   ?> <div class="extra font-sans">Watched</div> <?php
   echo title_formatter( $i['title'],'single');
   ?>
-  <div class="show-title font-sans text-overflow"><?= $i['show']['title']; ?></div>
+  <div class="show-title font-sans "><?= $i['show']['title']; ?></div>
   <?php
   break;
 
