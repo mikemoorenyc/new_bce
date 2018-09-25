@@ -121,7 +121,7 @@ foreach($items as $i) {
     'post_title' => $data['title'],
     'post_type' => 'consumed',
     'post_status'=> 'publish',
-    'post_content' => json_encode($data),
+    'post_content' => json_encode($data,JSON_UNESCAPED_UNICODE),
     'post_date' => $dates['est'],
     'post_date_gmt'=> $dates['gmt']
   ) );

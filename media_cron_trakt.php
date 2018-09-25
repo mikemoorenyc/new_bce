@@ -123,7 +123,7 @@ foreach($workingArray as $w) {
 		'post_title' => $post_title,
 		'post_type' => 'consumed',
 		'post_status'=> 'publish',
-		'post_content' => json_encode($w),
+		'post_content' => json_encode($w,JSON_UNESCAPED_UNICODE),
 		'post_date' => $dates['est'],
 		'post_date_gmt'=> $dates['gmt']
 	) );
@@ -177,7 +177,7 @@ for($i = 1; $i < $the_count; $i++) {
 		$current_data['clickthru'] = 'https://trakt.tv/shows/'.$current_data['show']['slug'];
     $updated = wp_update_post(array(
       'ID' => $current->ID,
-      'post_content'=>json_encode($current_data),
+      'post_content'=>json_encode($current_data,JSON_UNESCAPED_UNICODE),
       'post_title' => $current_data['show']['title']
     ));
     if($updated) {

@@ -195,7 +195,7 @@ foreach($workingArray as $w) {
 		'post_title' => $post_title,
 		'post_type' => 'consumed',
 		'post_status'=> 'publish',
-		'post_content' => json_encode($w),
+		'post_content' => json_encode($w,JSON_UNESCAPED_UNICODE),
 		'post_date' => $dates['est'],
 		'post_date_gmt'=> $dates['gmt']
 	) );
@@ -224,7 +224,7 @@ foreach($to_consolidate as $k => $c) {
     $current_data['listenCount'] = intval($prev_data['listenCount']) + intval($current_data['listenCount']);
     $updated = wp_update_post(array(
       'ID' => $c->ID,
-      'post_content'=>json_encode($current_data)
+      'post_content'=>json_encode($current_data,JSON_UNESCAPED_UNICODE)
     ));
     if($updated) {
       $to_consolidate[$k] = get_post($c->ID);
@@ -238,7 +238,7 @@ foreach($to_consolidate as $k => $c) {
     $current_data['clickthru'] = $current_data['album']['url'];
     $updated = wp_update_post(array(
       'ID' => $c->ID,
-      'post_content'=>json_encode($current_data),
+      'post_content'=>json_encode($current_data,JSON_UNESCAPED_UNICODE),
       'post_title' =>$current_data['album']['title']
     ));
     if($updated) {
