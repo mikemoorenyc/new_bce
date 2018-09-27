@@ -157,9 +157,31 @@ foreach($items as $k => $i ){
       if(!$i['img']) {
         $preload="";
       }
+  if($i['img']) {
+    ?>
+      <img title="<?=$title;?>" 
+           class="<?= $preload;?> no-blur"  
+           src="<?= $siteDir;?>/assets/imgs/blank_<?= $imgClass ?>.png" 
+           data-src="<?= $imgURL;?>" 
+           alt="<?= $i['title'];?>" />
+    <?php
+    
+  } else {
+    switch($imgClass) :
+      case("cd"):
+        echo '<span class="no-cd-blank"></span>';
+        break;
+    
+    endswitch;
+    
+  }
+  
 
-      ?>
-      <img title="<?=$title;?>" class="<?= $preload;?> no-blur"  src="<?= $siteDir;?>/assets/imgs/blank_<?= $imgClass ?>.png" data-src="<?= $imgURL;?>" alt="<?= $i['title'];?>" />
+    ?>
+     
+       
+       
+      
     </div>
     </div>
     <div class="info">
