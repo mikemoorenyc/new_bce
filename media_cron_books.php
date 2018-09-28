@@ -100,16 +100,29 @@ foreach($items as $i) {
       }
     }
   }
+  $dimensions = array(
+    "width" => null,
+    "height" => null
+  );
+  $finalImgURL = httpcheck($imgURL);
+  if($finaImgURL) {
+    $size = getimagesize($finalImgURL);
+    $dimensions = array(
+      "width" => $size[0],
+      "height" => $size[1]
+    );
+  }
 
   $data = array(
     'percent' => htmlentities($readStatus->percent.'', ENT_QUOTES),
     'title' => htmlentities($readStatus->book->title.'', ENT_QUOTES),
-    'img' => httpcheck($imgURL),
+    'img' => $finalImgURL,
     'timestamp' => strtotime($readStatus->updated_at.''),
     'status' =>htmlentities($readStatus->status.'', ENT_QUOTES) ,
     'type' => 'book',
     'authors' => $authors,
     'clickthru' => $readStatus->book->link.'',
+    "dimensions" => $dimensions,
     'GUID' => [$i->guid.'']
   );
 
