@@ -100,10 +100,7 @@ foreach($items as $i) {
       }
     }
   }
-  $dimensions = array(
-    "width" => null,
-    "height" => null
-  );
+  $dimensions = null;
   $finalImgURL = httpcheck($imgURL);
   if($finaImgURL) {
     $size = getimagesize($finalImgURL);
