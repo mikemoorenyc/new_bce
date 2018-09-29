@@ -174,37 +174,53 @@ foreach($posts as $k => $p) {
   $clickClass = ($data['clickthru']) ? 'clickthru' : '';
 
   ?>
-	
-	
+
+
 	<?php
 	$book_width = "";
 	if($type === "book" && $i['dimensions']) {
-		$w = intval($['i']['dimensions']['width']);
-		$h = intval( $i['i']['dimensions']['height']);
+		$w = intval($i['dimensions']['width']);
+		$h = intval( $i['dimensions']['height']);
 		$d = 74 / $h;
 		$new_w = $w * $d;
 		$book_width = 'style="width: ${new_w}em;"';
 	}
-	
-	
+
+
+
 	?>
-	
-	
-	
+
+  <?php
+  $empty = "";
+  if(!$imgData['url']) {
+    $empty = "empty";
+  }
+
+   ?>
+
   <div data-key="<?= $k; ?>" class="media-item <?= $clickClass;?> type-<?=$type;?>  above-line">
 
     <div class="img-container">
-      <div class="media-image type-<?= $imgClass;?>">
-				<?php if($imgData['url']): ?>
-					<img
-						class="<?= $imgData['preload'];?> no-blur"
-						src="<?= $siteDir;?>/assets/imgs/blank_<?= $imgClass ?>.png"
-						data-src="<?= $imgData['url'];?>"
-						alt="<?= media_alt_tag_creator($type, $p->post_title);?>" 
-						<?= $book_width; ?>
-					/>
+      <div class="media-image type-<?= $imgClass;?> <?= $empty;?>">
+				<?php if(!$imgData['url'] && $imgClass !== "other"): ?>
+          <span class="media-blank type-<?= $imgClass;?> before-block after-block">
+              <?php
+                if($imgClass === "movie") {
+                  echo file_get_contents(get_template_directory().'/assets/svgs/icon_'.$imgClass.'.svg');
+                }
+                ?>
+          </span>
+
 				<?php else:?>
-				<span class="media-blank type-<?= $imgClass;?>"></span>
+
+          <img
+            class="<?= $imgData['preload'];?> no-blur"
+            src="<?= $siteDir;?>/assets/imgs/blank_<?= $imgClass ?>.png"
+            data-src="<?= $imgData['url'];?>"
+            alt="<?= media_alt_tag_creator($type, $p->post_title);?>"
+            <?= $book_width; ?>
+          />
+
 				<?php endif;?>
       </div>
     </div>

@@ -9,7 +9,7 @@ function mediaBlanks() {
     });
     e.setAttribute('data-intersector-key', i);
     let img = e.querySelector('img');
-    if(img.classList.contains('preload-image')) {
+    if(img && img.classList.contains('preload-image')) {
       img.setAttribute('src', img.getAttribute('data-src'));
     }
   });
@@ -39,6 +39,10 @@ function mediaBlanks() {
     thetarget.setAttribute('style',innerContents[key]['styles']);
     thetarget.classList.remove('offScreen');
     let img = thetarget.querySelector('img');
+
+    if(!img) {
+      return;
+    }
     if(img.classList.contains('preload-image')) {
       img.setAttribute('src', img.getAttribute('data-src'));
     }
