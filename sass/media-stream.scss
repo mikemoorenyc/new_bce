@@ -179,10 +179,10 @@
         padding: 4em;
 
 
-        img {
+        img, .media-blank {
           width: 74em;
           height: (74em * (9/16));
-          padding: 1px;
+          border-width: 1px;
         }
         &:before, &:after {
           display:block;
@@ -231,8 +231,9 @@
           top: 2.5em;
           left: 6em;
         }
-        img {
-          padding: 0 1px 0 1px;
+        img,.media-blank {
+          width: 48.026em;
+          border-width: 0 1px 0 1px;
           height: calc(74em + 1px);
         }
       }
@@ -272,6 +273,80 @@
         &:after {
           width: 12em;
           height: 12em;
+        }
+      }
+      &.type-tv {
+        &:before, &:after {
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%,-50%);
+          border-width: 1px;
+          border-radius: 50%;
+          width: 32em;
+          height: 32em;
+        }
+        &:after {
+          width: 22em;
+          height: 22em;
+          border-width: 0 0 1px 0;
+        }
+      }
+      &.type-book {
+        &:before, &:after {
+          position:absolute;
+        }
+        &:before {
+          width: 12em;
+          height: 12em;
+          border: 6em solid;
+          border-bottom-color: transparent;
+          position: absolute;
+          right: 8em;
+          top: 14em;
+        }
+        &:after {
+          background:currentColor;
+          width: 12em;
+          height: 14em;
+          position:absolute;
+          right: 8em;
+          top: 0;
+        }
+      }
+    }
+    .helper-1 {
+      &.type-tv {
+        background: red;
+        width: 20em;
+        position:absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 22em;
+        &:before, &:after {
+          position:absolute;
+          width: 6em;
+          height: 6em;
+          border-width: 1px;
+          border-radius:50%;
+          left: 0;
+          top: calc(50% - 3em);
+        }
+        &:after {
+          right: 0;
+          left: auto;
+        }
+      }
+      &.type-book {
+        &:before, &:after {
+          position:absolute;
+          width: 24em;
+          height: 3em;
+          background: currentColor;
+          right:8em;
+          top: 56em;
+        }
+        &:after {
+          top: 62em;
         }
       }
     }

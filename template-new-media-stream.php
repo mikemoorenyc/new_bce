@@ -178,12 +178,12 @@ foreach($posts as $k => $p) {
 
 	<?php
 	$book_width = "";
-	if($type === "book" && $i['dimensions']) {
-		$w = intval($i['dimensions']['width']);
-		$h = intval( $i['dimensions']['height']);
+	if($type === "book" && $data['dimensions']) {
+		$w = intval($data['dimensions']['width']);
+		$h = intval( $data['dimensions']['height']);
 		$d = 74 / $h;
 		$new_w = $w * $d;
-		$book_width = 'style="width: ${new_w}em;"';
+		$book_width = 'style="width: '.$new_w.'em;"';
 	}
 
 
@@ -210,6 +210,7 @@ foreach($posts as $k => $p) {
                 }
                 ?>
           </span>
+          <?php if($imgClass === "tv" || $imgClass == "book"): echo "<span class='helper-1 type-{$imgClass} before-block after-block'></span>"; endif;?>
 
 				<?php else:?>
 
