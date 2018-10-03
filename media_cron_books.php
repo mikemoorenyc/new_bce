@@ -100,10 +100,15 @@ foreach($items as $i) {
       }
     }
   }
+  if(strpos($imgURL, 'nophoto') !== false) {
+    $imgURL = null;
+  }
   $dimensions = null;
   $finalImgURL = httpcheck($imgURL);
-  if($finaImgURL) {
+  var_dump($finalImgURL);
+  if($finalImgURL) {
     $size = getimagesize($finalImgURL);
+    var_dump($size);
     $dimensions = array(
       "width" => $size[0],
       "height" => $size[1]

@@ -1,5 +1,8 @@
 <?php
 function httpcheck($url) {
+  if(!$url) {
+    return null;
+  }
   $parsed_url = parse_url($url);
 
   if($parsed_url['scheme'] === 'https' || empty($url)) {
