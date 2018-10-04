@@ -29,4 +29,7 @@ html {
 	*, *:before, *:after {
    animation: none !important;
   }
+	#color-mode-switcher, #liner {
+		display: none !important
+	}
 }
