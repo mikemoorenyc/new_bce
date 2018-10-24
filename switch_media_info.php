@@ -18,7 +18,23 @@ function artistNames($i) {
  }
  return $string;
 }
-
+function title_cutter($title) {
+ if(strlen($title) <= 100) {
+  return $title;
+ }
+ $l = 0;
+ $new_string = "";
+ $split = explode(" ", $title);
+ foreach($split as $k => $s) {
+  $new_string = $new_string +$s+' ';
+  if(strlen($split[$k+1]) + strlen($new_string) > 100) {
+   return $new_string+ "...";
+  }
+  
+ }
+ return $new_string + "...";
+ 
+}
 function title_formatter($title,$classString ='') {
 
  $title = trim(preg_replace("/\([^)]+\)/","",$title));
@@ -30,7 +46,7 @@ function title_formatter($title,$classString ='') {
  if(strlen($title) < 15) {
   $long_title = 'short-title';
  }
- return '<h2 class="'.$long_title.' '.$classString.'"><span class="hover">'.$title.'</span></h2>';
+ return '<h2 class="'.$long_title.' '.$classString.'"><span class="hover">'.title_cutter($title).'</span></h2>';
 
 }
 
