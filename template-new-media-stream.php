@@ -37,7 +37,7 @@ include_once 'switch_media_info.php';
 
 
 function media_alt_tag_creator($type, $title) {
-
+$title = strip_tags($title);
 	switch ($type) {
     case "movie":
         return "Poster for ".$title;
@@ -179,11 +179,16 @@ foreach($posts as $k => $p) {
 	<?php
 	$book_width = "";
 	if($type === "book" && $data['dimensions']) {
-		$w = intval($data['dimensions']['width']);
-		$h = intval( $data['dimensions']['height']);
-		$d = 74 / $h;
-		$new_w = $w * $d;
-		$book_width = 'style="width: '.$new_w.'em;"';
+		if($data['dimensions']['width'] > $data['dimensions']['height']) {
+			$book_width = 'style="width: auto; height: auto; max-width: 74em;"';
+		} else {
+			$w = intval($data['dimensions']['width']);
+			$h = intval( $data['dimensions']['height']);
+			$d = 74 / $h;
+			$new_w = $w * $d;
+			$book_width = 'style="width: '.$new_w.'em;"';
+		}
+		
 	}
 
 
