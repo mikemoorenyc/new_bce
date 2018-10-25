@@ -26,14 +26,14 @@ function title_cutter($title) {
  $new_string = "";
  $split = explode(" ", $title);
  foreach($split as $k => $s) {
-  $new_string = $new_string +$s+' ';
+  $new_string = $new_string .$s.' ';
   if(strlen($split[$k+1]) + strlen($new_string) > 100) {
-   return $new_string+ "...";
+   return $new_string. "...";
   }
-  
+
  }
- return $new_string + "...";
- 
+ return $new_string ."...";
+
 }
 function title_formatter($title,$classString ='') {
 
