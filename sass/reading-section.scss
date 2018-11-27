@@ -97,6 +97,7 @@
     font-family: $font-sans;
   }
   hr {
+
     height: 32px;
 
     position: relative;
@@ -106,6 +107,7 @@
       position: absolute;
       left: 50%;
       top: 50%;
+
       transform: translate(-50%,-50%);
       line-height: 32px;
       font-size: 32px;
@@ -155,6 +157,7 @@
       bottom: -4px;
       top: -4px;
       border: 1px dashed currentColor;
+      pointer-events:none;
     }
 
   }
