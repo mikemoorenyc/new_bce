@@ -8,6 +8,7 @@ function httpcheck($url) {
   if($parsed_url['scheme'] === 'https' || empty($url)) {
 		return $url;
 	}
+  /*
   $img = @file_get_contents($url);
   if(!$img) {
     return '';
@@ -17,6 +18,7 @@ function httpcheck($url) {
   if($upload['url']) {
     return $upload['url'];
   }
+  */
   return null;
 }
 
