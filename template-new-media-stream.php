@@ -77,8 +77,10 @@ function imageData($p,$imgClass) {
 			$imgURL = get_post_meta($p->ID, 'imgURL',true);
 			break;
 		case "episode":
+      $imgURL = get_post_meta($p->ID, 'imgURL',true) ?: get_post_meta($p->ID, 'showImgURL',true);
+      break;
 		case "show":
-			$imgURL = get_post_meta($p->ID, 'imgURL',true) ?: get_post_meta($p->ID, 'showImgURL',true);
+			$imgURL = get_post_meta($p->ID, 'showImgURL',true) ?: "";
 			break;
 		default:
 			$imgURL = $data['img'] ?: $imgURL ;
@@ -188,7 +190,7 @@ foreach($posts as $k => $p) {
 			$new_w = $w * $d;
 			$book_width = 'style="width: '.$new_w.'em;"';
 		}
-		
+
 	}
 
 
