@@ -17,7 +17,7 @@
         top: 0;
         width: 100%;
         height:100%;
-      //  display:none;
+  //      display:none;
       }
       &:hover {
         border-style:solid;
@@ -149,12 +149,57 @@
         padding-left: 5em;
         border-width:1px;
 
-        img,.media-blank {
+        img,.media-blank, .playlist-blank {
           border-left-width:1px;
           width: calc(74em + 1px);
           height: 74em;
-
+          display:block;
           max-width:none;
+        }
+        .playlist-tag {
+          position: absolute;
+          font-size: 10px;
+          right: .5em;
+          bottom: .5em;
+          padding: .75em .25em;
+          border: 1px solid currentColor;
+          box-shadow: 2px 2px 0 currentColor;
+          background: $white;
+          font-family: $font-sans;
+          text-transform: uppercase;
+        }
+        .playlist-blank {
+          position: relative;
+          span {
+            position:absolute;
+            display:block;
+          }
+          .playlist-image {
+            width: 50%;
+            height: 50%;
+            background-size: 200% 200%;
+            &.top {
+              top: 0;
+            }
+            &.bottom {
+              bottom: 0;
+            }
+            &.right {
+              right: 0;
+            }
+            &.left {
+              left: 0;
+            }
+            &.top.right {
+              background-position: top right;
+            }
+            &.bottom.right {
+              background-position: bottom right;
+            }
+            &.bottom.left {
+              background-position: bottom left;
+            }
+          }
         }
       }
       &.type-other {

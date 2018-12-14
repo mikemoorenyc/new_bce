@@ -76,7 +76,7 @@ function comparePosts($types, $oldest_play) {
    $data = json_decode($p->post_content,true);
    if($data['GUID']) {
      foreach($data['GUID'] as $guid) {
-       $GUIDs[] = $guid;
+       $GUIDs[] = (string)$guid;
      }
    }
 

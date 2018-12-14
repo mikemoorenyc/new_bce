@@ -57,8 +57,8 @@ function jsBuilder(srcArray, newName) {
     }))
     .pipe(concat(newName))
     .pipe(gulpif(argv.production, uglify()))
-    .pipe(gulp.dest(dir+'/js'));   
-    
+    .pipe(gulp.dest(dir+'/js'));
+
 }
 
 gulp.task('js', function(){
@@ -67,6 +67,8 @@ gulp.task('js', function(){
 
 //Template Move
 gulp.task('templates', function(){
+  gulp.src(['includes_media_stream_template/**/*'])
+    .pipe(gulp.dest(dir+'/includes_media_stream_template'));
   return gulp.src(['*.html', '*.php'])
     .pipe(gulpif(!argv.production, strip({start_comment: "REMOVE IN DEV", end_comment: "END REMOVE IN DEV"})))
     .pipe(gulpif(argv.production, strip({start_comment: "REMOVE FROM PRODUCTION", end_comment: "END REMOVE FROM PRODUCTION"})))
@@ -74,6 +76,7 @@ gulp.task('templates', function(){
     .pipe(gulpif(argv.production, htmlmin()))
 
     .pipe(gulp.dest(dir));
+
 });
 //Asset Move
 gulp.task('assetmove', function(){
@@ -94,7 +97,7 @@ gulp.task('watch', function() {
     gulp.watch('js/**/*.js', ['js']);
     gulp.watch(['sass/**/*'], ['css']);
     gulp.watch('assets/**/*', ['assetmove']);
-    gulp.watch(['*.php', '*.html'], ['templates']);
+    gulp.watch(['*.php', '*.html','includes_media_stream_template/**/*'], ['templates']);
 });
 
 gulp.task('build', [ 'js','wpdump','assetmove','templates','css']);
