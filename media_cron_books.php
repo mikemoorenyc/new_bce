@@ -39,6 +39,35 @@ function imageReplacer($o_URL,$isbn,$desc=null, $type = 'ISBN') {
   }
   return $o_URL;
 }
+$doc = new DOMDocument();
+function descImg($desc) {
+  global $doc;
+  @$doc->loadHTML('<html><body>'.$desc.'</body></html');
+  if(!$doc) {
+    return null;
+  }
+  $imgs = $doc->getElementsByTagName('img');
+  if(!$imgs) {
+    return null;
+  }
+  //https://images.gr-assets.com/books/1345156830m/379894.jpg
+  $url = parse_url($imgs[0]->getAttribute('src'));
+  if($url['scheme'] !== 'https' || $url['host'] !== 'images.gr-assets.com') {
+    return null;
+  }
+  $p_x = explode('/', $url['path']);
+  array_shift($p_x);
+
+  $p_x[1] = str_replace('s','m', $p_x[1]);
+
+  $new_url = 'https://images.gr-assets.com/'.implode('/',$p_x);
+
+  $size = @getimagesize($new_url);
+  if(!$size || $size[0] < 20) {
+    return null;
+  }
+  return $new_url ;
+}
 
 $status = new SimpleXMLElement(file_get_contents('https://www.goodreads.com/user/updates_rss/'.$keys['goodreads_uid'].'?key='.$keys['goodreads']),LIBXML_NOCDATA);
 
@@ -57,7 +86,7 @@ $oldest_play = $items[count($items) -1]->pubDate.'';
 
 $compare_posts = comparePosts(['book'], strtotime($oldest_play));
 
-foreach($items as $i) {
+foreach($items as $i):
   if(strpos($i->guid,'UserStatus') === false && strpos($i->guid,'ReadStatus') === false) {
     continue;
   }
@@ -89,7 +118,8 @@ foreach($items as $i) {
 
   $imgURL = $readStatus->book->image_url.'';
   if(strpos($imgURL, 'nophoto') !== false) {
-
+    $imgURL = descImg($i->description);
+    /*
     if(!empty($readStatus->book->isbn.'')) {
       $imgURL = imageReplacer($imgURL, $readStatus->book->isbn.'',$i->description);
     } else {
@@ -99,16 +129,16 @@ foreach($items as $i) {
         $imgURL = imageReplacer($imgURL, '',$i->description);
       }
     }
+    */
   }
+
   if(strpos($imgURL, 'nophoto') !== false) {
     $imgURL = null;
   }
   $dimensions = null;
   $finalImgURL = httpcheck($imgURL);
-  var_dump($finalImgURL);
   if($finalImgURL) {
     $size = getimagesize($finalImgURL);
-    var_dump($size);
     $dimensions = array(
       "width" => $size[0],
       "height" => $size[1]
@@ -143,7 +173,8 @@ foreach($items as $i) {
   if($insert) {
     wp_set_object_terms( $insert, 'book', 'consumed_types' );
   }
-}
+//END ITEM LOOP
+endforeach;
 
 
 ?>

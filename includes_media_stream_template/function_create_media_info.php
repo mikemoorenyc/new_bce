@@ -51,8 +51,8 @@ function create_media_info($p) {
   endif;
   //Book
   if($type == "book"):
-    $status = ($data['status'] === 'read') ? 'Finished Reading' : "Reading";
-    $status = ($data['status'] === 'currently-reading') ? 'Started Reading' : "Reading";
+    $status = ($data['status'] === 'read') ? 'Finished Reading' : "Started Reading";
+    
     ?>
     <div class="extra font-sans"><?= $status;?></div>
     <?= title_formatter($p->post_title);?>
