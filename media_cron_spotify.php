@@ -286,7 +286,9 @@ foreach($to_consolidate as $k => $c):
     $current_data['GUID'] = array_merge($prev_data['GUID'], $current_data['GUID']);
 
     //MERGE Playlist IMAGES
-    $current_data['playlist']['images'] = array_merge($prev_data['playlist']['images'], $current_data['playlist']['images']);
+    $current_data['playlist']['images'] =
+      array_slice( array_unique( array_merge($prev_data['playlist']['images'], $current_data['playlist']['images']) ),0,4 );
+
     //get_playlist_title is up top
     $current_data['playlist']['title'] = $prev_data['playlist']['title'] ?: get_playlist_title($current_data['playlist']['id']);
     $current_data['clickthru'] = $current_data['playlist']['url'];

@@ -153,9 +153,9 @@ var App = {
 <?php
 
 
-$colormode = (!$_COOKIE['colormode']) ? 'color' : $_COOKIE['colormode'];
+
  ?>
-<body id="top" data-colormode="<?= $colormode;?>">
+<body id="top" data-colormode="bw">
   <div id="header-test"></div>
  <header id="top-header" role="presentation">
    <a id="spinner" aria-label="<?= $siteTitle;?>" href="<?= $homeURL;?>" class="before-block"></a>
