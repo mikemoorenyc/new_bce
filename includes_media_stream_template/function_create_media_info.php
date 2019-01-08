@@ -17,7 +17,7 @@ function artistNames($i) {
   }
   $string = '';
   foreach($i as $k => $n) {
-    switch($index) :
+    switch($k) :
       case (0):
       $sep = '';
       break;
@@ -28,7 +28,7 @@ function artistNames($i) {
       $sep = ", ";
       break;
     endswitch;
-
+    $string .= $sep.$n;
 }
 return $string;
 }
@@ -52,7 +52,7 @@ function create_media_info($p) {
   //Book
   if($type == "book"):
     $status = ($data['status'] === 'read') ? 'Finished Reading' : "Started Reading";
-    
+
     ?>
     <div class="extra font-sans"><?= $status;?></div>
     <?= title_formatter($p->post_title);?>
