@@ -78,7 +78,7 @@ include 'partial_lazy_load_img.php';
     <?php
     $whatilearned = input_to_array(get_post_meta( $post->ID, 'whatilearned', true ));
      if(!empty($whatilearned)):?>
-  <div class="p-s what-i-learned font-sans">
+  <div class="p-s what-i-learned font-sans media-item">
     <h3 class="">What I Learned</h3>
     <ul class="clearfix type-smaller">
       <?php foreach($whatilearned as $w):?>

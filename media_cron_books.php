@@ -145,6 +145,10 @@ foreach($items as $i):
     );
   }
 
+  if(htmlentities($readStatus->status.'', ENT_QUOTES) === "to-read") {
+    continue; 
+  }
+
   $data = array(
     'percent' => htmlentities($readStatus->percent.'', ENT_QUOTES),
     'title' => htmlentities($readStatus->book->title.'', ENT_QUOTES),

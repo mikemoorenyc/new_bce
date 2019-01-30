@@ -8,8 +8,19 @@ function pageLoader() {
 //  $('nav ul li.'+theSlug).find('a').addClass('__active');
 
 if(document.getElementById('media-stream')) {
-  mediaBlanks();
+
 }
+
+var readingEls = document.querySelectorAll('.reading-section .content > *');
+
+for (i = 0; i < readingEls.length; i++) {
+  if(['h1','h2','h3','h4','h5','h6','ul','ol','p'].indexOf(readingEls[i].tagName.toLowerCase()) !== -1) {
+      readingEls[i].classList.add('media-item')
+  }
+
+}
+
+  mediaBlanks();
   lazyImg();
   externalLinks();
 

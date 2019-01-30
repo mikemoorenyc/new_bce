@@ -1,6 +1,6 @@
 
 </main>
-<footer id="footer">
+<footer id="footer" class="media-item">
 
 
 

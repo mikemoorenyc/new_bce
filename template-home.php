@@ -6,7 +6,7 @@
 
 
 <?php include 'header.php'; ?>
-<section class=" hp top-content nav-spacer gl-mod grid-blank content-centerer">
+<section class=" hp top-content nav-spacer gl-mod grid-blank content-centerer media-item">
   <h1 class="story-title">
   <?= md_sc_parse($post->post_content);?>
   </h1>
@@ -25,7 +25,7 @@
 ?>
 <?php if ( $project_query->have_posts() ) :?>
 <section class="hp projects clearfix content-centerer">
-<h2 class="hp sub-heading with-line">Projects</h2>
+<h2 class="hp sub-heading with-line media-item">Projects</h2>
 <?php $projects = $project_query->get_posts(); ?>
 <div class="hp project-list">
 <?php
@@ -43,7 +43,7 @@ foreach($projects as $p) {
      ?>
     </span>
 
-    <span class="callout bs-child">
+    <span class="callout bs-child media-item">
       <h2 class="h-child"><?= $p->post_title;?></h2>
       <?php if(get_post_meta( $pid, 'tagline', true )):?>
 <span class="tagline"><?= get_post_meta( $pid, 'tagline', true );?></span>
@@ -77,7 +77,7 @@ $pargs = array(
 $post_query = new WP_Query($pargs);
  ?>
 <?php if ( $post_query->have_posts() ) :?>
-<section class="hp blog clearfix content-centerer">
+<section class="hp blog clearfix content-centerer media-item">
 <h2 class="hp sub-heading with-line">From the Blog</h2>
 <ul class="gl-mod link-box-list hp blog-posts">
 <?php $posts = $post_query->get_posts(); ?>

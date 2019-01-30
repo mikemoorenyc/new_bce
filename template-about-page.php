@@ -28,7 +28,7 @@
 
 
   ?>
-<div class="right-col picture">
+<div class="right-col picture media-item">
 
 <?php echo $svg;?>
 
@@ -54,8 +54,8 @@
 $things_i_like = input_to_array(get_post_meta( $post->ID, 'things_i_like', true));
 
 if(!empty($things_i_like)):?>
-<div class="about-page like-block font-sans">
-  <h2>Things I Like</h2>
+<div class="about-page like-block font-sans media-item">
+  <h2 >Things I Like</h2>
   <ul>
     <?php foreach($things_i_like as $t):?>
     <li><?= $t[0];?></li>
@@ -67,7 +67,7 @@ if(!empty($things_i_like)):?>
 <?php
 $things_i_dont_like = input_to_array(get_post_meta( $post->ID, 'things_i_dont_like', true));
 if(!empty($things_i_dont_like)):?>
-<div class="about-page like-block font-sans">
+<div class="about-page like-block font-sans media-item">
   <h2>Things I Don't Like</h2>
   <ul>
     <?php foreach($things_i_dont_like as $t):?>

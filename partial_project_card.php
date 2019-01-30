@@ -15,7 +15,7 @@
 
   <?php endif;?> <!-- HIDE IMAGE -->
 
-  <h3>
+  <h3 class="media-item">
   <a href="<?=get_the_permalink($pid);?>">
     <div class="callout ">
       <?php if($card_meta):?>

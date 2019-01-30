@@ -29,7 +29,7 @@ if(empty($prevID) && $total > 2) {
 
 ?>
 <?php if(!empty($prevID) || !empty($nextID)):?>
-<div class="gl-mod bottom-ctas meta">
+<div class="gl-mod bottom-ctas meta media-item">
   <h3 class=" sub-heading with-line"><?= $cta_vals["heading"];?></h3>
   <ul class="gl-mod link-box-list">
 

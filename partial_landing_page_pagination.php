@@ -14,7 +14,7 @@ $older_url = (gettype($older_link) === 'array') ? $older_link['url'] : get_the_p
 $newer_url = (gettype($newer_link) === 'array') ? $newer_link['url'] : get_the_permalink($landing_post).'page/'.($paged-1).'/';
  ?>
 
-<div class="gl-mod landing-pagination font-sans">
+<div class="gl-mod landing-pagination font-sans media-item">
 
 <div class="inner <?=$two_links;?> clearfix">
   <?php if(!empty($newer_link)):?>

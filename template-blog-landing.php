@@ -42,12 +42,12 @@ if(has_post_thumbnail()) {
   </a>
   <?php endif; ?>
   <div class="copy  <?= $class_no_thumbnail;?>">
-    <a href="<?= get_the_permalink();?>" class="date meta no-underline">
+    <a href="<?= get_the_permalink();?>" class="date meta no-underline media-item">
 
       <?= get_the_date('M j Y') ?>
     </a>
-    <h2 class="mid-heading"><a class="no-underline h-child" href="<?= get_the_permalink();?>"><?= get_the_title();?></a></h2>
-    <a class="excerpt type-smaller tagline no-underline" href="<?= get_the_permalink();?>">
+    <h2 class="mid-heading media-item"><a class="no-underline h-child" href="<?= get_the_permalink();?>"><?= get_the_title();?></a></h2>
+    <a class="excerpt type-smaller tagline no-underline media-item" href="<?= get_the_permalink();?>">
         <?php
         if(has_excerpt()) {
           $desc = get_the_excerpt();

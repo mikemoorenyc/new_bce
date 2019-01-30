@@ -4,7 +4,9 @@ function md_sc_parse($string) {
   $Parsedown = new Parsedown();
   $theReturn = do_shortcode($string);
   $content_html = $Parsedown->text($theReturn);
-  return $content_html;
+
+
+   return $content_html;
 
 }
 

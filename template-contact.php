@@ -21,10 +21,10 @@ $alreadySubmitted = $_COOKIE['alreadySubmitted'];
     $social_links = get_post_meta( $post->ID, 'social media link');
 
     if(!empty($social_links)):?>
-    <h2 class="social-media-links-header">Social Media Links</h2>
+    <h2 class="social-media-links-header media-item">Social Media Links</h2>
     <ul class="social-links-list">
     <?php foreach($social_links as $s):?>
-      <li class="social-link">
+      <li class="social-link media-item">
     <?php
     $a = explode(',',$s);
     ?>
@@ -53,7 +53,7 @@ $alreadySubmitted = $_COOKIE['alreadySubmitted'];
   }
   ?>
 
-  <div id="contact-form-container" class="left-col">
+  <div id="contact-form-container" class="left-col media-item">
 
   <form id="main-contact-form" class="contact-page contact-form font-sans clearfix" method="POST" action="<?= $siteDir.'/service_form_processor.php';?>">
     <input type="hidden" id="security_number" name="security_number" value="<?= $security_number;?>"/>
