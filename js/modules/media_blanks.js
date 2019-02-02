@@ -25,7 +25,7 @@ function mediaBlanks() {
        innerContents[key]['html'] = change.target.innerHTML;
        innerContents[key]['styles'] = change.target.getAttribute('style') || "";
       // change.target.style.height = change.target.offsetHeight+'px';
-       change.target.setAttribute('style', "border: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; height: "+change.target.offsetHeight+"px");
+       change.target.setAttribute('style', "color:black; visibility:hidden;border: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; height: "+change.target.offsetHeight+"px");
        change.target.classList.add('offScreen');
        change.target.innerHTML = '';
      }

@@ -22,7 +22,7 @@ include 'partial_lazy_load_img.php';
  ?>
 </div>
 <?php endif; ?>
-<div class="p-s top-section <?= $noheaderClass;?> <?= $useBorder;?>">
+<div class="p-s top-section <?= $noheaderClass;?> <?= $useBorder;?> media-item">
   <h1 class="p-s article-heading"><?= $post->post_title;?></h1>
   <?php if(!empty(get_post_meta( $post->ID, 'tagline', true ))):?>
  <h2 class='p-s tagline'><?php echo get_post_meta( $post->ID, 'tagline', true );?></h2>
