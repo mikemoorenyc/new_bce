@@ -1,4 +1,5 @@
 <?php
+echo "run";
 $mediaType = 'trakt';
 include_once('media_cron_header.php');
 include 'media_image_functions.php';
@@ -40,19 +41,153 @@ $compare_posts = comparePosts($post_types, $oldest_play);
 $items = array_filter($items, function($i) {
   global $compare_posts;
 
-  return in_array($i['id'],$compare_posts['GUID']) === false;
+  return in_array((string)$i['id'],$compare_posts['GUID']) === false;
 });
 
-//if(empty($items)){echo 'no new posts'; die();}
+
+
+if(empty($items)) {
+  die();
+}
+
 
 $workingArray = [];
 
 $GUID = [];
 $current = null;
+
+
+foreach ($items as $k => $i):
+  // code...
+  $type = $i['type'];
+  if($type !== "movie" && $type !== "episode") {
+    continue;
+  }
+  $dates = dateMaker(strtotime($i['watched_at']));
+
+  $title = ($type === "movie") ? $i['movie']['title'] : $i['episode']['title'];
+  $clickthru =  ($type == "movie") ?
+    'https://trakt.tv/movies/'.$i['movie']['ids']['slug'] :
+    'https://trakt.tv/shows/'.$i['show']['ids']['slug'].'/seasons/'.$i['episode']['season'].'/episodes/'.$i['episode']['number'] ;
+
+  $data = array(
+    "type" => $type,
+    "GUID" =>  [$i['id']],
+    "ID" => ($type === "movie") ? $i['movie']['ids']['tmdb'] : $i['episode']['ids']['tmdb'],
+    "title" => htmlentities($title, ENT_QUOTES),
+    'timestamp' => strtotime($i['watched_at']),
+    "clickthru" => $clickthru
+  );
+  if($type === "episode") {
+    $data['bingeCount'] = 1;
+    $data['season'] = $i['episode']['season'];
+    $data['number'] = $i['episode']['number'];
+    $data['tvdb_ID'] = $i['episode']['ids']['tvdb'];
+    $data['show'] = array(
+			'slug' => $i['show']['ids']['slug'],
+      'title' => htmlentities($i['show']['title'], ENT_QUOTES),
+      'ID' => $i['show']['ids']['tmdb'],
+      'tvdb_ID' => $i['show']['ids']['tvdb']
+    );
+  }
+
+  //INSERT POST
+  $insert = wp_insert_post( array(
+		'post_title' => $data['title'],
+		'post_type' => 'consumed',
+		'post_status'=> 'publish',
+		'post_content' => json_encode($data,JSON_UNESCAPED_UNICODE),
+		'post_date' => $dates['est'],
+		'post_date_gmt'=> $dates['gmt']
+	) );
+  if(!$insert) {
+    continue;
+  }
+  wp_set_object_terms($insert, $data['type'], 'consumed_types' );
+  if($data['type'] === "movie") {
+    continue;
+  }
+  if($w['type'] === 'episode' || $w['type'] === 'show') {
+    $cached_show_image = checkCachedImage($w['show']['ID']);
+    if($cached_show_image) {
+      update_post_meta( $insert, 'showImgURL', $cached_show_image);
+    }
+    update_post_meta($insert, 'showID', $data['show']['ID']);
+  }
+
+
+
+
+
+endforeach;
+//INSERT ALL NEW ITEMS
+
+
+$to_consolidate = returnBatch($post_types, $oldest_play);
+$to_consolidate = array_reverse($to_consolidate);
+
+foreach ($to_consolidate as $k => $c):
+  //DON'T PROCESS FIRST
+  if($k === 0) {
+    continue;
+  }
+  //THIS IS A MOVIE, we can skip
+  if(get_the_terms($c->ID, 'consumed_types')[0]->slug === "movie") {
+    continue;
+  }
+  //THIS IS A SHOW ALREADY, NO NEED TO CONSLIDATE
+  if(get_the_terms($c->ID, 'consumed_types')[0]->slug === "show") {
+    continue;
+  }
+  $prev = $to_consolidate[$k-1];
+  $prev_data = json_decode($prev->post_content,true);
+  $current_data = json_decode($c->post_content,true);
+  $current_type = get_the_terms($c->ID, 'consumed_types')[0]->slug;
+  $prev_type = get_the_terms($prev->ID, 'consumed_types')[0]->slug;
+
+  //DIFFERENT SHOWS SKIP
+  if($prev_data['show']["ID"] !== $current_data['show']['ID']) {
+    continue;
+  }
+  //Now we know: SAME SHOW, CURRENT IS SINGLE EPISODE
+
+  //CHECK IF ON SAME DAY
+
+  if(!bingeCheck($current_data['show']['ID'],strtotime($c->post_date),$current_data['show']['ID'],strtotime($prev->post_date))) {
+    continue;
+  }
+
+  //UPDATE CURRENT
+  //MERGE GUIDS
+  $current_data['GUID'] = array_merge($prev_data['GUID'], $current_data['GUID']);
+  //UPDATE CLICKTHRU to Show
+  $current_data['clickthru'] = 'https://trakt.tv/shows/'.$current_data['show']['slug'];
+  //UPDATE bingeCount
+  $current_data['bingeCount'] = intval($current_data['bingeCount']) + intval($prev_data['bingeCount']);
+  //UPDATE CURRENT DATA WITH NEW DATA
+  $updated = wp_update_post(array(
+    "ID" => $c->ID,
+    "post_content" => json_encode($current_data,JSON_UNESCAPED_UNICODE),
+    "post_title" => $current_data['show']['title']
+  ));
+  if($updated) {
+    wp_set_object_terms($c->ID, 'show', 'consumed_types' );
+    $to_consolidate[$k] = get_post($c->ID);
+    $delete = wp_delete_post( $prev->ID, false );
+  }
+
+endforeach;
+//MERGING LOOP
+
+die();
+
 foreach($items as $k => $i) {
 
   $data = array();
 	$dates = dateMaker(strtotime($i['watched_at']));
+
+
+
 
 	if($i['type'] === 'movie') {
 		$workingArray[] = array(
