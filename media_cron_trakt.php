@@ -107,8 +107,8 @@ foreach ($items as $k => $i):
   if($data['type'] === "movie") {
     continue;
   }
-  if($w['type'] === 'episode' || $w['type'] === 'show') {
-    $cached_show_image = checkCachedImage($w['show']['ID']);
+  if($data['type'] === 'episode' || $data['type'] === 'show') {
+    $cached_show_image = checkCachedImage($data['show']['ID']);
     if($cached_show_image) {
       update_post_meta( $insert, 'showImgURL', $cached_show_image);
     }
