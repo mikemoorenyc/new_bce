@@ -46,17 +46,7 @@
 </div>
 
 
-<!--[if lte IE 9]>
-<div id="ie9_mask" style="position:fixed; z-index:9999; background:currentColor; padding: 20px; text-align:center; left: 0; top: 0; width: 100%; height:100%; display:none;">
-  <span style="color:white">I don't support your browser.</span><br/>
-<a style="color:white;" href="https://www.google.com/chrome/browser/desktop/">Get a different one</a><br/><br/>
-<button  style="color:white;  font-size:.75em; text-decoration:underline;">idc, let me look at your site</button>
-</div>
-<![endif]-->
 
-
-
-<!-- [/*REMOVE FROM PRODUCTION*/] -->
 
 <div id="grid-lines" style="display:none;">
   <hr/>
