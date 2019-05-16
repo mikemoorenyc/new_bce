@@ -181,7 +181,7 @@ foreach($items as $k => $i):
   },$info['album']['artists']);
   $dates = dateMaker(strtotime($i['played_at']));
   $playlist = null;
-  if($i['context']['type'] === "playlist_v2") {
+  if($i['context']['type'] === "playlist_v2" || $i['context']['type'] === "playlist") {
     $playlist = [];
     $playlist['id'] = end(explode(":",$i['context']['uri'] ));
     $playlist['images'] = [$info['album']['images'][0]['url']];
