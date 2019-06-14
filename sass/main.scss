@@ -35,6 +35,14 @@
 @import 'body-animation';
 @import 'box-shadows';
 @import 'line-hover';
+
+//DARK MODE
+body[data-colormode="bw"] {
+    @import 'dark-mode.scss';
+}
+
+
+
 /* REMOVE IN PRODUCTION*/
 //@import 'gridlines';
 /* END REMOVE IN PRODUCTION*/

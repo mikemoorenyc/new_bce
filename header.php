@@ -204,7 +204,7 @@ var App = {
      ?>
    </div>
      <div id="color-mode-switcher" class="color-mode-switcher before-block after-block" style="visibility:hidden;">
-       <button data-colormode="<?= $colormode;?>" title="<?= $cmode_title;?>" id="color-mode-button" class="slider before-block"></button>
+       <button data-colormode="<?= $colormode;?>" title="<?= $cmode_title;?>" id="color-mode-button" class="slider before-block after-block "></button>
      </div>
 
    </nav>
