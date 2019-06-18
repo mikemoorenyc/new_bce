@@ -36,10 +36,10 @@
 @import 'box-shadows';
 @import 'line-hover';
 
+@import "dark-mode.scss";
+
 //DARK MODE
-body[data-colormode="bw"] {
-    @import 'dark-mode.scss';
-}
+
 
 
 
@@ -58,5 +58,6 @@ body[data-colormode="bw"] {
 @import 'project-page';
 @import 'image-styles';
 @import 'bottom-cta-links';
+
 
 */

@@ -11,9 +11,6 @@ body {
   transition: color 2s linear;
   animation: bodyColor 30s infinite linear;
   min-height: 100%;
-  &[data-colormode="bw"] {
-    animation: none;
-  }
 }
 
 //STICKY FOOTER

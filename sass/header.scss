@@ -84,11 +84,7 @@ header {
       animation: spinner 5s infinite linear;
       will-change:transform;
     }
-    body[data-colormode="bw"] & {
-     &:before {
-       animation: none;
-     }
-    }
+
   }
 
 

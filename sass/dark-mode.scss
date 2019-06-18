@@ -1,7 +1,38 @@
-& {
+
+body.view_dark_mode {
     background: $black;
     color: $white; 
-    header a#spinner, header a#spinner:before, nav .nav-items, .hp.project-link .callout, footer#footer .inner, .p-s.top-section, #nav-opener:before, input#navigation-toggle:before, nav {
+    animation: none;
+    transition: none; 
+    header a#spinner, header a#spinner:before, nav .nav-items, .hp.project-link .callout, footer#footer .inner, .p-s.top-section, #nav-opener:before, input#navigation-toggle:before, nav,.media-stream.container .media-item .media-image.type-cd .playlist-tag {
         background: $black; 
     }
+    a#spinner {
+        &:before {
+            animation: none; 
+        }
+    }
+    #liner {
+        display:none !important; 
+    }
+
+}
+
+.system-pref-test {
+    display:none;
+    font-size: 1px; 
+}
+
+@media (prefers-reduced-motion), (prefers-color-scheme: dark) {
+
+    .system-pref-test {
+        font-size: 2px; 
+    }
+	*, *:before, *:after {
+   animation: none !important;
+  }
+	#color-mode-switcher, #liner {
+		display: none !important
+  }
+  
 }

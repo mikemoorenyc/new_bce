@@ -155,7 +155,24 @@ var App = {
 
 
  ?>
-<body id="top" data-colormode="bw">
+<body id="top" class="view_dark_mode">
+<div class="system-pref-test"></div>
+
+<script>
+    var testStyles = window.getComputedStyle(document.querySelector('.system-pref-test'));
+    console.log(testStyles.getPropertyValue("font-size"));
+    if(testStyles.getPropertyValue("font-size") === "2px") {
+      localStorage.setItem("dark_mode", "yes")
+    }
+    if( localStorage.getItem("dark_mode") !== "yes") {
+      document.querySelector('body').classList.remove('view_dark_mode');
+      localStorage.setItem("dark_mode", "no")
+    }
+    
+
+</script>
+
+
   <div id="header-test"></div>
  <header id="top-header" role="presentation">
    <a id="spinner" aria-label="<?= $siteTitle;?>" href="<?= $homeURL;?>" class="before-block"></a>

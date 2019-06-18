@@ -242,8 +242,5 @@ blockquote {
   height:1px;
   z-index:1;
 
-  body[data-colormode="bw"] & {
-    display:none !important;
-  }
 }
 

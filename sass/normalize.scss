@@ -25,14 +25,4 @@ body {
 html {
   font-size: 1px;
 }
-@media (prefers-reduced-motion), (prefers-color-scheme: dark) {
-	*, *:before, *:after {
-   animation: none !important;
-  }
-	#color-mode-switcher, #liner {
-		display: none !important
-  }
-  body {
-    @import 'dark-mode.scss';
-  }
-}
+
