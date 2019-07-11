@@ -15,7 +15,9 @@ body.view_dark_mode {
     #liner {
         display:none !important; 
     }
-
+    .reading-section .content pre code {
+        color: $black;
+    }
 }
 
 .system-pref-test {
