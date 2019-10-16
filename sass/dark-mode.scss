@@ -1,5 +1,5 @@
-
-body.view_dark_mode {
+@import "./variables.scss"; 
+body {
     background: $black;
     color: $white; 
     animation: none;
@@ -20,21 +20,3 @@ body.view_dark_mode {
     }
 }
 
-.system-pref-test {
-    display:none;
-    font-size: 1px; 
-}
-
-@media (prefers-reduced-motion), (prefers-color-scheme: dark) {
-
-    .system-pref-test {
-        font-size: 2px; 
-    }
-	*, *:before, *:after {
-   animation: none !important;
-  }
-	#color-mode-switcher, #liner {
-		display: none !important
-  }
-  
-}
