@@ -149,6 +149,7 @@ var App = {
 </script>
 
 <link rel="canonical" href="<?php echo get_the_permalink();?>">
+
 </head>
 <?php
 
@@ -157,8 +158,28 @@ var App = {
  ?>
 <body id="top" class="view_dark_mode">
 <div class="system-pref-test"></div>
-
 <script>
+(function () {
+   if(local.storage.getItem("dark_mode") == false) {
+     var testStyles = window.getComputedStyle(document.querySelector('.system-pref-test'));
+     if(testStyles.getPropertyValue("font-size") === "2px") {
+      localStorage.setItem("dark_mode", "yes");
+     } else {
+      localStorage.setItem("dark_mode", "no"); 
+     }
+   }
+   if(local.storage.getItem("dark_mode") === "yes") {
+     var head = document.head;
+     var link = document.createElement("link");
+     link.type = "text/css";
+      link.rel = "stylesheet";
+      link.href = "<?= $siteDir;?>/css/dark_mode.css?v=<?= $cacheBreaker;?>";
+      head.appendChild(link);
+   }
+}());
+  
+</script>
+<!--<script>
     var testStyles = window.getComputedStyle(document.querySelector('.system-pref-test'));
     console.log(testStyles.getPropertyValue("font-size"));
     if(testStyles.getPropertyValue("font-size") === "2px") {
@@ -170,7 +191,7 @@ var App = {
     }
     
 
-</script>
+</script>-->
 
 
   <div id="header-test"></div>
