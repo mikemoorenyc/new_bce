@@ -40,7 +40,7 @@ gulp.task('css', function(){
 
   ]
 
-  gulp.src(['sass/main.scss','sass/dark_mode.scss'])
+  gulp.src(['sass/main.scss','sass/dark-mode.scss'])
 
     .pipe(gulpif(argv.production, strip({start_comment: "/* REMOVE IN PRODUCTION*/", end_comment: "/* END REMOVE IN PRODUCTION*/"})))
     .pipe(plumber())
