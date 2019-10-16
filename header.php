@@ -50,7 +50,7 @@ $pageThumb = (get_post_thumbnail_id()) ? get_all_image_sizes(get_post_thumbnail_
 <head>
 
 <link rel='stylesheet' href="<?= $siteDir;?>/css/main.css?v=<?= $cacheBreaker;?>" type="text/css" />
-
+<link rel="stylesheet" href="<?= $siteDir;?>/css/dark-mode.css?v=<?= $cacheBreaker;?>" media="(prefers-color-scheme: dark)">
 
 <?php
 if ( is_front_page() ) {
