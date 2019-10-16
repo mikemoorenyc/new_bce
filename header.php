@@ -173,7 +173,7 @@ var App = {
      var link = document.createElement("link");
      link.type = "text/css";
       link.rel = "stylesheet";
-      link.href = "<?= $siteDir;?>/css/dark_mode.css?v=<?= $cacheBreaker;?>";
+      link.href = "<?= $siteDir;?>/css/dark-mode.css?v=<?= $cacheBreaker;?>";
       head.appendChild(link);
    }
 }());
