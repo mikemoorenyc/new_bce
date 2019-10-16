@@ -1,6 +1,16 @@
 function mediaBlanks() {
-  let observer = new IntersectionObserver(onChange);
   const sets = [ ...document.querySelectorAll('.media-item') ];
+  if(local.storage.getItem('dark_mode') == "yes") {
+    sets.forEach(function(e,i) {
+      let img = e.querySelector('img');
+      if(img && img.classList.contains('preload-image')) {
+        img.setAttribute('src', img.getAttribute('data-src'));
+      }
+    });
+    return false ; 
+  }
+  let observer = new IntersectionObserver(onChange);
+  
   const innerContents = [];
   sets.forEach(function(e,i){
     innerContents.push({
