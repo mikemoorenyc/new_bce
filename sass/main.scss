@@ -36,10 +36,27 @@
 @import 'box-shadows';
 @import 'line-hover';
 
-@import "dark-mode.scss";
+//@import "dark-mode.scss";
 
 //DARK MODE
+.system-pref-test {
+    display:none;
+    font-size: 1px; 
+}
 
+@media (prefers-reduced-motion), (prefers-color-scheme: dark) {
+
+    .system-pref-test {
+        font-size: 2px; 
+    }
+	*, *:before, *:after {
+   animation: none !important;
+  }
+	#liner {
+		display: none !important
+  }
+  
+}
 
 
 
