@@ -1,6 +1,29 @@
 <?php
 include_once('media_cron_header.php');
 
+
+$posts = get_posts(array(
+  'posts_per_page'   => -1,
+  'post_type' => 'consumed',
+  'date_query' => array(
+		array(
+      'before'    => date('Y-m-d',strtotime('-4 months')),
+			/*'after'     => $afterDate,*/
+			'inclusive' => true,
+		),
+	),
+));
+
+if(empty($posts)) {
+  die();
+}
+
+foreach($posts as $p) {
+	$delete = wp_trash_post($p->ID,false);
+}
+
+die(); 
+
 $csv_dir = str_replace('/uploads','',wp_upload_dir()['basedir']).'/media_dumps' ;
 
 if (!file_exists($csv_dir) && !is_dir($csv_dir)) {
