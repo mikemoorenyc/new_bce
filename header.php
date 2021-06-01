@@ -160,7 +160,7 @@ var App = {
 <div class="system-pref-test"></div>
 <script>
 (function () {
-   if(local.storage.getItem("dark_mode") == false) {
+   if(localStorage.getItem("dark_mode") == false) {
      var testStyles = window.getComputedStyle(document.querySelector('.system-pref-test'));
      if(testStyles.getPropertyValue("font-size") === "2px") {
       localStorage.setItem("dark_mode", "yes");
@@ -168,7 +168,7 @@ var App = {
       localStorage.setItem("dark_mode", "no"); 
      }
    }
-   if(local.storage.getItem("dark_mode") === "yes") {
+   if(localStorage.getItem("dark_mode") === "yes") {
      var head = document.head;
      var link = document.createElement("link");
      link.type = "text/css";

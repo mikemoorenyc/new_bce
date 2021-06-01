@@ -1,6 +1,6 @@
 function mediaBlanks() {
   const sets = [ ...document.querySelectorAll('.media-item') ];
-  if(local.storage.getItem('dark_mode') == "yes") {
+  if(localStorage.getItem('dark_mode') == "yes") {
     sets.forEach(function(e,i) {
       let img = e.querySelector('img');
       if(img && img.classList.contains('preload-image')) {

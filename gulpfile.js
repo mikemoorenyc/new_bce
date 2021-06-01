@@ -1,4 +1,4 @@
-var buildDir = '../bce';
+
 var gulp = require('gulp');
 var del = require('del');
 var plumber = require('gulp-plumber');
@@ -8,6 +8,8 @@ var gulpif = require('gulp-if');
 var argv = require('yargs').argv;
 var svgo = require('gulp-svgo');
 var strip = require('gulp-strip-code');
+
+var buildDir = require("./gulp-locals.js").buildDir;
 
 var htmlmin = require('gulp-cleanhtml');
 
@@ -40,7 +42,7 @@ gulp.task('css', function(){
 
   ]
 
-  gulp.src(['sass/main.scss','sass/dark-mode.scss'])
+  return gulp.src(['sass/main.scss','sass/dark-mode.scss'])
 
     .pipe(gulpif(argv.production, strip({start_comment: "/* REMOVE IN PRODUCTION*/", end_comment: "/* END REMOVE IN PRODUCTION*/"})))
     .pipe(plumber())
@@ -62,13 +64,15 @@ function jsBuilder(srcArray, newName) {
 }
 
 gulp.task('js', function(){
-    jsBuilder([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'], 'main.js');
+    return jsBuilder([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'], 'main.js');
 });
 
 //Template Move
-gulp.task('templates', function(){
-  gulp.src(['includes_media_stream_template/**/*'])
+gulp.task('templates', gulp.series( function(){
+  return gulp.src(['includes_media_stream_template/**/*'])
     .pipe(gulp.dest(dir+'/includes_media_stream_template'));
+},
+function() { 
   return gulp.src(['*.html', '*.php'])
     .pipe(gulpif(!argv.production, strip({start_comment: "REMOVE IN DEV", end_comment: "END REMOVE IN DEV"})))
     .pipe(gulpif(argv.production, strip({start_comment: "REMOVE FROM PRODUCTION", end_comment: "END REMOVE FROM PRODUCTION"})))
@@ -77,7 +81,7 @@ gulp.task('templates', function(){
 
     .pipe(gulp.dest(dir));
 
-});
+}));
 //Asset Move
 gulp.task('assetmove', function(){
   return gulp.src('assets/**/*')
@@ -85,19 +89,23 @@ gulp.task('assetmove', function(){
     .pipe(gulp.dest(dir+'/assets'));
 });
 //WP
-gulp.task('wpdump', function(){
-  gulp.src(['style.css' ])
-    .pipe(gulpif(!argv.production, replace('NEW BCE SITE SRC','NEW BCE SITE DEV VERSION')))
-    .pipe(gulpif(argv.production, replace('NEW BCE SITE SRC','NEW BCE SITE PRODUCTION VERSION')))
-    .pipe(gulp.dest(dir));
-  gulp.src(['screenshot.png' ])
-      .pipe(gulp.dest(dir));
-});
+gulp.task('wpdump', gulp.series(function() {
+  return gulp.src(['style.css' ])
+  .pipe(gulpif(!argv.production, replace('NEW BCE SITE SRC','NEW BCE SITE DEV VERSION')))
+  .pipe(gulpif(argv.production, replace('NEW BCE SITE SRC','NEW BCE SITE PRODUCTION VERSION')))
+  .pipe(gulp.dest(dir));
+},
+function() {
+  return gulp.src(['screenshot.png' ])
+  .pipe(gulp.dest(dir));
+}));
+
 gulp.task('watch', function() {
-    gulp.watch('js/**/*.js', ['js']);
-    gulp.watch(['sass/**/*'], ['css']);
-    gulp.watch('assets/**/*', ['assetmove']);
-    gulp.watch(['*.php', '*.html','includes_media_stream_template/**/*'], ['templates']);
+    gulp.watch(['js/**/*.js'], gulp.series('js'));
+    gulp.watch(['sass/**/*'], gulp.series('css'));
+    gulp.watch('assets/**/*', gulp.series('assetmove'));
+    gulp.watch(['*.php', '*.html','includes_media_stream_template/**/*'], gulp.series('templates'));
 });
 
-gulp.task('build', [ 'js','wpdump','assetmove','templates','css']);
+
+gulp.task('build', gulp.series("clean", 'js','wpdump','assetmove','templates','css'));
