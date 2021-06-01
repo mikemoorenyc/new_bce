@@ -13,9 +13,12 @@ $posts = get_posts(array(
 	),
 ));
 
+if(empty($posts)) {
+  die();
+}
 
-foreach ($posts as $p ) {
-  $delete = wp_trash_post($p->ID,false);
+foreach($posts as $p) {
+	$delete = wp_trash_post($p->ID,false);
 }
 
 die(); 
