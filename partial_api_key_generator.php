@@ -20,3 +20,4 @@ function api_key_generator() {
  }
  return $newArray;
 }
+?>

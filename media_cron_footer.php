@@ -9,3 +9,4 @@ if(!file_exists($wp_base.'wp-content/feed_dump/')) {
 }
 file_put_contents($wp_base.'wp-content/feed_dump/'.$mediaType.'.json', json_encode($workingArray));
 die();
+?>

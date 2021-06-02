@@ -21,7 +21,7 @@ function social_icon_selector() {
   ?>
   <div id="map-thumb" style="margin-bottom: 10px;">
   </div>
-    <input type="hidden" id="social_icon_image" name="social_icon_image" value=" <?= $value;?> " class="regular-text"/ >
+    <input type="hidden" id="social_icon_image" name="social_icon_image" value=" <?= $value;?> " class="regular-text" />
     <button id="social-icon-opener" class="button"> <?= $verb;?> Add Social Icon</button>
 
 <style>

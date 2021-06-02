@@ -11,7 +11,7 @@ var strip = require('gulp-strip-code');
 
 var buildDir = require("./gulp-locals.js").buildDir;
 
-var htmlmin = require('gulp-cleanhtml');
+var htmlmin = require('gulp-htmlmin');
 
 var sass = require('gulp-sass'),
     postcss = require('gulp-postcss'),
@@ -73,11 +73,14 @@ gulp.task('templates', gulp.series( function(){
     .pipe(gulp.dest(dir+'/includes_media_stream_template'));
 },
 function() { 
-  return gulp.src(['*.html', '*.php'])
+  return gulp.src(['*.html', '*.php','!backend_plugin_markdown.php'])
     .pipe(gulpif(!argv.production, strip({start_comment: "REMOVE IN DEV", end_comment: "END REMOVE IN DEV"})))
     .pipe(gulpif(argv.production, strip({start_comment: "REMOVE FROM PRODUCTION", end_comment: "END REMOVE FROM PRODUCTION"})))
     .pipe(gulpif(argv.production, replace('$cacheBreaker = time();','$cacheBreaker = '+buildDate+';')))
-    .pipe(gulpif(argv.production, htmlmin()))
+    .pipe(gulpif(argv.production, htmlmin({ 
+      collapseWhitespace: true,
+      ignoreCustomFragments:[ /<%[\s\S]*?%>/, /<\?[\s\S]*?\?>/ ]
+    })))
 
     .pipe(gulp.dest(dir));
 
@@ -90,7 +93,7 @@ gulp.task('assetmove', function(){
 });
 //WP
 gulp.task('wpdump', gulp.series(function() {
-  return gulp.src(['style.css' ])
+  return gulp.src(['style.css', "backend_plugin_markdown.php" ])
   .pipe(gulpif(!argv.production, replace('NEW BCE SITE SRC','NEW BCE SITE DEV VERSION')))
   .pipe(gulpif(argv.production, replace('NEW BCE SITE SRC','NEW BCE SITE PRODUCTION VERSION')))
   .pipe(gulp.dest(dir));

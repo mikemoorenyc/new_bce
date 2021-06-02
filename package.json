@@ -11,6 +11,7 @@
   "private": true,
   "devDependencies": {
     "cssnano": "^5.0.5",
+    "gulp-htmlmin": "^5.0.1",
     "postcss": "^8.3.0"
   },
   "dependencies": {
@@ -20,7 +21,6 @@
     "del": "^2.2.2",
     "gulp": "^4.0.2",
     "gulp-babel": "^6.1.2",
-    "gulp-cleanhtml": "^1.0.3",
     "gulp-concat": "^2.6.1",
     "gulp-if": "^2.0.2",
     "gulp-plumber": "^1.1.0",
