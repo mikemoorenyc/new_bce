@@ -12,7 +12,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 $now = new DateTime("now");
-$grKey = $keys['goodreads'];
+$gr_key = $keys['goodreads'];
 
 
 function getData($url) {
@@ -99,26 +99,26 @@ function descImg($desc) {
   }
   return $new_url ;
 }
-function getImgData($passURL, $description) {
-  $imgURL = $passURL;
-  if(strpos($imgURL, 'nophoto') !== false) {
-    $imgURL = descImg($description);
+function getImgData($pass_url, $description) {
+  $img_url = $pass_url;
+  if(strpos($img_url, 'nophoto') !== false) {
+    $img_url = descImg($description);
   }
 
-  if(strpos($imgURL, 'nophoto') !== false) {
-    $imgURL = null;
+  if(strpos($img_url, 'nophoto') !== false) {
+    $img_url = null;
   }
   $dimensions = null;
-  $finalImgURL = httpcheck($imgURL);
-  if($finalImgURL) {
-    $size = getimagesize($finalImgURL);
+  $final_img_url = httpcheck($img_url);
+  if($final_img_url) {
+    $size = getimagesize($final_img_url);
     $dimensions = array(
       "width" => $size[0],
       "height" => $size[1]
     );
   }
   return array(
-    "url" => $finalImgURL,
+    "url" => $final_img_url,
     "dimensions" => $dimensions
   );
 }
@@ -128,17 +128,17 @@ function getImgData($passURL, $description) {
 function checkReview($i) {
     global $now;
     global $ch; 
-    global $grKey;
-    $reviewID = str_replace(["Review","ReadStatus","UserStatus"],"",$i->guid);
-    $statuses = $xmlData->review->read_statuses; 
+    global $gr_key;
+    $review_ID = str_replace(["Review","ReadStatus","UserStatus"],"",$i->guid);
+     
     $new_status = false; 
     
-    $reviewURL = "https://www.goodreads.com/review/show.xml?id=$reviewID&key=$grKey";
-    $xmlData = getData($reviewURL);
-    if(!$xmlData) {
+    $review_url = "https://www.goodreads.com/review/show.xml?id=$reviewID&key=$gr_key";
+    $xml_data = getData($review_url);
+    if(!$xml_data) {
         return false; 
     }
-    $statuses = $xmlData->review->read_statuses; 
+    $statuses = $xml_data->review->read_statuses; 
     foreach ($statuses->read_status as $r) {
         //Make sure it's a read status
         if($r->status !== "read") {
@@ -163,12 +163,12 @@ function checkReview($i) {
 function checkStatus($api_url, $xml, $status_type) {
   global $now;
   global $ch; 
-  global $grKey;
-  $xmlData = getData($api_url);
+  global $gr_key;
+  $xml_data = getData($api_url);
     if(!$xmlData) {
       return false; 
   }
-  $read_status = ($status_type == "UserStatus") ? $xmlData->user_status : $xmlData->read_status;
+  $read_status = ($status_type == "UserStatus") ? $xml_data->user_status : $xml_data->read_status;
   if(!in_array($read_status->status, ["read","currently-reading"])) {
     return false ; 
   }  
