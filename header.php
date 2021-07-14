@@ -13,17 +13,7 @@ $homeArray =parse_url($homeURL);
 global $post;
 
 $slug = slug_generator($post->ID);
-$colors = array(
-  '#f39',
-  'red',
-  '#960',
-  '#f60',
-  '#606',
-  '#090',
-  '#00f',
-  "#222",
-  "#002FA7 "
-);
+$colors = input_to_array(get_option( 'color_options', '' ));
 //GET POST PARENT
 //$parentID = $post->post_parent;
 //$parentslug = get_post($parentID)->post_name;
@@ -134,9 +124,15 @@ if(has_excerpt()) {
 
 
 <script>
+var link = document.createElement("link");
+   link.type = "text/css";
+   link.rel = "stylesheet";
+   link.href = "<?= $siteDir;?>/css/dark-mode.css?v=<?= $cacheBreaker;?>";
+   link.setAttribute("id","dark_mode_styles")
 var App = {
   colors: <?= json_encode($colors);?>,
   colormode: <?= json_encode($colormode);?>,
+  darkModeLink: link
   URL: {
     homeURL: <?= json_encode($homeURL);?>,
     path: <?= json_encode($homeArray['path'].'/');?>,
@@ -147,6 +143,20 @@ var App = {
 
 
 </script>
+<!-- Dark Mode Setting --> 
+<script>
+  //Dark Mode by Default
+  var defaultDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var turnOnDark = false;
+  
+  
+  if((defaultDark && !localStorage.getItem("dark_mode") ) || localStorage.getItem("dark_mode") == "yes")  {
+   localStorage.setItem("dark_mode", "yes"); 
+   var head = document.head;
+   
+   head.appendChild(APP.darkModeLink);
+  }
+</script>
 
 <link rel="canonical" href="<?php echo get_the_permalink();?>">
 
@@ -154,10 +164,10 @@ var App = {
 <?php
 
 
-
+$default_color = (empty($colors) ? "" : "style='color: ".$colors[mt_rand(0, count($colors) + 1)]."'"
  ?>
-<body id="top" class="view_dark_mode">
-<div class="system-pref-test"></div>
+<body id="top" class="view_dark_mode" >
+<!--<div class="system-pref-test"></div>
 <script>
 (function () {
    if(localStorage.getItem("dark_mode") == false) {
@@ -178,7 +188,7 @@ var App = {
    }
 }());
   
-</script>
+</script> -->
 <!--<script>
     var testStyles = window.getComputedStyle(document.querySelector('.system-pref-test'));
     console.log(testStyles.getPropertyValue("font-size"));
