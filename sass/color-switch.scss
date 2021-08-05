@@ -78,7 +78,7 @@
 
   }
 
-  button#color-mode-button[data-colormode="color"] {
+  button#color-mode-button.in_color {
 
       &:after {
         left: auto;

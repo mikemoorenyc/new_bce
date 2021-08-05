@@ -1,5 +1,5 @@
 function siteInit() {
-
+  return false; 
   //COLOR SWITCHING
   document.getElementById("color-mode-switcher").style.visibility = 'visible';
   var dm = (localStorage.getItem('dark_mode') == "yes" ) ? true : false;
@@ -27,13 +27,13 @@ function siteInit() {
   colorSet(App.URL.path.replace('/','')+'_colormode');
 */
   document.getElementById("color-mode-switcher").style.visibility = 'visible';
-  if(App.pointerEvents && !dm) {
+  if(APP.pointerEvents && !dm) {
     if(!document.getElementById('liner')) {
       let line = document.createElement('div');
       line.setAttribute('id', 'liner');
       document.querySelector('body').appendChild(line);
     }
-    App.windowDimensions = {
+    APP.windowDimensions = {
      w: document.documentElement.clientWidth,
      h: document.documentElement.clientHeight
     }

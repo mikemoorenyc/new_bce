@@ -90,7 +90,7 @@ include_once get_template_directory().'/partial_api_key_generator.php';
 $keys = api_key_generator();
 ?>
 
-
+<!-- /* REMOVE IN DEV*/ -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=<?= $keys['GA'];?>"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -99,7 +99,7 @@ $keys = api_key_generator();
 
   gtag('config', '<?= $keys['GA'];?>');
 </script>
-
+<!-- /* END REMOVE IN DEV*/ -->
 
 <?php endif;?>
 

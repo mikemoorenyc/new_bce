@@ -1,3 +1,43 @@
+const switcher = document.getElementById("color-mode-switcher");
+const clrBtn = document.getElementById('color-mode-button');
+const fav = document.getElementById("dynamic_favicon");
+clrBtn.addEventListener('click',function(f){
+  let e = f.target;
+  let turnOnDark = (localStorage.getItem("dark_mode") == "yes") ? "no" : "yes"; 
+  colorModeSwitch(turnOnDark);
+  return false; 
+
+});
+function colorModeSwitch(turnDark) {
+  if(turnDark == "yes") {
+    //TURN ON DARK MODE
+    localStorage.setItem("dark_mode", "yes");
+    if(!document.head.contains(APP.darkModeLink)) {
+      document.head.appendChild(APP.darkModeLink);
+    }
+    
+    clrBtn.setAttribute('title', 'Switch to color mode');
+    clrBtn.classList.remove("in_color")
+    fav.setAttribute("href", APP.faviconURL);
+    
+  } else {
+    //TURN OFF DARK MODE
+    localStorage.setItem("dark_mode", "no");
+    if(document.head.contains(APP.darkModeLink)) {
+      document.head.removeChild(APP.darkModeLink);
+    }
+    
+    clrBtn.setAttribute('title', 'Switch to dark & simple mode');
+    clrBtn.classList.add("in_color");
+    fav.setAttribute("href", APP.faviconURL+"?color="+APP.currentColor);
+  }
+  
+}
+
+colorModeSwitch(localStorage.getItem("dark_mode")); 
+
+
+
 //const s_path = App.URL.path.replace('/','')+'_colormode';
 /*
 function colorSet(path) {

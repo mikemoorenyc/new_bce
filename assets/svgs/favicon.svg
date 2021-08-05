@@ -1,0 +1,12 @@
+<svg id="FavLogo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    #FavLogo {
+      fill: none;
+      stroke:black;
+    }
+    
+  </style>
+  <circle cx="16" cy="16" r="15.5"/>
+  <circle cx="16" cy="16" r="10.5" stroke-dasharray="3.5,2.5"/>
+  
+</svg>

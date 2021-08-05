@@ -8,7 +8,7 @@ function color_options_setting() {
 function color_options_input() {
   $value = get_option( 'color_options', '' );
 ?>
-<textarea rows="10" cols="50" class="large-text code" id="color_optionst" name="color_options"><?= $value;?></textarea>
+<textarea rows="10" cols="50" class="large-text code" id="color_options" name="color_options"><?= $value;?></textarea>
 
 <?php
 }

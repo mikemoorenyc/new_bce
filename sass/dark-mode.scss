@@ -1,7 +1,7 @@
 @import "./variables.scss"; 
 body {
     background: $black;
-    color: $white; 
+    color: $white !important; 
     animation: none;
     transition: none; 
     header a#spinner, header a#spinner:before, nav .nav-items, .hp.project-link .callout, footer#footer .inner, .p-s.top-section, #nav-opener:before, input#navigation-toggle:before, nav,.media-stream.container .media-item .media-image.type-cd .playlist-tag {

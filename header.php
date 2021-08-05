@@ -13,7 +13,8 @@ $homeArray =parse_url($homeURL);
 global $post;
 
 $slug = slug_generator($post->ID);
-$colors = input_to_array(get_option( 'color_options', '' ));
+
+$colors = preg_split("/\\r\\n|\\r|\\n/", get_option( 'color_options', '' ));
 //GET POST PARENT
 //$parentID = $post->post_parent;
 //$parentslug = get_post($parentID)->post_name;
@@ -40,7 +41,7 @@ $pageThumb = (get_post_thumbnail_id()) ? get_all_image_sizes(get_post_thumbnail_
 <head>
 
 <link rel='stylesheet' href="<?= $siteDir;?>/css/main.css?v=<?= $cacheBreaker;?>" type="text/css" />
-<link rel="stylesheet" href="<?= $siteDir;?>/css/dark-mode.css?v=<?= $cacheBreaker;?>" media="(prefers-color-scheme: dark)">
+<!--<link rel="stylesheet" href="<?= $siteDir;?>/css/dark-mode.css?v=<?= $cacheBreaker;?>" media="(prefers-color-scheme: dark)"> -->
 
 <?php
 if ( is_front_page() ) {
@@ -72,9 +73,9 @@ if(has_excerpt()) {
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link id="dynamic_favicon" rel="icon" type="image/svg+xml" href="<?= get_template_directory_uri().'/dynamic_svg.php';?>">
 
 
-<?php wp_site_icon();?>
 
 
 <?php
@@ -129,10 +130,11 @@ var link = document.createElement("link");
    link.rel = "stylesheet";
    link.href = "<?= $siteDir;?>/css/dark-mode.css?v=<?= $cacheBreaker;?>";
    link.setAttribute("id","dark_mode_styles")
-var App = {
+var APP = {
   colors: <?= json_encode($colors);?>,
   colormode: <?= json_encode($colormode);?>,
-  darkModeLink: link
+  darkModeLink: link,
+  faviconURL: <?= json_encode(get_template_directory_uri().'/dynamic_svg.php');?>,
   URL: {
     homeURL: <?= json_encode($homeURL);?>,
     path: <?= json_encode($homeArray['path'].'/');?>,
@@ -164,9 +166,15 @@ var App = {
 <?php
 
 
-$default_color = (empty($colors) ? "" : "style='color: ".$colors[mt_rand(0, count($colors) + 1)]."'"
+$default_color = (empty($colors) ) ? "" : "style='color: ".$colors[mt_rand(0, count($colors) + 1)]."'";
  ?>
 <body id="top" class="view_dark_mode" >
+<script>
+var color = APP.colors[Math.floor(Math.random() * APP.colors.length)]
+console.log(color);
+APP.currentColor = color; 
+document.body.style.color = color; 
+</script>
 <!--<div class="system-pref-test"></div>
 <script>
 (function () {
@@ -251,7 +259,7 @@ $default_color = (empty($colors) ? "" : "style='color: ".$colors[mt_rand(0, coun
      }
      ?>
    </div>
-     <div id="color-mode-switcher" class="color-mode-switcher before-block after-block" style="visibility:hidden;">
+     <div id="color-mode-switcher" class="color-mode-switcher before-block after-block" >
        <button data-colormode="<?= $colormode;?>" title="<?= $cmode_title;?>" id="color-mode-button" class="slider before-block after-block "></button>
      </div>
 
