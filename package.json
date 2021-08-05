@@ -12,7 +12,8 @@
   "devDependencies": {
     "cssnano": "^5.0.5",
     "gulp-htmlmin": "^5.0.1",
-    "postcss": "^8.3.0"
+    "postcss": "^8.3.0",
+    "trim-newlines": ">=3.0.1"
   },
   "dependencies": {
     "autoprefixer": "^6.7.7",
@@ -26,7 +27,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^9.0.0",
     "gulp-replace": "^0.5.4",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "^4.1.1",
     "gulp-strip-code": "^0.1.4",
     "gulp-svgo": "^1.0.3",
     "gulp-uglify": "^2.1.2",
