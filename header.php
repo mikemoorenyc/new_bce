@@ -74,8 +74,9 @@ if(has_excerpt()) {
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 <link id="dynamic_favicon" rel="icon" type="image/svg+xml" href="<?= get_template_directory_uri().'/dynamic_svg.php';?>">
-
-
+<link rel="alternate icon" href="<?= get_template_directory_uri().'/assets/imgs/favicon.ico';?>">
+<link rel="mask-icon" href="<?= get_template_directory_uri().'/assets/imgs/safari-pinned-tab.svg';?>" color="#000000">
+<link rel="apple-touch-icon" sizes="180x180" href="<?= get_template_directory_uri().'/assets/imgs/apple-touch-icon.png';?>">
 
 
 <?php
@@ -85,19 +86,9 @@ if(has_excerpt()) {
   }
    $twitterCard = 'summary_large_image';
    $twitterUsername = get_option('twitterHandle','');
+   $socialImg = (!$pageThumb) ? get_template_directory_uri().'/assets/imgs/apple-touch-icon.png' : $pageThumb['full']['url'];
+   $twitterCard = (!$pageThumb) ? "summary" : "summary_large_image";
 
-
-  if($pageThumb) {
-    $socialImg = $pageThumb['full']['url'];
-  } else {
-    $socialImg = '';
-    $twitterCard = 'summary';
-    if(get_option( 'social_icon_image', '' )) {
-      $socialImg = get_all_image_sizes(get_option( 'social_icon_image', '' ));
-      $socialImg = $socialImg['full']['url'];
-    }
-
-  }
 
  ?>
 
