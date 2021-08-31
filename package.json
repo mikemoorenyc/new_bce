@@ -15,7 +15,7 @@
     "postcss": "^8.3.0",
     "trim-newlines": ">=3.0.1",
     "glob-parent": ">=5.1.2",
-    "tar": ">=3.2.3"
+    "tar": ">=6.1.9"
   },
   "dependencies": {
     "autoprefixer": "^6.7.7",
