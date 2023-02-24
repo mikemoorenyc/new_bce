@@ -29,7 +29,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^9.0.0",
     "gulp-replace": "^0.5.4",
-    "gulp-sass": "^4.1.1",
+    "gulp-sass": "^5.1.0",
     "gulp-strip-code": "^0.1.4",
     "gulp-svgo": "^1.0.3",
     "gulp-uglify": "^2.1.2",
